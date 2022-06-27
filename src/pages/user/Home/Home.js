@@ -4,7 +4,6 @@ import HomeSlider from '../../../components/HomeSlider/HomeSlider';
 function Home() {
   return (
     <div>
-      <hr />
       <HomeSlider>New Releases</HomeSlider>
       <hr />
       <HomeSlider>Promotions</HomeSlider>
