@@ -6,6 +6,8 @@ import Home from './pages/user/Home/Home';
 import Categories from './pages/user/Categories/Categories';
 import Footer from './components/Footer/Footer';
 import Promotions from './pages/user/Promotions/Promotions';
+import Login from './pages/user/Login/Login';
+import SignUp from './pages/user/SignUp/SignUp';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/promotions' element={<Promotions />} />
+        <Route path='/login' element={<Login /> } />
+        <Route path='/SignUp' element={<SignUp />} />
       </Routes>
       <Footer />
     </Router>

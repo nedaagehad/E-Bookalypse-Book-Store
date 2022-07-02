@@ -1,0 +1,37 @@
+.logo{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-weight: 800; */
+    background: linear-gradient(180deg, #8D27AE, #CE4FF8, #cc6aed) !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+.nav-item, .nav-icon{
+    color: #ABA8A8;
+    /* width: 24px;
+    height: 24px; */
+}
+
+.nav-item:hover, .nav-icon:hover{
+    color: #CE4FF8;
+    transition: all 0.5s ease-in-out;
+}
+
+.nav-btn{
+    background-color: #8D27AE !important;
+    outline: none !important;
+    border: #8D27AE 1px solid !important;
+}
+
+.nav-btn:hover{
+    background-color: whitesmoke !important;
+    color: #8D27AE !important;
+    border: #8D27AE 1px solid !important;
+}
+
+button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 7px;
+}

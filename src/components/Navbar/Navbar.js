@@ -1,61 +1,54 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Button from 'react-bootstrap/Button';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+// import Button from 'react-bootstrap/Button';
+import { NavLink, Link } from "react-router-dom";
+// import Form from 'react-bootstrap/Form';
+// import FormControl from 'react-bootstrap/FormControl';
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
 import { TbDiscount2 } from 'react-icons/tb';
+import { BsSearch } from 'react-icons/bs';
+import { GiShoppingCart } from 'react-icons/gi';
+import { VscSettings } from 'react-icons/vsc';
 
 function NavBar() {
- 
+
+
 
   return (
     <>
-    <Navbar bg="dark" variant="dark" expand="lg">
-  <Container fluid>
-    <Navbar.Brand href="#">E-Bookalypse</Navbar.Brand>
-    <Navbar.Toggle aria-controls="navbarScroll" />
-    <Navbar.Collapse id="navbarScroll">
-      <Nav
-        className="me-auto my-2 my-lg-0"
-        navbarScroll
-      >
-        <Nav.Link href="#action1">
-          <GoHome />
-          Home</Nav.Link>
-        <Nav.Link href="#action2">
-          <GiBookshelf />
-          Categories</Nav.Link>
-        {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5">
-            Something else here
-          </NavDropdown.Item>
-        </NavDropdown> */}
-        <Nav.Link href="#">
-          <TbDiscount2 />
-          Promotions
-        </Nav.Link>
-      </Nav>
-      <Form className="d-flex">
-        <FormControl
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-success">Search</Button>
-      </Form>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-  </>
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Container fluid>
+          <Navbar.Brand className='logo fs-4'>E-Bookalypse</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
+              <NavLink to='/' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+                <GoHome className='me-1' />
+                Home</NavLink>
+
+              <NavLink to='/categories' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+                <GiBookshelf className='me-1' />
+                Categories</NavLink>
+
+              <NavLink to='/promotions' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+                <TbDiscount2 className='me-1' />
+                Promotions
+              </NavLink>
+            </Nav>
+            <BsSearch className='nav-icon me-3' />
+            <GiShoppingCart className="nav-icon me-3" style={{ width: '22px', height: '22px' }} />
+            <div style={{height: '50px'}}>
+              <button><Link className="text-decoration-none nav-btn text-light rounded px-2 py-1 w-100 h-100" to='/signUp'>Create Account</Link></button>
+              <p className="text-light text-center" style={{fontSize: '12px'}}>Or <Link className="text-decoration-none nav-item" to='/login'>Sign in</Link></p>
+            </div>
+            <VscSettings className='nav-icon mx-3' />
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 
