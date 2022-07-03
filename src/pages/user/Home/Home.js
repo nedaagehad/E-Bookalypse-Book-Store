@@ -2,6 +2,7 @@ import React from 'react';
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
 
 function Home() {
+
   return (
     <div>
       <HomeSlider>New Releases</HomeSlider>
