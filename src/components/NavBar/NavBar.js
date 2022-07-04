@@ -8,7 +8,7 @@ import { GiBookshelf } from 'react-icons/gi';
 import { TbDiscount2 } from 'react-icons/tb';
 import { BsSearch } from 'react-icons/bs';
 import { GiShoppingCart } from 'react-icons/gi';
-import { VscSettings } from 'react-icons/vsc';
+// import { VscSettings } from 'react-icons/vsc';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 
 function NavBar() {
@@ -21,32 +21,32 @@ function NavBar() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar sticky="top" className="shadow-sm" bg={toggled ? "dark" : "light"} variant={toggled ? "dark" : "light"} expand="lg">
         <Container fluid>
           <Navbar.Brand className='logo fs-4'>E-Bookalypse</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-              <NavLink to='/' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+              <NavLink to='/' className={`fw-bold p-1 text-decoration-none d-flex align-items-center me-3 nav-item${toggled ? "-night" : ""}`}>
                 <GoHome className='me-1' />
                 Home</NavLink>
 
-              <NavLink to='/categories' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+              <NavLink to='/categories' className={`fw-bold p-1 text-decoration-none d-flex align-items-center me-3 nav-item${toggled ? "-night" : ""}`}>
                 <GiBookshelf className='me-1' />
                 Categories</NavLink>
 
-              <NavLink to='/promotions' className='p-1 text-decoration-none d-flex align-items-center me-3 nav-item'>
+              <NavLink to='/promotions' className={`fw-bold p-1 text-decoration-none d-flex align-items-center me-3 nav-item${toggled ? "-night" : ""}`}>
                 <TbDiscount2 className='me-1' />
                 Promotions
               </NavLink>
             </Nav>
-            <BsSearch className='nav-icon me-3' />
-            <GiShoppingCart className="nav-icon me-3" style={{ width: '22px', height: '22px' }} />
+            <BsSearch className={`nav-icon${toggled ? "-night" : ""} me-3`} />
+            <GiShoppingCart className={`nav-icon${toggled ? "-night" : ""} me-3`} style={{ width: '22px', height: '22px' }} />
             <div style={{height: '50px'}}>
               <button><Link className="text-decoration-none nav-btn text-light rounded px-2 py-1 w-100 h-100" to='/signUp'>Create Account</Link></button>
-              <p className="text-light text-center" style={{fontSize: '12px'}}>Or <Link className="text-decoration-none nav-item" to='/login'>Sign in</Link></p>
+              <p className={`fw-bold ${toggled ? "text-light" : "text-dark"} text-center`} style={{fontSize: '12px'}}>Or <Link className={`text-decoration-none nav-item${toggled ? "-night" : ""} `} to='/login'>Sign in</Link></p>
             </div>
-            <VscSettings className='nav-icon mx-3' />
+            {/* <VscSettings className='nav-icon mx-3' /> */}
             <ThemeToggler toggled={toggled} onClick={handleClick} />
           </Navbar.Collapse>
         </Container>

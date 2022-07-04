@@ -7,12 +7,21 @@
     color: transparent !important;
 }
 
-.nav-item, .nav-icon{
+.nav-item-night, .nav-icon-night{
     color: #ABA8A8;
 }
 
-.nav-item:hover, .nav-icon:hover{
+.nav-item, .nav-icon{
+    color: #848383;
+}
+
+.nav-item-night:hover, .nav-icon-night:hover{
     color: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+.nav-item:hover, .nav-icon:hover{
+    color: #000;
     transition: all 0.5s ease-in-out;
 }
 
