@@ -1,5 +1,17 @@
 /* NavBar Section: */
 /* Logo Section: */
+.nav-container{
+    padding: 5px !important;
+}
+
+@media screen and (min-width: 995px) {
+.login-section{
+    position: relative;
+    top: -10px;
+}
+
+}
+
 .logo{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background: linear-gradient(180deg, #8D27AE, #CE4FF8, #cc6aed) !important;
