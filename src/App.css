@@ -1,180 +1,206 @@
-@import url('../src/components/Footer/Footer.css');
+@import url("../src/components/Footer/Footer.css");
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #848383;
+  /* border: #212529 2px solid; */
+  box-shadow: inset 0.5px 0.5px 2px #212529, 1px 1px 5px #212529;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8d27ae;
+  border-radius: 3px;
+}
 
 /* NavBar Section: */
 /* Logo Section: */
-.nav-container{
-    padding: 5px !important;
+.nav-container {
+  padding: 5px !important;
 }
 
 @media screen and (min-width: 995px) {
-.login-section{
+  .login-section {
     position: relative;
     top: -10px;
+  }
 }
 
+.logo {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background: linear-gradient(180deg, #8d27ae, #ce4ff8, #cc6aed) !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
 
-.logo{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    background: linear-gradient(180deg, #8D27AE, #CE4FF8, #cc6aed) !important;
-    background-clip: text !important;
-    color: transparent !important;
+.nav-item-night,
+.nav-icon-night {
+  color: #aba8a8;
 }
 
-.nav-item-night, .nav-icon-night{
-    color: #ABA8A8;
+.nav-item,
+.nav-icon {
+  color: #848383;
 }
 
-.nav-item, .nav-icon{
-    color: #848383;
+.nav-item-night:hover,
+.nav-icon-night:hover {
+  color: #fff;
+  transition: all 0.5s ease-in-out;
 }
 
-.nav-item-night:hover, .nav-icon-night:hover{
-    color: #fff;
-    transition: all 0.5s ease-in-out;
+.nav-item:hover,
+.nav-icon:hover {
+  color: #000;
+  transition: all 0.5s ease-in-out;
 }
 
-.nav-item:hover, .nav-icon:hover{
-    color: #000;
-    transition: all 0.5s ease-in-out;
+.nav-btn {
+  background-color: #8d27ae !important;
+  outline: none !important;
+  border: #8d27ae 1px solid !important;
 }
 
-.nav-btn{
-    background-color: #8D27AE !important;
-    outline: none !important;
-    border: #8D27AE 1px solid !important;
+.nav-btn:hover {
+  background-color: whitesmoke !important;
+  color: #8d27ae !important;
+  border: #8d27ae 1px solid !important;
+  transition: all 0.5s ease-in-out;
 }
 
-.nav-btn:hover{
-    background-color: whitesmoke !important;
-    color: #8D27AE !important;
-    border: #8D27AE 1px solid !important;
-    transition: all 0.5s ease-in-out;
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 7px;
 }
 
-button{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    padding: 7px;
+.theme-toggler {
+  margin: 20px;
+  height: 30px;
+  width: 60px;
+  border-radius: 30px;
+  /* border: solid 1px black; */
+  background-image: linear-gradient(aqua, skyblue);
+  position: relative;
+  cursor: pointer;
 }
 
-.theme-toggler{
-    margin: 20px;
-    height: 30px;
-    width: 60px;
-    border-radius: 30px;
-    /* border: solid 1px black; */
-    background-image: linear-gradient(aqua, skyblue);
-    position: relative;
-    cursor: pointer;
+.theme-toggler.night {
+  background-image: linear-gradient(midnightblue, rebeccapurple);
 }
 
-.theme-toggler.night{
-    background-image: linear-gradient(midnightblue, rebeccapurple);
+.notch {
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  background-color: yellow;
+  position: absolute;
+  top: 1.5px;
+  left: 1px;
+  box-shadow: 0 0 5px yellow;
+  z-index: 1;
+  transition: all 0.4s ease;
 }
 
-.notch{
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-    background-color: yellow;
-    position: absolute;
-    top: 1.5px;
-    left: 1px;
-    box-shadow: 0 0 5px yellow;
-    z-index: 1;
-    transition: all 0.4s ease;
-}
-
-.night > .notch{
-    background: whitesmoke;
-    box-shadow: 0 0 5px whitesmoke;
-    transform: translate(30px,0);
+.night > .notch {
+  background: whitesmoke;
+  box-shadow: 0 0 5px whitesmoke;
+  transform: translate(30px, 0);
 }
 
 .notch > .crater {
-    background: burlywood;
-    border-radius: 50%;
-    position: absolute;
-    opacity: 0;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.4) inset;
+  background: burlywood;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4) inset;
 }
 
-.night .crater{
-    opacity: 0.3;
+.night .crater {
+  opacity: 0.3;
 }
 
-.crater.st{
-    left: 0.5px;
-    top: 4px;
-    height: 5px;
-    width: 13px;
-    transform: rotate(-45deg);
+.crater.st {
+  left: 0.5px;
+  top: 4px;
+  height: 5px;
+  width: 13px;
+  transform: rotate(-45deg);
 }
 
-.crater.nd{
-    right: 2.5px;
-    top: 5px;
-    height: 3px;
-    width: 8px;
-    transform: rotate(45deg);
+.crater.nd {
+  right: 2.5px;
+  top: 5px;
+  height: 3px;
+  width: 8px;
+  transform: rotate(45deg);
 }
 
-.shape{
-    position: absolute;
-    background: whitesmoke;
-    border-radius: 50%;
-    transition: all 0.4s ease;
+.shape {
+  position: absolute;
+  background: whitesmoke;
+  border-radius: 50%;
+  transition: all 0.4s ease;
 }
 
-.night > .shape{
-    background: lightgray;
-    box-shadow: 0 0 3px 0.5px violet;
+.night > .shape {
+  background: lightgray;
+  box-shadow: 0 0 3px 0.5px violet;
 }
 
-.shape.sm{
-    height: 2px;
-    width: 15px;
-    top: 50%;
-    left: 54%;
+.shape.sm {
+  height: 2px;
+  width: 15px;
+  top: 50%;
+  left: 54%;
 }
 
-.shape.md{
-    height: 3px;
-    width: 22px;
-    top: 22%;
-    left: 25%;
-    z-index: 2;
+.shape.md {
+  height: 3px;
+  width: 22px;
+  top: 22%;
+  left: 25%;
+  z-index: 2;
 }
 
-.shape.lg{
-    height: 4px;
-    width: 27px;
-    bottom: 17%;
-    left: 25%;
+.shape.lg {
+  height: 4px;
+  width: 27px;
+  bottom: 17%;
+  left: 25%;
 }
 
-.night > .shape.sm{
-    height: 1.5px;
-    width: 1.5px;
-    transform: translate(-8px, 1px);
+.night > .shape.sm {
+  height: 1.5px;
+  width: 1.5px;
+  transform: translate(-8px, 1px);
 }
 
 .night > .shape.sm.second {
-    height: 1px;
-    width: 1px;
-    transform: translate(-23px, -3px);
+  height: 1px;
+  width: 1px;
+  transform: translate(-23px, -3px);
 }
 
-.night > .shape.md{
-    height: 2.5px;
-    width: 2.5px;
-    transform: translate(3px, -1px);
+.night > .shape.md {
+  height: 2.5px;
+  width: 2.5px;
+  transform: translate(3px, -1px);
 }
 
-.night > .shape.lg{
-    height: 3.5px;
-    width: 3.5px;
-    transform: translate(-2px, -2px);
+.night > .shape.lg {
+  height: 3.5px;
+  width: 3.5px;
+  transform: translate(-2px, -2px);
 }
