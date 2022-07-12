@@ -5,27 +5,27 @@ import { RiInstagramFill } from 'react-icons/ri'
 
 function Footer() {
   return (
-    <div className="container-fluid bg-dark text-light px-5 py-3 position-relative">
+    <div className="container-fluid bg-dark text-light p-3 position-relative">
       <p className="copyrights">© 2022 Copyright E-Bookalypse | All Rights Reserved</p>
       <div className='row justify-content-center'>
-        <div className='col-3 footer-item text-center'>
+        <div className='col-lg-3 col-12 footer-item text-center'>
           <h5>Support</h5>
           <ul className='list-unstyled'>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Publish with us</li>
+            <li className='my-1'>About Us</li>
+            <li className='my-1'>Contact Us</li>
+            <li className='my-1'>Publish with us</li>
           </ul>
         </div>
-        <div className='col-5 d-flex align-items-center justify-content-center'>
-          <div className='footer-item'>
-            <span>Terms of Use</span> | &nbsp;
-            <span>Refund Policy</span> | &nbsp;
-            <span>Payment Policy</span> | &nbsp;
-            <span>Privacy Policy</span>
-          </div>
+        <div className='col-lg-6 col-12 d-flex align-items-center footer-item row mb-lg-0 mb-3'>
+          {/* <div className=' justify-content-center'> */}
+            <div className='col-lg-3 col-12 text-center my-1 border-lg-end'>Terms of Use</div>
+            <div className='col-lg-3 col-12 text-center my-1 border-lg-end'>Refund Policy</div>
+            <div className='col-lg-3 col-12 text-center my-1 border-lg-end'>Payment Policy</div>
+            <div className='col-lg-3 col-12 text-center my-1 '>Privacy Policy</div>
+          {/* </div> */}
         </div>
-        <div className='col-4 text-center footer-item'>
-          <h5>Connect with us</h5>
+        <div className='col-lg-3 col-12 text-center footer-item mb-3 mb-lg-0'>
+          <h5 className='mb-3'>Connect with us</h5>
           <div className='row justify-content-center'>
             <div className='col-3 media-icon-container'>
               <a href='http://www.facebook.com' target="_blank" ><FaFacebookF className='media-icon-night' /></a>

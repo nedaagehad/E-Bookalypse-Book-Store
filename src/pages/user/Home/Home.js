@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
+import OurPartners from '../../../components/OurPartners/OurPartners';
 
 function Home() {
 
@@ -29,8 +30,7 @@ function Home() {
       <hr />
       <HomeSlider>Top 10</HomeSlider>
       <hr />
-      <h1>Our Partners</h1>
-      <hr />
+      <OurPartners />
     </div>
   )
 }
