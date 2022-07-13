@@ -5,12 +5,11 @@ import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
-// import { TbDiscount2 } from 'react-icons/tb';
-import { BsSearch } from 'react-icons/bs';
+// import { BsSearch } from 'react-icons/bs';
 import { GiShoppingCart } from 'react-icons/gi';
-// import { VscSettings } from 'react-icons/vsc';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import { TbShoppingCartDiscount } from 'react-icons/tb';
+import SearchBar from "../SearchBar/SearchBar";
 
 function NavBar() {
 
@@ -41,7 +40,8 @@ function NavBar() {
                 Promotions
               </NavLink>
             </Nav>
-            <BsSearch className={`nav-icon${toggled ? "-night" : ""} me-3`} />
+            {/* <BsSearch className={`nav-icon${toggled ? "-night" : ""} me-3`} /> */}
+            <SearchBar className={`nav-icon${toggled ? "-night" : ""} me-3`} />
             <GiShoppingCart className={`nav-icon${toggled ? "-night" : ""} me-3`} style={{ width: '22px', height: '22px' }} />
             <div className="login-section" style={{height: '30px'}}>
               <button><Link className="text-decoration-none nav-btn text-light rounded px-2 py-1 w-100 h-100" to='/signUp'>Create Account</Link></button>

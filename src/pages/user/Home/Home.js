@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
 import OurPartners from '../../../components/OurPartners/OurPartners';
+import SearchBar from '../../../components/SearchBar/SearchBar';
 
 function Home() {
 
