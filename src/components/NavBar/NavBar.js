@@ -5,15 +5,17 @@ import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
-// import { BsSearch } from 'react-icons/bs';
 import { GiShoppingCart } from 'react-icons/gi';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import { TbShoppingCartDiscount } from 'react-icons/tb';
 import SearchBar from "../SearchBar/SearchBar";
+// import { ImUser } from 'react-icons/im';
+import { FaUserCircle } from 'react-icons/fa';
 
 function NavBar() {
 
   const [toggled, setToggled] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const handleClick = () => {
     setToggled((s) => !s);
@@ -40,14 +42,17 @@ function NavBar() {
                 Promotions
               </NavLink>
             </Nav>
-            {/* <BsSearch className={`nav-icon${toggled ? "-night" : ""} me-3`} /> */}
-            <SearchBar className={`nav-icon${toggled ? "-night" : ""} me-3`} />
-            <GiShoppingCart className={`nav-icon${toggled ? "-night" : ""} me-3`} style={{ width: '22px', height: '22px' }} />
-            <div className="login-section" style={{height: '30px'}}>
-              <button><Link className="text-decoration-none nav-btn text-light rounded px-2 py-1 w-100 h-100" to='/signUp'>Create Account</Link></button>
-              <p className={`fw-bold ${toggled ? "text-light" : "text-dark"} text-center`} style={{fontSize: '12px'}}>Or <Link className={`text-decoration-none nav-item${toggled ? "-night" : ""} `} to='/login'>Sign in</Link></p>
-            </div>
-            {/* <VscSettings className='nav-icon mx-3' /> */}
+            <SearchBar className={`nav-icon${toggled ? "-night" : ""} me-4`} />
+            <GiShoppingCart className={`nav-icon${toggled ? "-night" : ""} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+            {loggedIn ? 
+            <div className="profile-icon">
+              {/* <ImUser className="user-icon" /> */}
+              <FaUserCircle className="user-icon" />
+            </div> :
+            <div className="login-section row" style={{height: '30px'}}>
+            <button className="col-12"><Link className="text-decoration-none nav-btn text-light rounded px-2 py-1 w-100 h-100" to='/signUp'>Create Account</Link></button>
+            <p className={`col-12 fw-bold ${toggled ? "text-light" : "text-dark"} text-center`} style={{fontSize: '12px'}}>Or <Link className={`text-decoration-none nav-item${toggled ? "-night" : ""} `} to='/login'>Sign in</Link></p>
+          </div>}
             <ThemeToggler toggled={toggled} onClick={handleClick} />
           </Navbar.Collapse>
         </Container>

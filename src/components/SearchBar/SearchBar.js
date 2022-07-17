@@ -8,9 +8,7 @@ function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const ExpandSearch = () => {
-        // console.log("clicked" + isExpanded)
         setIsExpanded((s) => !s);
-        // console.log(isExpanded);
     }
 
     const HandleSearch = (e) => {
@@ -23,7 +21,7 @@ function SearchBar() {
     }
 
   return (
-    <div className={`search-bar ${isExpanded ? "active" : ""}`}>
+    <div className={`search-bar ${isExpanded ? "active" : ""} me-2`}>
         <input type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
         <div className='search-btn' onClick={ExpandSearch}>
             <BsSearch />
