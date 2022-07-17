@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
 import OurPartners from '../../../components/OurPartners/OurPartners';
-import SearchBar from '../../../components/SearchBar/SearchBar';
 
 function Home() {
 
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   return (
-    <div>
+    <div className={`${theme === "night" ? "bg-secondary" : ""}`}>
       <HomeSlider>New Releases</HomeSlider>
       <hr />
       <HomeSlider>Promotions</HomeSlider>
@@ -30,7 +32,6 @@ function Home() {
       <HomeSlider>Top 10</HomeSlider>
       <hr />
       <HomeSlider>Top 10</HomeSlider>
-      <hr />
       <OurPartners />
     </div>
   )

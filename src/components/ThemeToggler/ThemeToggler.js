@@ -1,8 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTheme } from '../../store/actions/theme';
 
-function ThemeToggler({ toggled, onClick }) {
+function ThemeToggler() {
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+  const dispatch = useDispatch();
+
+  const toggleTheme = () => {
+    dispatch(changeTheme(theme === "night" ? "light" : "night"))
+  }
   return (
-    <div className={`theme-toggler${toggled ? " night" : ""}`} onClick={onClick}>
+    <div className={`theme-toggler${theme === "night" ? " night" : ""}`} onClick={toggleTheme}>
         <div className='notch'>
             <div className='crater st' />
             <div className='crater nd' />

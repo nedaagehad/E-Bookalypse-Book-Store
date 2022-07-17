@@ -1,0 +1,86 @@
+.nav-container {
+    padding: 5px !important;
+  }
+  
+  @media screen and (min-width: 995px) {
+    .login-section {
+      position: relative;
+      top: 0px;
+      width: 155px !important;
+      height: 60px !important;
+      padding: 0 !important;
+    }
+  }
+  
+  @media  screen and (max-width: 994px) {
+    .login-section {
+      width: 155px !important;
+      height: 60px !important;
+      margin-top: 5px;
+    }
+  }
+  
+  .profile-icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .user-icon{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .logo {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    background: linear-gradient(180deg, #8d27ae, #ce4ff8, #cc6aed) !important;
+    background-clip: text !important;
+    color: transparent !important;
+  }
+  
+  .nav-item-night,
+  .nav-icon-night {
+    color: #aba8a8;
+  }
+  
+  .nav-item,
+  .nav-icon {
+    color: #848383;
+  }
+  
+  .nav-item-night:hover,
+  .nav-icon-night:hover {
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .nav-item:hover,
+  .nav-icon:hover {
+    color: #000;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .nav-btn {
+    background-color: #8d27ae !important;
+    outline: none !important;
+    border: #8d27ae 1px solid !important;
+    margin-top: 0px !important;
+  }
+  
+  .nav-btn:hover {
+    background-color: whitesmoke !important;
+    color: #8d27ae !important;
+    border: #8d27ae 1px solid !important;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 7px;
+    margin: 0 !important;
+  }
