@@ -1,5 +1,4 @@
-@import url("../src/components/SearchBar/SearchBar.css");
-@import url("../src/components/ThemeToggler/ThemeToggler.css");
+/* @import url("../src/components/ThemeToggler/ThemeToggler.css"); */
 
 ::-webkit-scrollbar {
   width: 10px;

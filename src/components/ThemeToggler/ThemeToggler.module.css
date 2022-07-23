@@ -1,4 +1,4 @@
-.theme-toggler {
+.themeToggler {
     margin: 20px;
     height: 30px;
     width: 60px;
@@ -8,7 +8,7 @@
     cursor: pointer;
   }
   
-  .theme-toggler.night {
+  .themeToggler.night {
     background-image: linear-gradient(midnightblue, rebeccapurple);
   }
   

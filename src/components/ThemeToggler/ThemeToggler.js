@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeTheme } from '../../store/actions/theme';
+import styles from './ThemeToggler.module.css';
 
 function ThemeToggler() {
 
@@ -11,15 +12,15 @@ function ThemeToggler() {
     dispatch(changeTheme(theme === "night" ? "light" : "night"))
   }
   return (
-    <div className={`theme-toggler${theme === "night" ? " night" : ""}`} onClick={toggleTheme}>
-        <div className='notch'>
-            <div className='crater st' />
-            <div className='crater nd' />
+    <div className={`${styles.themeToggler} ${theme === "night" ? styles.night : ""}`} onClick={toggleTheme}>
+        <div className={styles.notch}>
+            <div className={`${styles.crater} ${styles.st}`} />
+            <div className={`${styles.crater} ${styles.nd}`} />
         </div>
-        <div className='shape sm' />
-        <div className='shape sm second' />
-        <div className='shape md' />
-        <div className='shape lg' />
+        <div className={`${styles.shape} ${styles.sm}`} />
+        <div className={`${styles.shape} ${styles.sm} ${styles.second}`} />
+        <div className={`${styles.shape} ${styles.md}`} />
+        <div className={`${styles.shape} ${styles.lg}`} />
     </div>
   )
 }
