@@ -1,9 +1,9 @@
-.nav-container {
+.navContainer {
     padding: 5px !important;
   }
   
   @media screen and (min-width: 995px) {
-    .login-section {
+    .loginSection {
       position: relative;
       top: 0px;
       width: 155px !important;
@@ -13,14 +13,18 @@
   }
   
   @media  screen and (max-width: 994px) {
-    .login-section {
+    .loginSection {
       width: 155px !important;
       height: 60px !important;
       margin-top: 5px;
     }
+
+    .navbarLarge{
+      display: none !important;
+    }
   }
   
-  .profile-icon{
+  .profileIcon{
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -29,7 +33,7 @@
     justify-content: center;
   }
   
-  .user-icon{
+  .userIcon{
     width: 100%;
     height: 100%;
   }
@@ -41,36 +45,36 @@
     color: transparent !important;
   }
   
-  .nav-item-night,
-  .nav-icon-night {
+  .navItemNight,
+  .navIconNight {
     color: #aba8a8;
   }
   
-  .nav-item,
-  .nav-icon {
+  .navItem,
+  .navIcon {
     color: #848383;
   }
   
-  .nav-item-night:hover,
-  .nav-icon-night:hover {
+  .navItemNight:hover,
+  .navIconNight:hover {
     color: #fff;
     transition: all 0.5s ease-in-out;
   }
   
-  .nav-item:hover,
-  .nav-icon:hover {
+  .navItem:hover,
+  .navIcon:hover {
     color: #000;
     transition: all 0.5s ease-in-out;
   }
   
-  .nav-btn {
+  .navBtn {
     background-color: #8d27ae !important;
     outline: none !important;
     border: #8d27ae 1px solid !important;
     margin-top: 0px !important;
   }
   
-  .nav-btn:hover {
+  .navBtn:hover {
     background-color: whitesmoke !important;
     color: #8d27ae !important;
     border: #8d27ae 1px solid !important;

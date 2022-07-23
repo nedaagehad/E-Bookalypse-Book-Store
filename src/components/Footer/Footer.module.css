@@ -1,11 +1,11 @@
-.media-icon-container {
+.mediaIconContainer {
     width: 26px !important;
     height: 26px !important;
     margin: 0 5px !important;
     padding: 0 !important;
 }
 
-.media-icon-night{
+.mediaIconNight{
     width: 26px;
     height: 26px;
     margin: 0 !important;
@@ -13,16 +13,36 @@
     color: #ABA8A8;
 }
 
-.media-icon-night:hover{
+.mediaIcon{
+    width: 26px;
+    height: 26px;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #848383;
+}
+
+.mediaIconNight:hover, .mediaIcon:hover{
     color: #8D27AE;
     transition: all 0.5s ease-in-out;
 }
 
-.footer-item{
+.footerItemNight{
     color: #ABA8A8;
 }
 
+.footerItem{
+    color: #848383;
+}
+
 .copyrights{
+    position: absolute;
+    font-size: 12px;
+    color: #848383;
+    bottom: -10px;
+    right: 5px;
+}
+
+.copyrightsNight{
     position: absolute;
     font-size: 12px;
     color: #ABA8A8;

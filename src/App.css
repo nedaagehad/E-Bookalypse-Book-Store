@@ -1,8 +1,5 @@
-@import url("../src/components/Footer/Footer.css");
 @import url("../src/components/SearchBar/SearchBar.css");
-@import url("../src/components/OurPartners/OurPartners.css");
 @import url("../src/components/ThemeToggler/ThemeToggler.css");
-@import url("../src/components/NavBar/NavBar.css");
 
 ::-webkit-scrollbar {
   width: 10px;

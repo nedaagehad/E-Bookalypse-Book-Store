@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
-
+import navbar from '../NavBar/NavBar.module.css';
+ 
 function SearchBar() {
 
     const theme = useSelector((state) => state.theme.currentTheme);
@@ -25,12 +26,12 @@ function SearchBar() {
 
   return (
     <div className={`search-bar ${isExpanded ? "active" : ""} me-2`}>
-        <input type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
+        <input className={theme === "night" ? "bg-light" : "bg-white"} type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
         <div className='search-btn' onClick={ExpandSearch}>
-            <BsSearch className={`nav-icon${theme === "night" ? "-night" : ""}`} />
+            <BsSearch className={theme === "night" && !isExpanded ? navbar.navIconNight : navbar.navIcon} />
         </div>
-        <div className='search-cancel' onClick={ClearSearch}>
-            <GrClose />
+        <div className={`search-cancel`} onClick={ClearSearch}>
+            <GrClose className={navbar.navIcon} />
         </div>
     </div>
   )
