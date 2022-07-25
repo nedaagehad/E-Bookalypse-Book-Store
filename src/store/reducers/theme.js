@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    currentTheme: "light",
+    currentTheme: "day",
 };
 
 export default function themeReducer (state = INITIAL_STATE, action) {

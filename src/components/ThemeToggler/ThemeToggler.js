@@ -10,7 +10,7 @@ function ThemeToggler() {
   const dispatch = useDispatch();
 
   const toggleTheme = () => {
-    dispatch(changeTheme(theme === "night" ? "light" : "night"))
+    dispatch(changeTheme(theme === "night" ? "day" : "night"))
   }
   return (
     <div className={`${styles.themeToggler} ${theme === "night" ? styles.night : ""}`} onClick={toggleTheme}>

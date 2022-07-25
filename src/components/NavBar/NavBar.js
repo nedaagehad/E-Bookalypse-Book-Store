@@ -5,7 +5,6 @@ import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
-
 import { GiShoppingCart } from 'react-icons/gi';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import { TbShoppingCartDiscount } from 'react-icons/tb';
