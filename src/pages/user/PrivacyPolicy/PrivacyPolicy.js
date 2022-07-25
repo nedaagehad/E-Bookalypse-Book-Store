@@ -53,21 +53,15 @@ export default function PrivacyPolicy() {
 
                 {/* <h6 className='fw-bold'>WHY DO WE USE COOKIES?</h6>
                 <p>
->>>>>>> 7f4e051ac3ce5e578288213fb5957908d2247687
                     We use cookies like most companies, for a variety of purposes to enhance your online experience and to provide services and features you have specifically requested. We may use cookies and tracking technologies for system administration and/or to allow you to remember your log-in status,
                     and to make use of shopping-cart functionality. We are not required to obtain your consent for cookies that are strictly necessary. We may also use cookies to assess the performance of our Services,
                     including as part of our analytics practices to improve the selection of content recommended to you through the Services; to tell us, for example,
                     whether you have visited the Services before or if you are a new visitor and to help us identify the features in which you may have the greatest interest;
                     to deliver content, including ads, relevant to your interests on our Services.
                     By using our Services, you consent to the use of cookies and tracking technologies and the corresponding processing of information. You can withdraw your consent at any time by deleting placed cookies and disabling cookies in your browser.
-<<<<<<< HEAD
 
                     WHY DO WE SHARE YOUR PERSONAL DATA TO A THIRD PARTY?
-=======
-                </p> */}
-                {/* <h6 className='fw-bold'>WHY DO WE SHARE YOUR PERSONAL DATA TO A THIRD PARTY?</h6>
-                <p>
->>>>>>> 7f4e051ac3ce5e578288213fb5957908d2247687
+
                     We may share the information we collect, including your personal information, with third parties like our service providers and business partners that perform marketing services and other business operations on our behalf and under our instructions. For example,
                     we may partner with other companies to process secure payments, fulfill orders, optimize E-Poets Society Services, send our newsletters and marketing emails, support email and messaging services and analyze information.
                     We may also share the information we collect, including personal information, with law enforcement or to otherwise comply with any statutory or regulatory requirement or the order of a court or other public authority agency,
@@ -77,11 +71,7 @@ export default function PrivacyPolicy() {
                     If you have any concern about privacy at e-poetssociety.com, please contact us with a thorough description, and we will try to resolve it. Our business changes constantly, and our Privacy
                     Policy and the Terms of Use will change also. We may e-mail periodic reminders of our Policies and Terms, but you should check our Web site frequently to see recent changes. Unless stated otherwise, our current Privacy Policy applies to all information that we have about you and your account.
                     We stand behind the promises we make, however, and will never materially change our policies and practices to make them less protective of customer information collected in the past without the consent of affected customers.
-<<<<<<< HEAD
-                </p>
-=======
                 </p> */}
->>>>>>> 7f4e051ac3ce5e578288213fb5957908d2247687
             </div>
         </div>
     )
