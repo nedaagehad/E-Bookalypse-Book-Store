@@ -1,0 +1,292 @@
+.App {
+  width: 50%;
+  margin: 5rem auto;
+  height: 570px;
+  margin-bottom: -10% !important;
+}
+
+.slide img {
+  width: 20rem;
+  margin: 0 auto;
+  margin-bottom: 0% !important;
+  border-radius: 10px !important;
+}
+
+img.trendBook{
+  Width: 240px;
+  height: 350px;
+  /* margin-bottom: 0% !important; */
+  border-radius: 10px;
+}
+
+
+.slide {
+  transform: scale(0.65);
+  transition: transform 300ms;
+  opacity: 0.5;  
+  border-radius: 10px !important;
+
+}
+
+.activeSlide {
+  transform: scale(1.1);
+  opacity: 1;
+  border-radius: 10px !important;
+
+}
+
+
+.arrow {
+  background-color: #8D27AE;
+  color: white;
+  width:35px;
+  height: 35px;
+  border-radius: 100%;
+  padding: 6px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 1;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.arrow:hover{
+  transform: scale(1.1);
+  background-color: rgb(125, 15, 129);
+
+}
+
+.arrow svg {
+  transition: color 300ms;
+  right: -4%;
+  opacity: 1;
+}
+
+.next {
+  right: -2%;
+  top: 47%;
+}
+
+.prev {
+  left: -1%;
+  top: 47%;
+} 
+
+.h5{
+  color:#8D27AE !important;
+  margin-top: 15px!important;
+  margin-bottom: 0rem !important;
+  margin-top: 0rem !important;
+  margin-left: 38% !important;
+  font-size: xx-large!important;
+  font-weight: bold!important;
+}
+.head{
+  margin-top: 2rem !important;
+}
+
+.h3{
+  margin-top: 20px;
+  color: rgb(121, 17, 153);
+}
+
+@media screen and (max-width: 1305px) {
+  img.trendBook{
+    Width: 237px;
+    height: 350px;
+  }
+  .next {
+    right: -2%;
+    top: 40%;
+  }
+  
+  .prev {
+    left: -1%;
+    top: 40%;
+  }
+
+}
+
+@media screen and (max-width: 1114px) {
+  img.trendBook{
+    Width: 140px;
+    height: 250px;
+  }
+  .App {
+    margin-bottom: -20% !important;
+  }
+
+}
+
+@media screen and  (max-width: 996px) {
+  img.trendBook{
+    Width: 178px;
+    height: 255px;
+  }
+
+}
+
+@media screen and (max-width: 848px){
+  /* ,(min-width:682px) */
+  img.trendBook{
+    Width: 175px;
+    height: 230px;
+  }
+  .arrow{
+    width:30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 845px){ 
+  img.trendBook{
+    Width: 130px;
+    height: 190px;
+  }
+  .arrow{
+    width:30px;
+    height: 30px;
+  }
+  .next {
+    right:-1%;
+    top: 45%;
+  }
+  
+  .prev {
+    left: -2%;
+    top: 45%;
+  }
+
+  h5{    
+    margin-top: 10px;
+    margin-bottom: 0rem !important;
+    margin-top: 1rem !important;
+    margin-left: 34% !important;
+    font-size: x-large;
+  }
+  .App {
+    margin: 1.5rem auto;
+    margin-bottom: -20% !important;
+  }
+
+}
+
+
+
+
+
+@media screen and (max-width: 605px){
+  img.trendBook{
+    Width: 90px;
+    height: 155px;
+  }
+  .arrow{
+    width:25px;
+    height: 25px;
+  }
+  .next {   
+    top: 45%;
+  }
+ 
+  .prev {
+    top: 45%;
+  }
+
+  h5{    
+    margin-top: 10px;
+    margin-bottom: 0rem !important;
+    margin-top: 1rem !important;
+    margin-left: 34% !important;
+    font-size: large;
+  }
+  .App {
+    margin: 1.5rem auto;
+    margin-bottom: -49% !important;
+    
+  }
+}
+
+@media screen and (max-width: 300px){
+  img.trendBook{
+    Width: 50px;
+    height: 85px;
+  }
+  .arrow{
+    width:17px;
+    height: 17px;
+  }
+  .next {   
+    top: 38%;
+  }
+ 
+  .prev {
+    top: 38%;
+  }
+  h5{    
+    margin-top: 10px;
+    margin-bottom: 0rem !important;
+    margin-top: 1rem !important;
+    margin-left: 24% !important;
+    font-size: medium;
+  }
+  .App {
+    margin: 1.5rem auto;
+    margin-bottom: -70% !important;
+  }
+}
+
+
+/* Styles 17-7-22 */
+.sliderContainer{
+  position: relative;
+}
+.slideImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiperSliderTrendBook{
+  width:240px !important
+}
+.mySwiper{
+  position: relative !important;
+}
+.navControllers{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+}
+.nextContainer,.prevContainer{
+  background: rgba(255, 255, 255, 0.6)  ;
+  box-shadow: 0px 0px 70px rgb(255 255 255 / 60%) ;
+  height: 100%;
+
+  width: 166px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 10;
+
+}
+.nextContainer .nextTrendBook,.prevContainer .prevTrendBook{
+  background: #8D27AE;
+  box-shadow: 0px 4px 4px #848383;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+}
