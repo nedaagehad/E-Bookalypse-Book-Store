@@ -1,7 +1,4 @@
 import React from 'react'
-
-
-
 import classes from './HomeSlider.module.css'
 import Slider from './Slider';
 function HomeSlider() {

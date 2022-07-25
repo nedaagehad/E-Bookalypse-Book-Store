@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
+import { useSelector } from 'react-redux';
+import navbar from '../NavBar/NavBar.module.css';
+import styles from './SearchBar.module.css';
+ 
 function SearchBar() {
+
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
     const ExpandSearch = () => {
-        // console.log("clicked" + isExpanded)
+
         setIsExpanded((s) => !s);
-        // console.log(isExpanded);
     }
 
     const HandleSearch = (e) => {
@@ -23,13 +28,15 @@ function SearchBar() {
     }
 
   return (
-    <div className={`search-bar ${isExpanded ? "active" : ""}`}>
-        <input type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
-        <div className='search-btn' onClick={ExpandSearch}>
-            <BsSearch />
+
+    // <div className={`${isExpanded ? `${styles.active} ${styles.searchBar}` : styles.searchBar} me-2`}> // Another Syntax
+    <div className={`${styles.searchBar} ${isExpanded ? styles.active : ""} me-2`}>
+        <input className={theme === "night" ? "bg-light" : "bg-white"} type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
+        <div className={styles.searchBtn} onClick={ExpandSearch}>
+            <BsSearch className={theme === "night" && !isExpanded ? navbar.navIconNight : navbar.navIcon} />
         </div>
-        <div className='search-cancel' onClick={ClearSearch}>
-            <GrClose />
+        <div className={styles.searchCancel} onClick={ClearSearch}>
+            <GrClose className={navbar.navIcon} />
         </div>
     </div>
   )
