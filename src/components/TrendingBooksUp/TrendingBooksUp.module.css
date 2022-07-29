@@ -1,6 +1,6 @@
 .App {
   width: 50%;
-  margin: 5rem auto;
+  margin: auto;
   height: 570px;
   margin-bottom: -10% !important;
 }
@@ -76,10 +76,9 @@ img.trendBook{
 
 .h5{
   color:#8D27AE !important;
-  margin-top: 15px!important;
   margin-bottom: 0rem !important;
   margin-top: 0rem !important;
-  margin-left: 38% !important;
+  text-align: center;
   font-size: xx-large!important;
   font-weight: bold!important;
 }
@@ -163,7 +162,7 @@ img.trendBook{
     margin-top: 10px;
     margin-bottom: 0rem !important;
     margin-top: 1rem !important;
-    margin-left: 34% !important;
+    text-align: center;
     font-size: x-large;
   }
   .App {
@@ -198,7 +197,7 @@ img.trendBook{
     margin-top: 10px;
     margin-bottom: 0rem !important;
     margin-top: 1rem !important;
-    margin-left: 34% !important;
+    text-align: center;
     font-size: large;
   }
   .App {
@@ -228,7 +227,7 @@ img.trendBook{
     margin-top: 10px;
     margin-bottom: 0rem !important;
     margin-top: 1rem !important;
-    margin-left: 24% !important;
+    text-align: center;
     font-size: medium;
   }
   .App {
@@ -289,4 +288,12 @@ img.trendBook{
   align-items: center;
   cursor: pointer;
   
+}
+@media(max-width:850px)
+{
+  .nextContainer,.prevContainer{
+    background: rgba(255, 255, 255, 0.6)  ;
+    height: 100%;
+    width: 50px;
+  }
 }
