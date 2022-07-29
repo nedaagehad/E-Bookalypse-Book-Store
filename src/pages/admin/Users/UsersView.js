@@ -4,9 +4,18 @@ const UsersView = () => {
     const [users, setUsers] = useState();
     
     useEffect(() => {
-        axios.get('http://localhost:5000/api/users').then((res)=>{setUsers(res.data)}).catch((err)=>{console.log(err)})
+        axios.get('http://localhost:8080/api/admin/users').then((res)=>{setUsers(res.data)}).catch((err)=>{console.log(err)})
 
     },[])
+
+    const deleteItem= (userID)=>{
+      // console.log(userID)
+      const deletedItem = users.find((u)=> u._id === userID)
+      // console.log(deletedItem)
+  
+      axios.delete("http://localhost:8080/api/user/"+userID+`?userName=${deletedItem.userName}`,{params:{icon:deletedItem.image}})
+  
+    }
 
   return (
     <div>
@@ -27,8 +36,8 @@ const UsersView = () => {
             <th scope="col">email</th>
             <th scope="col">phone</th>
             <th scope="col">points</th>
-            {/* <th scope="col">Update</th>
-            <th scope="col">Delete</th> */}
+            {/* <th scope="col">Update</th>*/}
+            <th scope="col">Delete</th> 
 
 
           </tr>
@@ -44,9 +53,9 @@ const UsersView = () => {
               <td >{user.email}</td>
               <td >{user.phone}</td>
               <td >{user.points}</td>
-              {/* <td ><Link to={'/admin/book/updateBook/'+book._id} className="btn btn-primary" >Update</Link></td>
+              {/* <td ><Link to={'/admin/book/updateBook/'+book._id} className="btn btn-primary" >Update</Link></td>*/}
 
-              <td ><a className="btn btn-danger" onClick={(e)=>deleteItem(book._id)}>Delete</a></td> */}
+              <td ><a className="btn btn-danger" onClick={(e)=>deleteItem(user._id)}>Delete</a></td> 
 
             </tr>
             )

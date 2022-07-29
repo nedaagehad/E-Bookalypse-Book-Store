@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 const CategoriesAdmin = () => {
   const [categories, setCategories] = useState();
   useEffect(() => {
-    axios.get('http://localhost:5000/api/categories').then(
+    axios.get('https://e-bookalypse.herokuapp.com/api/categories').then(
       (res)=>setCategories(res.data.categories)
     ).catch((err)=>console.log(err))
   }, []);
 
   let deleteItem = (id)=>{
-    axios.delete('http://localhost:5000/api/categories/'+id).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    axios.delete('https://e-bookalypse.herokuapp.com/api/categories'+id).then((res)=>console.log(res)).catch((err)=>console.log(err))
   }
 
   return (

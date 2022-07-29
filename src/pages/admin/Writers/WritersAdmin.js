@@ -7,8 +7,8 @@ const WritersAdmin = () => {
 
   useEffect(() => {
     
-    axios.get('http://localhost:5000/api/writers').then(
-      (res)=>{setWriters(res.data.writers)}
+    axios.get('https://e-bookalypse.herokuapp.com/api/writers?page=20').then(
+      (res)=>{setWriters(res.data.data)}
     ).catch((err) => {console.log(err)});
 
     
@@ -16,7 +16,9 @@ const WritersAdmin = () => {
 
 
   let deleteWriter = (e,id)=>{
-    axios.delete("http://localhost:5000/api/writers/"+id).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    const deletedItem = writers.find((w)=> w._id === id)
+
+    axios.delete("http://localhost:8080/api/admin/writer/"+id,{params:{icon:deletedItem.image}}).then((res)=>console.log(res)).catch((err)=>console.log(err));
   }
 
   return (

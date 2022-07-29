@@ -12,7 +12,7 @@ function Books() {
     useEffect(() => {
       
       axios.get('https://e-bookalypse.herokuapp.com/api/books').then(
-        (res)=>{setBooks(res.data.book)}
+        (res)=>{setBooks(res.data.data)}
       ).catch((err) => {console.log(err)});
 
       
@@ -24,7 +24,10 @@ function Books() {
 
 
   let deleteItem= (bookID)=>{
-    axios.delete("https://e-bookalypse.herokuapp.com/api/books"+bookID)
+    const deletedItem = Books.find((b)=> b._id === bookID)
+    // console.log(deletedItem)
+
+    axios.delete("http://localhost:8080/api/admin/books/"+bookID,{params:{icon:deletedItem.poster,src:deletedItem.source}})
   }
 
 

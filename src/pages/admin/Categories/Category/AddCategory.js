@@ -1,5 +1,7 @@
+import React,{useState,useEffect} from 'react'
+import { Formik, Field ,Form } from 'formik';
+import * as Yup from 'yup';
 import axios from 'axios';
-import React,{useState} from 'react'
 
 const AddCategory = () => {
     const [category, setCategory] = useState({
@@ -31,24 +33,54 @@ const AddCategory = () => {
  
  
       }
+
+      const categoryValidation = Yup.object().shape({
+        title:Yup.string("Must Be a string").required("is Required")
+      })
+
   return (
+    
     <div className="container">
-        <form method='POST' className='row' encType="multipart/form-data">
-            <div className="col-md-12 mt-2">
+      <Formik  
+      initialValues={{
+        title:"",
+        icon:"",
+      }}
+      validationSchema={categoryValidation}
+      onSubmit={values => {
+              
+        const data = new FormData();
+        data.append('catimage',CatImg)
+        data.append("catTitle",values.title)
+         axios.post("https://e-bookalypse.herokuapp.com/api/admin/categorie",data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
+      }}
+      >
+      {({errors,touched})=>(
+        <Form className='row'>
+             <div className="col-md-12 mt-2">
                 <label htmlFor="title" className="form-label">Category Title : </label>
-                <input type="text" className='form-control'    name="title" id="title" placeholder="Category Title"  onChange={(e)=>onInputChange(e)}  />
+                <Field className="form-control"   name="title" id="title" placeholder="Category Title" />
+              {errors.title && touched.title ? (
+                    <div className="form-text text-danger">{errors.title}</div>
+                ) : null }
+                {/* <input type="text" className='form-control'    name="title" id="title" placeholder="Category Title"  onChange={(e)=>onInputChange(e)}  /> */}
             </div>
             <div className='col-md-6 d-flex flex-column justify-content-center  mt-2'>
               <label htmlFor="catimage" className="form-label ">Category Image : </label>
-              <input type="file" className='form-control' id="catimage" name="catimage" onChange={(e) => onFileChange(e)} />
+              <Field className='form-control'  id="catimage" name="catimage" type="file" onChange={(e)=>onFileChange(e)} />
+
+              {/* <input type="file" className='form-control' id="catimage" name="catimage" onChange={(e) => onFileChange(e)} /> */}
             </div>
             <div className='col-md-6 d-flex justify-content-center align-items-center mt-2'>
               {CatImg? <img  className="border-2" width="50%" height="100%" src={URL.createObjectURL(CatImg)}  /> : " There Is No Image Yet"}
             </div>
             <div className="col-md-12 mt-2">
-                <input type="submit" className='btn btn-success' value="Add Category" onClick={(e)=>addCategory(e)}  />
+                <input type="submit" className='btn btn-success' value="Add Category"   />
             </div>
-        </form>
+        </Form>
+      )}
+      </Formik>
+         
     </div>
   )
 }
