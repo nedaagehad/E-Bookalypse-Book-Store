@@ -13,7 +13,7 @@ const TrendingBooksUp1 = () => {
   const book =  "./uploads/books/book2.jpg";
   const book3 =  "./uploads/books/book4.jpg";
   const book4 =  "./uploads/books/book5.jpg";
-
+  SwiperCore.use([Autoplay])
   const images = [book2,book,book3,book4]
 
   return (
@@ -26,6 +26,7 @@ const TrendingBooksUp1 = () => {
         <div  className={" row d-flex justify-content-center align-items-center"} style={{width:"65%"}}>
         
           <Swiper
+            modules={[Autoplay, Navigation, Pagination]}
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
@@ -41,8 +42,9 @@ const TrendingBooksUp1 = () => {
             loop={true}
             navigation={{
               nextEl:'.nextTrendBook',
-              prevEl:'.prevTrendBook',
+              prevEl: '.prevTrendBook',
             }}
+            autoplay={{delay:1000}}
             className={styles.mySwiper}
             >
           {images ? images.map((img)=>{
