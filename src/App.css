@@ -54,7 +54,10 @@
   filter:blur(0px);
 
 }
-
+::selection{
+  background-color: #8D27AE;
+  color:white;
+}
 :root{
   --main-purple:#8D27AE;
   --second-purple: #eedef4;

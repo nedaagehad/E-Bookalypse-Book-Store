@@ -19,7 +19,7 @@ SwiperCore.use([EffectCoverflow, Pagination,Navigation]);
 
 
 
-const HomeCategories = () => {
+const HomeCategories = (props) => {
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
 
@@ -139,41 +139,61 @@ const HomeCategories = () => {
         >
     
           <SwiperSlide>
-            <div className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+            <div className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Biography.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[0].Category_Name}</h4>
+                <span className={styles.span}>{props.data[0].Num_of_books ? props.data[0].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div> 
           </SwiperSlide>
           <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Children.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[1].Category_Name}</h4>
+                <span className={styles.span}>{props.data[1].Num_of_books ? props.data[1].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/horror.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[2].Category_Name}</h4>
+                <span className={styles.span}>{props.data[2].Num_of_books ? props.data[2].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/history.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[3].Category_Name}</h4>
+                <span className={styles.span}>{props.data[3].Num_of_books ? props.data[3].Num_of_books : "Comming Soon"}</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/scientific.jpg"+')' }}>
+             <div  className={styles.categoryData}>
+                <div className={styles.categorytextandtitle}>
+                <h4 className={styles.h4}>{props.data[4].Category_Name}</h4>
+                <span className={styles.span}>{props.data[4].Num_of_books ? props.data[4].Num_of_books : "Comming Soon"}</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Novels.jpg"+')' }}>
+              <div  className={styles.categoryData}>
+                <div className={styles.categorytextandtitle}>
+                <h4 className={styles.h4}>{props.data[5].Category_Name}</h4>
+                <span className={styles.span}>{props.data[5].Num_of_books ? props.data[5].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
@@ -182,48 +202,28 @@ const HomeCategories = () => {
           <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
              <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[6].Category_Name}</h4>
+                <span className={styles.span}>{props.data[6].Num_of_books ? props.data[6].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/poeatries.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[7].Category_Name}</h4>
+                <span className={styles.span}>{props.data[7].Num_of_books ? props.data[7].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
-             <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
+          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/religious.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>Arts & Photography</h4>
-                <span className={styles.span}>214+ items</span>
+                <h4 className={styles.h4}>{props.data[8].Category_Name}</h4>
+                <span className={styles.span}>{props.data[8].Num_of_books ? props.data[8].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div>
