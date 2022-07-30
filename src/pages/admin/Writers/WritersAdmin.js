@@ -1,9 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchAllBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
+
+
 
 const WritersAdmin = () => {
   const [writers,setWriters] = useState()
+
 
   useEffect(() => {
     
@@ -11,7 +16,7 @@ const WritersAdmin = () => {
       (res)=>{setWriters(res.data.data)}
     ).catch((err) => {console.log(err)});
 
-    
+
   }, []);
 
 
@@ -20,7 +25,7 @@ const WritersAdmin = () => {
 
     axios.delete("http://localhost:8080/api/admin/writer/"+id,{params:{icon:deletedItem.image}}).then((res)=>console.log(res)).catch((err)=>console.log(err));
   }
-
+  console.log(writers)
   return (
     <div className='container'>
         <div className='addwriter'>

@@ -3,14 +3,18 @@ import { useFormik } from 'formik';
 import React from 'react';
 import  { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { fetchAllBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
 
 function Books() {
 
 
     const [Books,setBooks] = useState()
 
+
     useEffect(() => {
-      
+
+
       axios.get('https://e-bookalypse.herokuapp.com/api/books').then(
         (res)=>{setBooks(res.data.data)}
       ).catch((err) => {console.log(err)});
