@@ -1,0 +1,10 @@
+.BookCard{
+    padding: 20px;
+}
+.card{
+    width: 90%;
+    margin: auto;
+    height: 397px;
+    background: #FDF8FE;
+    border-radius: 15px;
+}

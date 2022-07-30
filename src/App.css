@@ -60,6 +60,7 @@
 }
 input:focus{
     box-shadow:rgba(141, 39, 174,0.25) !important;
+    border-color: #8D27AE;
 }
 input[type='radio']:checked{
      background-color:#8D27AE !important;
@@ -73,6 +74,7 @@ input[type='checkbox']:checked{
 }
 input[type='checkbox']:focus{
     box-shadow: 0 0 0 0.25rem rgba(192, 54, 238, 0.171);
+    border-color: #8D27AE;
 }
 .form-check{
   line-height: 2;
