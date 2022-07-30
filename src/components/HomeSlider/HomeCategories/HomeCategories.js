@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { FaClock } from 'react-icons/fa';
-import {BsFillCreditCardFill,BsFillAwardFill,BsFillShieldFill,BsFillArrowRightCircleFill,BsDashLg} from 'react-icons/bs'
+import {BsFillCreditCardFill,BsFillAwardFill,BsFillShieldFill,BsDashLg} from 'react-icons/bs'
 import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
 import styles from  './HomeCategories.module.css';
 
@@ -13,7 +13,6 @@ import "swiper/swiper.min.css";
 
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { render } from '@testing-library/react';
 
 SwiperCore.use([EffectCoverflow, Pagination,Navigation]);
 
@@ -25,7 +24,7 @@ const HomeCategories = () => {
 
   return (
     <>
-      <div  className={styles.categoriesHomeSection + " " + " container-fluid mb-5 pb-5"}>
+      <div  className={`${styles.categoriesHomeSection} container-fluid mb-5 pb-5`}>
           <div className={styles.row + " row"}>
             <div className='col-lg-3'>
               <div className={styles.titleandtext}>

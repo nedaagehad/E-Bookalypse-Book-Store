@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
     }, []);
 
     return (
-        <div className={`container-fluid p-3 ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`container-fluid sticky-footer p-3 ${theme === "night" ? "bg-dark" : ""}`}>
             <div className='container p-5 rounded-5 shadow bg-light'>
                 <h3 className='mb-3 text-decoration-underline fw-bold'>Privacy Policy</h3>
                 <p>

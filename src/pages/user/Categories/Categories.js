@@ -2,7 +2,7 @@ import React from 'react'
 
 function Categories() {
   return (
-    <div className='content'>
+    <div className='sticky-footer'>
       
     </div>
   )

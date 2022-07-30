@@ -88,9 +88,9 @@ function Home() {
 
   return (
     <>
-    <div className='mainContent'>
+    <div className='mainContent border border-info'>
 
-      <HomeSlider></HomeSlider>
+      <HomeSlider />
       <TrendingBooksUp1/>
       <HomeCategories />
       <FlashSaleSlider />
