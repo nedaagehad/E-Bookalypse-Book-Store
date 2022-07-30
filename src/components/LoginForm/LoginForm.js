@@ -38,7 +38,6 @@ const LoginForm = props => {
     
   });
   
-  
   return (
     <div className="container">
       <div className="row">
@@ -73,7 +72,7 @@ const LoginForm = props => {
                                   <label htmlFor="userName" className="form-label">
                                     User name
                                   </label>
-                                  <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
+                                  <input name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
                                   {errors.userName && touched.userName ? (
                                       <div className="form-text text-danger">{errors.userName}</div>
                                   ) : null}
@@ -84,7 +83,7 @@ const LoginForm = props => {
                                   Password
                                   </label>
                                   <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
-                                  <Field name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} type={passShowState.inputType} placeholder="password"/>
+                                  <input name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
                                   {errors.thePassword && touched.thePassword ? (
                                       <div className="form-text text-danger">{errors.thePassword}</div>
                                   ) : null}
