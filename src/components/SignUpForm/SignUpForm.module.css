@@ -1,5 +1,5 @@
 .form{
-    width: 60%;
+    width: 80%;
     padding: 60px;
     margin: 0 auto;
     background: rgba(217, 217, 217, 0.644);
@@ -61,6 +61,26 @@ input[type='radio']:checked{
 }
 .btn:hover{
     background-color:#380B46;
+}
+.avatar .customFileInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.avatar .customFileInput::before {
+  font-family: 'Font Awesome 5 Free';
+  content: '';
+  display: inline-block;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 2pt;
+  width:20px;
+  height:20px;
+  position:relative;
+  bottom:100px;
 }
 @media(max-width:700px){
     .form h2{

@@ -70,7 +70,7 @@ const LoginForm = props => {
                             <Form>
                                 <div className="form-group mb-3">
                                   <label htmlFor="userName" className="form-label">
-                                    User name
+                                    Username
                                   </label>
                                   <input name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
                                   {errors.userName && touched.userName ? (

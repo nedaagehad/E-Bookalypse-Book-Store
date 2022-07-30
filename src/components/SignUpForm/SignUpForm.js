@@ -105,9 +105,6 @@ return (
             <div className="col-md-12">
                 <div className={classes.form}>
                     <h2>Sign Up</h2>
-                    <div className={classes.avatar}>
-                        <p><IoPersonAdd/></p>
-                    </div>
                     <Formik
                         initialValues={{
                             firstName:"",
@@ -159,10 +156,14 @@ return (
                     >
                         {({errors,touched})=>(
                         <Form>
+                         <div className={classes.avatar}>
+                            <p><IoPersonAdd/></p>
+                            <input type="file" class={classes.customFileInput} style={{width:"20px",position:"relative",bottom:"70px"}}/>
+                        </div>
                         <div className="row">
                             <div className="form-group mb-3 col-md-6 col-sm-12">
                                 <label htmlFor="firstName" className="form-label">
-                                    first name
+                                    First name
                                 </label>
                                 <Field name="firstName" className={`form-control ${errors.firstName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
                                 {errors.firstName && touched.firstName ? (
@@ -182,7 +183,7 @@ return (
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
                                 <label htmlFor="userName" className="form-label">
-                                    User Name
+                                    Username
                                 </label>
                                 <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
                                 {errors.userName && touched.userName ? (
