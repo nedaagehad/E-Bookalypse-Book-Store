@@ -158,7 +158,7 @@ return (
                         <Form>
                          <div className={classes.avatar}>
                             <p><IoPersonAdd/></p>
-                            <input type="file" class={classes.customFileInput} style={{width:"20px",position:"relative",bottom:"70px"}}/>
+                            <input type="file" id="userImage" name="userImage" class={classes.customFileInput} style={{width:"20px",position:"relative",bottom:"70px"}} onChange={(e) => onFileChange(e)}/>
                         </div>
                         <div className="row">
                             <div className="form-group mb-3 col-md-6 col-sm-12">
@@ -230,21 +230,23 @@ return (
                                     <div className="form-text text-danger">{errors.cnfrmPass}</div>
                                 ) : null}
                             </div>
-                            <div className='col-md-6 d-flex flex-column justify-content-center  mt-2'>
-                            <label htmlFor="userImage" className="form-label ">user Image : </label>
-                            <input type="file" className='form-control' id="userImage" name="userImage" onChange={(e) => onFileChange(e)} />
-                            </div>
-                            <div className="form-group mb-3 col-md-6 col-sm-12">
-                                    <label htmlFor="Gender" className="form-label " style={{marginTop:"40px"}}>Gender : </label>
-                                    <br/>
-                                    <label>
-                                    <input type="radio" name="theGender" value="male" style={{color:"#8D27AE"}}/>
-                                    <span className="mx-1">Male</span>
-                                    </label>
-                                    <label>
-                                    <input type="radio" name="theGender" value="female" style={{backgroundColor:"#8D27AE"}}/>
-                                    <span className="mx-1" >Female</span>
-                                    </label>
+                            <div className="form-group mb-3 col-md-12 col-sm-12">
+                                    <div className="row">
+                                        <label htmlFor="Gender" className="form-label " style={{marginTop:"40px"}}>Gender : </label>
+                                        <br/>
+                                        <div className="col-md-6 col-sm-6">
+                                            <label>
+                                                <input type="radio" name="theGender" value="male"/>
+                                                <span className="mx-1">Male</span>
+                                            </label>
+                                        </div>
+                                        <div className="col-md-6 col-sm-6">
+                                            <label>
+                                                <input type="radio" name="theGender" value="female"/>
+                                                <span className="mx-1" >Female</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                     {errors.theGender && touched.theGender ? (
                                         <div className="form-text text-danger">{errors.theGender}</div>
                                     ) : null}
