@@ -1,0 +1,58 @@
+.form{
+    width: 50%;
+    padding: 50px;
+    margin: 0 auto;
+    background: rgba(217, 217, 217, 0.644);
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 40px;
+    padding-bottom:80px;
+}
+.form h2{
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+.form label{
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 48px;
+    color: #231627;
+}
+.passwordVisiblity{
+    display:inline-block;
+    float:right !important;
+    font-weight:bold !important;
+    font-size:20px !important;
+    position:relative;
+    top:11px;
+}
+.btn{
+    width:100%;
+    text-align:center;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+    background-color:#8D27AE;
+    position:relative;
+    top:30px;
+    margin-bottom:30px;
+    border-radius:5px;
+}
+.btn:hover{
+    background-color:#380B46;
+}
+@media(max-width:700px){
+    .form h2{
+        font-size: 30px;
+    }
+    .form{
+        width: 100%;
+        padding: 30px;
+        padding-bottom:90px;
+    }
+    .form label{
+        font-size: 17px;
+    }
+}
