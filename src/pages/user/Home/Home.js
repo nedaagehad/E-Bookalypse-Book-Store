@@ -88,11 +88,21 @@ function Home() {
 
   return (
     <>
-    <div className='mainContent border border-info'>
+    <div className='mainContent'>
 
       <HomeSlider />
       <TrendingBooksUp1/>
-      <HomeCategories />
+        <HomeCategories data={[
+          { Category_Name:"Biography", Num_of_books:30, },
+          { Category_Name:"Children", Num_of_books:30, },
+          { Category_Name:"Horror", Num_of_books:30, },
+          { Category_Name:"History", Num_of_books:30, },
+          { Category_Name:"Scientific", Num_of_books:30, },
+          { Category_Name:"Novels", Num_of_books:30, },
+          { Category_Name:"Arts", Num_of_books:0, },
+          { Category_Name: "Poetries", Num_of_books: 0, },
+          { Category_Name:"Religious", Num_of_books:0, }
+        ]} />
       <FlashSaleSlider />
       <OurPartners />
     </div>
