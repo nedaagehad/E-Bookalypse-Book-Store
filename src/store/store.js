@@ -8,6 +8,7 @@ import  bookSlice  from './reducers/booksReducer.js/BooksReducer';
 const store = configureStore({
     reducer: {
         books:bookSlice
+        
     }
     
 })

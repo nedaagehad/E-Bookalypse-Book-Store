@@ -10,21 +10,34 @@ function Books() {
 
 
     const [Books,setBooks] = useState()
-
-
+    const books = useSelector(state=>state.books.books)
+    const booksStatus = useSelector(state => state.books.status)
+    const dispatch  = useDispatch()
+    // console.log(booksStatus)
+    let params = {limit:5,priceMin:5,priceMax:10}
     useEffect(() => {
+      if(booksStatus == 'idle'){
+         dispatch(fetchAllBooks(params))
+      }else if(booksStatus =='Loading'){
+        console.log("loading")
+      }else {
+        console.log('noo')
+      }
 
-
-      axios.get('https://e-bookalypse.herokuapp.com/api/books').then(
-        (res)=>{setBooks(res.data.data)}
-      ).catch((err) => {console.log(err)});
+      // axios.get('https://e-bookalypse.herokuapp.com/api/books').then(
+      //   (res)=>{setBooks(res.data.data)}
+      // ).catch((err) => {console.log(err)});
 
       
-    }, []);
+      if(booksStatus == 'Success'){
+        // console.log("books here")
+        
+        setBooks(books.data)
+      }
+    }, [booksStatus,dispatch]);
     
 
 
-  
 
 
   let deleteItem= (bookID)=>{
@@ -61,7 +74,8 @@ function Books() {
             </tr>
           </thead>
           <tbody>
-            {Books !== undefined ? Books.map((book,i)=>{
+            {console.log(Books)}
+            {Books !== undefined && Books !== "Request failed with status code 500" ? Books.map((book,i)=>{
               return (
               <tr key={book._id}>
                 <td >{i+1}</td>

@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react'
 import { Formik, Field ,Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useDispatch,useSelector } from 'react-redux';
+import { addNewBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
 
 const addBook = () => {
 
@@ -9,12 +11,12 @@ const addBook = () => {
       const [writers,setWriters] =useState()
       const [BookImage, setBookImage] = useState();
       const [BookPdf, setBookPdf] = useState();
-
+      let dispatch = useDispatch()
       useEffect(() => {
         axios.get('https://e-bookalypse.herokuapp.com/api/categories')
         .then((res)=>setCategories(res.data.categories))
         .catch((err)=>console.log(err))
-        axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.writers)).catch((err)=>console.log(err))
+        axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
   
       }, []);
 
@@ -73,8 +75,8 @@ const addBook = () => {
             data.append("category",JSON.stringify(values.category))
             data.append("writer",JSON.stringify(values.writer))
             console.log(typeof values.category)
-            axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-   
+            // axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
+            dispatch(addNewBooks(data))
          }}
             
         >

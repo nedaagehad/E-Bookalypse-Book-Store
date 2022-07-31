@@ -4,6 +4,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/user/Home/Home';
 import Categories from './pages/user/Categories/Categories';
+import Category from './pages/user/Category/Category';
+import BookDetails from './pages/user/BookDetails/BookDetails';
 import Promotions from './pages/user/Promotions/Promotions';
 import Login from './pages/user/Login/Login';
 import SignUp from './pages/user/SignUp/SignUp';
@@ -39,6 +41,8 @@ function App() {
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />}/>
           <Route path='/categories' element={<Categories />} />
+          <Route path='/categories/category' element={<Category />} />
+          <Route path='/categories/category/BookDetails' element={<BookDetails />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 

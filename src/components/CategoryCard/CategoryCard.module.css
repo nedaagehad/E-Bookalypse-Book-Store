@@ -1,0 +1,43 @@
+.Category_Card{
+    width: 85%;
+    margin: auto;
+    height: 200px;
+    border-radius: 15px;
+    margin: 20px;
+}
+.Category_Card img{
+    display: block;
+    position: relative;
+    bottom: 200px;
+    width: 100%;
+    height: inherit;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.Card_Overlay{
+    width: 100%;
+    height: inherit;
+    position: relative;
+    z-index: 3;
+    background-color: rgba(94, 12, 121, 0.7);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+.Card_Overlay h2{
+    text-align: center;
+    position: relative;
+    top: 40%;
+    font-weight: 700;
+    font-size: 35px;
+    color: #EBE6E6;
+    height: 30px;
+    letter-spacing: 1px;
+    transition: color 0.5s;
+}
+.Card_Overlay:hover{
+    background-color: transparent;
+}
+.Card_Overlay h2:hover{
+    color: transparent;
+}
