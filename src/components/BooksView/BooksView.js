@@ -7,12 +7,12 @@ const BookView = props =>{
         <div className={`col-md-9 col-sm-12 ${classes.BookView}`}>
             <h2>Books</h2>
             <div className={`row`}>
-                <BookCard />
-                <BookCard />
-                <BookCard/>
-                <BookCard />
-                <BookCard />
-                <BookCard/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
             </div>
         </div>
     )

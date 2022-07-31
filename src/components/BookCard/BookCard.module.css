@@ -4,7 +4,82 @@
 .card{
     width: 90%;
     margin: auto;
-    height: 397px;
     background: #FDF8FE;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 30px;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+.card .Book_Poster{
+    width: 100%;
+    height: 250px;
+    filter: drop-shadow(0px 7px 4px rgba(110, 110, 110, 0.25));
+    border-radius: 15px;
+    margin:auto;
+    display: inline-block;
+}
+.card h5, .card h3, .card button{
+    margin-top: 10px;
+}
+.card h3{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #8D27AE;
+}
+.card button{
+    background-color: #8D27AE;
+    border-radius: 15px;
+    color:white;
+    padding: 10px 20px;
+}
+.card .poster{
+    cursor: pointer;
+    width: fit-content;
+}
+.poster_overlay{
+    position: absolute;
+    width: 164px;
+    height: 250px;
+    background-color:transparent;
+    z-index: 3;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.25s;
+}
+.poster_overlay button{
+    align-self: auto;
+    color: transparent;
+    background-color: transparent;
+    transition: background-color 0.25s, color 0.25s;
+}
+.poster_overlay:hover{
+    background-color: rgba(118, 30, 148, 0.644);
+}
+.poster_overlay button:hover{
+    color: white;
+    background-color: #8D27AE;
+}
+@media(min-width:768px) and (max-width:850px){
+    .poster_overlay{
+        width: 15%;
+    }
+}
+@media(min-width:850px) and (max-width:908px){
+    .poster_overlay{
+        width: 15.6%;
+    }
+}
+@media(min-width:908px) and (max-width:995px){
+    .poster_overlay{
+        width: 16%;
+    }
 }
