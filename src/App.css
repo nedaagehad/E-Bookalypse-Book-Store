@@ -72,3 +72,8 @@
   --lg-screen: 992px;
 }
 
+/* class to fix footer position */
+.sticky-footer{
+  display: flex;
+  min-height: 65.5vh;
+}

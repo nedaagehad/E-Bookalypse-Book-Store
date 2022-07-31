@@ -27,12 +27,12 @@
 }
 
 .footerItemNight{
-    color: #ABA8A8;
+    color: #aba8a8;
 }
 
-.footerItem{
+/* .footerItem{
     color: #848383;
-}
+} */
 
 .copyrights{
     position: absolute;
@@ -48,4 +48,12 @@
     color: #ABA8A8;
     bottom: -10px;
     right: 5px;
+}
+
+.purpleBG{
+    background: #380B46 !important;
+}
+
+.footerTitle{
+    margin-left: 0px !important;
 }
