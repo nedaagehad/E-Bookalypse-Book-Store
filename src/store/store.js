@@ -3,12 +3,18 @@ import { legacy_createStore as createStore} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './reducers/combineReducer';
 import  bookSlice  from './reducers/booksReducer.js/BooksReducer';
+import themeReducer from './reducers/theme';
+import { booksApi } from './services';
 // const store = createStore (reducers, composeWithDevTools())
 
 const store = configureStore({
     reducer: {
-        books:bookSlice
-        
+        books:bookSlice,
+        theme: themeReducer,
+        [booksApi.reducerPath] : booksApi.reducer,
+        // middleware: (getDefaultMiddleware) =>
+        // getDefaultMiddleware().concat(booksApi.middleware),
+    
     }
     
 })

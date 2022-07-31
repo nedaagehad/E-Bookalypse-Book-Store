@@ -1,62 +1,25 @@
-import axios from 'axios';
-import { useFormik } from 'formik';
-import React from 'react';
-import  { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
+import { booksApi } from '../../../store/services'
 import { Link } from 'react-router-dom';
-import { useDispatch,useSelector } from 'react-redux';
-import { fetchAllBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
-
-function Books() {
 
 
-    const [Books,setBooks] = useState()
-    const books = useSelector(state=>state.books.books)
-    const booksStatus = useSelector(state => state.books.status)
-    const dispatch  = useDispatch()
-    // console.log(booksStatus)
-    let params = {limit:5,priceMin:5,priceMax:10}
-    useEffect(() => {
-      if(booksStatus == 'idle'){
-         dispatch(fetchAllBooks(params))
-      }else if(booksStatus =='Loading'){
-        console.log("loading")
-      }else {
-        console.log('noo')
+
+function Books()  {
+    const [books,setBooks] = useState()
+    const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
+    // console.log(data)
+    useEffect(()=>{
+      if(data){
+        setBooks(data.data)
       }
-
-      // axios.get('https://e-bookalypse.herokuapp.com/api/books').then(
-      //   (res)=>{setBooks(res.data.data)}
-      // ).catch((err) => {console.log(err)});
-
       
-      if(booksStatus == 'Success'){
-        // console.log("books here")
-        
-        setBooks(books.data)
-      }
-    }, [booksStatus,dispatch]);
-    
-
-
-
-
-  let deleteItem= (bookID)=>{
-    const deletedItem = Books.find((b)=> b._id === bookID)
-    // console.log(deletedItem)
-
-    axios.delete("http://localhost:8080/api/admin/books/"+bookID,{params:{icon:deletedItem.poster,src:deletedItem.source}})
-  }
-
-
+      },[data])
+    const deleteItem = ()=>{
+      
+    }
+ 
   return (
-    <div>
-
-        
-
-      <div className="container">
-        <div className='addBook'>
-        <Link to="/admin/book/addbook" className='btn btn-success' >Add Book</Link>
-        </div>
+    <div className="container">
         <table className="table">
           <thead>
             <tr>
@@ -74,8 +37,9 @@ function Books() {
             </tr>
           </thead>
           <tbody>
-            {console.log(Books)}
-            {Books !== undefined && Books !== "Request failed with status code 500" ? Books.map((book,i)=>{
+          
+          {/* {console.log(books)} */}
+          {books !== undefined  ? books.map((book,i)=>{
               return (
               <tr key={book._id}>
                 <td >{i+1}</td>
@@ -98,11 +62,7 @@ function Books() {
 
           </tbody>
         </table>
-      </div>
-
-
     </div>
-
   )
 }
 
