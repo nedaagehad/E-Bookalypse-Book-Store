@@ -10,7 +10,7 @@ function CatSidebar() {
                             <div className={`${styles.cardBody} rounded-top ${styles.mov}`}>
 
                                 <div className={styles.userBox}>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" />
+                                    <img src="./Images/avatar7.png" alt="user avatar" />
                                 </div>
                                 <h5 className={`mb-1 text-lg-center text-white ${styles.wrong} ${styles.h5} `}>Ahmad Mohamad</h5>
                                 <h5 className={`text-light  text-lg-center ${styles.h5} ${styles.username}`}>@ahmadm12</h5>
