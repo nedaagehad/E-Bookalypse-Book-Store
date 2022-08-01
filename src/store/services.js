@@ -48,6 +48,14 @@ export const booksApi = createApi({
                     
                 }
             }
+        }),
+        // Writers 
+        getAllWriters:builder.query({
+            query:()=>{
+                return{
+                    url:"writers"
+                }
+            }
         })
     })
 })
