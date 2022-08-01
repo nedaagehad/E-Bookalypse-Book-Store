@@ -22,8 +22,8 @@ function BookDetails() {
                 reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                   pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum."
-                  bookPriceAfterPromo="$15,50"
-                  bookPriceBeforePromo="$ 19.98"
+                  bookPriceAfterPromo="15,50"
+                  bookPriceBeforePromo="19.98"
             />
           <CustomerReviews
             rate="4.2"
