@@ -2,13 +2,16 @@ import React,{useState,useEffect} from 'react'
 import { Formik, Field ,Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { booksApi } from '../../../../store/services';
 
 const AddCategory = () => {
     const [category, setCategory] = useState({
       title:'',
       icon: ''
     });
+    const [addNewCategory,response] = booksApi.useAddNewCategoryMutation();
     const [CatImg,setCatImg] = useState()
+
     let onInputChange = (e)=>{
         // console.log(e.target.value)
         setCategory({
@@ -24,15 +27,17 @@ const AddCategory = () => {
         
       }
       
-      let addCategory = (e)=>{
-         e.preventDefault();
-         const data = new FormData();
-         data.append('catimage',CatImg)
-         data.append("cattitle",category.title)
-          axios.post("http://localhost:5000/api/categories",data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
+      // let addCategory = (e)=>{
+      //    e.preventDefault();
+      //    const data = new FormData();
+      //    data.append('catimage',CatImg)
+      //    data.append("cattitle",category.title)
+      //     axios.post("http://localhost:5000/api/categories",data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
  
  
-      }
+      // }
+
+    
 
       const categoryValidation = Yup.object().shape({
         title:Yup.string("Must Be a string").required("is Required")
@@ -52,7 +57,8 @@ const AddCategory = () => {
         const data = new FormData();
         data.append('catimage',CatImg)
         data.append("catTitle",values.title)
-         axios.post("https://e-bookalypse.herokuapp.com/api/admin/categorie",data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
+        addNewCategory(data).then(()=>{}).catch((err)=>{console.log(err)})
+        //  axios.post("https://e-bookalypse.herokuapp.com/api/admin/categorie",data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
       }}
       >
       {({errors,touched})=>(

@@ -1,17 +1,26 @@
 import axios from 'axios';
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
+import { booksApi } from '../../../store/services';
 
 const CategoriesAdmin = () => {
   const [categories, setCategories] = useState();
+  const {data,isLoading,error} = booksApi.useGetAllCategoriesQuery();
+  const [deleteCategory,response] = booksApi.useDeleteCategoryMutation()
   useEffect(() => {
-    axios.get('https://e-bookalypse.herokuapp.com/api/categories').then(
-      (res)=>setCategories(res.data.categories)
-    ).catch((err)=>console.log(err))
-  }, []);
+    // axios.get('https://e-bookalypse.herokuapp.com/api/categories').then(
+    //   (res)=>setCategories(res.data.categories)
+    // ).catch((err)=>console.log(err))
+    if(data){
+      setCategories(data.categories)
+    }
+  }, [data]);
 
   let deleteItem = (id)=>{
-    axios.delete('https://e-bookalypse.herokuapp.com/api/categories'+id).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    // axios.delete('https://e-bookalypse.herokuapp.com/api/categories'+id).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    const deletedItem = categories.find((c)=> c._id === id)
+    deleteCategory({categoryId:id,icon:deletedItem.icon})
+
   }
 
   return (

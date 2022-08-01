@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import { booksApi } from '../../../../store/services';
 
 
 const UpdateCategory = () => {
@@ -15,8 +16,8 @@ const UpdateCategory = () => {
     oldIcon:''
   });
   const [CatImg,setCatImg] = useState();
-
-
+  const [updateCategory,response] = booksApi.useUpdateCategoryMutation() 
+  const {data,isLoading,error} = booksApi.useGetCategoryByIdQuery(params.id)
 
     let onInputChange = (e)=>{
         // console.log(e.target.value)
@@ -33,17 +34,17 @@ const UpdateCategory = () => {
       
     }
 
-    let updateCategory = (e)=>{
-      e.preventDefault();
-      const data = new FormData();
-      data.append('catimage',CatImg)
-      data.append("title",category.title)
-      data.append("oldIcon",category.icon)
+  //   let updateCategory = (e)=>{
+  //     e.preventDefault();
+  //     const data = new FormData();
+  //     data.append('catimage',CatImg)
+  //     data.append("title",category.title)
+  //     data.append("oldIcon",category.icon)
 
-      axios.put("http://localhost:5000/api/categories/"+params.id,data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
+  //     axios.put("http://localhost:5000/api/categories/"+params.id,data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
 
 
-   }
+  //  }
 
    
    const categoryValidation = Yup.object().shape({
@@ -69,8 +70,8 @@ const UpdateCategory = () => {
 
           data.append("oldIcon",category.icon)
         }
-
-         axios.put("https://e-bookalypse.herokuapp.com/api/admin/categorie/"+params.id,data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
+        updateCategory({categoryNewData : data ,categoryId: params.id}).then(()=>{console.log(response)}).catch((err)=>{console.log(err)})
+        //  axios.put("https://e-bookalypse.herokuapp.com/api/admin/categorie/"+params.id,data).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)})
 
         // axios.put(`http://localhost:8080/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
 
@@ -81,17 +82,23 @@ const UpdateCategory = () => {
       {
         
         useEffect(() => {
-          axios.get("https://e-bookalypse.herokuapp.com/api/categorie/"+params.id).then((res)=>
+          if(data){
+            // console.log(data)
+            setCategory(data)
+            setFieldValue("title",data.title)
+
+          }
+          // axios.get("https://e-bookalypse.herokuapp.com/api/categorie/"+params.id).then((res)=>
+     
+        //   {
+        //   setCategory(res.data)
           
-          {
-          setCategory(res.data)
+        //   setFieldValue("title",res.data.title)
+        // }
           
-          setFieldValue("title",res.data.title)
-        }
-          
-          )
-          .catch((err) => console.log(err))
-        }, []);
+        //   )
+        //   .catch((err) => console.log(err))
+        }, [data]);
         
         return(
           <Form className='row'>

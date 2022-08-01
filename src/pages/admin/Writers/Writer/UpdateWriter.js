@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import { booksApi } from '../../../../store/services';
 
 const UpdateWriter = () => {
     const [writer,setWriter] = useState()
@@ -13,8 +14,8 @@ const UpdateWriter = () => {
 
     const [writerImage, setWriterImage] = useState()
 
-
-    
+    const [updateWriter,response] = booksApi.useUpdateWriterMutation();
+    const {data,isLoading,error}= booksApi.useGetWriterByIdQuery(params.id)
     
     let onFileChange = (e)=>{
         // console.log(e.target.files[0])
@@ -61,40 +62,61 @@ const UpdateWriter = () => {
             }
 
             // console.log(values)
-            axios.put("https://e-bookalypse.herokuapp.com/api/admin/writer/"+params.id,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
+            // axios.put("https://e-bookalypse.herokuapp.com/api/admin/writer/"+params.id,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             // axios.put(`http://localhost:8080/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-
+            updateWriter({writerNewData:data,writerId:params.id})
           }}
           
           >
           {({errors,touched,setFieldValue})=>{
                 useEffect(() => {
                   // console.log(params.id)
-                  axios.get(`https://e-bookalypse.herokuapp.com/api/writer/${params.id}`)
-                  .then((res)=>{setWriter(res.data)
-                  
-                    Object.keys(res.data).forEach(key=>{
+                  if(data){
+                    // console.log(data)
+                    setWriter(data)
+                    Object.keys(data).forEach(key=>{
                       if(key !== "image"){
-                        setFieldValue("writer"+key,res.data[key])
+                        setFieldValue("writer"+key,data[key])
                       }
                       if(key == "date_birth"){
-                        if(res.data.date_birth != undefined && res.data.date_birth != null){
-                          const getDate = res.data.date_birth.split("T")[0]
+                        if(data.date_birth != undefined && data.date_birth != null){
+                          const getDate = data.date_birth.split("T")[0]
 
                           setFieldValue("writerdate",getDate)
 
                         }
                       }
                       if(key =='place_birth'){
-                        setFieldValue("writerplace",res.data.place_birth)
+                        setFieldValue("writerplace",data.place_birth)
                       }
                     
                     })
+                  }
+                  // axios.get(`https://e-bookalypse.herokuapp.com/api/writer/${params.id}`)
+                  // .then((res)=>{setWriter(res.data)
+                  
+                  //   Object.keys(res.data).forEach(key=>{
+                  //     if(key !== "image"){
+                  //       setFieldValue("writer"+key,res.data[key])
+                  //     }
+                  //     if(key == "date_birth"){
+                  //       if(res.data.date_birth != undefined && res.data.date_birth != null){
+                  //         const getDate = res.data.date_birth.split("T")[0]
+
+                  //         setFieldValue("writerdate",getDate)
+
+                  //       }
+                  //     }
+                  //     if(key =='place_birth'){
+                  //       setFieldValue("writerplace",res.data.place_birth)
+                  //     }
+                    
+                  //   })
                   
                   
-                  })
+                  // })
                   
-              }, []);
+              }, [data]);
 
               return(
                 <Form className="row" >

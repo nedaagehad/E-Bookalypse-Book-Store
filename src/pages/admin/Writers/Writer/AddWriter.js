@@ -2,11 +2,12 @@ import React,{useState,useEffect} from 'react'
 import { Formik, Field ,Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { booksApi } from '../../../../store/services';
 
 const AddWriter = () => {
 
 
-  
+    const [ addNewWriter , response] = booksApi.useAddNewWriterMutation()
   
       const [writerImage, setWriterImage] = useState();
 
@@ -54,8 +55,8 @@ const addWriter = ()=>{
           data.append("place_birth",values.writerpb)
           data.append("bio",values.writerbio)
           data.append("gender",values.writergender)
-
-          axios.post("https://e-bookalypse.herokuapp.com/api/admin/writer",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
+          addNewWriter(data).then(()=>{}).catch((err)=>{console.log(err)})
+          // axios.post("https://e-bookalypse.herokuapp.com/api/admin/writer",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
 
         }}
 

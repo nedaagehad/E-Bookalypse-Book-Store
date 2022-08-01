@@ -3,29 +3,38 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchAllBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
+import { booksApi } from '../../../store/services';
 
 
 
 const WritersAdmin = () => {
   const [writers,setWriters] = useState()
-
-
+  const {data,isLoading,error} = booksApi.useGetAllWritersQuery({page:20})
+  const [deleteNewWriter,response] = booksApi.useDeleteNewWriterMutation()
   useEffect(() => {
-    
-    axios.get('https://e-bookalypse.herokuapp.com/api/writers?page=20').then(
-      (res)=>{setWriters(res.data.data)}
-    ).catch((err) => {console.log(err)});
+    if(data)
+    {
+      setWriters(data.data)
+     console.log(data)
+     console.log("here")
+    }else if (isLoading){
+      console.log('loading')
+    }else if (error){
+      console.log(error)
+    }
+    // axios.get('https://e-bookalypse.herokuapp.com/api/writers?page=20').then(
+    //   (res)=>{setWriters(res.data.data)}
+    // ).catch((err) => {console.log(err)});
 
 
-  }, []);
+  }, [data]);
 
 
   let deleteWriter = (e,id)=>{
     const deletedItem = writers.find((w)=> w._id === id)
-
-    axios.delete("http://localhost:8080/api/admin/writer/"+id,{params:{icon:deletedItem.image}}).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    deleteNewWriter({writerId:id,icon:deletedItem.image})
+    // axios.delete("http://localhost:8080/api/admin/writer/"+id,{params:{icon:deletedItem.image}}).then((res)=>console.log(res)).catch((err)=>console.log(err));
   }
-  console.log(writers)
   return (
     <div className='container'>
         <div className='addwriter'>
@@ -48,7 +57,7 @@ const WritersAdmin = () => {
             </tr>
           </thead>
           <tbody>
-          {writers? writers.map((writer,i)=>{
+          {writers !== undefined? writers.map((writer,i)=>{
               return (
               <tr key={writer._id}>
                 <td >{i+1}</td>

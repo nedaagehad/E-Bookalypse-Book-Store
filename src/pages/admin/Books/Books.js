@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Books()  {
     const [books,setBooks] = useState()
     // ,limit:2,category:"horror",rate:2,priceMin:0,priceMax:20,priceSort:"htl"
-    const { data, error, isLoading } = booksApi.useGetAllBooksQuery({page:28})
+    const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
     const [deleteBook,response] = booksApi.useDeleteBookMutation();
     // console.log(data)
     useEffect(()=>{

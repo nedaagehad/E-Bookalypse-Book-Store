@@ -18,9 +18,10 @@ const updateBook = () => {
     const [BookImage, setBookImage] = useState();
     const [BookPdf, setBookPdf] = useState();
     const [currentImage, setcurrentImage] = useState();
-
     let params = useParams()
-
+    const {data,isLoading,error}= booksApi.useGetBookByIdQuery(params.id)
+    const categoryData = booksApi.useGetAllCategoriesQuery()
+    const writersData = booksApi.useGetAllWritersQuery()
 
 
 
@@ -98,59 +99,123 @@ const updateBook = () => {
     {({errors,touched,setFieldValue})=>
     {
         useEffect(() => {
-            axios.get(`https://e-bookalypse.herokuapp.com/api/admin/book/${params.id}`).then((res)=>{
-              setBook(res.data)
+            // axios.get(`https://e-bookalypse.herokuapp.com/api/admin/book/${params.id}`).then((res)=>{
+            //   setBook(res.data)
               
-              if(res.data[0].source || res.data[0].poster){
-                const starsRef = ref(storage, 'uploads/books/poster/'+res.data[0].poster);
+            //   if(res.data[0].source || res.data[0].poster){
+            //     const starsRef = ref(storage, 'uploads/books/poster/'+res.data[0].poster);
       
-                getDownloadURL(starsRef)
-                .then((url) => {
-                    setcurrentImage(url)
-                    // console.log(url)
-                })
+            //     getDownloadURL(starsRef)
+            //     .then((url) => {
+            //         setcurrentImage(url)
+            //         // console.log(url)
+            //     })
             
-            }
-                Object.keys(res.data[0]).forEach(key=>{
-                        console.log(key)
-                        setFieldValue("book"+key,res.data[0][key])
-                        // setFieldValue("booktitle",res.data.title)
-                        if(key == "date_release"){
-                            if(res.data[0].date_release != undefined && res.data[0].date_release != null){
-                               const getDate = res.data[0].date_release.split("T")[0]
-                                // console.log(getDate)
-                            setFieldValue("bookdate",getDate)
-                            }
-                        }
-                        if(key == 'n_pages'){
-                            setFieldValue('bookpages',res.data[key])
-                        }
-                        if(key =='category'){
-                            // values.category = res.data.category
-                            // console.log(values.category)
-                            setFieldValue('category',res.data[0].category.map((w)=>w._id))
-                            // console.log(res.data[0].category.map((w)=>w._id))
-                        }
-                        if(key =='writer'){
-                            // values.category = res.data.category
-                            // console.log(values.category)
-                            setFieldValue('writer',res.data[0].writer.map((w)=>w._id))
-                            // console.log('writer',res.data[0].writer.map((w)=>w._id))
+            // }
+            //     Object.keys(res.data[0]).forEach(key=>{
+            //             console.log(key)
+            //             setFieldValue("book"+key,res.data[0][key])
+            //             // setFieldValue("booktitle",res.data.title)
+            //             if(key == "date_release"){
+            //                 if(res.data[0].date_release != undefined && res.data[0].date_release != null){
+            //                    const getDate = res.data[0].date_release.split("T")[0]
+            //                     // console.log(getDate)
+            //                 setFieldValue("bookdate",getDate)
+            //                 }
+            //             }
+            //             if(key == 'n_pages'){
+            //                 setFieldValue('bookpages',res.data[key])
+            //             }
+            //             if(key =='category'){
+            //                 // values.category = res.data.category
+            //                 // console.log(values.category)
+            //                 setFieldValue('category',res.data[0].category.map((w)=>w._id))
+            //                 // console.log(res.data[0].category.map((w)=>w._id))
+            //             }
+            //             if(key =='writer'){
+            //                 // values.category = res.data.category
+            //                 // console.log(values.category)
+            //                 setFieldValue('writer',res.data[0].writer.map((w)=>w._id))
+            //                 // console.log('writer',res.data[0].writer.map((w)=>w._id))
 
-                        }
+            //             }
                 
-                })
+            //     })
                 
-            }).catch((err) => {console.log(err)})
-            axios.get('https://e-bookalypse.herokuapp.com/api/categories')
-            .then((res)=>{setCategories(res.data.categories)
+            // }).catch((err) => {console.log(err)})
+
+            if(data){
+                setBook(data)
+                // console.log(data)
+                if(data[0].source || data[0].poster){
+                    const starsRef = ref(storage, 'uploads/books/poster/'+data[0].poster);
+          
+                    getDownloadURL(starsRef)
+                    .then((url) => {
+                        setcurrentImage(url)
+                        // console.log(url)
+                    })
                 
-            })
-            .catch((err)=>console.log(err))
-            axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
+                }
+                    Object.keys(data[0]).forEach(key=>{
+                            console.log(key)
+                            setFieldValue("book"+key,data[0][key])
+                            // setFieldValue("booktitle",res.data.title)
+                            if(key == "date_release"){
+                                if(data[0].date_release != undefined && data[0].date_release != null){
+                                   const getDate = data[0].date_release.split("T")[0]
+                                    // console.log(getDate)
+                                setFieldValue("bookdate",getDate)
+                                }
+                            }
+                            if(key == 'n_pages'){
+                                setFieldValue('bookpages',data[key])
+                            }
+                            if(key =='category'){
+                                // values.category = res.data.category
+                                // console.log(values.category)
+                                setFieldValue('category',data[0].category.map((w)=>w._id))
+                                // console.log(res.data[0].category.map((w)=>w._id))
+                            }
+                            if(key =='writer'){
+                                // values.category = res.data.category
+                                // console.log(values.category)
+                                setFieldValue('writer',data[0].writer.map((w)=>w._id))
+                                // console.log('writer',res.data[0].writer.map((w)=>w._id))
+    
+                            }
+                    
+                    })
+            }
+
+
+            if(categoryData){
+                const { data ,isLoading , error} = categoryData
+                if(data){
+                    setCategories(data.categories)
+                }
+                // console.log(categoryData)
+            }else{
+                console.log('wtf do u want')
+            }
+
+            if(writersData){
+                const {data,isLoading,error} = writersData
+                if(data){
+                    setWriters(data.data)
+                }
+            }
+
+
+            // axios.get('https://e-bookalypse.herokuapp.com/api/categories')
+            // .then((res)=>{setCategories(res.data.categories)
+                
+            // })
+            // .catch((err)=>console.log(err))
+            // axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
             
       
-          }, []);
+          }, [data,categoryData,writersData]);
         //   {console.log(book)}
         return(
         
