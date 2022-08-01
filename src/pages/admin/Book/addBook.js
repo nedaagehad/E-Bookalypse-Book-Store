@@ -4,8 +4,10 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux';
 import { addNewBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
+import { booksApi } from '../../../store/services';
 
 const addBook = () => {
+    const [addNewBooks , response ] = booksApi.useAddNewBookMutation();
 
       const [categories,setCategories] =useState()
       const [writers,setWriters] =useState()
@@ -74,9 +76,10 @@ const addBook = () => {
             data.append("pages",values.bookpages)
             data.append("category",JSON.stringify(values.category))
             data.append("writer",JSON.stringify(values.writer))
-            console.log(typeof values.category)
+            // console.log(typeof values.category)
             // axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-            dispatch(addNewBooks(data))
+            // dispatch(addNewBooks(data))
+            addNewBooks(data).then(()=>{}).catch((err)=>console.log(err))
          }}
             
         >

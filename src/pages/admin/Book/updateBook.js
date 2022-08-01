@@ -6,11 +6,12 @@ import { useParams } from 'react-router-dom'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import storage from '../../../Firebase/firebaseImage';
 
+import { booksApi } from '../../../store/services';
 
 
 
 const updateBook = () => {
-    
+    const [updateNewBook,response] = booksApi.useUpdateNewBookMutation()
     const [book,setBook] = useState();
     const [categories,setCategories] =useState()
     const [writers,setWriters] =useState()
@@ -88,9 +89,9 @@ const updateBook = () => {
             }
 
             // console.log( values)
-            axios.put(`https://e-bookalypse.herokuapp.com/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-
-        }}
+            // axios.put(`https://e-bookalypse.herokuapp.com/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
+            updateNewBook({bookNewData : data,bookid : params.id}).then(()=>console.log(response)).catch((err)=>{console.log(err)})
+            }}
             
         >
 

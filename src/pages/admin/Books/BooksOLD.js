@@ -39,7 +39,14 @@ function Books() {
     
 
 
+// Create a reference to the file we want to download
+var starsRef = storageRef.child('images/stars.jpg');
 
+// Get the download URL
+starsRef.getDownloadURL()
+.then((url) => {
+  
+})
 
   let deleteItem= (bookID)=>{
     const deletedItem = Books.find((b)=> b._id === bookID)

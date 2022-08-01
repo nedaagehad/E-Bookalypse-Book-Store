@@ -88,7 +88,7 @@ function Home() {
 
   return (
     <>
-    <div className='mainContent border border-info'>
+    <div className='mainContent'>
 
       <HomeSlider />
       <TrendingBooksUp1/>

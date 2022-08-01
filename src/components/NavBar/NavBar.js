@@ -17,7 +17,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 function NavBar() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
 
   console.log(theme);

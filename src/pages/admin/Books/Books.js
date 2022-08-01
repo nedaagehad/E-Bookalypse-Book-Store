@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 function Books()  {
     const [books,setBooks] = useState()
-    const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
+    // ,limit:2,category:"horror",rate:2,priceMin:0,priceMax:20,priceSort:"htl"
+    const { data, error, isLoading } = booksApi.useGetAllBooksQuery({page:28})
+    const [deleteBook,response] = booksApi.useDeleteBookMutation();
     // console.log(data)
     useEffect(()=>{
       if(data){
@@ -14,8 +16,11 @@ function Books()  {
       }
       
       },[data])
-    const deleteItem = ()=>{
-      
+    const deleteItem = (bookId)=>{
+      // icon:deletedItem.poster,src:deletedItem.source
+      const deletedItem = books.find((b)=> b._id === bookId)
+
+      deleteBook({bookId:bookId,bookOldFiles:{icon:deletedItem.poster,src:deletedItem.source}})
     }
  
   return (

@@ -6,15 +6,15 @@ function Categories() {
   return (
 
     <div className='content'>
-          <CategoryList>
-              <CategoryCard img="./Images/Categories/Biography.jpg" alt="Biography"/>
-              <CategoryCard img="./Images/Categories/Children.jpg" alt="Children" />
-              <CategoryCard img="./Images/Categories/horror.jpg" alt="Horror" />
-              <CategoryCard img="./Images/Categories/history.jpg" alt="History" />
-              <CategoryCard img="./Images/Categories/poeatries.jpg" alt="Poetry" />
-              <CategoryCard img="./Images/Categories/Novels.jpg" alt="Novels" />
-          </CategoryList>
-          <TrendingBooksUp1/>
+      <CategoryList>
+        <CategoryCard img="./Images/Categories/Biography.jpg" alt="Biography" />
+        <CategoryCard img="./Images/Categories/Children.jpg" alt="Children" />
+        <CategoryCard img="./Images/Categories/horror.jpg" alt="Horror" />
+        <CategoryCard img="./Images/Categories/history.jpg" alt="History" />
+        <CategoryCard img="./Images/Categories/poeatries.jpg" alt="Poetry" />
+        <CategoryCard img="./Images/Categories/Novels.jpg" alt="Novels" />
+      </CategoryList>
+      <TrendingBooksUp1 />
     </div>
   )
 }
