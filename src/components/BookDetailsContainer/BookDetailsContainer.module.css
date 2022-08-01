@@ -1,0 +1,107 @@
+.BookDetails{
+    width: 100%;
+    margin: auto;
+    padding: 50px;
+}
+.BookDetails h2{
+    font-weight: 700;
+    line-height: 48px;
+    color: #231627;
+    margin-bottom: 25px;
+}
+.Book_Poster{
+    width: 90%;
+    filter: drop-shadow(0px 7px 4px rgba(110, 110, 110, 0.25));
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.Book_Poster img{
+    border-radius: 20px;
+}
+.Reviews{
+    margin-bottom: 20px;
+}
+.Reviews .stars{
+    border: 1px solid #FBAC04;
+    border-radius: 7px;
+    color: #FBAC04;
+    padding: 3px 10px;
+}
+.Reviews .Review{
+    border: 1px solid #ABA8A8;
+    border-radius: 7px;
+    color: #ABA8A8;
+    font-weight: 600;
+    padding: 3px 10px;
+    position: relative;
+    left: 10px;
+}
+.Details h1{
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 44px;
+    color: #000000;
+}
+.Details h3{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 31px;
+    color: #8D27AE;
+}
+.Details p{
+    font-weight: 400;
+    line-height: 29px;
+    color: rgb(112, 110, 110);
+}
+.Details h2{
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 51px;
+    color: #8D27AE;
+}
+.Details .promo{
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+    color: rgb(136, 135, 135);
+    display: inline-block;
+    margin-left: 10px;
+}
+.action button{
+    background-color: #8D27AE;
+    border-radius: 12px;
+    color:white;
+    padding: 10px 25px;
+    font-size: 20px;
+}
+.action button:hover{
+    background-color: rgb(94, 25, 117);
+}
+.action .favorite{
+    background-color: transparent;
+    border: 1px solid #ABA8A8;
+    color: #D6D3D3;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-size: 25px;
+    position: relative;
+    top:2px;
+    left: 10px;
+}
+.action .favorite:hover{
+    color:rgb(94, 25, 117);
+    background-color: transparent;
+}
+@media(max-width:800px)
+{
+    .Book_Poster{
+        width: 70%;
+    }
+}
+@media(max-width:750px)
+{
+    .Book_Poster{
+        width: 50%;
+    }
+}

@@ -11,3 +11,7 @@
     left: 30px;
     width: fit-content;
 }
+.pagy{
+    width: fit-content;
+    margin: auto;
+}

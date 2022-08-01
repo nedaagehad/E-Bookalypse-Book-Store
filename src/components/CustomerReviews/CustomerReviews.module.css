@@ -1,0 +1,84 @@
+.CustomerReview{
+    width: 100%;
+    margin: auto;
+    padding: 50px;
+}
+.CustomerReview h2{
+    font-weight: 700;
+    line-height: 48px;
+    color: #231627;
+    margin-bottom: 25px;
+}
+.CustomerReview .ReviewBrief{
+    padding: 20px;
+    background-color: #FDF8FE;
+    border-radius: 15px 15px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stars{
+    color:#FBAC04;
+    font-size: 30px;
+}
+.FullRate h3{
+    color: #848383;
+}
+.RateResult{
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 77px;
+    color: #782095;
+}
+.CustomerReview .ReviewBrief .FullRate, .CustomerReview .ReviewBrief .RateDesc , .CustomerReview .ReviewBrief .RateDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.CustomerReview .ReviewBrief .RateDesc {
+    font-weight: 400;
+    color: #757373;
+}
+.CustomerReview .ReviewBrief .RateDetails{
+   padding: 30px;
+}
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo{
+    width: inherit;
+}
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span{
+    position: relative;
+    bottom: 8px;
+    margin: 0px 2px;
+}
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span{
+    font-weight: bold;
+}
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span:first-child{
+    color:#FBAC04;
+}
+
+@media(max-width:800px)
+{
+    *{
+        text-align: center;
+    }
+    .CustomerReview .ReviewBrief{
+        padding: 30px;
+    }
+    .CustomerReview .ReviewBrief .RateDesc {
+        padding-top: 30px;
+    }
+}
+@media(min-width:768px) and (max-width:915px)
+{
+    .stars{
+        font-size: 20px;
+    }
+    .FullRate h3{
+        font-size: 13px;
+    }
+    .FullRate .RateResult{
+        font-size: 40px;
+    }
+}
