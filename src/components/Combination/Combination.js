@@ -11,6 +11,9 @@ const Combination = props => {
                             <img src={props.collectionData.book1.bookPoster} alt={props.collectionData.book1.bookName}/>
                         </div>
                         <div className={classes.second}>
+                        <div className={classes.ribbon}>
+                            <p>${props.collectionPrice}</p>
+                        </div>
                             <img src={props.collectionData.book2.bookPoster} alt={props.collectionData.book2.bookName}/>
                         </div>
                         <div className={classes.third}>
