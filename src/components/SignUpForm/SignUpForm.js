@@ -66,7 +66,7 @@ const SignUpSchema = Yup.object().shape({
   cnfrmPass: Yup.string()
     .required("field is required"),
 
-  theGender: Yup.string()
+  theGender: Yup.string("must be string")
     .required("Gender is required"),
 
   birthDate: Yup.date()
@@ -98,6 +98,9 @@ let onFileChange = (e)=>{
   
 }
 
+const onGenderchange = (e)=>{
+    console.log(e.target.value)
+}
 
 return (
     <div className="container">
@@ -151,7 +154,7 @@ return (
                         .catch(function (error) {
                             console.log(error);
                         });
-                        console.log(values);
+                        console.log(values.theGender);
                         }}
                     >
                         {({errors,touched})=>(
@@ -231,18 +234,18 @@ return (
                                 ) : null}
                             </div>
                             <div className="form-group mb-3 col-md-12 col-sm-12">
-                                    <div className="row">
+                                    <div className="row" >
                                         <label htmlFor="Gender" className="form-label " style={{marginTop:"40px"}}>Gender : </label>
                                         <br/>
                                         <div className="col-md-6 col-sm-6">
                                             <label>
-                                                <input type="radio" name="theGender" value="male"/>
+                                                <Field  type="radio"  class="form-check-input" name="theGender"   value="male"/>
                                                 <span className="mx-1">Male</span>
                                             </label>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
                                             <label>
-                                                <input type="radio" name="theGender" value="female"/>
+                                                <Field  type="radio"  class="form-check-input" name="theGender"  value="female"/>
                                                 <span className="mx-1" >Female</span>
                                             </label>
                                         </div>
