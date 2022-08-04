@@ -1,4 +1,4 @@
-
+/* ScrollBar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -21,13 +21,13 @@
   background: #8d27ae;
   border-radius: 3px;
 }
-
+/* ///////////////////////////////// */
 
 /* Main Content  */
 
-.content   {
+/* .content   {
   min-height: 63vh !important;
-}
+} */
 
 /* ---------------------------------------- */
 
@@ -86,8 +86,8 @@ input[type='checkbox']:focus{
   --second-bg-light : #FDF8FE;
   --main-bg-dark :#010001;
   --second-bg-dark:#0C0C0D;
+
   /* ratios of screens  (media queries) */
-  
   --sm-screen: 576px;
   --md-screen: 768px;
   --lg-screen: 992px;

@@ -51,7 +51,7 @@ const LoginForm = props => {
                             }}
                             validationSchema={loginSchema}
                             onSubmit={values => {
-                              axios.post('http://localhost:5000/login', {
+                              axios.post('http://e-bookalypse.herokuapp.com/login', {
                                 userName:values.userName,
                                 email:values.userName,
                                 phone:values.userName,
@@ -72,7 +72,7 @@ const LoginForm = props => {
                                   <label htmlFor="userName" className="form-label">
                                     Username
                                   </label>
-                                  <input name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
+                                  <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
                                   {errors.userName && touched.userName ? (
                                       <div className="form-text text-danger">{errors.userName}</div>
                                   ) : null}
@@ -83,7 +83,7 @@ const LoginForm = props => {
                                   Password
                                   </label>
                                   <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
-                                  <input name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
+                                  <Field name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
                                   {errors.thePassword && touched.thePassword ? (
                                       <div className="form-text text-danger">{errors.thePassword}</div>
                                   ) : null}

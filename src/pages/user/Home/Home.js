@@ -6,6 +6,8 @@ import HomeCategories from '../../../components/HomeSlider/HomeCategories/HomeCa
 import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
 import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksUp1';
 import OurPartners from '../../../components/OurPartners/OurPartners';
+import Benefits from '../../../components/Benefits/Benefits';
+import { useSelector } from 'react-redux';
 
 
 function Home() {
@@ -84,14 +86,15 @@ function Home() {
         </> 
          End Section Test Axios */}
      
-
+         const theme = useSelector((state) => state.theme.currentTheme);
 
   return (
     <>
-    <div className='mainContent'>
+    <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
 
       <HomeSlider />
       <TrendingBooksUp1/>
+      <Benefits />
         <HomeCategories data={[
           { Category_Name:"Biography", Num_of_books:30, },
           { Category_Name:"Children", Num_of_books:30, },

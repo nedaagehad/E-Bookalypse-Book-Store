@@ -3,12 +3,15 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
-import styles from './TrendingBooksUp.module.css'
-
+import styles from './TrendingBooksUp.module.css';
+import { useSelector } from 'react-redux';
 
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 
 const TrendingBooksUp1 = () => {
+
+  const theme = useSelector((state) => state.theme.currentTheme)
+
   const book2 =  "./uploads/books/book.jpg";
   const book =  "./uploads/books/book2.jpg";
   const book3 =  "./uploads/books/book4.jpg";
@@ -17,7 +20,8 @@ const TrendingBooksUp1 = () => {
   const images = [book2,book,book3,book4]
 
   return (
-    <div className=' container p-5 mb-5'>
+    <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`container p-5 mb-5`}>
       <div className={styles.head + " mb-5 "}>
         <h5 className={styles.h5}>Trending This Week🚀</h5>
       </div>
@@ -77,6 +81,7 @@ const TrendingBooksUp1 = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
