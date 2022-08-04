@@ -15,15 +15,15 @@ const CheckoutSummary = props => {
                     <table>
                             <tr>
                                 <td>Subtotal</td>
-                                <td>$30.98</td>
+                                <td>${props.subTotal}</td>
                             </tr>
                             <tr>
                                 <td>Tax</td>
-                                <td>$2.25</td>
+                                <td>${props.tax}</td>
                             </tr>
                             <tr>
                                 <td>Total</td>
-                                <td>$33.23</td>
+                                <td>${props.Total}</td>
                             </tr>
                     </table>
                 </div>

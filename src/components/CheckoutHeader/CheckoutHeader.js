@@ -17,8 +17,13 @@ const CheckoutHeader = props => {
         </div>
         <div className={`col-12`}>
             <div className={`row`}>
-                <BookOnCard />
-                <BookOnCard/>
+                {
+                    props.data.map(item => {
+                            return (
+                                <BookOnCard data={item} />
+                            )
+                    })  
+                }
             </div>  
         </div>
         </>

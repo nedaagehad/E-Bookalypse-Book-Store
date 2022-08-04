@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './BookOnCard.module.css'
 import { RiDeleteBin5Fill } from 'react-icons/ri'
-import image from '../../assets/4.jpg'
 const BookOnCard = props => {
     return (
         <div className={`col-12 ${classes.card}`}>
@@ -9,16 +8,16 @@ const BookOnCard = props => {
                 <div className={`col-8`}>
                     <div className={`row`}>
                         <div className={`col-3`}>
-                            <img src={image}/>
+                            <img src={props.data.bookPoster}/>
                         </div>
                         <div className={`col-9 ${classes.details}`}>
-                            <h3>Book Name</h3>
-                            <p>Book Auther</p>
+                            <h3>{props.data.bookName}</h3>
+                            <p>{props.data.bookAuther}</p>
                         </div>
                     </div>
                 </div>
                 <div className={`col-2 ${classes.price}`}>
-                    <h4>Total Price</h4>
+                    <h4>{props.data.bookPrice}</h4>
                 </div>
                 <div className={`col-2 ${classes.delete}`}>
                     <button><RiDeleteBin5Fill/></button>
