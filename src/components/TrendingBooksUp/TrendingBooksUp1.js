@@ -9,7 +9,7 @@ import styles from './TrendingBooksUp.module.css'
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 
 const TrendingBooksUp1 = () => {
-  const book2 =  "./uploads/books/book.jpg";
+  const book2 =  "./uploads/books/book3.jpg";
   const book =  "./uploads/books/book2.jpg";
   const book3 =  "./uploads/books/book4.jpg";
   const book4 =  "./uploads/books/book5.jpg";

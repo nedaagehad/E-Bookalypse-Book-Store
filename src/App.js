@@ -5,6 +5,7 @@ import Home from './pages/user/Home/Home';
 import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
+import Checkout from './pages/user/Checkout/Checkout';
 import Promotions from './pages/user/Promotions/Promotions';
 import Login from './pages/user/Login/Login';
 import SignUp from './pages/user/SignUp/SignUp';
@@ -30,6 +31,7 @@ import Dashboard from './pages/admin/Dashboard/Dashboard';
 import UserLayout from './pages/user/UserLayout';
 import AdminLayout from './pages/admin/AdminLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
+import { Checkbox } from '@mui/material';
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
           <Route path='/categories' element={<Categories />} />
           <Route path='/categories/category' element={<Category />} />
           <Route path='/categories/category/BookDetails' element={<BookDetails />} />
+          <Route path='/categories/category/BookDetails/Checkout' element={<Checkout />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
