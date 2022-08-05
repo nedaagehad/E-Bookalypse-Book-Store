@@ -13,6 +13,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import styles from './NavBar.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import logo from '../../assets/ebookalypse-logo.png';
 
 
 function NavBar() {
@@ -27,7 +28,7 @@ function NavBar() {
       {/* Navbar in Large Screen */}
       <Navbar sticky="top" className={`${styles.navbarLarge} shadow-sm py-lg-0 py-md-1`} bg={theme === "night" ? "dark" : "light"} variant={theme === "night" ? "dark" : "light"} expand="lg">
         <Container fluid>
-          <Navbar.Brand className={`${styles.logo} fs-4`}>E-Bookalypse</Navbar.Brand>
+          <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} /> E-Bookalypse</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" navbarScroll>
