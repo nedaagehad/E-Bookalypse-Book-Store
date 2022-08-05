@@ -1,0 +1,233 @@
+.collection{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+.ribbon{
+    width: 350%;
+    left: -120px;
+    height: 100px;
+    background-image: url("../../assets/reb3.png");
+    background-size: cover;
+    position: absolute;
+    top:50px;
+    z-index: 5;
+    margin: auto;
+}
+.ribbon p{
+    color: white;
+    font-weight: 700;
+    position: relative;
+    z-index: 8;
+    top:32px;
+}
+.booksPosters{
+   padding: 20px;
+   margin-bottom: 50px;
+}
+.booksPosters .first,.booksPosters .second,.booksPosters .third{
+    position: relative;
+    top:50px;
+    width: 100px;
+    height: 150px;
+    border: solid;
+    border-color:rgb(58, 58, 58);
+    display: inline-block;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, rgb(30, 30, 30) , rgb(124, 124, 124));
+ }
+ .booksPosters .first img ,.booksPosters .second img ,.booksPosters .third img{
+    width: inherit;
+    height: inherit;
+    border-radius: 5px;
+ }
+ .booksPosters .third{
+    top:50px;
+    left: 20px;
+    transform: rotate(25deg);
+    z-index: 1;
+ }
+ .booksPosters .first{
+    top:50px;
+    right: 20px;
+    transform: rotate(335deg);
+    z-index: 1;
+ }
+ .booksPosters .second{
+    transform: scale(1.5);
+    z-index: 2;
+ }
+ .collection h4{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 61px;
+    text-align: center;
+    color: rgb(62, 17, 77);
+ }
+ .collection h6{
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    color: #5e5b5b;
+ }
+ .action{
+     margin-top: 25px;
+ }
+ .action button{
+    background-color: #8D27AE;
+    border-radius: 12px;
+    color:white;
+    padding: 10px 25px;
+    font-size: 20px;
+}
+.action button:hover{
+    background-color: rgb(94, 25, 117);
+}
+.action .favorite{
+    background-color: transparent;
+    border: 1px solid #ABA8A8;
+    color: #D6D3D3;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-size: 25px;
+    position: relative;
+    top:2px;
+    left: 10px;
+}
+.action .favorite:hover{
+    color:rgb(94, 25, 117);
+    background-color: transparent;
+}
+@media(max-width:363px)
+{
+    .booksPosters .first,.booksPosters .second,.booksPosters .third{
+        width: 60px;
+        height: 110px;
+     }
+}
+@media(max-width:244px)
+{
+    .booksPosters .first,.booksPosters .second,.booksPosters .third{
+        width: 40px;
+        height: 90px;
+     }
+     .booksPosters .third{
+        top:30px;
+        left: 5px;
+     }
+     .booksPosters .first{
+        top:30px;
+        right: 5px;
+     }
+     .collection h4{
+         font-size: 20px;
+     }
+     .collection h6{
+        font-size: 11px;
+    }
+    .action button{
+        padding: 10px 25px;
+        font-size: 11px;
+    }
+    .action .favorite{
+        padding: 8px 12px;
+        font-size: 11px;
+        top:0px;
+        left: 10px;
+    }
+}
+@media(min-width:768px) and (max-width:991px)
+{
+    .booksPosters .first,.booksPosters .second,.booksPosters .third{
+        width: 70px;
+        height: 120px;
+     }
+}
+@media(max-width:481px)
+{
+    .ribbon{
+        width: 335%;
+        left: -111px;
+        height: 80px;
+    }
+    .ribbon p{
+        top: 30px;
+        font-size: 15px;
+    }
+}
+@media(max-width:468px)
+{
+    .ribbon{
+        width: 300%;
+        left: -95px;
+        height: 80px;
+    }
+    .ribbon p{
+        top: 30px;
+        font-size: 15px;
+    }
+}
+@media(max-width:420px)
+{
+    .ribbon{
+        width: 276%;
+        left: -90px;
+        height: 80px;
+    }
+    .ribbon p{
+        top: 25px;
+        font-size: 15px;
+    }
+}
+@media(max-width:408px)
+{
+    .ribbon{
+        width: 265%;
+        left: -80px;
+        height: 76px;
+    }
+    .ribbon p{
+        top: 23px;
+        font-size: 15px;
+    }
+}
+@media(max-width:363px)
+{
+    .ribbon{ 
+        width: 295%;
+        left: -54px;
+        height: 45px;
+    }
+    .ribbon p{
+        top: 14px;
+        font-size: 10px;
+    }
+}
+@media(max-width:244px)
+{
+    .ribbon{ 
+        width: 272%;
+        left: -28px;
+        height: 25px;
+    }
+    .ribbon p{
+        top: 7px;
+        font-size: 7px;
+    }
+}
+@media(min-width:768px) and (max-width:989px)
+{
+    .ribbon{
+        width: 300%;
+        left: -65px;
+        height: 58px;
+    }
+    .ribbon p{
+        top: 16px;
+        font-size: 12px;
+    }
+}

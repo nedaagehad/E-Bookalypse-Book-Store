@@ -1,0 +1,38 @@
+.card{
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #FDF8FE;
+    border-radius: 15px;
+}
+.card img{
+    width: 40%;
+    height: 100px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+.details , .price , .delete{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.details p{
+    font-weight: 500;
+    color: #5B5858;
+}
+.price h4{
+    font-weight: 700;
+    color: #8D27AE;;
+}
+.delete button{
+    color : #716F6F;
+    font-size: 25px;
+}
+@media(max-width:800px)
+{
+    .card img{
+        width: 70%;
+        height: 70px;
+    }
+}
