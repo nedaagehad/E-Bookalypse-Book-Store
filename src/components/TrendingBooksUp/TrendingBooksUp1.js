@@ -9,14 +9,10 @@ import { useSelector } from 'react-redux';
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 
 const TrendingBooksUp1 = () => {
-// <<<<<<< HEAD
 
   const theme = useSelector((state) => state.theme.currentTheme)
 
-  // const book2 =  "./uploads/books/book.jpg";
-// =======
   const book2 =  "./uploads/books/book3.jpg";
-// >>>>>>> reham
   const book =  "./uploads/books/book2.jpg";
   const book3 =  "./uploads/books/book4.jpg";
   const book4 =  "./uploads/books/book5.jpg";

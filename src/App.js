@@ -31,7 +31,8 @@ import Dashboard from './pages/admin/Dashboard/Dashboard';
 import UserLayout from './pages/user/UserLayout';
 import AdminLayout from './pages/admin/AdminLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
-import { Checkbox } from '@mui/material';
+import UserProfile from './pages/user/UserProfile/UserProfile';
+
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
+          <Route path='/profile' element={<UserProfile />} />
           <Route path='/termsofuse' element={<TermsOfUse />} />
           <Route path='/refundpolicy' element={<RefundPolicy />} />
           <Route path='/paymentpolicy' element={<PaymentPolicy />} />
