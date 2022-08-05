@@ -90,6 +90,7 @@ function CatSidebar() {
                                 <input className='form-control' type="text" value="Ahmad" />
                             </div>
                         </div>
+                        
 
                         <div class="form-group">
                             <label class={`col-lg-3 ${styles.controlLabel}`}>Change Profile</label>
@@ -97,15 +98,23 @@ function CatSidebar() {
                                 <input class="form-control" type="file" />
                             </div>
                         </div>
+
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>Password:</label>
+                            <label className={`col-lg-3 ${styles.controlLabel}`}>Old Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>Confirm Password:</label>
+                            <label className={`col-lg-3 ${styles.controlLabel}`}>New Password:</label>
+                            <div className='col-lg-9'>
+                                <input className='form-control' type="password" value="" />
+                            </div>
+                        </div>
+
+                        <div className='form-group'>
+                            <label className={`col-lg-3 ${styles.controlLabel}`}>Confirm New Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
