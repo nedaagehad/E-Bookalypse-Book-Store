@@ -2,11 +2,15 @@ import React from 'react'
 import classes from './BooksView.module.css'
 import BookCard from '../BookCard/BookCard'
 import Pagination from '@mui/material/Pagination';
+import { useSelector } from 'react-redux';
 
 const BookView = props =>{
+
+    const theme = useSelector((state) => state.theme.currentTheme);
+
     return(
         <div className={`col-md-9 col-sm-12 ${classes.BookView}`}>
-            <h2>Books</h2>
+            <h2 className={classes.title}>Books</h2>
             <div className={`row`}>
                 <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
                 <BookCard img="../../Images/Books/2.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>

@@ -15,3 +15,7 @@
     width: fit-content;
     margin: auto;
 }
+
+.title {
+    color: rgb(111, 25, 139) !important;
+}

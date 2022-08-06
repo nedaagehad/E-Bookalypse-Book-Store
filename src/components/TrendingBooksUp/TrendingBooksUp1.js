@@ -21,7 +21,7 @@ const TrendingBooksUp1 = () => {
 
   return (
     <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
-    <div className={`container p-5 mb-5`}>
+    <div className={`container p-5`}>
       <div className={styles.head + " mb-5 "}>
         <h5 className={styles.h5}>Trending This Week🚀</h5>
       </div>

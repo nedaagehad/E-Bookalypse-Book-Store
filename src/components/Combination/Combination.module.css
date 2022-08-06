@@ -66,7 +66,8 @@
     font-weight: 700;
     line-height: 61px;
     text-align: center;
-    color: rgb(62, 17, 77);
+    /* color: rgb(62, 17, 77); */
+    color: #8D27AE !important;
  }
  .collection h6{
     font-weight: 500;
@@ -89,7 +90,8 @@
 }
 .action .favorite{
     background-color: transparent;
-    border: 1px solid #ABA8A8;
+    /* border: 1px solid #ABA8A8; */
+    border: 1px solid #8D27AE;
     color: #D6D3D3;
     border-radius: 12px;
     padding: 5px 12px;
@@ -230,4 +232,8 @@
         top: 16px;
         font-size: 12px;
     }
+}
+
+.detailsDark {
+    color: #aba8a8 !important;
 }

@@ -1,7 +1,12 @@
 import React from 'react'
 import PromoIntro from '../../../components/PromoIntro/PromoIntro'
 import Combination from '../../../components/Combination/Combination'
+import { useSelector } from 'react-redux';
+
 function Promotions() {
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   var arr = [
              {collection:
               {
@@ -26,7 +31,7 @@ function Promotions() {
              },
             ];
   return (
-    <div className="content">
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className="container">
             <div className="row">
                 <div className="col-12">

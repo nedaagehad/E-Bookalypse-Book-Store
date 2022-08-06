@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import classes from './BookCard.module.css'
 
 const  BookCard = props => {
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   return (
     <div className={`col-md-4 col-sm-12 ${classes.BookCard}`}>
-      <div className={classes.card}>
+      <div className={theme === "night" ? classes.cardNight : classes.card}>
             <div className={classes.poster}>
                 <div className={classes.poster_overlay}>
                 <button>Show Details</button>
