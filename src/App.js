@@ -32,15 +32,12 @@ import Dashboard from './pages/admin/Dashboard/Dashboard';
 import UserLayout from './pages/user/UserLayout';
 import AdminLayout from './pages/admin/AdminLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
-=======
 import UserProfile from './pages/user/UserProfile/UserProfile';
 
->>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
 
 
 function App() {

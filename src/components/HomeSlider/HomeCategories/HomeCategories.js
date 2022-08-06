@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 
 import { FaClock } from 'react-icons/fa';
@@ -8,12 +7,7 @@ import styles from  './HomeCategories.module.css';
 
 
 
-=======
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
-import styles from './HomeCategories.module.css';
->>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
+
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay, Navigation, Pagination, EffectCoverflow } from "swiper";
