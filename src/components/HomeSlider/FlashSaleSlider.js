@@ -7,10 +7,13 @@ import 'swiper/swiper.min.css'
 
 import FlashSaleCard from '../BookCard/FlashSaleCard';
 import styles from './FlashSaleSlider.module.css'
+import { useSelector } from 'react-redux';
 SwiperCore.use(Navigation);
 
 function FlashSaleSlider() {
     const endDate = new Date("12/11/2022");
+
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     const getremaining = (end) => {
         let currentDate = new Date();
@@ -57,7 +60,7 @@ function FlashSaleSlider() {
     }
 
   return (
-    <div className={styles.flashSale + " mt-3 "}>
+    <div className={`${theme === "night" ? styles.flashSaleNight : styles.flashSale} mt-3`}>
         <div className = "container">
             <div className = "row py-5">
                 <div className='col-12 col-lg-3 text-white'>

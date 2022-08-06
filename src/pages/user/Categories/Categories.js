@@ -21,6 +21,7 @@ function Categories() {
    
   }, [data]);
 
+
   return (
 
     <div className='content'>
@@ -36,6 +37,12 @@ function Categories() {
 
           )
         }):null}
+
+      {categories.map((category) => {
+        return (
+          <CategoryCard img={category.icon} alt={category.title} />
+        )
+      })}
 
       </CategoryList>
       <TrendingBooksUp1 />

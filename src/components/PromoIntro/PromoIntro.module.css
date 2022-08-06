@@ -13,14 +13,11 @@
     font-weight: 600;
     font-size: 40px;
     color: #000000;
-    word-spacing: 10px;
+    word-spacing: 5px;
 }
 .PromoTitle span{
     color: rgb(111, 25, 139);
-}
-.PromoTitle span:first-child{
     font-weight: 700;
-    font-size: 55px;
 }
 .bookShelf{
     width: 100%;

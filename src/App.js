@@ -6,6 +6,7 @@ import Home from './pages/user/Home/Home';
 import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
+import Checkout from './pages/user/Checkout/Checkout';
 import Promotions from './pages/user/Promotions/Promotions';
 import Login from './pages/user/Login/Login';
 import SignUp from './pages/user/SignUp/SignUp';
@@ -31,10 +32,15 @@ import Dashboard from './pages/admin/Dashboard/Dashboard';
 import UserLayout from './pages/user/UserLayout';
 import AdminLayout from './pages/admin/AdminLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
+=======
+import UserProfile from './pages/user/UserProfile/UserProfile';
+
+>>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
 
 
 function App() {
@@ -59,10 +65,12 @@ function App() {
           <Route path='/categories/category/' element={<Category />} />
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
+
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
+          <Route path='/profile' element={<UserProfile />} />
           <Route path='/termsofuse' element={<TermsOfUse />} />
           <Route path='/refundpolicy' element={<RefundPolicy />} />
           <Route path='/paymentpolicy' element={<PaymentPolicy />} />

@@ -150,7 +150,9 @@ return (
                         data.append("phone",values.thePhone)
                         data.append("pass",values.thePassword)
 
+ 
                         axios.post('https://e-bookalypse.herokuapp.com/api/user/signUp', data)
+
                         .then(function (response) {
                             navigate('/login')
                         })
@@ -243,12 +245,14 @@ return (
                                         <div className="col-md-6 col-sm-6">
                                             <label>
                                                 <Field  type="radio"  class="form-check-input" name="theGender"   value="male"/>
+
                                                 <span className="mx-1">Male</span>
                                             </label>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
                                             <label>
                                                 <Field  type="radio"  class="form-check-input" name="theGender"  value="female"/>
+
                                                 <span className="mx-1" >Female</span>
                                             </label>
                                         </div>

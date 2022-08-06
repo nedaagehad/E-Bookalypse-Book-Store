@@ -70,6 +70,7 @@ const LoginForm = props => {
                             validationSchema={loginSchema}
                             onSubmit={values => {
                               const data= {
+
                                 userName:values.userName,
                                 email:values.userName,
                                 phone:values.userName,

@@ -1,0 +1,56 @@
+.categoriesHomeSection{
+    background-color: #FDF8FE;
+}
+
+.categoriesHomeSectionNight{
+    background-color: #373637;
+}
+.categoriesHomeSection .row{
+    padding:20px 100px
+}
+
+.categoriesHomeSectionNight .row{
+    padding:20px 100px
+}
+
+.categoriesHomeSection .titleandtext {
+    padding-right:40px
+}
+
+.categoriesHomeSectionNight .titleandtext {
+    padding-right:40px
+}
+
+.categoriesHomeSection .titleandtext .icon{
+    font-size:35px;
+    color:#8D27AE;
+}
+
+.categoriesHomeSectionNight .titleandtext .icon{
+    font-size:35px;
+    color:#8D27AE;
+}
+
+.categoriesHomeSection .titleandtext .textCatSection .h4{
+    font-size: 24px;
+    font-weight: 500;
+}
+.categoriesHomeSection .titleandtext .textCatSection .p{
+    color:#777575;
+    font-size:18px;
+}
+
+.categoriesHomeSectionNight .titleandtext .textCatSection .h4{
+    font-size: 24px;
+    font-weight: 500;
+}
+.categoriesHomeSectionNight .titleandtext .textCatSection .p{
+    color:#aba8a8;
+    font-size:18px;
+}
+
+/* .night{
+    background-color: #373637;
+    background-color: #3d253d;
+    background-color: #442d44;
+} */

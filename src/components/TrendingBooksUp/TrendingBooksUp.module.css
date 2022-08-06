@@ -264,8 +264,8 @@ img.trendBook{
   
 }
 .nextContainer,.prevContainer{
-  background: rgba(255, 255, 255, 0.6)  ;
-  box-shadow: 0px 0px 70px rgb(255 255 255 / 60%) ;
+  /* background: rgba(255, 255, 255, 0.6)  ; */
+  /* box-shadow: 0px 0px 70px rgb(255 255 255 / 60%) ; */
   height: 100%;
 
   width: 166px;
@@ -292,7 +292,7 @@ img.trendBook{
 @media(max-width:850px)
 {
   .nextContainer,.prevContainer{
-    background: rgba(255, 255, 255, 0.6)  ;
+    /* background: rgba(255, 255, 255, 0.6)  ; */
     height: 100%;
     width: 50px;
   }

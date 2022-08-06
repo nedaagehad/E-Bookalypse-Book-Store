@@ -54,6 +54,12 @@
     background-clip: text !important;
     color: transparent !important;
   }
+
+  .logoIMG{
+    width: 45px;
+    height: 45px;
+    margin-right: 5px;
+  }
   
   .navItemNight,
   .navIconNight {

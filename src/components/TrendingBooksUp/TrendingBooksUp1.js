@@ -3,7 +3,13 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
+<<<<<<< HEAD
 import styles from './TrendingBooksUp.module.css'
+=======
+import styles from './TrendingBooksUp.module.css';
+import { useSelector } from 'react-redux';
+
+>>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 import { booksApi } from '../../store/services';
 import storage from '../../Firebase/firebaseImage';
@@ -12,6 +18,16 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 
 const TrendingBooksUp1 = () => {
+<<<<<<< HEAD
+=======
+
+  const theme = useSelector((state) => state.theme.currentTheme)
+
+  const book2 =  "./uploads/books/book3.jpg";
+  const book =  "./uploads/books/book2.jpg";
+  const book3 =  "./uploads/books/book4.jpg";
+  const book4 =  "./uploads/books/book5.jpg";
+>>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
   SwiperCore.use([Autoplay])
   const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
   const [books,setBooks] = useState()
@@ -33,7 +49,8 @@ const TrendingBooksUp1 = () => {
 
 
   return (
-    <div className=' container p-5 mb-5'>
+    <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`container p-5 mb-5`}>
       <div className={styles.head + " mb-5 "}>
         <h5 className={styles.h5}>Trending This Week🚀</h5>
       </div>
@@ -109,6 +126,7 @@ const TrendingBooksUp1 = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
