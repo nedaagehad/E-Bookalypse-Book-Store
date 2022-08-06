@@ -5,22 +5,62 @@ import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux';
 import { addNewBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
 import { booksApi } from '../../../store/services';
+import { useNavigate } from 'react-router-dom';
 
 const addBook = () => {
     const [addNewBooks , response ] = booksApi.useAddNewBookMutation();
+    const categoryData = booksApi.useGetAllCategoriesQuery()
+    const writersData = booksApi.useGetAllWritersQuery()
+    const promotionsData = booksApi.useGetAllPromotionsQuery();
 
-      const [categories,setCategories] =useState()
-      const [writers,setWriters] =useState()
-      const [BookImage, setBookImage] = useState();
-      const [BookPdf, setBookPdf] = useState();
-      let dispatch = useDispatch()
-      useEffect(() => {
-        axios.get('https://e-bookalypse.herokuapp.com/api/categories')
-        .then((res)=>setCategories(res.data.categories))
-        .catch((err)=>console.log(err))
-        axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
+    const [categories,setCategories] =useState()
+    const [writers,setWriters] =useState()
+    const [promotions,setPromotions] =useState()
+
+    const [BookImage, setBookImage] = useState();
+    const [BookPdf, setBookPdf] = useState();
+    let dispatch = useDispatch()
+
+
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        // axios.get('https://e-bookalypse.herokuapp.com/api/categories')
+        // .then((res)=>setCategories(res.data.categories))
+        // .catch((err)=>console.log(err))
+
+        if(categoryData){
+            if(categoryData.data){
+
+                setCategories(categoryData.data.categories)
+                // console.log(categoryData.data.categories)
+            }else if(categoryData.error){
+                console.log(writersData.error)
+            }
+        }
+        if(writersData){
+            if(writersData.data){
+
+                setWriters(writersData.data.data)
+                // console.log(writersData.data.data)
+            }else if(writersData.error){
+                console.log(writersData.error)
+            }
+
+        }
+        if(promotionsData){
+            if(promotionsData.data){
+                setPromotions(promotionsData.data)
+                console.log(promotionsData.data)
+            }else if(promotionsData.error){
+                console.log(promotionsData.error)
+            }
+        }
+
+
+        // axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
   
-      }, []);
+      }, [categoryData,writersData,promotionsData]);
 
       const BookSchemaValidation = Yup.object().shape({
         booktitle: Yup.string().required("Title is Required"),
@@ -53,6 +93,7 @@ const addBook = () => {
             bookpages:"",
             category:"",
             writer:"",
+            promotion:""
          }}
          validationSchema={BookSchemaValidation}
          validate={(values)=>{
@@ -76,10 +117,16 @@ const addBook = () => {
             data.append("pages",values.bookpages)
             data.append("category",JSON.stringify(values.category))
             data.append("writer",JSON.stringify(values.writer))
+            data.append("promotion",values.promotion)
+
             // console.log(typeof values.category)
             // axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             // dispatch(addNewBooks(data))
-            addNewBooks(data).then(()=>{}).catch((err)=>console.log(err))
+
+            addNewBooks(data).then((response)=>{
+                navigate('/admin/books')
+                console.log(response)
+            }).catch((err)=>console.log(err))
          }}
             
         >
@@ -188,6 +235,24 @@ const addBook = () => {
                     {errors.writer && touched.writer ? (
                             <div className="form-text text-danger">{errors.writer}</div>
                         ) : null }  
+            </div>
+            <div className='col-md-6 mt-2'>
+                <label htmlFor="promotion" className="form-label">Select Promotion : </label>
+                    <Field as="select" id="promotion"  multiple={true}  name="promotion"  className="form-select" aria-label="Select Promotion">
+
+                        {promotions ? promotions.map((promotion)=>{
+                        return (
+                            <option key={promotion._id} value={promotion._id}>{promotion.title}</option>
+                            
+                        )
+
+                        }):null}
+            
+
+                    </Field>
+                    {errors.promotion && touched.promotion ? (
+                            <div className="form-text text-danger">{errors.promotion}</div>
+                        ) : null }
             </div>
             <div className='col-md-12 mt-4'>
                 <input type="submit" className='btn btn-success form-control'   value="Add Book" />

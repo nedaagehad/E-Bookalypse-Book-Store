@@ -30,11 +30,7 @@ const TrendingBooksUp1 = () => {
     // Get the download URL
   }, [data])
     
-  const getImage =  (bookname)=>{
 
-    
-
-  }
 
   return (
     <div className=' container p-5 mb-5'>

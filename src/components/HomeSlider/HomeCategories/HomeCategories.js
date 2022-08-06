@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { FaClock } from 'react-icons/fa';
 import {BsFillCreditCardFill,BsFillAwardFill,BsFillShieldFill,BsDashLg} from 'react-icons/bs'
@@ -13,6 +13,7 @@ import "swiper/swiper.min.css";
 
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { booksApi } from '../../../store/services';
 
 SwiperCore.use([EffectCoverflow, Pagination,Navigation]);
 
@@ -21,6 +22,15 @@ SwiperCore.use([EffectCoverflow, Pagination,Navigation]);
 const HomeCategories = (props) => {
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
+  const {data,isLoading,error} = booksApi.useGetAllCategoriesQuery()
+  const [categories,setCategories] = useState()
+  useEffect(() => {
+    if(data){
+      setCategories(data.categories)
+      console.log(data)
+    }
+  }, [data]);
+
 
   return (
     <>
@@ -136,97 +146,20 @@ const HomeCategories = (props) => {
 
           className="mySwiper"
         >
-    
-          <SwiperSlide>
+          {categories ? categories.map((category, index) => 
+          <SwiperSlide key={category._id}>
             <div className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Biography.jpg"+')' }}>
               <div  className={styles.categoryData}>
                 <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[0].Category_Name}</h4>
+                <h4 className={styles.h4}>{category.title}</h4>
                 <span className={styles.span}>{props.data[0].Num_of_books ? props.data[0].Num_of_books : "Comming Soon"}</span>
                 </div>
               </div>
             </div> 
           </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Children.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[1].Category_Name}</h4>
-                <span className={styles.span}>{props.data[1].Num_of_books ? props.data[1].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/horror.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[2].Category_Name}</h4>
-                <span className={styles.span}>{props.data[2].Num_of_books ? props.data[2].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/history.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[3].Category_Name}</h4>
-                <span className={styles.span}>{props.data[3].Num_of_books ? props.data[3].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/scientific.jpg"+')' }}>
-             <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[4].Category_Name}</h4>
-                <span className={styles.span}>{props.data[4].Num_of_books ? props.data[4].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Novels.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[5].Category_Name}</h4>
-                <span className={styles.span}>{props.data[5].Num_of_books ? props.data[5].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/art.jpg"+')' }}>
-             <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[6].Category_Name}</h4>
-                <span className={styles.span}>{props.data[6].Num_of_books ? props.data[6].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/poeatries.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[7].Category_Name}</h4>
-                <span className={styles.span}>{props.data[7].Num_of_books ? props.data[7].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-          <div  className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/religious.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{props.data[8].Category_Name}</h4>
-                <span className={styles.span}>{props.data[8].Num_of_books ? props.data[8].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+
+          ): null}
+  
         
         </Swiper>     
         <div className={styles.navControllers}>

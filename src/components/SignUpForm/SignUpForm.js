@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './SignUpForm.module.css' 
 import { IoPersonAdd } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 const axios = require('axios');
 
 
@@ -31,6 +32,8 @@ const toggleShowPass = () => {
         })  
     }
 }
+
+let navigate = useNavigate()
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -147,9 +150,9 @@ return (
                         data.append("phone",values.thePhone)
                         data.append("pass",values.thePassword)
 
-                        axios.post('http://localhost:5000/api/users/signUp', data)
+                        axios.post('https://e-bookalypse.herokuapp.com/api/user/signUp', data)
                         .then(function (response) {
-                            console.log(response);
+                            navigate('/login')
                         })
                         .catch(function (error) {
                             console.log(error);

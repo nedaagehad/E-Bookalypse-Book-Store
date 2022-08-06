@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './LoginForm.module.css' 
+import { useDispatch, useSelector } from "react-redux";
+import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
+import { useNavigate } from "react-router-dom";
+import { api } from "../../store/services";
+
 
 const axios = require('axios');
 
 const LoginForm = props => {
-
+  let navigate = useNavigate();
   const [passShowState,setPassShowState] = useState({
       isShown:false,
       inputType: "password",
       iconClass: "bi bi-eye-slash" 
   })
+
+
+  const authState = useSelector(state => state.auth.userRole)
+  const dispatch  = useDispatch();
+  const [login, loginresponse] = api.useLoginMutation();
+  // dispatch(logOut())
+  useEffect(() => {
+    if(authState == 'regUser'){
+      navigate('/')
+    }else if (authState == 'rootAdmin'){
+      navigate('/admin')
+    }
+  }, [authState]);
 
   const toggleShowPass = () => {
       if (passShowState.isShown){
@@ -51,14 +69,21 @@ const LoginForm = props => {
                             }}
                             validationSchema={loginSchema}
                             onSubmit={values => {
-                              axios.post('http://localhost:5000/login', {
+                              const data= {
                                 userName:values.userName,
                                 email:values.userName,
                                 phone:values.userName,
                                 pass:values.thePassword,
-                              })
-                              .then(function (response) {
-                                console.log(response.data.token);
+                              }
+                              // axios.post('https://e-bookalypse.herokuapp.com/login', data)
+                              login(data)
+                              .then(function  (response) {
+                                //  console.log(response.data);
+                                // dispatch(setCredntials(response.data.token));
+                                // dispatch( decodeToken())
+
+                               dispatch(setCredntials(response.data));
+                               console.log(response)
                               })
                               .catch(function (error) {
                                 console.log(error);
@@ -72,7 +97,7 @@ const LoginForm = props => {
                                   <label htmlFor="userName" className="form-label">
                                     Username
                                   </label>
-                                  <input name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
+                                  <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
                                   {errors.userName && touched.userName ? (
                                       <div className="form-text text-danger">{errors.userName}</div>
                                   ) : null}
@@ -83,7 +108,7 @@ const LoginForm = props => {
                                   Password
                                   </label>
                                   <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
-                                  <input name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
+                                  <Field name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
                                   {errors.thePassword && touched.thePassword ? (
                                       <div className="form-text text-danger">{errors.thePassword}</div>
                                   ) : null}

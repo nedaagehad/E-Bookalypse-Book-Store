@@ -1,7 +1,19 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import PromoIntro from '../../../components/PromoIntro/PromoIntro'
 import Combination from '../../../components/Combination/Combination'
+import { booksApi } from '../../../store/services';
 function Promotions() {
+  const {data,isLoading,error} = booksApi.useGetAllPromotionsQuery()
+  const [promotions,setPormotions] = useState();
+
+  useEffect(() => {
+   if(data){
+    setPormotions(data);
+    console.log(data)
+   }
+  }, [data]);
+
+
   var arr = [
              {collection:
               {
@@ -34,13 +46,14 @@ function Promotions() {
                 </div>
                 <div className="col-12">
                     <div className="row">
-                        {arr.map((item) => {
+                        {promotions ? promotions.map((item) => {
                           return (<Combination
-                            collectionName={item.collection.collectionName}
-                            collectionPrice={item.collection.collectionPrice}
-                            collectionData={item.collection.collectionData}
+                            key={item._id}
+                            collectionName={item.title}
+                            collectionPrice={item.collectionFinalPrice}
+                            collectionData={item.books}
                           />)
-                        })}
+                        }):null}
                     </div>
                 </div>
             </div>

@@ -98,3 +98,6 @@ input[type='checkbox']:focus{
   display: flex;
   min-height: 65.5vh;
 }
+a{
+  text-decoration: none !important;
+}

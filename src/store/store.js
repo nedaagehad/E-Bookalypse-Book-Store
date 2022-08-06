@@ -5,15 +5,16 @@ import reducers from './reducers/combineReducer';
 import  bookSlice  from './reducers/booksReducer.js/BooksReducer';
 import themeReducer from './reducers/theme';
 import { booksApi } from './services';
+import filterReducer from './reducers/filterReducer/filterReducer';
+import  authSlice  from './reducers/authReducer/authReducer';
 // const store = createStore (reducers, composeWithDevTools())
 
 const store = configureStore({
     reducer: {
-        books:bookSlice,
+        filter:filterReducer,
         theme: themeReducer,
+        auth:authSlice,
         [booksApi.reducerPath] : booksApi.reducer,
-        // middleware: (getDefaultMiddleware) =>
-        // getDefaultMiddleware().concat(booksApi.middleware),
     
     }
     

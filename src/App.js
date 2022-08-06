@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/user/Home/Home';
@@ -31,9 +31,23 @@ import Dashboard from './pages/admin/Dashboard/Dashboard';
 import UserLayout from './pages/user/UserLayout';
 import AdminLayout from './pages/admin/AdminLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
+import { useDispatch, useSelector } from "react-redux";
+import PromotionsAdmin from './pages/admin/promotions/promotions';
+import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
+import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 
 
 function App() {
+  const authState = useSelector(state => state.auth.userRole)
+  const dispatch  = useDispatch();
+  const [isUser,setIsUser] = useState(true)
+  useEffect(() => {
+    if(authState == 'regUser'){
+      setIsUser(true)
+    }else if (authState == 'rootAdmin'){
+      setIsUser(false)
+    }
+  }, [authState]);
   return (
     <Router>
       <Routes>
@@ -42,8 +56,9 @@ function App() {
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />}/>
           <Route path='/categories' element={<Categories />} />
-          <Route path='/categories/category' element={<Category />} />
-          <Route path='/categories/category/BookDetails' element={<BookDetails />} />
+          <Route path='/categories/category/' element={<Category />} />
+          <Route path='/categories/category/:id' element={<Category />} />
+          <Route path='/books/BookDetails/:id' element={<BookDetails />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
@@ -59,7 +74,10 @@ function App() {
         </Route>
 
         {/* ADMIN ROUTES */}
-
+        {!isUser ? 
+        
+        
+        
         <Route path='/admin' element={<AdminLayout />} >
           <Route index element={<Dashboard />}/>
 
@@ -76,11 +94,22 @@ function App() {
           {/* Writers Routes */}
           <Route path='/admin/writers' element={<WritersAdmin />} />
           <Route path='/admin/writer/addwriter' element={<AddWriter />} />
-          <Route path='/admin/writer/updatewriter/:id' element={<UpdateWriter />} /> 
+          <Route path='/admin/writer/updatewriter/:id' element={<UpdateWriter />} />  
+
+          {/* Promotions Routes */}
+          <Route path='/admin/promotions' element={<PromotionsAdmin/>} />
+          <Route path='/admin/promotion/addPromotion' element={<AddPromotion/>} />
+          <Route path='/admin/promotion/updatePromotion/:id' element={<UpdatePromotion/>} />
+
+ 
+
 
           {/* Users View Admin Panel*/}
           <Route path='/admin/users' element={<UsersView />} />
         </Route>
+        
+        
+        :null}
 
       </Routes>
     </Router>

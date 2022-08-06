@@ -15,6 +15,7 @@ const updateBook = () => {
     const [book,setBook] = useState();
     const [categories,setCategories] =useState()
     const [writers,setWriters] =useState()
+    const [promotions,setPromotions] = useState()
     const [BookImage, setBookImage] = useState();
     const [BookPdf, setBookPdf] = useState();
     const [currentImage, setcurrentImage] = useState();
@@ -22,6 +23,7 @@ const updateBook = () => {
     const {data,isLoading,error}= booksApi.useGetBookByIdQuery(params.id)
     const categoryData = booksApi.useGetAllCategoriesQuery()
     const writersData = booksApi.useGetAllWritersQuery()
+    const promotionsData = booksApi.useGetAllPromotionsQuery();
 
 
 
@@ -58,13 +60,15 @@ const updateBook = () => {
             bookpages:"",
             category:"",
             writer:"",
+            promotion:"",
             oldImg:"",
             oldSrc:""
+
         }}
         validationSchema={BookSchemaValidation}
         validate={(values)=>{
             const errors = {};
-            if(!BookPdf ){
+            if(!BookPdf && !data[0].source  ){
                 errors.pdfErr = "Please Select PDF"
             }
             return errors
@@ -83,6 +87,8 @@ const updateBook = () => {
             data.append("pages",values.bookpages)
             data.append("category",JSON.stringify(values.category))
             data.append("writer",JSON.stringify(values.writer))
+            data.append("promotion",values.promotion)
+            // console.log(values.promotion)
             if(book){
 
                 data.append("oldImg",book.poster)
@@ -91,7 +97,9 @@ const updateBook = () => {
 
             // console.log( values)
             // axios.put(`https://e-bookalypse.herokuapp.com/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-            updateNewBook({bookNewData : data,bookid : params.id}).then(()=>console.log(response)).catch((err)=>{console.log(err)})
+            updateNewBook({bookNewData : data,bookid : params.id}).then((res)=>
+            console.log(res)
+            ).catch((err)=>{console.log(err)})
             }}
             
         >
@@ -99,50 +107,7 @@ const updateBook = () => {
     {({errors,touched,setFieldValue})=>
     {
         useEffect(() => {
-            // axios.get(`https://e-bookalypse.herokuapp.com/api/admin/book/${params.id}`).then((res)=>{
-            //   setBook(res.data)
-              
-            //   if(res.data[0].source || res.data[0].poster){
-            //     const starsRef = ref(storage, 'uploads/books/poster/'+res.data[0].poster);
-      
-            //     getDownloadURL(starsRef)
-            //     .then((url) => {
-            //         setcurrentImage(url)
-            //         // console.log(url)
-            //     })
-            
-            // }
-            //     Object.keys(res.data[0]).forEach(key=>{
-            //             console.log(key)
-            //             setFieldValue("book"+key,res.data[0][key])
-            //             // setFieldValue("booktitle",res.data.title)
-            //             if(key == "date_release"){
-            //                 if(res.data[0].date_release != undefined && res.data[0].date_release != null){
-            //                    const getDate = res.data[0].date_release.split("T")[0]
-            //                     // console.log(getDate)
-            //                 setFieldValue("bookdate",getDate)
-            //                 }
-            //             }
-            //             if(key == 'n_pages'){
-            //                 setFieldValue('bookpages',res.data[key])
-            //             }
-            //             if(key =='category'){
-            //                 // values.category = res.data.category
-            //                 // console.log(values.category)
-            //                 setFieldValue('category',res.data[0].category.map((w)=>w._id))
-            //                 // console.log(res.data[0].category.map((w)=>w._id))
-            //             }
-            //             if(key =='writer'){
-            //                 // values.category = res.data.category
-            //                 // console.log(values.category)
-            //                 setFieldValue('writer',res.data[0].writer.map((w)=>w._id))
-            //                 // console.log('writer',res.data[0].writer.map((w)=>w._id))
 
-            //             }
-                
-            //     })
-                
-            // }).catch((err) => {console.log(err)})
 
             if(data){
                 setBook(data)
@@ -158,7 +123,7 @@ const updateBook = () => {
                 
                 }
                     Object.keys(data[0]).forEach(key=>{
-                            console.log(key)
+                            // console.log(key)
                             setFieldValue("book"+key,data[0][key])
                             // setFieldValue("booktitle",res.data.title)
                             if(key == "date_release"){
@@ -184,6 +149,10 @@ const updateBook = () => {
                                 // console.log('writer',res.data[0].writer.map((w)=>w._id))
     
                             }
+                            if(key=="promotion"){
+                                setFieldValue('promotion',data[0].promotion)
+                                // console.log(data[0].promotion)
+                            }
                     
                     })
             }
@@ -195,8 +164,6 @@ const updateBook = () => {
                     setCategories(data.categories)
                 }
                 // console.log(categoryData)
-            }else{
-                console.log('wtf do u want')
             }
 
             if(writersData){
@@ -206,16 +173,17 @@ const updateBook = () => {
                 }
             }
 
+            if(promotionsData){
+                const {data,isLoading,error} = promotionsData
+                if(data){
+                    setPromotions(data)
+                    // console.log(data)
+                }
+            }
 
-            // axios.get('https://e-bookalypse.herokuapp.com/api/categories')
-            // .then((res)=>{setCategories(res.data.categories)
-                
-            // })
-            // .catch((err)=>console.log(err))
-            // axios.get('https://e-bookalypse.herokuapp.com/api/writers').then((res)=>setWriters(res.data.data)).catch((err)=>console.log(err))
             
       
-          }, [data,categoryData,writersData]);
+          }, [data,categoryData,writersData,promotionsData]);
         //   {console.log(book)}
         return(
         
@@ -342,8 +310,29 @@ const updateBook = () => {
                             <div className="form-text text-danger">{errors.writer}</div>
                         ) : null }  
             </div>
+            <div className='col-md-6 mt-2'>
+                    <label htmlFor="promotion" className="form-label">Select promotion : </label>
+                    {/* <select   id="writer" name="writer" className="form-select" aria-label="Select Writer"> */}
+                    <Field as="select" id="promotion" name="promotion"    className="form-select" aria-label="Select promotion">
+                        <option value="None">None</option>
+
+                        {promotions ? promotions.map((promotion)=>{
+                        return (
+                            <>
+                                <option key={promotion._id} value={promotion._id}>{promotion.title}</option>
+                            </>
+                            
+                        )
+
+                        }):null}
+
+                    </Field>    
+                    {errors.promotion && touched.promotion ? (
+                            <div className="form-text text-danger">{errors.promotion}</div>
+                        ) : null }  
+            </div>
             <div className='col-md-12 mt-4'>
-                <input type="submit" className='btn btn-success form-control'   value="Add Book" />
+                <input type="submit" className='btn btn-success form-control'   value="Updadte Book" />
             </div>   
             </>         
             :console.log("no data received")}

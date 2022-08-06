@@ -1,18 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksUp1';
 import CategoryList from '../../../components/CategoryList/CategoryList'
 import CategoryCard from '../../../components/CategoryCard/CategoryCard'
+import { booksApi } from '../../../store/services';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import storage from '../../../Firebase/firebaseImage';
+import { Link } from 'react-router-dom';
+
+
+
 function Categories() {
+  const {data,isLoading,error} = booksApi.useGetAllCategoriesQuery()
+  const [categories,setCategories]  = useState()
+  
+
+  useEffect(() => {
+   if(data){
+    setCategories(data.categories)
+   } 
+   
+  }, [data]);
+
   return (
 
     <div className='content'>
       <CategoryList>
-        <CategoryCard img="./Images/Categories/Biography.jpg" alt="Biography" />
-        <CategoryCard img="./Images/Categories/Children.jpg" alt="Children" />
-        <CategoryCard img="./Images/Categories/horror.jpg" alt="Horror" />
-        <CategoryCard img="./Images/Categories/history.jpg" alt="History" />
-        <CategoryCard img="./Images/Categories/poeatries.jpg" alt="Poetry" />
-        <CategoryCard img="./Images/Categories/Novels.jpg" alt="Novels" />
+        {categories ? categories.map(category =>{
+
+          return(
+           
+            
+              <CategoryCard key = {category._id} category={category}   />
+         
+           
+
+          )
+        }):null}
+
       </CategoryList>
       <TrendingBooksUp1 />
     </div>
