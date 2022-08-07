@@ -17,6 +17,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.CustomerReview .ReviewBriefNight{
+    padding: 20px;
+    background-color: #373637;
+    border-radius: 15px 15px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .stars{
     color:#FBAC04;
     font-size: 30px;
@@ -30,31 +40,33 @@
     line-height: 77px;
     color: #782095;
 }
-.CustomerReview .ReviewBrief .FullRate, .CustomerReview .ReviewBrief .RateDesc , .CustomerReview .ReviewBrief .RateDetails{
+.CustomerReview .ReviewBrief .FullRate, .CustomerReview .ReviewBriefNight .FullRate, 
+.CustomerReview .ReviewBrief .RateDesc, .CustomerReview .ReviewBriefNight .RateDesc,
+.CustomerReview .ReviewBrief .RateDetails, .CustomerReview .ReviewBriefNight .RateDetails{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.CustomerReview .ReviewBrief .RateDesc {
+.CustomerReview .ReviewBrief .RateDesc, .CustomerReview .ReviewBriefNight .RateDesc {
     font-weight: 400;
     color: #757373;
 }
-.CustomerReview .ReviewBrief .RateDetails{
+.CustomerReview .ReviewBrief .RateDetails, .CustomerReview .ReviewBriefNight .RateDetails{
    padding: 30px;
 }
-.CustomerReview .ReviewBrief .RateDetails .RateDetInfo{
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo{
     width: inherit;
 }
-.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span{
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo span{
     position: relative;
     bottom: 8px;
     margin: 0px 2px;
 }
-.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span{
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo span{
     font-weight: bold;
 }
-.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span:first-child{
+.CustomerReview .ReviewBrief .RateDetails .RateDetInfo span:first-child, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo span:first-child{
     color:#FBAC04;
 }
 
@@ -63,10 +75,10 @@
     *{
         text-align: center;
     }
-    .CustomerReview .ReviewBrief{
+    .CustomerReview .ReviewBrief, .CustomerReview .ReviewBriefNight{
         padding: 30px;
     }
-    .CustomerReview .ReviewBrief .RateDesc {
+    .CustomerReview .ReviewBrief .RateDesc, .CustomerReview .ReviewBriefNight .RateDesc {
         padding-top: 30px;
     }
 }
@@ -81,4 +93,8 @@
     .FullRate .RateResult{
         font-size: 40px;
     }
+}
+
+.title {
+    color: rgb(111, 25, 139) !important;
 }

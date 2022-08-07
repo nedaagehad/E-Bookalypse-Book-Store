@@ -3,9 +3,14 @@ import BookDetailsContainer from "../../../components/BookDetailsContainer/BookD
 import CustomerReviews from "../../../components/CustomerReviews/CustomerReviews"
 import RelatedToAuther from "../../../components/RelatedToAuther/RelatedToAuther"
 import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
+import { useSelector } from 'react-redux'
+
 function BookDetails() {
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   return (
-    <div className='content'>
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className="container-fluid">
             <div className="row">
           <BookDetailsContainer

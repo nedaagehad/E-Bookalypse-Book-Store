@@ -1,8 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styles from './EditUserProfile.module.css'
+
 function CatSidebar() {
+
+    const theme = useSelector((state) => state.theme.currentTheme);
+
     return (
-        <div className={`container my-5`}>
+        <div className={`container`}>
             <div className="row">
                 <div className={`col-lg-4`}>
                     <div className={`${styles.profileCard4} ${styles.zDepth3}`}>
@@ -78,14 +83,14 @@ function CatSidebar() {
 
                     <form className='form-horizontal' role="form">
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>First Name:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>First Name:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="text" value="Ahmad" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>Last Name:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Last Name:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="text" value="Ahmad" />
                             </div>
@@ -93,34 +98,34 @@ function CatSidebar() {
                         
 
                         <div class="form-group">
-                            <label class={`col-lg-3 ${styles.controlLabel}`}>Change Profile</label>
+                            <label class={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Change Profile</label>
                             <div class="col-lg-9">
                                 <input class="form-control" type="file" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>Old Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Old Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>New Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>New Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${styles.controlLabel}`}>Confirm New Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Confirm Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label className={`col-lg-3 ${styles.controlLabel}`}></label>
+                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}></label>
                             <div className="col-lg-9">
                                 <input type="button" className={`btn ${styles.saveBtn}`} value="Save Changes" />
                                 <input type="button" className={`btn ${styles.cancelBtn}`} value="Cancel" />

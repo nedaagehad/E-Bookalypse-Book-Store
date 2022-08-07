@@ -3,6 +3,13 @@
     border-radius: 15px;
     margin-bottom: 50px;
 }
+
+.checkoutCardNight{
+    background-color:#373637;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
 .summary{
     width: 100%;
     height: inherit;
@@ -79,4 +86,8 @@
         padding-left: 0px;
         text-align: center;
     }
+}
+
+.lightTxt{
+    color: #aba8a8 !important;
 }

@@ -36,7 +36,7 @@
     height: 250px;
     filter: drop-shadow(0px 7px 4px rgba(110, 110, 110, 0.25));
     border-radius: 15px;
-    margin:auto;
+    margin: auto;
     display: inline-block;
 }
 .card h5, .card h3, .card button, .cardNight h5, .cardNight h3, .cardNight button{
@@ -98,4 +98,8 @@
     .poster_overlay{
         width: 16%;
     }
+}
+
+.titleNight{
+    color: #aba8a8 !important;
 }

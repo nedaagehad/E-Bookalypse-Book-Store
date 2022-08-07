@@ -12,14 +12,19 @@ function Categories() {
 
   useEffect(() => {
     axios.get("http://e-bookalypse.herokuapp.com/api/categories")
-    .then((res) => setCategories(res.data.categories)).catch((error) => console.log(error))
+      .then((res) => setCategories(res.data.categories)).catch((error) => console.log(error))
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [])
 
   return (
     <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
       <CategoryList>
         {/* Dynamic data from db */}
-      {/* {categories.map((category) => {
+        {/* {categories.map((category) => {
         return (
           <CategoryCard img={category.icon} alt={category.title} />
         )

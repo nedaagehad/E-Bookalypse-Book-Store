@@ -14,33 +14,36 @@ function Home() {
   // Testing Starter Api 
 
   const [books, setBooks] = useState();
-  const [newBook,setNewBook]= useState({
+  const [newBook, setNewBook] = useState({
     id: Math.random(),
-    title:'',
-    description:'',
+    title: '',
+    description: '',
   });
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     axios.get('http://localhost:5000/api/books')
-    .then((res)=>{setBooks(res.data.book)})
-    .catch((err)=>{console.log(err)})
+      .then((res) => { setBooks(res.data.book) })
+      .catch((err) => { console.log(err) })
 
-
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   })
 
-  let onInputChange =(e)=>{
+  let onInputChange = (e) => {
     setNewBook({
       ...newBook,
-      [e.target.id] : e.target.value
+      [e.target.id]: e.target.value
     })
   }
 
-  let addBook = (e) =>{
+  let addBook = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/books',newBook)
-    .then(res => console.log(res))
-    .catch((err)=>{console.log(err)});
- 
+    axios.post('http://localhost:5000/api/books', newBook)
+      .then(res => console.log(res))
+      .catch((err) => { console.log(err) });
+
   }
 
   // end Section ( TESTIING STARTER API)
@@ -48,7 +51,7 @@ function Home() {
 
 
 
-      {/* Home Test Axios
+  {/* Home Test Axios
       <>
         <div className='container mb-5'>
           <div className='row'>
@@ -85,30 +88,30 @@ function Home() {
           </div>
         </> 
          End Section Test Axios */}
-     
-         const theme = useSelector((state) => state.theme.currentTheme);
+
+  const theme = useSelector((state) => state.theme.currentTheme);
 
   return (
     <>
-    <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
 
-      <HomeSlider />
-      <TrendingBooksUp1/>
-      <Benefits />
+        <HomeSlider />
+        <TrendingBooksUp1 />
+        <Benefits />
         <HomeCategories data={[
-          { Category_Name:"Biography", Num_of_books:30, },
-          { Category_Name:"Children", Num_of_books:30, },
-          { Category_Name:"Horror", Num_of_books:30, },
-          { Category_Name:"History", Num_of_books:30, },
-          { Category_Name:"Scientific", Num_of_books:30, },
-          { Category_Name:"Novels", Num_of_books:30, },
-          { Category_Name:"Arts", Num_of_books:0, },
+          { Category_Name: "Biography", Num_of_books: 30, },
+          { Category_Name: "Children", Num_of_books: 30, },
+          { Category_Name: "Horror", Num_of_books: 30, },
+          { Category_Name: "History", Num_of_books: 30, },
+          { Category_Name: "Scientific", Num_of_books: 30, },
+          { Category_Name: "Novels", Num_of_books: 30, },
+          { Category_Name: "Arts", Num_of_books: 0, },
           { Category_Name: "Poetries", Num_of_books: 0, },
-          { Category_Name:"Religious", Num_of_books:0, }
+          { Category_Name: "Religious", Num_of_books: 0, }
         ]} />
-      <FlashSaleSlider />
-      <OurPartners />
-    </div>
+        <FlashSaleSlider />
+        <OurPartners />
+      </div>
     </>
   )
 }
