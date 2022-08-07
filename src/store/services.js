@@ -24,14 +24,14 @@ export const api=createApi({
 
 export const booksApi = createApi({
     reducerPath:'booksApi',
-    baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/api/"}),
+    // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/api/"}),
 
-    // baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/api/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/api/"}),
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
             query: (arg = ' ') => {
-                const { page ,limit,category,priceMin,priceMax,priceSort  } = arg;
+                const { page ,limit,category,priceMin,priceMax,priceSort ,writer } = arg;
                 // for(let i = 0; i < category.length; i++){
                 //     category.
                 // }
@@ -50,18 +50,19 @@ export const booksApi = createApi({
                 if(newCategory == " "){
                     return {
                         url: `books`,
-                        params: { page,limit,priceMin,priceMax,priceSort },
+                        params: { page,limit,priceMin,priceMax,priceSort,writer },
                       };
                 }else{
                     
                     return {
                       url: `books/?${newCategory}`,
-                      params: { page,limit,priceMin,priceMax,priceSort },
+                      params: { page,limit,priceMin,priceMax,priceSort,writer },
                     };
                 }
                 
               },
         }),
+         
         getBookById:builder.query({
             query:(bookID)=>{
                 console.log(bookID)
@@ -286,7 +287,70 @@ export const booksApi = createApi({
                 headers:{"authorization":`Bearer ${userToken}`}
 
             })
+        }),
+
+        // USERS 
+        getUserByID:builder.mutation({
+            query:()=>{
+                return{
+                    url:"/user",
+                    headers:{"authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
+        updateUser :builder.mutation({
+            query:(userData)=>{
+                return{
+                    url:"/user",
+                    method:"PUT",
+                    body:userData,
+                    headers:{"authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
+        updatePassword : builder.mutation({
+
+            query:(userData)=>{
+                return{
+                    url:"/user/pass",
+                    method:"PUT",
+                    body:userData,
+                    headers:{"authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
+        getSearchResults : builder.query({
+
+            query: (arg = ' ') => {
+                const { bookTitle ,page ,limit,category,priceMin,priceMax,priceSort ,writer } = arg;
+                    console.log(category)
+                    if(category){
+                        if(category.length >1){
+                            let newCategory = ''
+                            for(let i = 0; i < category.length; i++){
+                                newCategory += "&category="+category[i]
+                            }
+                            return {
+                                url:`/search?key=${bookTitle}${newCategory}`,
+                                params: { page,limit,priceMin,priceMax,priceSort,writer},
+                                
+                            }
+                        }else{
+
+                            return {
+                                url:`/search?key=${bookTitle}`,
+                                params: { page,limit,category,priceMin,priceMax,priceSort,writer},
+                                
+                            }
+                        }
+                    }
+
+                    
+                
+              },
+
         })
+
     })  
 })
 

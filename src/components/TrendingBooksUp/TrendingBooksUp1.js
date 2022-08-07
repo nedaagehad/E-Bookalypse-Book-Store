@@ -3,47 +3,40 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
-<<<<<<< HEAD
-import styles from './TrendingBooksUp.module.css'
-=======
+
 import styles from './TrendingBooksUp.module.css';
 import { useSelector } from 'react-redux';
 
->>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 import { booksApi } from '../../store/services';
 import storage from '../../Firebase/firebaseImage';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import SingleBook from './SingleBook/SingleBook';
 
 
 
 const TrendingBooksUp1 = () => {
-<<<<<<< HEAD
-=======
+
 
   const theme = useSelector((state) => state.theme.currentTheme)
-
-  const book2 =  "./uploads/books/book3.jpg";
-  const book =  "./uploads/books/book2.jpg";
-  const book3 =  "./uploads/books/book4.jpg";
-  const book4 =  "./uploads/books/book5.jpg";
->>>>>>> a136ef5f08672af62270a069c1d9b825a301159f
   SwiperCore.use([Autoplay])
   const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
   const [books,setBooks] = useState()
-  const [ images,setImages] = useState()
-  // Create a reference to the file we want to download
+  const [ images,setImages] = useState([])
+  const [ image ,setImage]= useState()
 
+  let imagesArr = [...images];
 
   useEffect(() => {
     if(data){
       setBooks(data.data)
-      // getDownloadURL(starsRef).then((url)=>{console.log(url)
-      //  }).catch((error) => {console.log(error)});
-    }
+      
+      data.data.forEach((bookImg)=>{
+        imagesArr.push(bookImg.poster)
+        setImages(imagesArr)
 
-            
-    // Get the download URL
+      })
+    }            
   }, [data])
     
 
@@ -80,33 +73,14 @@ const TrendingBooksUp1 = () => {
             autoplay={{delay:1000}}
             className={styles.mySwiper}
             >
-          {books ? books.map((b)=>{
-
-            // Create a reference to the file we want to download
-            // const storageRef = ref();
-
-            // var starsRef = storageRef.child('/uploads/books/poster/'+b.poster);
-            
-            // Get the download URL
-            const starsRef = ref(storage, `/uploads/books/poster/${b.poster}`);
-            let imageurl = ' ';
-             getDownloadURL(starsRef).then( (url)=>{
-              const newUrl = url
-           
-              setImages(newUrl)
-              
-            }).catch((error) => {console.log(error)});
-
+          {books ? books.map((b,index)=>{
             return(
              
-              <SwiperSlide key={b._id}
-                className='SwiperClasstest'
-              >    
-                <div className={styles.slideImg}>
-                  {/* <h1>{b.title}</h1> */}
-                  <img src={images} className={styles.trendBook} />
-                </div>
-              
+              <SwiperSlide className='SwiperClasstest'>    
+                    <SingleBook
+                            key={b._id}
+                            book={b}/>
+                
               </SwiperSlide>
             )
           }): null}

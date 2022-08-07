@@ -11,25 +11,30 @@ import styles from  './HomeCategories.module.css';
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay, Navigation, Pagination, EffectCoverflow } from "swiper";
-import {BsDashLg } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { booksApi } from '../../../store/services';
+import { useSelector } from 'react-redux';
+import storage from '../../../Firebase/firebaseImage';
+import { getDownloadURL, ref } from 'firebase/storage';
+import SingleCategory from './SingleCategory/SingleCategory';
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
 const HomeCategories = (props) => {
 
   const theme = useSelector((state) => state.theme.currentTheme);
-
+  
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
   const {data,isLoading,error} = booksApi.useGetAllCategoriesQuery()
   const [categories,setCategories] = useState()
+  const [images,setImages]= useState([])
   useEffect(() => {
     if(data){
       setCategories(data.categories)
-      console.log(data)
-      
+      // console.log(data)
+      // console.log(data.categories)
+      // setImages(data.categories)
       setPrev(false)
     }
   }, [data]);
@@ -100,17 +105,19 @@ const HomeCategories = (props) => {
 
           className="mySwiper"
         >
-          {categories ? categories.map((category, index) => 
+          {categories ? categories.map((category, index) => {
+            
+            return(
+
           <SwiperSlide key={category._id}>
-            <div className={styles.categoryCard} style={{backgroundImage: "url("+"./Images/Categories/Biography.jpg"+')' }}>
-              <div  className={styles.categoryData}>
-                <div className={styles.categorytextandtitle}>
-                <h4 className={styles.h4}>{category.title}</h4>
-                <span className={styles.span}>{props.data[0].Num_of_books ? props.data[0].Num_of_books : "Comming Soon"}</span>
-                </div>
-              </div>
-            </div> 
+            <SingleCategory 
+            key={category._id}
+            category = {category}
+            />
           </SwiperSlide>
+            )
+          }
+            
 
           ): null}
   

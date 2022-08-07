@@ -3,6 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import navbar from '../NavBar/NavBar.module.css';
 import styles from './SearchBar.module.css';
  
@@ -12,15 +13,20 @@ function SearchBar() {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-
+    let navigate = useNavigate()
+    
     const ExpandSearch = () => {
-
         setIsExpanded((s) => !s);
+        if(searchTerm){
+
+            console.log(searchTerm)
+            navigate('/categories/category/'+searchTerm)
+        }
     }
 
     const HandleSearch = (e) => {
         setSearchTerm(e.target.value);
-        console.log(searchTerm);
+        // console.log(searchTerm);
     }
 
     const ClearSearch = () => {

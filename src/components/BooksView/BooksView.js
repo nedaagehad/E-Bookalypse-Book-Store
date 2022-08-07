@@ -4,24 +4,52 @@ import BookCard from '../BookCard/BookCard'
 import Pagination from '@mui/material/Pagination';
 import { booksApi } from '../../store/services';
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
 
 
 const BookView = props =>{
     const [books,setBooks]= useState();
+    const [searchedBook ,setSearchedBook] = useState()
     const filterState = useSelector(state => state.filter)
     const dispatch  = useDispatch();
     const {data,isLoading,error}= booksApi.useGetAllBooksQuery(filterState)
+    let params = useParams();
+    let getSearchResults = booksApi.useGetSearchResultsQuery(filterState)
+
     useEffect(() => {
+        if(params.id){
+            if(params.id.match(/^\d/) == null ){
+                if(getSearchResults.data){
+
+                    setSearchedBook(getSearchResults.data.data)
+                    // console.log(getSearchResults.data.data)
+                }
+
+            }        
+
+        }
         if(data){
             setBooks(data.data)
-            console.log(data)
+            // console.log(data)
         }
-    }, [data]);
+    }, [data,getSearchResults.data]);
     return(
         <div className={`col-md-9 col-sm-12 ${classes.BookView}`}>
             <h2>Books</h2>
             <div className={`row`}>
+               
                 {
+                    
+                    searchedBook !== undefined ? 
+                    searchedBook.map((book)=>{
+                        return (
+                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                            
+                        )
+                    })
+                        
+                    
+                    :
                     books !== undefined ? 
                     books.map((book)=>{
                         return (

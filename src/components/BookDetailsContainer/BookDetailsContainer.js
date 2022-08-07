@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai'
 
 const BookDetailsContainer = props => {
     return (
-        <div className={`col-12`}>
+        <div className={`col-12`} >
             <div className={classes.BookDetails}>
                 <h2>Book Details</h2>
                 <div className={`row`}>
@@ -16,7 +16,7 @@ const BookDetailsContainer = props => {
                     </div>
                     <div className={`col-md-9 col-sm-12`}>
                         <div className={classes.Details}>
-                            <div className={classes.Reviews}>
+                            {/* <div className={classes.Reviews}>
                                 <button className={classes.stars}>
                                     {((x) => {
                                             let starsArr = [];
@@ -36,7 +36,7 @@ const BookDetailsContainer = props => {
                                     &nbsp;&nbsp;{props.rate}
                                 </button>
                                 <button className={classes.Review}>{props.reviewCount} Reviews</button>
-                            </div>
+                            </div> */}
                             <h1>{props.bookName}</h1>
                             <h3>{props.bookAuther}</h3>
                             <p>{props.bookDesc}</p>

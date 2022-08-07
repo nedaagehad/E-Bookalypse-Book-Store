@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { category, priceSort, rate } from '../../store/reducers/filterReducer/filterReducer'
+import { bookTitle, category, priceSort, rate } from '../../store/reducers/filterReducer/filterReducer'
 import { booksApi } from '../../store/services'
 import classes from './FilterBar.module.css'
 import PriceRange from './PriceRange/PriceRange'
@@ -30,10 +30,18 @@ const FilterBar = props => {
         if(data){
             setCategories(data.categories)
             if(params.id ){
-                catCheckedParams = data.categories.find((c)=> c._id == params.id);
-                catList = [...checked , catCheckedParams.title]
-                setChecked(catList)
-             dispatch(category(catList))
+                if(params.id.match(/^\d/)){
+                    // console.log("yes")
+                    catCheckedParams = data.categories.find((c)=> c._id == params.id);
+                    console.log(catCheckedParams)
+                    catList = [...checked , catCheckedParams.title]
+                    setChecked(catList)
+                    dispatch(category(catList))
+                }else if(params.id.match(/^\d/) == null ){
+                    // console.log(params.id)
+                    dispatch(bookTitle(params.id))
+                }
+
         }
        }
        

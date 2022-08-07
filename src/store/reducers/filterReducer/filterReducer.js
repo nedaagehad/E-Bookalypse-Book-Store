@@ -9,7 +9,8 @@ const initialState= {
     priceMin:'',
     priceMax:'',
     priceSort:'',
-    rate:''
+    rate:'',
+    bookTitle:''
 }
 
 export const filterSlice = createSlice({
@@ -36,6 +37,9 @@ export const filterSlice = createSlice({
         },
         rate(state,action){
             state.rate=action.payload
+        },
+        bookTitle(state,action){
+            state.bookTitle = action.payload
         }
     }
 })
@@ -45,7 +49,8 @@ export const { category,
     priceMin,
     priceMax,
     priceSort,
-    rate 
+    rate ,
+    bookTitle
 } = filterSlice.actions
 
 export default filterSlice.reducer

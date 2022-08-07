@@ -17,6 +17,7 @@ function Categories() {
   useEffect(() => {
    if(data){
     setCategories(data.categories)
+    // console.log(data.categories)
    } 
    
   }, [data]);
@@ -38,11 +39,7 @@ function Categories() {
           )
         }):null}
 
-      {categories.map((category) => {
-        return (
-          <CategoryCard img={category.icon} alt={category.title} />
-        )
-      })}
+    
 
       </CategoryList>
       <TrendingBooksUp1 />

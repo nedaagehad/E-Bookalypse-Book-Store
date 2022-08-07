@@ -4,8 +4,8 @@ import './PriceRange.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { priceMax,priceMin } from "../../../store/reducers/filterReducer/filterReducer";
 const PriceRange = props =>{
-const [minValue, set_minValue] = useState(25);
-const [maxValue, set_maxValue] = useState(75);
+const [minValue, set_minValue] = useState(0);
+const [maxValue, set_maxValue] = useState(200);
 const filterState = useSelector(state => state.filter)
 const dispatch  = useDispatch();
 
@@ -19,7 +19,7 @@ return (
 	<div className="App">
 		<MultiRangeSlider
 			min={0}
-			max={100}
+			max={200}
 			step={5}
 			ruler={false}
 			label={true}

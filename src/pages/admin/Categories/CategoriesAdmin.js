@@ -19,7 +19,7 @@ const CategoriesAdmin = () => {
   let deleteItem = (id)=>{
     // axios.delete('https://e-bookalypse.herokuapp.com/api/categories'+id).then((res)=>console.log(res)).catch((err)=>console.log(err))
     const deletedItem = categories.find((c)=> c._id === id)
-    deleteCategory({categoryId:id,icon:deletedItem.icon})
+    deleteCategory({categoryId:id,icon:deletedItem.icon}).then((data)=>console.log(data)).catch((err)=>console.log(err)) 
 
   }
 

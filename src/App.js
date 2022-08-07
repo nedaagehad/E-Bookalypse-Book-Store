@@ -62,7 +62,7 @@ function App() {
           <Route path='/categories/category/' element={<Category />} />
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
-
+          <Route path='/cart' element={<Checkout />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 

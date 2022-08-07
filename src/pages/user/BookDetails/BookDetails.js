@@ -38,6 +38,7 @@ function BookDetails() {
                 
                   <>
                     <BookDetailsContainer 
+                            key={book._id}
                             rate={book.reviews}
                             reviewCount="5"
                             img={image}
@@ -48,9 +49,10 @@ function BookDetails() {
                             bookPriceAfterPromo={book.price}
                             bookPriceBeforePromo="19.98"
                       />
-                      {book.reviews.length > 0 ? 
+                      {/* {book.reviews.length > 0 ? 
                       
                         <CustomerReviews
+                          key={book._id}
                           rate="4.2"
                           rateDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                           fivePerc="80"
@@ -67,11 +69,11 @@ function BookDetails() {
                           ]}
                         />
                       
-                      :null}
+                      :null} */}
                   
+                  <RelatedToAuther bookWriter={book.writer[0].title}/>
                   </>
               :null}
-                <RelatedToAuther/>
                 <FlashSaleSlider />
             </div>
          </div>

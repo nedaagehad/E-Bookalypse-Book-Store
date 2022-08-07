@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,14 +7,35 @@ import styles from './RelatedToAuther.module.css'
 
 
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
+import { booksApi } from '../../store/services';
+import storage from '../../Firebase/firebaseImage';
+import { getDownloadURL, ref } from 'firebase/storage';
+import SingleBook from '../TrendingBooksUp/SingleBook/SingleBook';
+import SingleBookAuthor from './SingleBookAuthor/SingleBookAuthor';
 
-const RelatedToAuther = () => {
+const RelatedToAuther = (props) => {
   const book2 =  "../../Images/Books/1.jpg";
   const book =  "../../Images/Books/2.jpg";
   const book3 =  "../../Images/Books/3.jpg";
   const book4 =  "../../Images/Books/4.jpg";
   SwiperCore.use([Autoplay])
-  const images = [book2,book,book3,book4]
+  // const images = [book2,book,book3,book4]
+
+  const [images,setImages]= useState();
+  
+  const {data,isLoading,error } = booksApi.useGetAllBooksQuery(props.bookWriter)
+
+  const [writer,setWriter]= useState()
+
+  useEffect(() => {
+    if(data){
+      setWriter(data.data)
+      // console.log(data.data)
+    }
+  }, [data]);
+
+
+
 
   return (
     <div className=' container mb-5'>
@@ -47,25 +68,14 @@ const RelatedToAuther = () => {
             autoplay={{delay:1500}}
             className={styles.mySwiper}
             >
-          {images ? images.map((img)=>{
+          {writer ? writer.map((wbooks)=>{  
+            // console.log(wbooks)
             return(
-
-              <SwiperSlide 
+       
+              <SwiperSlide key={wbooks._id}
                 className='SwiperClasstest' style={{filter:"blur(0px)"}}
               >    
-                <div className={styles.slideImg}>
-                  <img className={styles.trendBook}  src={img} alt={img} />
-                        <div className={styles.details}>
-                            <div className={styles.prices}>
-                                <h3>$15.56</h3>
-                                <h6><del>$19.56</del></h6>
-                            </div>
-                            <div className={styles.action}>
-                                <button> <i className={styles.basketIcon + " col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
-                            </div>
-                    </div>
-                </div>
-              
+                <SingleBookAuthor wbook={wbooks}/>              
               </SwiperSlide>
             )
           }): null}
