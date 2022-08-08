@@ -11,7 +11,7 @@ function CatSidebar() {
             <div className="row">
                 <div className={`col-lg-4`}>
                     <div className={`${styles.profileCard4} ${styles.zDepth3}`}>
-                        <div className="card">
+                        <div className={`card ${theme === "night" ? styles.nightBG : ""}`}>
                             <div className={`${styles.cardBody} rounded-top ${styles.mov}`}>
 
                                 <div className={styles.userBox}>
@@ -23,8 +23,8 @@ function CatSidebar() {
 
                             <div className={styles.cardBody}>
 
-                                <ul className={`list-group shadow-none`}>
-                                    <li className={`list-group-item ${styles.content}`}>
+                                <ul className={`list-group rounded-0 shadow-none`}>
+                                    <li className={`list-group-item ${theme === "night" ? "list-group-item-dark" : ""} ${styles.content}`}>
                                         <div className={styles.listIcon}>
                                             <i className="fa fa-phone-square"></i>
                                         </div>
@@ -34,7 +34,7 @@ function CatSidebar() {
                                             <small>Mobile Number</small>
                                         </div>
                                     </li>
-                                    <li className={`list-group-item ${styles.content}`}>
+                                    <li className={`list-group-item ${theme === "night" ? "list-group-item-dark" : ""} ${styles.content}`}>
                                         <div className={styles.listicon}>
                                             <i className="fa fa-envelope"></i>
                                         </div>
@@ -43,7 +43,7 @@ function CatSidebar() {
                                             <small>Email Address</small>
                                         </div>
                                     </li>
-                                    <li className={`list-group-item ${styles.content}`}>
+                                    <li className={`list-group-item ${theme === "night" ? "list-group-item-dark" : ""} ${styles.content}`}>
                                         <div className={styles.listicon}>
                                             <i className="fa fa-globe"></i>
                                         </div>
@@ -53,17 +53,17 @@ function CatSidebar() {
                                         </div>
                                     </li>
                                 </ul>
-                                <div className="row text-center mt-4">
+                                <div className="row text-center mt-4 rounded-1">
                                     <div className="col p-2">
-                                        <h4 className="mb-1 line-height-5">40</h4>
+                                        <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>40</h4>
                                         <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Books</small>
                                     </div>
                                     <div className="col p-2">
-                                        <h4 className="mb-1 line-height-5">10</h4>
+                                        <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>10</h4>
                                         <small className={`mb-0 font-weight-bold ${styles.mov2}`}>WishList</small>
                                     </div>
                                     <div className="col p-2">
-                                        <h4 className="mb-1 line-height-5">5</h4>
+                                        <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>5</h4>
                                         <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Cart</small>
                                     </div>
                                 </div>
@@ -83,14 +83,14 @@ function CatSidebar() {
 
                     <form className='form-horizontal' role="form">
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>First Name:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>First Name:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="text" value="Ahmad" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Last Name:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>Last Name:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="text" value="Ahmad" />
                             </div>
@@ -98,34 +98,34 @@ function CatSidebar() {
                         
 
                         <div class="form-group">
-                            <label class={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Change Profile</label>
+                            <label class={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>Change Profile</label>
                             <div class="col-lg-9">
                                 <input class="form-control" type="file" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Old Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>Old Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>New Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>New Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
 
                         <div className='form-group'>
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}>Confirm Password:</label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}>Confirm Password:</label>
                             <div className='col-lg-9'>
                                 <input className='form-control' type="password" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label className={`col-lg-3 ${theme === "night" ? "text-light " + styles.controlLabel : styles.controlLabel}`}></label>
+                            <label className={`col-lg-3 ${theme === "night" ? styles.controlLabelNight : styles.controlLabel}`}></label>
                             <div className="col-lg-9">
                                 <input type="button" className={`btn ${styles.saveBtn}`} value="Save Changes" />
                                 <input type="button" className={`btn ${styles.cancelBtn}`} value="Cancel" />

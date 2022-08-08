@@ -74,6 +74,13 @@ body {
     font-weight: bold;
 }
 
+.controlLabelNight {
+    margin-top: 12px !important;
+    margin-bottom: 6px !important;
+    font-weight: bold;
+    color: #aba8a8 !important;
+}
+
 .userBox img {
     width: 100%;
     border-radius: 50%;
@@ -185,4 +192,12 @@ body {
     .headertxt{
         margin-top: 30px;
     }
+}
+
+.nightBG {
+    background: #373637 !important;
+}
+
+.lightTxt {
+    color: #aba8a8 !important;
 }

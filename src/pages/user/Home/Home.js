@@ -25,10 +25,10 @@ function Home() {
       .then((res) => { setBooks(res.data.book) })
       .catch((err) => { console.log(err) })
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    // })
   })
 
   let onInputChange = (e) => {

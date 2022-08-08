@@ -4,8 +4,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './SignUpForm.module.css' 
 import { IoPersonAdd } from "react-icons/io5";
-const axios = require('axios');
+import { useSelector } from 'react-redux';
 
+const axios = require('axios');
 
 const SignUpForm = props => {
  
@@ -98,12 +99,13 @@ let onFileChange = (e)=>{
   
 }
 
+const theme = useSelector((state) => state.theme.currentTheme);
 
 return (
     <div className="container">
         <div className="row">
             <div className="col-md-12">
-                <div className={classes.form}>
+                <div className={theme === "night" ? classes.formNight : classes.form}>
                     <h2>Sign Up</h2>
                     <Formik
                         initialValues={{
@@ -162,7 +164,7 @@ return (
                         </div>
                         <div className="row">
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="firstName" className="form-label">
+                                <label htmlFor="firstName" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     First name
                                 </label>
                                 <Field name="firstName" className={`form-control ${errors.firstName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
@@ -172,7 +174,7 @@ return (
                             </div>
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="lastName" className="form-label">
+                                <label htmlFor="lastName" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                 Last name
                                 </label>
                                 <Field name="lastName" className={`form-control ${errors.lastName ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
@@ -182,7 +184,7 @@ return (
                             </div>
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="userName" className="form-label">
+                                <label htmlFor="userName" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Username
                                 </label>
                                 <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
@@ -192,7 +194,7 @@ return (
                             </div> 
 
                             <div className="form-group mb-3 col-md-6 col-sm-126">
-                                <label htmlFor="theEmail" className="form-label">
+                                <label htmlFor="theEmail" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Email
                                 </label>
                                 <Field name="theEmail" className={`form-control ${errors.theEmail ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="email"/>
@@ -202,7 +204,7 @@ return (
                             </div> 
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="thePhone" className="form-label">
+                                <label htmlFor="thePhone" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Mobile                                </label>
                                 <Field name="thePhone" className={`form-control ${errors.thePhone ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
                                 {errors.thePhone && touched.thePhone ? (
@@ -211,7 +213,7 @@ return (
                             </div> 
                     
                             <div className="form-group mb-3 col-md-6 col-sm-12" >
-                                <label htmlFor="thePassword" className="form-label">
+                                <label htmlFor="thePassword" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                 Password
                                 </label>
                                 <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
@@ -222,7 +224,7 @@ return (
                             </div>
 
                             <div className="form-group mb-3 col-12">
-                                <label htmlFor="cnfrmPass" className="form-label">
+                                <label htmlFor="cnfrmPass" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Confirm Password
                                 </label>
                                 <Field name="cnfrmPass" className={`form-control ${errors.cnfrmPass ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}}type={passShowState.inputType}/>
@@ -232,18 +234,18 @@ return (
                             </div>
                             <div className="form-group mb-3 col-md-12 col-sm-12">
                                     <div className="row">
-                                        <label htmlFor="Gender" className="form-label " style={{marginTop:"40px"}}>Gender : </label>
+                                        <label htmlFor="Gender" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`} style={{marginTop:"40px"}}>Gender : </label>
                                         <br/>
                                         <div className="col-md-6 col-sm-6">
                                             <label>
                                                 <Field type="radio" className="form-check-input" name="theGender" value="male"/>
-                                                <span className="mx-1">Male</span>
+                                                <span className={`mx-1 ${theme === "night" ? classes.lightTxt : ""}`}>Male</span>
                                             </label>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
                                             <label>
                                                 <Field type="radio" className="form-check-input" name="theGender" value="female"/>
-                                                <span className="mx-1" >Female</span>
+                                                <span className={`mx-1 ${theme === "night" ? classes.lightTxt : ""}`}>Female</span>
                                             </label>
                                         </div>
                                     </div>
@@ -253,7 +255,7 @@ return (
                             </div>
 
                             <div className="form-group mb-3 col-md-6 col-sm-12" >
-                                <label htmlFor="birthDate" className="form-label">
+                                <label htmlFor="birthDate" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                 Birth date
                                 </label>
                                 <Field name="birthDate" className={`form-control ${errors.birthDate ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="date"/>
@@ -263,7 +265,7 @@ return (
                             </div>
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="theStreet" className="form-label">
+                                <label htmlFor="theStreet" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Street
                                 </label>
                                 <Field name="theStreet" className={`form-control ${errors.theStreet ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
@@ -273,7 +275,7 @@ return (
                             </div> 
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="theCity" className="form-label">
+                                <label htmlFor="theCity" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     City
                                 </label>
                                 <Field name="theCity" className={`form-control ${errors.theCity ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
@@ -283,7 +285,7 @@ return (
                             </div> 
 
                             <div className="form-group mb-3 col-md-6 col-sm-12">
-                                <label htmlFor="theGovernorate" className="form-label">
+                                <label htmlFor="theGovernorate" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Governorate
                                 </label>
                                 <Field name="theGovernorate" className={`form-control ${errors.theGovernorate ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type="text"/>
