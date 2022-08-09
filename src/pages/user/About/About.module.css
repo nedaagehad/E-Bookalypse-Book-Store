@@ -1,0 +1,23 @@
+.mainTitle {
+    color: rgb(111, 25, 139);
+}
+
+p {
+    text-align: justify;
+}
+
+.card {
+    background: #FDF8FE !important;
+}
+
+.cardNight {
+    background: #373637 !important;
+}
+
+.card p, .cardNight p {
+    font-size: 14px;
+}
+
+.lightTxt {
+    color: #aba8a8 !important;
+}
