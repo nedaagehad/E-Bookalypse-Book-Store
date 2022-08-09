@@ -3,7 +3,7 @@ import PromoIntro from '../../../components/PromoIntro/PromoIntro'
 import Combination from '../../../components/Combination/Combination'
 import { useSelector } from 'react-redux';
 
-function Promotions() {
+function Offers() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
 
@@ -54,4 +54,4 @@ function Promotions() {
   )
 }
 
-export default Promotions
+export default Offers

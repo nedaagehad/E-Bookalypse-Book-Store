@@ -1,0 +1,20 @@
+.main {
+    padding: 0;
+    margin: 0;
+}
+
+/* .main img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: auto;
+} */
+
+.saveBtn {
+    background-color: #8a04a5 !important;
+    color: #fff !important;
+    position: absolute;
+    bottom: 16%;
+    right: 25%;
+}

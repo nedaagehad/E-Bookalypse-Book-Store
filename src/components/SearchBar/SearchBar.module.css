@@ -97,11 +97,11 @@
 
 .searchBar {
     width: 300px;
-    position: relative;
+    position: absolute;
     height: 30px;
     border-radius: 5px;
     padding: 0px;
-    right: 20%;
+    right: 35%;
 }
 
 .searchBar input{
@@ -112,6 +112,7 @@
     padding: 7px;
     border-radius: 5px;
     background-color: whitesmoke;
+    box-shadow: 0.3px 0.3px 1px #333;
 }
 
 .searchBtn {

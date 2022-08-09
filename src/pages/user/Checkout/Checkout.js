@@ -27,7 +27,7 @@ function Checkout() {
   return (
       <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
           <div className="container">
-              <div className="row">
+              <div className="row pt-3">
                   <CheckoutHeader data={data}/>
                     <CheckoutSummary subTotal="30.98" tax="2.25" Total="33.23"/>
               </div>
