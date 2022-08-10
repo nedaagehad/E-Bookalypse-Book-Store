@@ -15,6 +15,15 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.commentNight{
+    padding: 50px;
+    border: 1px solid #373637;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .comment_desc{
     font-weight: 400;
     color: #8a8484;
@@ -48,6 +57,13 @@
     line-height: 31px;
     color: #000000;
 }
+
+.commenterNameNight{
+    font-weight: 700;
+    line-height: 31px;
+    color: whitesmoke;
+}
+
 .commentDate{
     font-weight: 500;
     line-height: 24px;
@@ -67,6 +83,12 @@
         justify-content: center;
         align-items: center;
     }
+
+    .commentNight{
+        justify-content: center;
+        align-items: center;
+    }
+
     .commenterAvatar{
         margin-right: 0px;
     }

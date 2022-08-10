@@ -5,15 +5,20 @@ import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
-import { GiShoppingCart } from 'react-icons/gi';
+// import { GiShoppingCart } from 'react-icons/gi';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import { TbShoppingCartDiscount } from 'react-icons/tb';
 import SearchBar from "../SearchBar/SearchBar";
 import { FaUserCircle } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './NavBar.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from '../../assets/ebookalypse-logo.png';
+import { BsCart4 } from 'react-icons/bs';
+import En from '../../assets/En.png';
+import Ar from '../../assets/Ar.png';
+import { changeLang } from '../../store/actions/language';
+import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
 
 
 function NavBar() {
@@ -21,6 +26,11 @@ function NavBar() {
   
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
+  const lang = useSelector((state) => state.lang.currentLang);
+  const dispatch = useDispatch();
+
+  const [profileClicked, setProfileClicked] = useState(false);
+
   useEffect(() => {
     if(authState !== ''){
       setLoggedIn(true)
@@ -29,6 +39,7 @@ function NavBar() {
     }
   }, [authState]);
   // console.log(theme);
+
 
   return (
     <>
@@ -47,29 +58,43 @@ function NavBar() {
                 <GiBookshelf className='me-1' />
                 Categories</NavLink>
 
-              <NavLink to='/promotions' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+              <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                 <TbShoppingCartDiscount className='me-1' />
-                Promotions
+                Offers
               </NavLink>
             </Nav>
 
             <SearchBar className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-4`} />
             <Link to='/cart'>
 
-              <GiShoppingCart className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+              <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
             </Link>
             {loggedIn ?
+              
               <div className={styles.profileIcon}>
+                {/* 
+                <div className={styles.profileIcon}>
                 <Link to={`/profile`}>
 
                   <FaUserCircle className={styles.userIcon} />
-                </Link>
+                </Link> */}
+                <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                {profileClicked ? <ProfileDropDown /> : null}
+
               </div> :
               <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
                 <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
-                <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>Sign in</Link></p>
+                <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
               </div>}
             <ThemeToggler />
+
+            {/* Language Toggler */}
+             <div className={`${styles.profileIcon}`} onClick={() => {
+              dispatch(changeLang(lang === "Ar" ? "En" : "Ar"));
+             }}>
+              {lang === "En" ? <img className={styles.userIcon} src={En} alt='en' data-bs-toggle="tooltip" data-bs-placement="bottom" title="English" /> :
+              <img className={styles.userIcon} src={Ar} alt='ar' data-bs-toggle="tooltip" data-bs-placement="bottom" title="عربي" />}
+              </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -108,9 +133,9 @@ function NavBar() {
                     <GiBookshelf className='me-1' />
                     Categories</NavLink>
 
-                  <NavLink to='/promotions' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <TbShoppingCartDiscount className='me-1' />
-                    Promotions
+                    Offers
                   </NavLink>
                   <ThemeToggler />
                 </Nav>

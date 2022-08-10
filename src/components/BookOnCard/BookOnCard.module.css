@@ -4,14 +4,22 @@
     background: #FDF8FE;
     border-radius: 15px;
 }
-.card img{
+
+.cardNight{
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #373637;
+    border-radius: 15px;
+}
+
+.card img, .cardNight img{
     width: 40%;
     height: 100px;
     border-radius: 10px;
     display: block;
     margin: auto;
 }
-.details , .price , .delete{
+.details , .price , .delete, .deleteNight{
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -29,10 +37,20 @@
     color : #716F6F;
     font-size: 25px;
 }
+
+.deleteNight button{
+    color : #aba8a8;
+    font-size: 25px;
+}
+
 @media(max-width:800px)
 {
-    .card img{
+    .card img, .cardNight img{
         width: 70%;
         height: 70px;
     }
+}
+
+.lightTxt{
+    color: #aba8a8 !important;
 }

@@ -5,6 +5,8 @@ import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { booksApi } from '../../store/services';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux'
+
 import { addToCartReducer } from '../../store/reducers/cartReducer/CartReducer';
 const Combination = props => {
     const {collectionData,collectionName,collectionPrice,collectionID} = props;
@@ -12,6 +14,7 @@ const Combination = props => {
     const [imageTwo,setImageTwo]= useState()
     const [imageThree,setImageThree]= useState()
     const [addToCart,response] =booksApi.useAddToCartMutation()
+    const theme = useSelector((state) => state.theme.currentTheme);
 
 
 
@@ -71,44 +74,42 @@ const Combination = props => {
                 <div className={`row justify-content-center`}>
                     <div className={`col-md-12`}>
                       
-                    <div className={classes.booksPosters + " position-relative"}>
-                        {
-                            collectionData.map((book,index)=>{
-                                // console.log(book,index)
-                       
-                                return(
-                                    <div key={book._id} className={index == 0 ? classes.first : index == 1 ? classes.second : index == 2 ? classes.third : null}>
-                                        {index == 1 ? 
-                                        
-                                            <div className={classes.ribbon}>
-                                                <p>${props.collectionPrice}</p>
-                                            </div>
-                                        :null}
-                                        <img src={index == 0 ? imageOne : index == 1 ? imageTwo : index == 2 ? imageThree: null} alt={props.collectionimageThree}/>
-                                    </div>
-                                )
-                            })
-                        }
-                    
-                     
-                    
-                    </div>
+                        <div className={classes.booksPosters + " position-relative"}>
+                            {
+                                collectionData.map((book,index)=>{
+                                    // console.log(book,index)
+                                    return(
+                                        <div key={book._id} className={index == 0 ? classes.first : index == 1 ? classes.second : index == 2 ? classes.third : null}>
+                                            {index == 1 ? 
+                                            
+                                                <div className={classes.ribbon}>
+                                                    <p>${props.collectionPrice}</p>
+                                                </div>
+                                            :null}
+                                            <img src={index == 0 ? imageOne : index == 1 ? imageTwo : index == 2 ? imageThree: null} alt={props.collectionimageThree}/>
+                                        </div>
+                                    )
+                                })
+                            }
+                        
+
+                        
+                        </div>
                     </div>
                     <div className={`col-md-12`}>
                         <h4>{collectionName}</h4>
                         {collectionData.map((book)=>{
                             return(
     
-                                <h6 key={book._id}>{book.title}</h6>
+                                <h6  className={theme === "night" ? classes.detailsDark : ""}  key={book._id}>{book.title}</h6>
                             )
                         })}
-                        {/* <h6>{collectionData.book1.bookName}</h6>
-                        <h6>{collectionData.book2.bookName}</h6>
-                        <h6>{collectionData.book3.bookName}</h6> */}
+                    
                         <div className={classes.action}>
                             <button onClick={()=>addPromoToCart(collectionID)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                             <button className={classes.favorite}><BsFillHeartFill/></button>
                         </div>
+
                     </div>
                 </div>
             </div>

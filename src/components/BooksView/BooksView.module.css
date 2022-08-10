@@ -14,4 +14,9 @@
 .pagy{
     width: fit-content;
     margin: auto;
+    color: whitesmoke !important;
+}
+
+.title {
+    color: rgb(111, 25, 139) !important;
 }

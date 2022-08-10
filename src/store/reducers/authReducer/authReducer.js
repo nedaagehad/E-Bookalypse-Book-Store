@@ -7,21 +7,21 @@ import jwt from 'jwt-decode'
 import { useNavigate } from "react-router-dom";
 
 const initialState= { 
-    token:null,
+    token:localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null,
     userId:'',
-    userRole:'',
+    userRole:localStorage.getItem('userRole') ? localStorage.getItem('userRole') : '',
     userExp:''
 }
 const getRole = localStorage.getItem('userRole')
 const getToken = localStorage.getItem('userToken')
 
-console.log(getRole)
-if(getRole){
-    // console.log(user)
-    initialState.userRole = getRole;
-    initialState.token = getToken;
+// console.log(getRole)
+// if(getRole){
+//     // console.log(user)
+//     initialState.userRole = getRole;
+//     initialState.token = getToken;
 
-}
+// }
 
 export const authSlice = createSlice({
     name:'authSlice',
@@ -54,9 +54,12 @@ export const authSlice = createSlice({
     //   },
 
       logOut:(state,action)=>{
+        // localStorage.removeItem("userToken")
+        // localStorage.removeItem("userRole")
         state.token = null
-        localStorage.removeItem("userToken")
-        localStorage.removeItem("userRole")
+        state.userRole = ''
+        localStorage.setItem('userToken', state.token)
+        localStorage.setItem('userRole', state.userRole)
       }
 
     }

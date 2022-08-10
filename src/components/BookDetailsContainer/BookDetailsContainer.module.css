@@ -81,6 +81,7 @@
 .action .favorite{
     background-color: transparent;
     border: 1px solid #ABA8A8;
+    /* border: 1px solid rgb(94, 25, 117); */
     color: #D6D3D3;
     border-radius: 12px;
     padding: 5px 12px;
@@ -104,4 +105,12 @@
     .Book_Poster{
         width: 50%;
     }
+}
+
+.title {
+    color: rgb(111, 25, 139) !important;
+}
+
+.description {
+    color: #aba8a8 !important;
 }

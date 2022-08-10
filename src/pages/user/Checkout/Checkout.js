@@ -5,12 +5,14 @@ import CheckoutHeader from '../../../components/CheckoutHeader/CheckoutHeader'
 import CheckoutSummary from '../../../components/CheckoutSummary/CheckoutSummary'
 import { addToCartReducer, FillCartFromDb } from '../../../store/reducers/cartReducer/CartReducer'
 import { booksApi } from '../../../store/services'
+
 function Checkout() {
 
     const [bookItems,setBookItems] = useState()
     const [collectionItems,setCollectionItems]  = useState()
     const [cart,setCart] = useState()
     const [done,setDone] = useState(false)
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     const [totalPrice,setTotalPrice] = useState()
     let  cartSelector = useSelector(state=>state.cart.bookIds)
@@ -39,8 +41,12 @@ function Checkout() {
 
 
 
+
+
+
+
   return (
-      <div className='content'>
+      <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
           <div className="container">
               <div className="row">
                 {bookItems  ? 

@@ -17,11 +17,7 @@ function SearchBar() {
     
     const ExpandSearch = () => {
         setIsExpanded((s) => !s);
-        if(searchTerm){
-
-            console.log(searchTerm)
-            navigate('/categories/category/'+searchTerm)
-        }
+      
     }
 
     const HandleSearch = (e) => {
@@ -32,18 +28,35 @@ function SearchBar() {
     const ClearSearch = () => {
         setSearchTerm("");
     }
+    const Search = ()=>{
+        if(searchTerm){
+
+            console.log(searchTerm)
+            navigate('/categories/category/'+searchTerm)
+        }
+    }
 
   return (
 
     // <div className={`${isExpanded ? `${styles.active} ${styles.searchBar}` : styles.searchBar} me-2`}> // Another Syntax
-    <div className={`${styles.searchBar} ${isExpanded ? styles.active : ""} me-2`}>
-        <input className={theme === "night" ? "bg-light" : "bg-white"} type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
-        <div className={styles.searchBtn} onClick={ExpandSearch}>
-            <BsSearch className={theme === "night" && !isExpanded ? navbar.navIconNight : navbar.navIcon} />
+    // <div className={`${styles.searchBar} ${isExpanded ? styles.active : ""} me-2`}>
+    //     <input className={theme === "night" ? "bg-light" : "bg-white"} type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
+    //     <div className={styles.searchBtn} onClick={ExpandSearch}>
+    //         <BsSearch className={theme === "night" && !isExpanded ? navbar.navIconNight : navbar.navIcon} />
+    //     </div>
+    //     <div className={styles.searchCancel} onClick={ClearSearch}>
+    //         <GrClose className={navbar.navIcon} />
+    //     </div>
+    // </div>
+
+    <div className={styles.searchBar} >
+        <input type='text' onChange={HandleSearch} value={searchTerm} placeholder='Type to search...' />
+        <div className={styles.searchBtn} onClick={Search}>
+            <BsSearch />
         </div>
-        <div className={styles.searchCancel} onClick={ClearSearch}>
-            <GrClose className={navbar.navIcon} />
-        </div>
+        {/* <div className={styles.Cancel}>
+            <GrClose />
+        </div> */}
     </div>
   )
 }

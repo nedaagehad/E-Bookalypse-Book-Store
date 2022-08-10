@@ -16,7 +16,7 @@
     word-spacing: 5px;
 }
 .PromoTitle span{
-    color: rgb(111, 25, 139);
+    color: rgb(111, 25, 139) !important;
     font-weight: 700;
 }
 .bookShelf{

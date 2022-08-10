@@ -5,7 +5,8 @@ import Pagination from '@mui/material/Pagination';
 import { booksApi } from '../../store/services';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-
+import styles from './BooksView.module.css'
+// import Pagination from '@mui/material/Pagination';
 
 const BookView = props =>{
     const [books,setBooks]= useState();
@@ -15,6 +16,7 @@ const BookView = props =>{
     const {data,isLoading,error}= booksApi.useGetAllBooksQuery(filterState)
     let params = useParams();
     let getSearchResults = booksApi.useGetSearchResultsQuery(filterState)
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     useEffect(() => {
         if(params.id){
@@ -34,8 +36,8 @@ const BookView = props =>{
         }
     }, [data,getSearchResults.data]);
     return(
-        <div className={`col-md-9 col-sm-12 ${classes.BookView}`}>
-            <h2>Books</h2>
+        <div className={`col-md-9 col-sm-12 ${styles.BookView}`}>
+            <h2 className={styles.title}>Books</h2>
             <div className={`row`}>
                
                 {
@@ -43,7 +45,7 @@ const BookView = props =>{
                     searchedBook !== undefined ? 
                     searchedBook.map((book)=>{
                         return (
-                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt={book.title} price="$15.50"/>
                             
                         )
                     })
@@ -53,20 +55,17 @@ const BookView = props =>{
                     books !== undefined ? 
                     books.map((book)=>{
                         return (
-                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
+                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt={book.title} price="$15.50"/>
                             
                         )
                     })
                     
                     : null
                 }
-                {/* <BookCard img="../../Images/Books/2.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
-                <BookCard img="../../Images/Books/3.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
-                <BookCard img="../../Images/Books/4.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
-                <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
-                <BookCard img="../../Images/Books/2.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/> */}
+
+
                 <div className={`col-12`}>
-                    <div className={classes.pagy}>
+                    <div className={styles.pagy}>
                         <Pagination count={5} color="secondary" />
                     </div>
                 </div>

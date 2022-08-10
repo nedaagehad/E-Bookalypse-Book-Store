@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom'
 import { booksApi } from '../../../store/services'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import storage from '../../../Firebase/firebaseImage'
+import { useSelector } from 'react-redux'
+
 
 function BookDetails() {
   let params = useParams();
@@ -16,6 +18,7 @@ function BookDetails() {
 
   const {data,isLoading,error} = booksApi.useGetBookByIdQuery(params.id)
   const [image,setImage]= useState()
+  const theme = useSelector((state) => state.theme.currentTheme);
 
   useEffect(() => {
     if(data){
@@ -40,7 +43,7 @@ function BookDetails() {
     }
   }, [data]);
   return (
-    <div className='content'>
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className="container-fluid">
             <div className="row">
               {book ?  

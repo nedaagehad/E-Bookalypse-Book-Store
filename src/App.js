@@ -7,7 +7,7 @@ import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
 import Checkout from './pages/user/Checkout/Checkout';
-import Promotions from './pages/user/Promotions/Promotions';
+import Offers from './pages/user/Offers/Offers';
 import Login from './pages/user/Login/Login';
 import SignUp from './pages/user/SignUp/SignUp';
 import Books from './pages/admin/Books/Books';
@@ -70,7 +70,9 @@ function App() {
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
           <Route path='/cart' element={<Checkout />} />
-          <Route path='/promotions' element={<Promotions />} />
+          {/* <Route path='/promotions' element={<Promotions />} /> */}
+          <Route path='/offers' element={<Offers />} />
+
           <Route path='/login' element={<Login /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />

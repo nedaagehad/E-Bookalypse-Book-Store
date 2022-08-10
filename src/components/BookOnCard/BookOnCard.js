@@ -6,8 +6,11 @@ import { getDownloadURL, ref } from 'firebase/storage'
 import { booksApi } from '../../store/services'
 import { useDispatch } from 'react-redux'
 import { removeFromCartReducer } from '../../store/reducers/cartReducer/CartReducer'
+import { useSelector } from 'react-redux'
+
 const BookOnCard = props => {
     console.log(props.data)
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     const [bookImages,setBookImages] = useState()
     useEffect(() => {
@@ -40,8 +43,9 @@ const BookOnCard = props => {
     
     }
 
+
     return (
-        <div className={`col-12 ${classes.card}`}>
+        <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>
@@ -49,16 +53,17 @@ const BookOnCard = props => {
                             <img src={bookImages}/>
                         </div>
                         <div className={`col-9 ${classes.details}`}>
-                            <h3>{props.data.title}</h3>
-                            <p>{props.data.bookAuther}</p>
+
+                            <h3 className={theme === "night" ? "text-light" : ""}>{props.data.bookName}</h3>
+                            <p className={theme === "night" ? classes.lightTxt : ""}>{props.data.bookAuther}</p>
                         </div>
                     </div>
                 </div>
                 <div className={`col-2 ${classes.price}`}>
                     <h4>${props.data.price}</h4>
                 </div>
-                <div className={`col-2 ${classes.delete}`}>
-                    <button onClick={()=>removeItem(props.data._id)}><RiDeleteBin5Fill/></button>
+                <div className={`col-2 ${theme === "night" ? classes.deleteNight : classes.delete}`}>
+                <button onClick={()=>removeItem(props.data._id)}><RiDeleteBin5Fill/></button>
                 </div>
             </div>  
         </div>

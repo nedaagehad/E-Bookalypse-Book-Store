@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import PromoIntro from '../../../components/PromoIntro/PromoIntro'
 import Combination from '../../../components/Combination/Combination'
+import { useSelector } from 'react-redux';
+
 import { booksApi } from '../../../store/services';
-function Promotions() {
+function Offers() {
   const {data,isLoading,error} = booksApi.useGetAllCollectionsQuery()
   const [collections,setCollections] = useState();
+  const theme = useSelector((state) => state.theme.currentTheme);
 
   useEffect(() => {
    if(data){
@@ -15,7 +18,7 @@ function Promotions() {
 
 
   return (
-    <div className="content">
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className="container">
             <div className="row">
                 <div className="col-12">
@@ -40,4 +43,4 @@ function Promotions() {
   )
 }
 
-export default Promotions
+export default Offers

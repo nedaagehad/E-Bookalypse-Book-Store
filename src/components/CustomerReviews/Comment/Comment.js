@@ -1,10 +1,15 @@
 import React from 'react'
 import classes from './Comment.module.css'
 import { AiFillStar } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
+
 const Comment = props => {
+
+    const theme = useSelector((state) => state.theme.currentTheme);
+
     return (
         <div className={`col-12`}>
-            <div className={`row ${classes.comment}`}>
+            <div className={`row ${theme === "night" ? classes.commentNight : classes.comment}`}>
                 <div className={`col-md-3 col-sm-12 ${classes.FullRate}`}>
                      <h3>{props.commentRate}</h3>
                         <div className={classes.stars}>
@@ -33,7 +38,7 @@ const Comment = props => {
                                     {props.commenterImg !== "" ? <img src={props.commenterImg} /> : ""}
                                 </div>
                                 <div className={classes.commenterInfo}>
-                                    <h5 className={classes.commenterName}>{props.commenterName}</h5>
+                                    <h5 className={theme === "night" ? classes.commenterNameNight : classes.commenterName}>{props.commenterName}</h5>
                                     <h6 className={classes.commentDate}>{props.commentDate}</h6>
                                 </div>
                             </div>

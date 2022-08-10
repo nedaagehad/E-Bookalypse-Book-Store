@@ -12,6 +12,10 @@ const axios = require('axios');
 
 const LoginForm = props => {
   let navigate = useNavigate();
+
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   const [passShowState,setPassShowState] = useState({
       isShown:false,
       inputType: "password",
@@ -60,7 +64,7 @@ const LoginForm = props => {
     <div className="container">
       <div className="row">
           <div className="col-md-12">
-              <div className={classes.form}>
+              <div className={theme === "night" ? classes.formNight : classes.form}>
                         <h2>Login</h2>
                         <Formik
                             initialValues={{
@@ -95,7 +99,7 @@ const LoginForm = props => {
                             {({errors,touched})=>(
                             <Form>
                                 <div className="form-group mb-3">
-                                  <label htmlFor="userName" className="form-label">
+                                  <label htmlFor="userName" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                     Username
                                   </label>
                                   <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
@@ -105,7 +109,7 @@ const LoginForm = props => {
                               </div>
                         
                                 <div className="form-group mb-3" >
-                                  <label htmlFor="thePassword" className="form-label">
+                                  <label htmlFor="thePassword" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
                                   Password
                                   </label>
                                   <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>

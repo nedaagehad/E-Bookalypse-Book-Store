@@ -10,6 +10,7 @@ const BookDetailsContainer = props => {
     const [addToCart,response] =booksApi.useAddToCartMutation()
     const cartItems = useSelector(state=>state.cart)
     const cartItemsBookIds = useSelector(state=>state.cart.bookIds)
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     let dispatch= useDispatch()
 
@@ -55,7 +56,7 @@ const BookDetailsContainer = props => {
     return (
         <div className={`col-12`} >
             <div className={classes.BookDetails}>
-                <h2>Book Details</h2>
+                <h2 className={classes.title}>Book Details</h2>
                 <div className={`row`}>
                     <div className={`col-md-3 col-sm-12`}>
                         <div className={classes.Book_Poster}>
@@ -85,9 +86,11 @@ const BookDetailsContainer = props => {
                                 </button>
                                 <button className={classes.Review}>{props.reviewCount} Reviews</button>
                             </div> */}
-                            <h1>{props.bookName}</h1>
+  
+                        
+                            <h1 className={theme === "night" ? "text-light" : ""}>{props.bookName}</h1>
                             <h3>{props.bookAuther}</h3>
-                            <p>{props.bookDesc}</p>
+                            <p className={theme === "night" ? classes.description : ""}>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}
                             {props.bookPriceAfterPromo !== props.bookPriceBeforePromo ? 
                             <span className={classes.promo}>
