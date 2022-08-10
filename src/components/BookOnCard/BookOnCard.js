@@ -33,12 +33,9 @@ const BookOnCard = props => {
         console.log(bookData)
         
         removeFromCart({bookIds:bookData}  ).then((r)=>{
-            if(r.data){
+       
                    dispatch(removeFromCartReducer({bookIds:bookData}))
-                console.log("right")
-            }else{
-                console.log("error")
-            }
+             
         })
     
     }

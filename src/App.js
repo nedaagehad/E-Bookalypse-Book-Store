@@ -47,10 +47,17 @@ function App() {
   useEffect(() => {
     if(authState == 'regUser'){
       setIsUser(true)
+
     }else if (authState == 'rootAdmin'){
       setIsUser(false)
     }
   }, [authState]);
+
+//   useEffect(() => {
+
+//     })
+//  }, []) 
+
   return (
     <Router>
       <Routes>
@@ -80,8 +87,7 @@ function App() {
 
         {/* ADMIN ROUTES */}
         {!isUser ? 
-        
-        
+       
         
         <Route path='/admin' element={<AdminLayout />} >
           <Route index element={<Dashboard />}/>
