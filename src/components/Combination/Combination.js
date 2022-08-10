@@ -5,6 +5,7 @@ import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { booksApi } from '../../store/services';
 import { useDispatch } from 'react-redux';
+import { addToCartReducer } from '../../store/reducers/cartReducer/CartReducer';
 const Combination = props => {
     const {collectionData,collectionName,collectionPrice,collectionID} = props;
     const [imageOne,setImageOne]= useState()
@@ -48,18 +49,18 @@ const Combination = props => {
         }, []);
 
         let dispatch = useDispatch()
-
+        
         const addPromoToCart = (collectionID)=>{
             // console.log(collectionID)
             addToCart({collectionIds:collectionID}).then((re)=>
             
             {
-                // if(re.data){
-                //     dispatch(addToCartReducer(collectionID))
-                //     console.log("right")
-                // }else{
-                //     console.log("error")
-                // }
+                if(re.data){
+                    dispatch(addToCartReducer(collectionID))
+                    console.log("right")
+                }else{
+                    console.log("error")
+                }
             console.log(re)
         }
         )

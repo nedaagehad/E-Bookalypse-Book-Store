@@ -32,14 +32,14 @@ const CollectionOnCard = props => {
     const removeItem = (bookData) =>{
         console.log(bookData)
         
-        // removeFromCart({collectionIds:bookData}).then((r)=>{
-        //     if(r.data){
+        removeFromCart({collectionIds:bookData}).then((r)=>{
+            if(r.data){
                    dispatch(removeFromCartReducer({collectionIds:bookData}))
-        //         console.log("right")
-        //     }else{
-        //         console.log("error")
-        //     }
-        // })
+                console.log("right")
+            }else{
+                console.log("error")
+            }
+        })
     
     }
 
