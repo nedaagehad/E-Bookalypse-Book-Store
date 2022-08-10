@@ -65,23 +65,23 @@
   
   .navItemNight,
   .navIconNight {
-    color: #aba8a8;
+    color: #aba8a8 !important;
   }
   
   .navItem,
   .navIcon {
-    color: #848383;
+    color: #848383 !important;
   }
   
   .navItemNight:hover,
   .navIconNight:hover {
-    color: #fff;
+    color: #fff !important;
     transition: all 0.5s ease-in-out;
   }
   
   .navItem:hover,
   .navIcon:hover {
-    color: #000;
+    color: #000 !important;
     transition: all 0.5s ease-in-out;
   }
   
