@@ -6,7 +6,7 @@ import { getDownloadURL, ref } from 'firebase/storage'
 import { booksApi } from '../../store/services'
 import { useDispatch } from 'react-redux'
 import { removeFromCartReducer } from '../../store/reducers/cartReducer/CartReducer'
-const BookOnCard = props => {
+const CollectionOnCard = props => {
     console.log(props.data)
 
     const [bookImages,setBookImages] = useState()
@@ -32,14 +32,14 @@ const BookOnCard = props => {
     const removeItem = (bookData) =>{
         console.log(bookData)
         
-        removeFromCart({bookIds:bookData}  ).then((r)=>{
-            if(r.data){
-                   dispatch(removeFromCartReducer({bookIds:bookData}))
-                console.log("right")
-            }else{
-                console.log("error")
-            }
-        })
+        // removeFromCart({collectionIds:bookData}).then((r)=>{
+        //     if(r.data){
+                   dispatch(removeFromCartReducer({collectionIds:bookData}))
+        //         console.log("right")
+        //     }else{
+        //         console.log("error")
+        //     }
+        // })
     
     }
 
@@ -58,7 +58,7 @@ const BookOnCard = props => {
                     </div>
                 </div>
                 <div className={`col-2 ${classes.price}`}>
-                    <h4>${props.data.price}</h4>
+                    <h4>${props.data.collectionPrice}</h4>
                 </div>
                 <div className={`col-2 ${classes.delete}`}>
                     <button onClick={()=>removeItem(props.data._id)}><RiDeleteBin5Fill/></button>
@@ -67,4 +67,4 @@ const BookOnCard = props => {
         </div>
     )
 }
-export default BookOnCard;
+export default CollectionOnCard;

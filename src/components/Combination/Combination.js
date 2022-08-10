@@ -3,11 +3,14 @@ import classes from './Combination.module.css'
 import { BsFillHeartFill } from 'react-icons/bs'
 import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
+import { booksApi } from '../../store/services';
+import { useDispatch } from 'react-redux';
 const Combination = props => {
-    const {collectionData,collectionName,collectionPrice} = props;
+    const {collectionData,collectionName,collectionPrice,collectionID} = props;
     const [imageOne,setImageOne]= useState()
     const [imageTwo,setImageTwo]= useState()
     const [imageThree,setImageThree]= useState()
+    const [addToCart,response] =booksApi.useAddToCartMutation()
 
 
 
@@ -44,6 +47,23 @@ const Combination = props => {
         
         }, []);
 
+        let dispatch = useDispatch()
+
+        const addPromoToCart = (collectionID)=>{
+            // console.log(collectionID)
+            addToCart({collectionIds:collectionID}).then((re)=>
+            
+            {
+                // if(re.data){
+                //     dispatch(addToCartReducer(collectionID))
+                //     console.log("right")
+                // }else{
+                //     console.log("error")
+                // }
+            console.log(re)
+        }
+        )
+        }
         return (
          
             <div className={`col-md-6 col-sm-12 ${classes.collection}`}>
@@ -85,7 +105,7 @@ const Combination = props => {
                         <h6>{collectionData.book2.bookName}</h6>
                         <h6>{collectionData.book3.bookName}</h6> */}
                         <div className={classes.action}>
-                            <button>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
+                            <button onClick={()=>addPromoToCart(collectionID)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                             <button className={classes.favorite}><BsFillHeartFill/></button>
                         </div>
                     </div>

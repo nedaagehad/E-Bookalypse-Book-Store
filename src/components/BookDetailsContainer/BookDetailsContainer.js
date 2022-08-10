@@ -1,9 +1,57 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './BookDetailsContainer.module.css'
 import { BsFillHeartFill } from 'react-icons/bs'
 import { AiFillStar } from 'react-icons/ai'
+import { booksApi } from '../../store/services'
+import { addToCartReducer, removeAll } from '../../store/reducers/cartReducer/CartReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const BookDetailsContainer = props => {
+    const [addToCart,response] =booksApi.useAddToCartMutation()
+    const cartItems = useSelector(state=>state.cart)
+    const cartItemsBookIds = useSelector(state=>state.cart.bookIds)
+
+    let dispatch= useDispatch()
+
+    // useEffect(()=>{
+    //     // console.log(cartItemsBookIds.length )
+    //     if(cartItemsBookIds.length > 0){
+    //         addToCart(cartItems).then((re)=>
+    //         {
+    //             console.log(re)
+    //             dispatch(removeAll())
+    //         }
+            
+    //         )
+            
+    //     }
+
+
+    // },[cartItemsBookIds])
+
+    let addToCartFun =  (bookData) => {
+        
+            // console.log(cartItems)
+            addToCart({bookIds:bookData}).then((re)=>
+            
+                {
+                    if(re.data){
+                        dispatch(addToCartReducer(bookData))
+                        console.log("right")
+                    }else{
+                        console.log("error")
+                    }
+                console.log(re)
+            }
+            )
+          
+
+    }
+
+    const addToDB = ()=>{
+        console.log(cartItems)
+         // addToCart(cartItems).then((re)=>console.log(re))
+    }
     return (
         <div className={`col-12`} >
             <div className={classes.BookDetails}>
@@ -40,9 +88,17 @@ const BookDetailsContainer = props => {
                             <h1>{props.bookName}</h1>
                             <h3>{props.bookAuther}</h3>
                             <p>{props.bookDesc}</p>
-                            <h2>${props.bookPriceAfterPromo}<span className={classes.promo}><sub><del>${props.bookPriceBeforePromo}</del></sub></span></h2>
+                            <h2>${props.bookPriceAfterPromo}
+                            {props.bookPriceAfterPromo !== props.bookPriceBeforePromo ? 
+                            <span className={classes.promo}>
+                                <sub><del>${props.bookPriceBeforePromo}</del></sub>
+                            </span>
+                            :
+                            null
+                            }
+                            </h2>
                             <div className={classes.action}>
-                                <button>Add To Card <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
+                                <button onClick={()=>addToCartFun(props.id)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                                 <button className={classes.favorite}><BsFillHeartFill/></button>
                             </div>
                         </div>

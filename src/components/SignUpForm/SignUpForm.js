@@ -151,7 +151,7 @@ return (
                         data.append("pass",values.thePassword)
 
  
-                        axios.post('https://e-bookalypse.herokuapp.com/api/user/signUp', data)
+                        axios.post('https://e-bookalypse.herokuapp.com/signUp', data)
 
                         .then(function (response) {
                             navigate('/login')

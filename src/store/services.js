@@ -8,7 +8,9 @@ console.log(userToken);
 
 export const api=createApi({
     reducerPath:'api',
-    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
+    // baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
+
     endpoints:(builder)=>({
         login:builder.mutation({
             query:(userData)=>({
@@ -24,9 +26,12 @@ export const api=createApi({
 
 export const booksApi = createApi({
     reducerPath:'booksApi',
-    // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/api/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
-    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/api/"}),
+    // baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/api/"}),
+    keepUnusedDataFor: 1000,
+    refetchOnMountOrArgChange: 3000,
+
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
@@ -46,7 +51,7 @@ export const booksApi = createApi({
                         newCategory= "category="+category[0]
                     }
                 }
-
+                
                 if(newCategory == " "){
                     return {
                         url: `books`,
@@ -67,7 +72,7 @@ export const booksApi = createApi({
             query:(bookID)=>{
                 console.log(bookID)
                 return{
-                    url:`admin/book/${bookID}`,
+                    url:`/book/${bookID}`,
                     // params: { page},
 
                 }
@@ -75,7 +80,7 @@ export const booksApi = createApi({
         }),
         addNewBook : builder.mutation({
             query:(bookData)=>({
-                url:"/admin/book",
+                url:"/book",
                 method: 'POST',
                 body: bookData,
                 headers:{"authorization":`Bearer ${userToken}`}
@@ -88,7 +93,7 @@ export const booksApi = createApi({
             query:({bookNewData,bookid})=>{
                 console.log(bookNewData)
                 return{
-                    url:`/admin/books/${bookid}`,
+                    url:`/book/${bookid}`,
                     method:"PUT",
                     body: bookNewData,
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -101,7 +106,7 @@ export const booksApi = createApi({
                 const {icon,src} = bookOldFiles
                 console.log(bookOldFiles)
                 return{
-                    url:`admin/books/${bookId}`,
+                    url:`/book/${bookId}`,
                     method:"DELETE",
                     params:{icon,src},
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -146,7 +151,7 @@ export const booksApi = createApi({
             query:({writerNewData,writerId})=>{
                 // console.log(bookid)
                 return{
-                    url:`admin/writer/${writerId}`,
+                    url:`/writer/${writerId}`,
                     method:"PUT",
                     body: writerNewData,
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -158,7 +163,7 @@ export const booksApi = createApi({
             query:({writerId,icon})=>{
             
                 return{
-                    url:`/admin/writer/${writerId}`,
+                    url:`/writer/${writerId}`,
                     method:"DELETE",
                     params:{icon},
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -192,7 +197,7 @@ export const booksApi = createApi({
             
             query:(categoryData)=>(
                 {
-                url:"/admin/categorie",
+                url:"/categorie",
                 method:"POST",
                 body:categoryData,
                 headers:{"authorization":`Bearer ${userToken}`}
@@ -204,7 +209,7 @@ export const booksApi = createApi({
                 console.log(categoryNewData)
                 console.log(categoryId)
                 return{
-                    url:`admin/categorie/${categoryId}`,
+                    url:`categorie/${categoryId}`,
                     method:"PUT",
                     body: categoryNewData,
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -216,7 +221,7 @@ export const booksApi = createApi({
             query:({categoryId,icon})=>{
             
                 return{
-                    url:`/admin/categorie/${categoryId}`,
+                    url:`/categorie/${categoryId}`,
                     method:"DELETE",
                     params:{icon},
                     headers:{"authorization":`Bearer ${userToken}`}
@@ -236,7 +241,14 @@ export const booksApi = createApi({
                 }
             }
         }),
-
+        // Collections 
+        getAllCollections:builder.query({
+            query:()=>{
+                return{
+                    url:"collections"
+                }
+            }
+        }),
         // Promotions
         getAllPromotions:builder.query({
             query:()=>{
@@ -349,7 +361,44 @@ export const booksApi = createApi({
                 
               },
 
-        })
+        }),
+
+        // cart
+
+        getCart:builder.mutation({
+            query:()=>{
+                return{
+                    url:"/cart",
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            }
+        }),
+        addToCart:builder.mutation({
+            query:(cartItems)=>{
+                const {bookIds,collectionIds} = cartItems
+          
+                return{
+                    url:'/cart-addition',
+                    method:'PUT',
+                    body:{bookIds:[bookIds],collectionIds:[collectionIds]},
+                    headers:{"Authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
+        removeFromCart:builder.mutation({
+            query:(cartItems)=>{
+                    const {bookIds,collectionIds} = cartItems
+                    console.log(bookIds)
+                    return{
+                        url:'/cart-removal',
+                        method:'PUT',
+                        body:{bookIds:[bookIds],collectionIds:[collectionIds]},
+                        headers:{"Authorization":`Bearer ${userToken}`}
+                    }
+                }
+        }),
+
 
     })  
 })

@@ -13,18 +13,21 @@ const CheckoutSummary = props => {
                 </div>
                 <div className={`col-md-4 col-sm-12 ${classes.summaryDetails}`}>
                     <table>
-                            <tr>
+                            {/* <tr>
                                 <td>Subtotal</td>
                                 <td>${props.subTotal}</td>
-                            </tr>
-                            <tr>
+                            </tr> */}
+                            {/* <tr>
                                 <td>Tax</td>
                                 <td>${props.tax}</td>
-                            </tr>
+                            </tr> */}
+                            <tbody>
                             <tr>
                                 <td>Total</td>
                                 <td>${props.Total}</td>
                             </tr>
+
+                            </tbody>
                     </table>
                 </div>
             </div>

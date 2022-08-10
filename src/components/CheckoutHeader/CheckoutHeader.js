@@ -1,8 +1,13 @@
 import React from 'react'
 import classes from './CheckoutHeader.module.css'
 import BookOnCard from '../BookOnCard/BookOnCard';
+import CollectionOnCard from '../BookOnCard/CollectionOnCard';
 
 const CheckoutHeader = props => {
+    const {bookItems,collectionItems} = props
+
+    // console.log(bookItems)
+
     return (
     <>
       <div className={`col-12 ${classes.header}`}>
@@ -18,11 +23,27 @@ const CheckoutHeader = props => {
         <div className={`col-12`}>
             <div className={`row`}>
                 {
-                    props.data.map(item => {
+                    bookItems !== undefined ?
+                    bookItems.map(item => {
                             return (
-                                <BookOnCard data={item} />
+                                <BookOnCard key={item._id} data={item} />
                             )
-                    })  
+                    })  :
+                    null
+                }
+
+                {collectionItems !== undefined ?
+                    collectionItems.map((collection)=>{
+                        return ( 
+                            <>
+                                <h6 className="text-muted mb-2 pb-2">Collections</h6>
+                                <CollectionOnCard key={collection._id} data={collection} />
+
+                            </>
+                        )
+                    })
+                    :
+                    null
                 }
             </div>  
         </div>

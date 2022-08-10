@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
@@ -17,11 +17,18 @@ import logo from '../../assets/ebookalypse-logo.png';
 
 
 function NavBar() {
-
+  const authState = useSelector(state => state.auth.userRole)
+  
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
-
-  console.log(theme);
+  useEffect(() => {
+    if(authState !== ''){
+      setLoggedIn(true)
+    }else {
+      setLoggedIn(false)
+    }
+  }, [authState]);
+  // console.log(theme);
 
   return (
     <>
@@ -47,10 +54,16 @@ function NavBar() {
             </Nav>
 
             <SearchBar className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-4`} />
-            <GiShoppingCart className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+            <Link to='/cart'>
+
+              <GiShoppingCart className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+            </Link>
             {loggedIn ?
               <div className={styles.profileIcon}>
-                <FaUserCircle className={styles.userIcon} />
+                <Link to={`/profile`}>
+
+                  <FaUserCircle className={styles.userIcon} />
+                </Link>
               </div> :
               <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
                 <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>

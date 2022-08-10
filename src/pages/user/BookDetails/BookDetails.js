@@ -11,14 +11,24 @@ import storage from '../../../Firebase/firebaseImage'
 function BookDetails() {
   let params = useParams();
   const [book,setBook] = useState()
+  const [price,setPrice] = useState()
+  const [discount,setDiscount] = useState()
+
   const {data,isLoading,error} = booksApi.useGetBookByIdQuery(params.id)
   const [image,setImage]= useState()
 
   useEffect(() => {
     if(data){
-      console.log(data[0])
+      // console.log(data[0])
       setBook(data[0])
-      
+      let promotions = data[0].promotion
+      let finalPrice = data[0].price
+      if(promotions.length > 0){
+        // console.log(promotions[0].discount_rate)
+        setDiscount(promotions[0].discount_rate)
+         finalPrice = data[0].price * promotions[0].discount_rate
+        }
+        setPrice(finalPrice)
       const starsRef = ref(storage, `/uploads/books/poster/${data[0].poster}`);
       let imageurl = ' ';
        getDownloadURL(starsRef).then( (url)=>{
@@ -35,10 +45,10 @@ function BookDetails() {
             <div className="row">
               {book ?  
                   
-                
                   <>
                     <BookDetailsContainer 
                             key={book._id}
+                            id={book._id}
                             rate={book.reviews}
                             reviewCount="5"
                             img={image}
@@ -46,8 +56,9 @@ function BookDetails() {
                             bookName={book.title}
                             bookAuther={book.writer[0].name}
                             bookDesc={book.description}
-                            bookPriceAfterPromo={book.price}
-                            bookPriceBeforePromo="19.98"
+                            bookPriceAfterPromo={price}
+                            bookPriceBeforePromo={book.price}
+                            book= {book}                            
                       />
                       {/* {book.reviews.length > 0 ? 
                       
