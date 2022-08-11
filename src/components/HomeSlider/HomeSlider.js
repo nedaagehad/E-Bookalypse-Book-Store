@@ -1,9 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import classes from './HomeSlider.module.css'
 import Slider from './Slider';
+
 function HomeSlider() {
+
+  const lang = useSelector((state) => state.lang.currentLang);
+
   return (
-      <div className={classes.heroSection}>
+      <div className={classes.heroSection} dir={lang === "En" ? "ltr" : "rtl"}>
         <div className={classes.overlay}>
           <div className={classes.hotPromotions}>
             <div className={classes.promo}>

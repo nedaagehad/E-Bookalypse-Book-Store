@@ -8,8 +8,8 @@ console.log(userToken);
 
 export const api=createApi({
     reducerPath:'api',
-    // baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
-    baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
+    // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
     endpoints:(builder)=>({
         login:builder.mutation({
@@ -26,9 +26,9 @@ export const api=createApi({
 
 export const booksApi = createApi({
     reducerPath:'booksApi',
-    baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
+    // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
-    // baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/api/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
     keepUnusedDataFor: 1000,
     refetchOnMountOrArgChange: 3000,
 
