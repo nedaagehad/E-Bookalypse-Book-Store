@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './BookDetailsContainer.module.css'
-import { BsFillHeartFill } from 'react-icons/bs'
+import AddToCardButton from '../AddToCardButton/AddToCardButton'
 import { AiFillStar } from 'react-icons/ai'
 
 const BookDetailsContainer = props => {
@@ -41,10 +41,7 @@ const BookDetailsContainer = props => {
                             <h3>{props.bookAuther}</h3>
                             <p>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}<span className={classes.promo}><sub><del>${props.bookPriceBeforePromo}</del></sub></span></h2>
-                            <div className={classes.action}>
-                                <button>Add To Card <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
-                                <button className={classes.favorite}><BsFillHeartFill/></button>
-                            </div>
+                            <AddToCardButton/>
                         </div>
                     </div>
                 </div>

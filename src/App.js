@@ -6,8 +6,10 @@ import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
 import Checkout from './pages/user/Checkout/Checkout';
+import BookShelf from './pages/user/BookShelf/BookShelf';
 import Promotions from './pages/user/Promotions/Promotions';
 import Login from './pages/user/Login/Login';
+import Wishlist from './pages/user/Wishlist/Wishlist';
 import SignUp from './pages/user/SignUp/SignUp';
 import Books from './pages/admin/Books/Books';
 import AddBook from './pages/admin/Book/addBook';
@@ -46,8 +48,10 @@ function App() {
           <Route path='/categories/category' element={<Category />} />
           <Route path='/categories/category/BookDetails' element={<BookDetails />} />
           <Route path='/categories/category/BookDetails/Checkout' element={<Checkout />} />
+          <Route path='/profile/bookshelf' element={<BookShelf />} />
           <Route path='/promotions' element={<Promotions />} />
-          <Route path='/login' element={<Login /> } />
+          <Route path='/login' element={<Login />} />
+          <Route path='/Wishlist' element={<Wishlist /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
           <Route path='/termsofuse' element={<TermsOfUse />} />
