@@ -1,0 +1,38 @@
+.action button{
+    background-color: #8D27AE;
+    border-radius: 12px;
+    color:white;
+    padding: 10px 25px;
+    font-size: 20px;
+}
+.action button:first-child::before{
+    content: 'Add to Cart ';
+}
+.action button:hover{
+    background-color: rgb(94, 25, 117);
+}
+.action .favorite{
+    background-color: transparent;
+    border: 1px solid #ABA8A8;
+    color: #D6D3D3;
+    border-radius: 12px;
+    padding: 7px 12px;
+    font-size: 25px;
+    position: relative;
+    top:2px;
+    left: 10px;
+}
+.action .favorite:hover{
+    color:rgb(94, 25, 117);
+    background-color: transparent;
+}
+@media(max-width:900px){
+    .action button:first-child::before{
+        content: '';
+    }
+}
+@media(min-width:992px) and (max-width:1312px){
+    .action button:first-child::before{
+        content: '';
+    }
+}

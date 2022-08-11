@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react';
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,22 +6,22 @@ import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
 import styles from './RelatedToAuther.module.css'
 
 
-import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { booksApi } from '../../store/services';
-import storage from '../../Firebase/firebaseImage';
-import { getDownloadURL, ref } from 'firebase/storage';
-import SingleBook from '../TrendingBooksUp/SingleBook/SingleBook';
+// import storage from '../../Firebase/firebaseImage';
+// import { getDownloadURL, ref } from 'firebase/storage';
+// import SingleBook from '../TrendingBooksUp/SingleBook/SingleBook';
 import SingleBookAuthor from './SingleBookAuthor/SingleBookAuthor';
 
 const RelatedToAuther = (props) => {
-  const book2 =  "../../Images/Books/1.jpg";
-  const book =  "../../Images/Books/2.jpg";
-  const book3 =  "../../Images/Books/3.jpg";
-  const book4 =  "../../Images/Books/4.jpg";
+  // const book2 =  "../../Images/Books/1.jpg";
+  // const book =  "../../Images/Books/2.jpg";
+  // const book3 =  "../../Images/Books/3.jpg";
+  // const book4 =  "../../Images/Books/4.jpg";
   SwiperCore.use([Autoplay])
   // const images = [book2,book,book3,book4]
 
-  const [images,setImages]= useState();
+  // const [images,setImages]= useState();
   
   const {data,isLoading,error } = booksApi.useGetAllBooksQuery(props.bookWriter)
 

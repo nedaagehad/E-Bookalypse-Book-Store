@@ -19,10 +19,13 @@ import En from '../../assets/En.png';
 import Ar from '../../assets/Ar.png';
 import { changeLang } from '../../store/actions/language';
 import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
+import { booksApi } from '../../store/services'
 
 
 function NavBar() {
   const authState = useSelector(state => state.auth.userRole)
+
+  const [getUserByID,response] = booksApi.useGetUserByIDMutation();
   
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -30,6 +33,7 @@ function NavBar() {
   const dispatch = useDispatch();
 
   const [profileClicked, setProfileClicked] = useState(false);
+  const [profilePic, setProfilePic] = useState("");
 
   useEffect(() => {
     if(authState !== ''){
@@ -39,6 +43,15 @@ function NavBar() {
     }
   }, [authState]);
   // console.log(theme);
+
+  useEffect(() => {
+    getUserByID().then((res) => {
+      console.log("hi")
+      // console.log(res.data)
+      setProfilePic(res.data.image)
+      console.log(profilePic);
+    })
+  }, [])
 
 
   return (
@@ -78,7 +91,7 @@ function NavBar() {
 
                   <FaUserCircle className={styles.userIcon} />
                 </Link> */}
-                <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                 {profileClicked ? <ProfileDropDown /> : null}
 
               </div> :

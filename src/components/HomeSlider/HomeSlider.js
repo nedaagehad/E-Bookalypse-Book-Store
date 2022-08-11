@@ -8,7 +8,7 @@ function HomeSlider() {
   const lang = useSelector((state) => state.lang.currentLang);
 
   return (
-      <div className={classes.heroSection} dir={lang === "En" ? "ltr" : "rtl"}>
+      <div className={classes.heroSection}>
         <div className={classes.overlay}>
           <div className={classes.hotPromotions}>
             <div className={classes.promo}>

@@ -7,8 +7,14 @@ import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
 import Checkout from './pages/user/Checkout/Checkout';
+// <<<<<<< HEAD
 import Offers from './pages/user/Offers/Offers';
+// =======
+import BookShelf from './pages/user/BookShelf/BookShelf';
+// import Promotions from './pages/user/Promotions/Promotions';
+// >>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657
 import Login from './pages/user/Login/Login';
+import Wishlist from './pages/user/Wishlist/Wishlist';
 import SignUp from './pages/user/SignUp/SignUp';
 import Books from './pages/admin/Books/Books';
 import AddBook from './pages/admin/Book/addBook';
@@ -66,14 +72,24 @@ function App() {
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />}/>
           <Route path='/categories' element={<Categories />} />
-          <Route path='/categories/category/' element={<Category />} />
+{/* <<<<<<< HEAD */}
+          <Route path='/categories/category' element={<Category />} />
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
           <Route path='/cart' element={<Checkout />} />
           {/* <Route path='/promotions' element={<Promotions />} /> */}
           <Route path='/offers' element={<Offers />} />
 
-          <Route path='/login' element={<Login /> } />
+          {/* <Route path='/login' element={<Login /> } /> */}
+{/* ======= */}
+          {/* <Route path='/categories/category' element={<Category />} /> */}
+          <Route path='/categories/category/BookDetails' element={<BookDetails />} />
+          {/* <Route path='/categories/category/BookDetails/Checkout' element={<Checkout />} /> */}
+          <Route path='/profile/bookshelf' element={<BookShelf />} />
+          {/* <Route path='/promotions' element={<Promotions />} /> */}
+          <Route path='/login' element={<Login />} />
+          <Route path='/Wishlist' element={<Wishlist /> } />
+{/* >>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657 */}
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
           <Route path='/profile' element={<UserProfile />} />

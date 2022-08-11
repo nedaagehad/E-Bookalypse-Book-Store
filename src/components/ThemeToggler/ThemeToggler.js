@@ -13,7 +13,8 @@ function ThemeToggler() {
     dispatch(changeTheme(theme === "night" ? "day" : "night"))
   }
   return (
-    <div className={`${styles.themeToggler} ${theme === "night" ? styles.night : ""}`} onClick={toggleTheme}>
+    <div className={`${styles.themeToggler} ${theme === "night" ? styles.night : ""}`} onClick={toggleTheme}
+    data-bs-toggle="tooltip" data-bs-placement="bottom" title={theme === "night" ? "Night" : "Day"}>
         <div className={styles.notch}>
             <div className={`${styles.crater} ${styles.st}`} />
             <div className={`${styles.crater} ${styles.nd}`} />

@@ -6,7 +6,7 @@ import { priceMax,priceMin } from "../../../store/reducers/filterReducer/filterR
 const PriceRange = props =>{
 const [minValue, set_minValue] = useState(0);
 const [maxValue, set_maxValue] = useState(200);
-const filterState = useSelector(state => state.filter)
+// const filterState = useSelector(state => state.filter)
 const dispatch  = useDispatch();
 
 const handleInput = (e) => {

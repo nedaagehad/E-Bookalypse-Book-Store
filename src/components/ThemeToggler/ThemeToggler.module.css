@@ -3,7 +3,7 @@
     height: 30px;
     width: 60px;
     border-radius: 30px;
-    background-image: linear-gradient(aqua, skyblue);
+    background-image: linear-gradient(aqua, #0088bf);
     position: relative;
     cursor: pointer;
   }
@@ -16,7 +16,7 @@
     height: 27px;
     width: 27px;
     border-radius: 50%;
-    background-color: yellow;
+    background-image: linear-gradient(135deg, yellow, #ffc917, #ff801a);
     position: absolute;
     top: 1.5px;
     left: 1px;
