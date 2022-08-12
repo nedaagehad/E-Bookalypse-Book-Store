@@ -69,7 +69,6 @@ const BookView = props =>{
                 }
 
 
-//  =======
         {/* // <div className={classes.BookView}>
         //     <h2>{props.title}</h2>
         //     <div className={`row`}>
