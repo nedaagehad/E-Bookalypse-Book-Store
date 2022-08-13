@@ -46,8 +46,10 @@ const BookView = props =>{
             <div className={`row`}>
                     {props.children} 
 
-
+{/* <<<<<<< HEAD */}
  {/* ======= */}
+{/* ======= */}
+{/* >>>>>>> 56b6db9b7d0fe21f37cedae967f8e4cd8ebbd259 */}
         {/* // <div className={classes.BookView}>
         //     <h2>{props.title}</h2>
         //     <div className={`row`}>

@@ -19,7 +19,10 @@ import En from '../../assets/En.png';
 import Ar from '../../assets/Ar.png';
 import { changeLang } from '../../store/actions/language';
 import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
-import { booksApi } from '../../store/services'
+import { booksApi } from '../../store/services';
+import { getDownloadURL, ref } from 'firebase/storage';
+import storage from '../../Firebase/firebaseImage';
+
 
 
 function NavBar() {
@@ -34,6 +37,7 @@ function NavBar() {
 
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
+  const [userImage, setUserImage] = useState("")
 
   useEffect(() => {
     if(authState !== ''){
@@ -44,6 +48,7 @@ function NavBar() {
   }, [authState]);
   // console.log(theme);
 
+// <<<<<<< HEAD
   useEffect(() => {
     getUserByID().then((res) => {
       console.log("hi")
@@ -52,6 +57,26 @@ function NavBar() {
       // console.log(profilePic);
     })
   }, [])
+// =======
+  // useEffect(() => {
+  //   getUserByID().then((res) => {
+  //     // console.log("hi")
+  //     // console.log(res.data.image)
+  //     setUserImage(res.data.image)
+  //     // console.log("userImage" + userImage);
+  //   })
+
+  //   // if(user.image){
+  //     const starsRef = ref(storage, 'uploads/users/'+userImage);
+  
+  //     getDownloadURL(starsRef)
+  //     .then((url) => {
+  //         setProfilePic(url)
+  //         // console.log("image" + url)
+  //     })
+  //   // }
+  // }, [userImage])
+// >>>>>>> 56b6db9b7d0fe21f37cedae967f8e4cd8ebbd259
 
 
   return (
@@ -85,13 +110,13 @@ function NavBar() {
             {loggedIn ?
               
               <div className={styles.profileIcon}>
-                {/* 
-                <div className={styles.profileIcon}>
-                <Link to={`/profile`}>
+                
+                {/* <div className={styles.profileIcon}>
+                <Link to={`/profile`}> */}
 
-                  <FaUserCircle className={styles.userIcon} />
-                </Link> */}
-                <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                  <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                {/* </Link> */}
+                {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
                 {profileClicked ? <ProfileDropDown /> : null}
 
               </div> :

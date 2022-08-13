@@ -1,0 +1,110 @@
+body {
+    margin: 2rem;
+}
+
+.userBox {
+    width: 100px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.mov {
+    background-color: #8a04a5 !important;
+}
+
+.mov2{
+    color: #8a04a5 !important;
+    font-weight: bold;
+}
+
+.saveBtn {
+    background-color: #8a04a5 !important;
+    color: #fff !important;
+    margin-right: 15px;
+}
+
+.cancelBtn {
+    border: 1px solid #8a04a5 !important;
+    background-color: #fff !important;
+    color: #8a04a5 !important;
+    margin-right: 15px;
+    /* margin: 0px 15px 0px 0px;
+    padding: 6px 12px;
+    border-radius: 5px */
+
+}
+
+.small {
+    color: #8a04a5 !important;
+}
+
+.username{
+    font-weight: normal!important;
+    font-size: medium!important;
+    padding-bottom: 8px!important;
+}
+
+.content{
+    padding: 20px!important;
+}
+
+.userBox img {
+    width: 100%;
+    border-radius: 50%;
+    padding: 3px;
+    background: #fff;
+    -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.profileCard4 .userBox {
+    width: 110px;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.profileCard4 .listIcon {
+    display: table-cell;
+    font-size: 30px;
+    /* padding-right: 20px; */
+    vertical-align: middle;
+    color: #223035;
+}
+
+.profileCard4 .listDetails {
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: 600;
+    color: #223035;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.profileCard4 .listDetails small {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8e8d8d;
+}
+
+.zDepth3 {
+    -webkit-box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19), 0 13px 25px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19), 0 13px 25px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media(min-width: 845px) and (max-width:991px) {
+    h5 {
+        text-align: center;
+        align-items: center;
+    }
+}
+
+.lightTxt {
+    color: #aba8a8 !important;
+}
