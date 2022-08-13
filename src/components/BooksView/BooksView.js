@@ -30,9 +30,7 @@ const BookView = props =>{
                     setSearchedBook(getSearchResults.data.data)
                     // console.log(getSearchResults.data.data)
                 }
-
             }        
-
         }
         if(data){
             setBooks(data.data)
