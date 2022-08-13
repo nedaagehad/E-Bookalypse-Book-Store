@@ -24,7 +24,6 @@ function Wishlist() {
                                   <div className="col-lg-3 col-md-6 col-sm-12" style={{marginBottom:"20px"}}>
                                 <BookCard img="../../Images/Books/1.jpg" alt="Harry Potter and the philospher stone" price="$15.50"/>
                                   </div>
-                                  
                         </div>
                       </div>
                   </BooksView>

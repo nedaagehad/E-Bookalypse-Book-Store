@@ -48,8 +48,8 @@ function NavBar() {
     getUserByID().then((res) => {
       console.log("hi")
       // console.log(res.data)
-      setProfilePic(res.data.image)
-      console.log(profilePic);
+      // setProfilePic(res.data.image)
+      // console.log(profilePic);
     })
   }, [])
 

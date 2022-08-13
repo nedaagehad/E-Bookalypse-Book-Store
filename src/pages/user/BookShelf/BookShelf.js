@@ -4,10 +4,9 @@ const BookShelf = props => {
   return (
     <div className='content'>
          <div className='container'>
-        <div className='row'>
-          
-                <Shelf/>
-            </div>
+              <div className='row'>
+                  <Shelf/>
+              </div>
          </div>
     </div>
   )

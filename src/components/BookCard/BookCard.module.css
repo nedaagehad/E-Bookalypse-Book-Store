@@ -1,5 +1,5 @@
 .BookCard{
-    padding: 20px;
+    
 }
 .card{
     width: 100%;
@@ -8,27 +8,31 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
     line-height: 30px;
     padding: 20px;
     padding-bottom: 30px;
+    margin-bottom: 30px;
+    height: 500px;
 }
 
 .cardNight{
-    width: 90%;
+    width: 100%;
     margin: auto;
     background: #373637;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
     line-height: 30px;
     padding: 20px;
     padding-bottom: 30px;
+    margin-bottom: 30px;
+    height: 500px;
 }
 
 .card .Book_Poster, .cardNight .Book_Poster{
@@ -61,7 +65,7 @@
     position: relative;
 /* >>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657 */
     cursor: pointer;
-    width: 65%;
+    width: 100%;
 }
 .poster_overlay{
     position: absolute;
@@ -93,7 +97,7 @@
     .card .poster{
         position: relative;
         cursor: pointer;
-        width: 35%;
+        width: 100%;
     }
 }
 /* <<<<<<< HEAD
