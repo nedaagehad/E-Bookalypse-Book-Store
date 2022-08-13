@@ -41,7 +41,7 @@ const BookCard = props => {
 
             {/* **********************REHAM'S STATIC CODE***************************** */}
       <div className={classes.BookCard}>
-        <div className={classes.card}>
+        <div className={theme === "night" ? classes.cardNight : classes.card}>
           <div className={classes.poster}>
             <div className={classes.poster_overlay}></div>
             <img className={classes.Book_Poster} src={props.img} alt={props.alt} />
