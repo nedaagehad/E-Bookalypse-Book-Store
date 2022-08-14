@@ -1,3 +1,18 @@
 .shelfContainer{
-    
+    padding: 30px;
+}
+.book{
+    /* border:solid; */
+}
+.book img{
+    display: block;
+    margin: auto;
+    height: 250px;
+    margin-bottom: 30px;
+    transform: skewY(-15deg);
+    border: 5px solid grey;
+    border-radius: 10px;
+}
+.book img:hover{
+    transform: skewY(0deg);
 }

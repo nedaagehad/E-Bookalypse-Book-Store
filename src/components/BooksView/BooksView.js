@@ -30,9 +30,7 @@ const BookView = props =>{
                     setSearchedBook(getSearchResults.data.data)
                     // console.log(getSearchResults.data.data)
                 }
-
             }        
-
         }
         if(data){
             setBooks(data.data)
@@ -41,34 +39,15 @@ const BookView = props =>{
     }, [data,getSearchResults.data]);
     return(
 // <<<<<<< HEAD
-        <div className={`col-md-9 col-sm-12 ${styles.BookView}`}>
-            <h2 className={styles.title}>Books</h2>
+        <div className={`col-md-12 col-sm-12 ${styles.BookView}`}>
+            <h2 className={styles.title}>{props.title}</h2>
             <div className={`row`}>
-               
-                {
-                    
-                    searchedBook !== undefined ? 
-                    searchedBook.map((book)=>{
-                        return (
-                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt={book.title} price="$15.50"/>
-                            
-                        )
-                    })
-                        
-                    
-                    :
-                    books !== undefined ? 
-                    books.map((book)=>{
-                        return (
-                            <BookCard key={book._id} book={book} img="../../Images/Books/1.jpg" alt={book.title} price="$15.50"/>
-                            
-                        )
-                    })
-                    
-                    : null
-                }
+                    {props.children} 
 
-
+{/* <<<<<<< HEAD */}
+ {/* ======= */}
+{/* ======= */}
+{/* >>>>>>> 56b6db9b7d0fe21f37cedae967f8e4cd8ebbd259 */}
         {/* // <div className={classes.BookView}>
         //     <h2>{props.title}</h2>
         //     <div className={`row`}>

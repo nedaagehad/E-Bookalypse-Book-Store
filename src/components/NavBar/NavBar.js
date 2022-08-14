@@ -60,6 +60,16 @@ function NavBar() {
 
   // console.log(theme);
 
+// <<<<<<< HEAD
+  useEffect(() => {
+    getUserByID().then((res) => {
+      console.log("hi")
+      // console.log(res.data)
+      // setProfilePic(res.data.image)
+      // console.log(profilePic);
+    })
+  }, [])
+// =======
   // useEffect(() => {
   //   getUserByID().then((res) => {
   //     // console.log("hi")
@@ -78,6 +88,7 @@ function NavBar() {
   //     })
   //   // }
   // }, [userImage])
+// >>>>>>> 56b6db9b7d0fe21f37cedae967f8e4cd8ebbd259
 
 
   return (
