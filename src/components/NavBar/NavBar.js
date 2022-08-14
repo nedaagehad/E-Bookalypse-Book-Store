@@ -1,11 +1,10 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { GoHome } from 'react-icons/go';
 import { GiBookshelf } from 'react-icons/gi';
-// import { GiShoppingCart } from 'react-icons/gi';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import { TbShoppingCartDiscount } from 'react-icons/tb';
 import SearchBar from "../SearchBar/SearchBar";
@@ -29,8 +28,8 @@ import { getCount } from "../../store/reducers/cartReducer/CartReducer";
 function NavBar() {
   const authState = useSelector(state => state.auth.userRole)
 
-  const [getUserByID,response] = booksApi.useGetUserByIDMutation();
-  
+  const [getUserByID, response] = booksApi.useGetUserByIDMutation();
+
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
   const lang = useSelector((state) => state.lang.currentLang);
@@ -45,9 +44,9 @@ function NavBar() {
   const {data,isLoading,error} = booksApi.useGetCartQuery()
 
   useEffect(() => {
-    if(authState !== ''){
+    if (authState !== '') {
       setLoggedIn(true)
-    }else {
+    } else {
       setLoggedIn(false)
     }
     if(data){
@@ -59,17 +58,7 @@ function NavBar() {
   }, [authState,count,data]);
 
   // console.log(theme);
-
-// <<<<<<< HEAD
-  useEffect(() => {
-    getUserByID().then((res) => {
-      console.log("hi")
-      // console.log(res.data)
-      // setProfilePic(res.data.image)
-      // console.log(profilePic);
-    })
-  }, [])
-// =======
+ 
   // useEffect(() => {
   //   getUserByID().then((res) => {
   //     // console.log("hi")
@@ -80,7 +69,7 @@ function NavBar() {
 
   //   // if(user.image){
   //     const starsRef = ref(storage, 'uploads/users/'+userImage);
-  
+
   //     getDownloadURL(starsRef)
   //     .then((url) => {
   //         setProfilePic(url)
@@ -88,106 +77,92 @@ function NavBar() {
   //     })
   //   // }
   // }, [userImage])
-// >>>>>>> 56b6db9b7d0fe21f37cedae967f8e4cd8ebbd259
 
 
   return (
     <>
-      {/* Navbar in Large Screen */}
-      <Navbar sticky="top" className={`${styles.navbarLarge} shadow-sm py-lg-0 py-md-1`} bg={theme === "night" ? "dark" : "light"} variant={theme === "night" ? "dark" : "light"} expand="lg">
-        <Container fluid>
-          <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} /> E-Bookalypse</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-              <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                <GoHome className='me-1' />
-                Home</NavLink>
 
-              <NavLink to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                <GiBookshelf className='me-1' />
-                Categories</NavLink>
-
-              <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                <TbShoppingCartDiscount className='me-1' />
-                Offers
-              </NavLink>
-            </Nav>
-
-            <SearchBar className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-4`} />
-            <Link to='/cart'>
-              <h1>{count}</h1>
-              <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
-            </Link>
-            {loggedIn ?
-              
-              <div className={styles.profileIcon}>
-                
-                {/* <div className={styles.profileIcon}>
-                <Link to={`/profile`}> */}
-
-                  <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
-                {/* </Link> */}
-                {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
-                {profileClicked ? <ProfileDropDown /> : null}
-
-              </div> :
-              <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
-                <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
-                <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
-              </div>}
-            <ThemeToggler />
-
-            {/* Language Toggler */}
-             <div className={`${styles.profileIcon}`} onClick={() => {
-              dispatch(changeLang(lang === "Ar" ? "En" : "Ar"));
-             }}>
-              {lang === "En" ? <img className={styles.userIcon} src={En} alt='en' data-bs-toggle="tooltip" data-bs-placement="bottom" title="English" /> :
-              <img className={styles.userIcon} src={Ar} alt='ar' data-bs-toggle="tooltip" data-bs-placement="bottom" title="عربي" />}
-              </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-
-      {/* navbar in small screens */}
-      {["md"].map((expand) => (
-        <Navbar key={expand} expand={expand} sticky="top" className={`shadow-sm d-lg-none`} bg={theme === "night" ? "dark" : "light"} variant={theme === "night" ? "dark" : "light"}>
+      {['lg'].map((expand) => (
+        <Navbar sticky="top" className='shadow-lg' key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
           <Container fluid>
-            <Navbar.Brand className={`${styles.logo} fs-4`}>E-Bookalypse</Navbar.Brand>
-            <SearchBar className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-4`} />
-            {loggedIn ?
-              <div className={`${styles.profileIconMD} me-3`}>
-                <FaUserCircle className={styles.userIcon} />
-              </div> :
-              <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
-                <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
-              </div>}
+            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} />E-Bookalypse</Navbar.Brand>
+            <div className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
+              <SearchBar />
+            </div>
+            <div className="justify-content-center align-items-center d-lg-none  me-3">
+              <Link to='/cart'>
+                <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon}`} style={{ width: '22px', height: '22px' }} />
+              </Link>
+            </div>
+            <div className="align-items-center d-lg-none me-3">
+              {loggedIn ?
+                <div className={`${styles.profileIcon}`}>
+                  <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                  {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                  {profileClicked ? <ProfileDropDown /> : null}
+
+                </div> :
+                <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
+                  <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
+                  <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
+                </div>}
+            </div>
+
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton className={theme === "night" ? "bg-dark" : "bg-light"}>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={theme === "night" ? "text-light" : "text-dark"}>
-                  Offcanvas
+              placement="start">
+              <Offcanvas.Header className={theme === "night" ? "bg-dark" : ""}>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={`${styles.logo} fs-4`}>
+                  <img className={styles.logoIMG} src={logo} />E-Bookalypse
                 </Offcanvas.Title>
+                <div className="align-items-center d-lg-none">
+                  <ThemeToggler />
+                </div>
               </Offcanvas.Header>
-              <Offcanvas.Body className={theme === "night" ? "bg-dark" : "bg-light"}>
-                <Nav className="me-auto my-2 my-lg-0">
-                  <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+              <Offcanvas.Body className={theme === "night" ? "bg-dark" : ""}>
+                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center">
+                  <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <GoHome className='me-1' />
                     Home</NavLink>
 
-                  <NavLink to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <NavLink to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <GiBookshelf className='me-1' />
                     Categories</NavLink>
 
-                  <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <TbShoppingCartDiscount className='me-1' />
                     Offers
                   </NavLink>
+                  <div className='d-none d-lg-inline'>
+                    <SearchBar />
+                  </div>
+                </Nav>
+
+                <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
+                  <Link to='/cart'>
+                    <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+                  </Link>
+                  {loggedIn ?
+                    <div className={styles.profileIcon}>
+                      <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                      {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                      {profileClicked ? <ProfileDropDown /> : null}
+
+                    </div> :
+                    <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
+                      <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
+                      <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
+                    </div>}
                   <ThemeToggler />
+                  {/* Language Toggler */}
+                  {/* <div className={`${styles.profileIcon}`} onClick={() => {
+                    dispatch(changeLang(lang === "Ar" ? "En" : "Ar"));
+                  }}>
+                    {lang === "En" ? <img className={styles.userIcon} src={En} alt='en' data-bs-toggle="tooltip" data-bs-placement="bottom" title="English" /> :
+                      <img className={styles.userIcon} src={Ar} alt='ar' data-bs-toggle="tooltip" data-bs-placement="bottom" title="عربي" />}
+                  </div> */}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

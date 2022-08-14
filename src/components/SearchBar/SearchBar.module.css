@@ -96,12 +96,12 @@
 } */
 
 .searchBar {
-    width: 300px;
-    position: absolute;
+    width: 30vw;
+    position: relative;
     height: 30px;
     border-radius: 5px;
     padding: 0px;
-    right: 35%;
+    right: 0%;
 }
 
 .searchBar input{
@@ -117,12 +117,22 @@
 
 .searchBtn {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    right: 0px;
+    width: 20px;
+    height: 20px;
+    right: 5px;
     top: 0px;
+}
+
+.searchIcon {
+    color: #8D27AE;
 }
 
 .searchBar input:focus {
     box-shadow: 1px 1px 5px #8D27AE, -1px -1px 5px #8D27AE;
+}
+
+@media (max-width: 800px) {
+    * {
+        text-align: start !important;
+    }
 }

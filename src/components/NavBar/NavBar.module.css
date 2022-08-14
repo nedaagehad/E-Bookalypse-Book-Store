@@ -106,3 +106,12 @@
     padding: 7px;
     margin: 0 !important;
   }
+
+  .offCanvas {
+    width: 100px !important;
+    border: none !important;
+  }
+
+  .titleBGNight{
+    background: #373637;
+}
