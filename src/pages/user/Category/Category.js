@@ -28,13 +28,13 @@ function Category() {
         if(params.id.match(/^\d/) == null ){
             if(getSearchResults.data){
 
-                setSearchedBook(getSearchResults.data.data)
-                // console.log(getSearchResults.data.data)
+                setBooks(getSearchResults.data.data)
+                console.log(getSearchResults.data.data)
             }
 
         }        
 
-    }
+    }else
     if(data){
         setBooks(data.data)
         // console.log(data.data)
