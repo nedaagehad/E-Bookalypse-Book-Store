@@ -1,23 +1,46 @@
-import React from 'react';
+import { getDownloadURL, ref } from 'firebase/storage';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import storage from '../../Firebase/firebaseImage';
+import { booksApi } from '../../store/services';
 
 // CSS Module
 import styles from './UserCard.module.css';
 
-function UserCard() {
-
+function UserCard(props) {
+    const {user} = props
     const theme = useSelector((state) => state.theme.currentTheme);
+    const getCartItems = booksApi.useGetCartQuery()
+    const [cartCount,setCartCount] = useState()
+    const getWishListItems = booksApi.useGetWishListQuery()
+    const [wishListCount,setWishListCount] = useState()
+    const [profileImg,setProfileImg] = useState()
+    useEffect(()=>{
+        if(getCartItems.data){
+            setCartCount(getCartItems.data.cart.bookItems.length + getCartItems.data.cart.collectionItems.length)
+        }
+        if(getWishListItems.data){
+            setWishListCount(getWishListItems.data.wishList.bookItems.length + getWishListItems.data.wishList.collectionItems.length)
+        }
+        const starsRef = ref(storage, `/uploads/users/${user.image}`);
+         getDownloadURL(starsRef).then( (url)=>{
+  
+            
+          setProfileImg(url)
+          
+        }).catch((error) => {console.log(error)});
 
+    },[getCartItems.data,getWishListItems.data])
     return (
         <div className={`${styles.profileCard4} ${styles.zDepth3}`}>
             <div className={`card ${theme === "night" ? "bg-dark" : ""}`}>
                 <div className={`${styles.cardBody} rounded-top ${styles.mov}`}>
 
                     <div className={styles.userBox}>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" />
+                        <img src={profileImg} alt="user avatar" />
                     </div>
-                    <h5 className={`mb-1 text-lg-center text-white ${styles.wrong} ${styles.h5} `}>test</h5>
-                    <h5 className={`text-light  text-lg-center ${styles.h5} ${styles.username}`}>@test</h5>
+                    <h5 className={`mb-1 text-lg-center text-white ${styles.wrong} ${styles.h5} `}>{user.fName}</h5>
+                    <h5 className={`text-light  text-lg-center ${styles.h5} ${styles.username}`}>@{user.userName}</h5>
                 </div>
 
                 <div className={styles.cardBody}>
@@ -27,7 +50,7 @@ function UserCard() {
                                 <i className="fa fa-phone-square"></i>
                             </div>
                             <div className={styles.listDetails}>
-                                <span>012345678</span>
+                                <span>{user.phone}</span>
                                 <small>Mobile Number</small>
                             </div>
                         </li>
@@ -37,7 +60,7 @@ function UserCard() {
                                 <i className="fa fa-envelope"></i>
                             </div>
                             <div className={styles.listDetails}>
-                                <span>test@test.test</span>
+                                <span>{user.email}</span>
                                 <small>Email Address</small>
                             </div>
                         </li>
@@ -47,7 +70,7 @@ function UserCard() {
                                 <i className="fa fa-globe"></i>
                             </div>
                             <div className={styles.listDetails}>
-                                <span>test</span>
+                                <span>{user.city}</span>
                                 <small>City</small>
                             </div>
                         </li>
@@ -60,12 +83,12 @@ function UserCard() {
                         </div>
 
                         <div className="col p-2">
-                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>10</h4>
+                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>{wishListCount}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>WishList</small>
                         </div>
                         
                         <div className="col p-2">
-                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>5</h4>
+                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>{cartCount}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Cart</small>
                         </div>
                     </div>

@@ -15,7 +15,6 @@ function BookDetails() {
   const [book,setBook] = useState()
   const [price,setPrice] = useState()
   const [discount,setDiscount] = useState()
-
   const {data,isLoading,error} = booksApi.useGetBookByIdQuery(params.id)
   const [image,setImage]= useState()
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -26,10 +25,11 @@ function BookDetails() {
       setBook(data[0])
       let promotions = data[0].promotion
       let finalPrice = data[0].price
+     
       if(promotions.length > 0){
         // console.log(promotions[0].discount_rate)
         setDiscount(promotions[0].discount_rate)
-         finalPrice = data[0].price * promotions[0].discount_rate
+         finalPrice = data[0].price -  data[0].price * promotions[0].discount_rate
         }
         setPrice(finalPrice)
       const starsRef = ref(storage, `/uploads/books/poster/${data[0].poster}`);
@@ -63,11 +63,12 @@ function BookDetails() {
                             bookPriceBeforePromo={book.price}
                             book= {book}                            
                       />
-                      {/* {book.reviews.length > 0 ? 
-                      
+                      {book.reviews.length > 0 ? 
+                        
                         <CustomerReviews
-                          key={book._id}
-                          rate="4.2"
+                          reviews={book.reviews}
+                          
+                          rate={"4.2"}
                           rateDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                           fivePerc="80"
                           fourPerc="60"
@@ -83,7 +84,7 @@ function BookDetails() {
                           ]}
                         />
                       
-                      :null} */}
+                      :null}
                   
                   <RelatedToAuther bookWriter={book.writer[0].title}/>
                   </>

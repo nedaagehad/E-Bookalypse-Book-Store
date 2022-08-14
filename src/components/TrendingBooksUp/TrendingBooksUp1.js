@@ -7,10 +7,8 @@ import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
 import styles from './TrendingBooksUp.module.css';
 import { useSelector } from 'react-redux';
 
-import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { booksApi } from '../../store/services';
-import storage from '../../Firebase/firebaseImage';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import SingleBook from './SingleBook/SingleBook';
 
 
@@ -23,19 +21,17 @@ const TrendingBooksUp1 = () => {
   const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
   const [books,setBooks] = useState()
   const [ images,setImages] = useState([])
-  const [ image ,setImage]= useState()
 
   let imagesArr = [...images];
 
   useEffect(() => {
-    if(data){
+    if(data){      
       setBooks(data.data)
-      
       data.data.forEach((bookImg)=>{
         imagesArr.push(bookImg.poster)
         setImages(imagesArr)
-
       })
+      
     }            
   }, [data])
     
@@ -65,6 +61,27 @@ const TrendingBooksUp1 = () => {
               modifier: 2,
               slideShadows: false,
             }}
+            breakpoints={
+              {
+                  // when window width is >= 320px
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                  },
+                  // when window width is >= 480px
+                  480: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                  },
+                  // when window width is >= 640px
+                  640: {
+                    slidesPerView: 3,
+                    spaceBetween: 40
+                  }
+              }
+              
+            }
+            
             loop={true}
             navigation={{
               nextEl:'.nextTrendBook',
@@ -80,7 +97,6 @@ const TrendingBooksUp1 = () => {
                     <SingleBook
                             key={b._id}
                             book={b}/>
-                
               </SwiperSlide>
             )
           }): null}

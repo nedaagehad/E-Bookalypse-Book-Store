@@ -5,7 +5,8 @@ import Comment from './Comment/Comment'
 import { useSelector } from 'react-redux'
 
 const CustomerReviews = props => {
-
+    const {reviews} = props
+    console.log(reviews)
     const theme = useSelector((state) => state.theme.currentTheme);
 
     return (

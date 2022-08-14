@@ -44,7 +44,7 @@ const CheckoutHeader = props => {
                     bookItems !== undefined ?
                     bookItems.map(item => {
                             return (
-                                <BookOnCard key={item._id} data={item}  />
+                                <BookOnCard  key={item._id} data={item}  />
                             )
                     })  :
                     null

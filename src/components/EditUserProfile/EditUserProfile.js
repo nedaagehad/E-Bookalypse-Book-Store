@@ -91,7 +91,7 @@ function EditUserProfile() {
         <div className={`container py-3`}>
             <div className="row">
                 <div className={`col-lg-4`}>
-                    {user ? <UserCard /> : null}
+                    {user ? <UserCard  user={user}/> : null}
                 </div>
 
                 <div className={`col-md-8 personal-info ps-lg-5`}>

@@ -31,7 +31,7 @@ export const booksApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
-    tagTypes:['cart'],
+    tagTypes:['cart','wishlist'],
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
@@ -409,6 +409,46 @@ export const booksApi = createApi({
                 invalidatesTags:['cart']
 
         }),
+        getWishList : builder.query({
+            query:()=>{
+                return{
+                    url:"/wish-list",
+                    headers:{"authorization":`Bearer ${userToken}`},
+                    
+                }
+            },
+            providesTags:['wishlist']
+        }),
+        addToWishList : builder.mutation({
+            query:(cartItems)=>{
+                const {bookIds,collectionIds} = cartItems
+          
+                console.log(cartItems)
+                return{
+                    url:'/wish-addition',
+                    method:'PUT',
+                    body:cartItems,
+                    headers:{"Authorization":`Bearer ${userToken}`},
+                    
+
+                }
+            },
+            invalidatesTags:['wishlist']
+        }),
+        removeFromWishList:builder.mutation({
+            query:(cartItems)=>{
+                const {bookIds,collectionIds} = cartItems
+            
+                console.log(bookIds)
+                return{
+                    url:'/wish-removal',
+                    method:'PUT',
+                    body:{bookIds:[bookIds],collectionIds:[collectionIds]},
+                    headers:{"Authorization":`Bearer ${userToken}`}
+                }
+            },
+            invalidatesTags:['wishlist']
+        })
 
 
     })  

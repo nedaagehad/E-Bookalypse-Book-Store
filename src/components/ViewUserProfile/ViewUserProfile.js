@@ -30,7 +30,7 @@ function ViewUserProfile() {
             <div className={`container py-5`}>
                 <div className="row pt-3">
                     <div className={`col-lg-4`}>
-                        <UserCard />
+                        <UserCard user={user} />
                     </div>
 
                     <div className={`col-md-8 personal-info ps-lg-5`}>

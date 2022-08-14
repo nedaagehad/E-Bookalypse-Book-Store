@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from 'react'
-
-import { FaClock } from 'react-icons/fa';
-import {BsFillCreditCardFill,BsFillAwardFill,BsFillShieldFill,BsDashLg} from 'react-icons/bs'
-import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
 import styles from  './HomeCategories.module.css';
-
-
-
-
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay, Navigation, Pagination, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { booksApi } from '../../../store/services';
 import { useSelector } from 'react-redux';
-import storage from '../../../Firebase/firebaseImage';
-import { getDownloadURL, ref } from 'firebase/storage';
 import SingleCategory from './SingleCategory/SingleCategory';
-
+import { BsDashLg } from 'react-icons/bs';
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
-
 const HomeCategories = (props) => {
-
   const theme = useSelector((state) => state.theme.currentTheme);
-  
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
   const {data,isLoading,error} = booksApi.useGetAllCategoriesQuery()
   const [categories,setCategories] = useState()
-  const [images,setImages]= useState([])
   useEffect(() => {
     if(data){
       setCategories(data.categories)
-      // console.log(data)
-      // console.log(data.categories)
-      // setImages(data.categories)
       setPrev(false)
     }
   }, [data]);
@@ -61,12 +44,12 @@ const HomeCategories = (props) => {
 
               // when window width is >= 320px
               320: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 20
               },
               // when window width is >= 480px
               480: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 30
               },
               // when window width is >= 640px

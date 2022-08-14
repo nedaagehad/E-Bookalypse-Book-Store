@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation} from 'swiper';
-
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
-
 import FlashSaleCard from '../BookCard/FlashSaleCard';
 import styles from './FlashSaleSlider.module.css'
 import { useSelector } from 'react-redux';
+import { booksApi } from '../../store/services';
 SwiperCore.use(Navigation);
 
 function FlashSaleSlider() {
@@ -27,8 +26,13 @@ function FlashSaleSlider() {
     const [remainSec,SetRemainSec] = useState(getremaining(endDate));
     const [prevDis,setPrevDis] = useState(false);
     const [nextDis,setNextDis] = useState(true);
-
-    
+    const {data,isLoading,error} = booksApi.useGetAllBooksQuery()
+    const [flashSales,setFlashSales ] = useState()
+    useEffect(() => {
+       if(data){
+        setFlashSales(data.data)
+       }
+    }, [data]);
 
     const displayCountDown = () => {
         let disDay = (remainSec/(60*60*24)) - (remainSec/(60*60*24))%1;
@@ -45,12 +49,12 @@ function FlashSaleSlider() {
         return `${disDay<=9? "0"+disDay: disDay } : ${disHours<=9? "0"+disHours: disHours } : ${disMin<=9? "0"+disMin: disMin } : ${disSec<=9? "0"+disSec: disSec }`;
     }
 
-    useEffect(() => {
-        setInterval(()=>{
-            SetRemainSec(getremaining(endDate));
-        },1000);
-    },[remainSec,prevDis,nextDis])
-
+    // useEffect(() => {
+    //     setInterval(()=>{
+    //         SetRemainSec(getremaining(endDate));
+    //     },1000);
+    // },[remainSec,prevDis,nextDis])
+    
     const handleNavigatePrev =() => {
         setNextDis(true);
     }
@@ -88,12 +92,17 @@ function FlashSaleSlider() {
                         }}
 
                         >
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
-                        <SwiperSlide><FlashSaleCard/></SwiperSlide>
+                        {flashSales ? flashSales.map((b)=>{
+                            if(b.promotion.length > 0){
+                                return(
+    
+                                    <SwiperSlide key={b._id}><FlashSaleCard book={b}/></SwiperSlide>
+                                )
+
+                            }
+
+                        }):null}
+
                     </Swiper>
                     <i className={`${styles.prev} prev ${prevDis? "d-block" : "d-none"} bi bi-arrow-left`} onClick={handleNavigatePrev}></i>
                     <i className={`${styles.next} next ${nextDis? "d-block" : "d-none"} bi bi-arrow-right`} onClick={handleNavigateNext}></i>
