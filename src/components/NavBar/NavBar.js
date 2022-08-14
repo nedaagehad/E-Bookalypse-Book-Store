@@ -19,9 +19,10 @@ import En from '../../assets/En.png';
 import Ar from '../../assets/Ar.png';
 import { changeLang } from '../../store/actions/language';
 import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
-import { booksApi } from '../../store/services';
+import { booksApi, selectCartItems } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
+import { getCount } from "../../store/reducers/cartReducer/CartReducer";
 
 
 
@@ -33,11 +34,15 @@ function NavBar() {
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
   const lang = useSelector((state) => state.lang.currentLang);
-  const dispatch = useDispatch();
+  // const count = useSelector((state) => state.cart.count);
 
+  const dispatch = useDispatch();
+  const [count,setCount] = useState(0)
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [userImage, setUserImage] = useState("")
+  const [cartCount, setCartCount] = useState("")
+  const {data,isLoading,error} = booksApi.useGetCartQuery()
 
   useEffect(() => {
     if(authState !== ''){
@@ -45,7 +50,14 @@ function NavBar() {
     }else {
       setLoggedIn(false)
     }
-  }, [authState]);
+    if(data){
+      console.log(data.cart.bookItems.length)
+      console.log(data.cart.collectionItems.length)
+      
+      setCount(data.cart.bookItems.length + data.cart.collectionItems.length)
+    }
+  }, [authState,count,data]);
+
   // console.log(theme);
 
   // useEffect(() => {
@@ -93,7 +105,7 @@ function NavBar() {
 
             <SearchBar className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-4`} />
             <Link to='/cart'>
-
+              <h1>{count}</h1>
               <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
             </Link>
             {loggedIn ?

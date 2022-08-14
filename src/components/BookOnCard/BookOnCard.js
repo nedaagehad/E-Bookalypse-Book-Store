@@ -9,7 +9,7 @@ import { removeFromCartReducer } from '../../store/reducers/cartReducer/CartRedu
 import { useSelector } from 'react-redux'
 
 const BookOnCard = props => {
-    console.log(props.data)
+    // console.log(props.data)
     const theme = useSelector((state) => state.theme.currentTheme);
 
     const [bookImages,setBookImages] = useState()
@@ -28,16 +28,18 @@ const BookOnCard = props => {
     }, []);
 
     const [removeFromCart ,response] = booksApi.useRemoveFromCartMutation()
-
-    let dispatch = useDispatch()
+    // // const {refetch} = booksApi.useGetCartMutation()
+    // const {refetch} = booksApi.useGetCartQuery()
+    // let dispatch = useDispatch()
 
 
     const removeItem = (bookData) =>{
         console.log(bookData)
         
-        removeFromCart({bookIds:bookData}  ).then((r)=>{
-       
-                   dispatch(removeFromCartReducer({bookIds:bookData}))
+        removeFromCart({bookIds:bookData,collectionIds:bookData}  ).then((r)=>{
+
+            // refetch()
+                //    dispatch(removeFromCartReducer({bookIds:bookData}))
              
         })
     
@@ -54,13 +56,23 @@ const BookOnCard = props => {
                         </div>
                         <div className={`col-9 ${classes.details}`}>
 
-                            <h3 className={theme === "night" ? "text-light" : ""}>{props.data.bookName}</h3>
+                            <h3 className={theme === "night" ? "text-light" : ""}>{props.data.title}</h3>
                             <p className={theme === "night" ? classes.lightTxt : ""}>{props.data.bookAuther}</p>
                         </div>
                     </div>
                 </div>
                 <div className={`col-2 ${classes.price}`}>
-                    <h4>${props.data.price}</h4>
+                    {
+                        props.data.promotion ? 
+                         (
+                                <h4>${props.data.price - props.data.promotion.discount_rate * props.data.price }</h4>
+                        )
+                        :
+                        (
+                            <h4>${props.data.price}</h4>
+                        )
+                    }
+                    
                 </div>
                 <div className={`col-2 ${theme === "night" ? classes.deleteNight : classes.delete}`}>
                 <button onClick={()=>removeItem(props.data._id)}><RiDeleteBin5Fill/></button>

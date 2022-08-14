@@ -25,20 +25,16 @@ const CollectionOnCard = props => {
     }, []);
 
     const [removeFromCart ,response] = booksApi.useRemoveFromCartMutation()
-
+    const {refetch} = booksApi.useGetCartQuery()
     let dispatch = useDispatch()
 
 
     const removeItem = (bookData) =>{
         console.log(bookData)
         
-        removeFromCart({collectionIds:bookData}).then((r)=>{
-            if(r.data){
-                   dispatch(removeFromCartReducer({collectionIds:bookData}))
-                console.log("right")
-            }else{
-                console.log("error")
-            }
+        removeFromCart({bookIds:bookData,collectionIds:bookData}).then((r)=>{
+                // refetch()
+
         })
     
     }

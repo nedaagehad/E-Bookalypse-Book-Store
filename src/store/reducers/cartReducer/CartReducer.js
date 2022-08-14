@@ -21,6 +21,16 @@ export const cartSlice = createSlice({
     initialState,
 
     reducers:{
+        increaseCount  (state,action){
+            console.log("increased")
+            state.count += 1
+        },
+        decreaseCount  (state,action){
+            state.count -= 1
+        },
+        setCartCount (state,action){
+            state.count  = action.payload
+        },
         FillCartFromDb (state,action){
             // console.log(action.payload)
             const {bookItems, collectionItems} = action.payload.cart
@@ -91,7 +101,10 @@ export const cartSlice = createSlice({
 
 
 
-export const { addToCartReducer,removeAll,removeFromCartReducer,FillCartFromDb
+export const { addToCartReducer,removeAll,removeFromCartReducer,FillCartFromDb,
+    increaseCount,
+decreaseCount,
+getCount,
 } = cartSlice.actions
 
 export default cartSlice.reducer

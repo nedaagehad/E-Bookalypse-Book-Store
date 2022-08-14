@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import Cookies from 'js-cookie';
 
 
 
@@ -21,6 +20,7 @@ export const api=createApi({
 
         })
 
+
     })
 })
 
@@ -29,9 +29,9 @@ export const booksApi = createApi({
     // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
     baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
-    keepUnusedDataFor: 1000,
-    refetchOnMountOrArgChange: 3000,
-
+    // keepUnusedDataFor: 1000,
+    // refetchOnMountOrArgChange: 3000,
+    tagTypes:['cart'],
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
@@ -365,30 +365,39 @@ export const booksApi = createApi({
 
         // cart
 
-        getCart:builder.mutation({
+        getCart:builder.query({
+            
             query:()=>{
                 return{
                     url:"/cart",
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+                    headers:{"authorization":`Bearer ${userToken}`},
+                    
                 }
-            }
-        }),
+            },
+            providesTags:['cart']
+        },
+        
+        ),
         addToCart:builder.mutation({
             query:(cartItems)=>{
                 const {bookIds,collectionIds} = cartItems
           
+                console.log(cartItems)
                 return{
                     url:'/cart-addition',
                     method:'PUT',
-                    body:{bookIds:[bookIds],collectionIds:[collectionIds]},
-                    headers:{"Authorization":`Bearer ${userToken}`}
+                    body:cartItems,
+                    headers:{"Authorization":`Bearer ${userToken}`},
+                    
+
                 }
-            }
+            },
+            invalidatesTags:['cart']
         }),
         removeFromCart:builder.mutation({
             query:(cartItems)=>{
                     const {bookIds,collectionIds} = cartItems
+                
                     console.log(bookIds)
                     return{
                         url:'/cart-removal',
@@ -396,12 +405,15 @@ export const booksApi = createApi({
                         body:{bookIds:[bookIds],collectionIds:[collectionIds]},
                         headers:{"Authorization":`Bearer ${userToken}`}
                     }
-                }
+                },
+                invalidatesTags:['cart']
+
         }),
 
 
     })  
+    
 })
 
-
+export const selectCartItems = (state)=>booksApi.endpoints.getCart.select('getCart').data
 // export const {useGetBooksAPi} = booksApi

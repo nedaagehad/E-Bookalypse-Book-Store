@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckoutHeader from '../../../components/CheckoutHeader/CheckoutHeader'
 import CheckoutSummary from '../../../components/CheckoutSummary/CheckoutSummary'
 import { addToCartReducer, FillCartFromDb } from '../../../store/reducers/cartReducer/CartReducer'
-import { booksApi } from '../../../store/services'
+import { booksApi, selectCartItems } from '../../../store/services'
 
 function Checkout() {
 
@@ -20,24 +20,46 @@ function Checkout() {
     let cartTotalPrice = useSelector(state=>state.cart.price)
 
     let dispatch  = useDispatch()
-    const [getCartItems , response] = booksApi.useGetCartMutation()
-    useEffect(() => {
-       getCartItems().then((r)=>{
+    // const [getCartItems , response] = booksApi.useGetCartMutation()
+    const {data,isLoading,error} = booksApi.useGetCartQuery()
+    
+    // useEffect(() => {
+    //    getCartItems().then((r)=>{
 
-        dispatch(FillCartFromDb(r.data))
+    //     dispatch(FillCartFromDb(r.data))
   
-            setDone(true)
-        // }
+    //         setDone(true)
+    //     // }
           
-       })
-    }, []);  
-    useEffect(() => {
+    //    })
+    // }, []);  
+    useEffect(()=>{
+        // getCartItems().then((r)=>{
+        //     console.log(r.data.cart)
+        //     // setCart(r.data.cart.cart)
+        //     setBookItems(r.data.cart.bookItems)
+
+        // })
+        if(data){
+            // console.log(data)
+            setCart(data.cart)
+            setTotalPrice(data.finalPrice)
+            setBookItems(data.cart.bookItems)
+            setCollectionItems(data.cart.collectionItems)
+
+            // console.log(data.)
+        }
+    },[data])
+
+    // console.log(selectCartItems())
+
+    // useEffect(() => {
             
-        setBookItems(cartSelector)
-        setCollectionItems(cartCollectionItems)
-        setTotalPrice(cartTotalPrice)
+    //     setBookItems(cartSelector)
+    //     setCollectionItems(cartCollectionItems)
+    //     setTotalPrice(cartTotalPrice)
         
-    }, [done,cartSelector,cartCollectionItems,cartTotalPrice]);  
+    // }, [done,cartSelector,cartCollectionItems,cartTotalPrice]);  
 
 
 
@@ -49,10 +71,10 @@ function Checkout() {
       <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
           <div className="container">
               <div className="row">
-                {bookItems  ? 
+                {cart  ? 
 
                     <>
-                        <CheckoutHeader bookItems={bookItems} collectionItems={collectionItems}/>
+                        <CheckoutHeader cart={cart} bookItems={bookItems} collectionItems={collectionItems}/>
                         <CheckoutSummary subTotal="30.98" tax="2.25" Total={totalPrice}/>
 
                     </>                

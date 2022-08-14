@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
 
 import { addToCartReducer } from '../../store/reducers/cartReducer/CartReducer';
+import AddToCardButton from '../AddToCardButton/AddToCardButton';
 const Combination = props => {
     const {collectionData,collectionName,collectionPrice,collectionID} = props;
     const [imageOne,setImageOne]= useState()
@@ -68,6 +69,8 @@ const Combination = props => {
         }
         )
         }
+        // console.log(collectionID)
+
         return (
          
             <div className={`col-md-6 col-sm-12 ${classes.collection}`}>
@@ -105,11 +108,11 @@ const Combination = props => {
                             )
                         })}
                     
-                        <div className={classes.action}>
+                        {/* <div className={classes.action}>
                             <button onClick={()=>addPromoToCart(collectionID)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                             <button className={classes.favorite}><BsFillHeartFill/></button>
-                        </div>
-
+                        </div> */}
+                        <AddToCardButton collection={collectionID}/>
                     </div>
                 </div>
             </div>
