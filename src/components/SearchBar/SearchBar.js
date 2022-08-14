@@ -52,7 +52,7 @@ function SearchBar() {
     <div className={styles.searchBar} >
         <input type='text' onChange={HandleSearch} value={searchTerm} placeholder='Type to search...' />
         <div className={styles.searchBtn} onClick={Search}>
-            <BsSearch />
+            <BsSearch className={`w-100 h-100 ${styles.searchIcon}`} />
         </div>
         {/* <div className={styles.Cancel}>
             <GrClose />
