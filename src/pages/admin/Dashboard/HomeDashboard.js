@@ -4,6 +4,7 @@ import "../../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import AdminNavbar from '../../../components/AdminNavbar/AdminNavbar';
 import DashboardContent from '../../../components/DashboardContent/DashboardContent';
+import { Outlet } from 'react-router-dom';
 function HomeDashboard() {
     return (
         <div className="container-scroller bg-dark">
@@ -11,7 +12,7 @@ function HomeDashboard() {
             <AdminSidebar/>
             {/* <div className="page-body-wrapper"> */}
             <AdminNavbar/>
-            <DashboardContent/> 
+            <Outlet/> 
           {/* </div> */}
 
 

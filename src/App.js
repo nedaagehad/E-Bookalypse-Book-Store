@@ -46,6 +46,7 @@ import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
+import DashboardContent from './components/DashboardContent/DashboardContent';
 
 function App() {
 
@@ -94,8 +95,8 @@ function App() {
         {!isUser ? 
        
         
-        <Route path='/admin' element={<AdminLayout />} >
-          <Route index element={<HomeDashboard />}/>
+        <Route path='/admin' element={<HomeDashboard />} >
+          <Route index element={<DashboardContent  />}/>
 
           {/* Books Routes */}
           <Route path='/admin/books' element={<Books />} />
