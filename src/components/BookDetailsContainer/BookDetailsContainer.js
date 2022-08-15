@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import classes from './BookDetailsContainer.module.css'
 import AddToCardButton from '../AddToCardButton/AddToCardButton'
 import { AiFillStar } from 'react-icons/ai'
@@ -11,8 +11,10 @@ const BookDetailsContainer = props => {
     const cartItems = useSelector(state=>state.cart)
     const cartItemsBookIds = useSelector(state=>state.cart.bookIds)
     const theme = useSelector((state) => state.theme.currentTheme);
-
+    const getWishList = booksApi.useGetWishListQuery()
+    const [wishList,setWishList] = useState()
     let dispatch= useDispatch()
+    
 
     // useEffect(()=>{
     //     // console.log(cartItemsBookIds.length )
@@ -29,6 +31,14 @@ const BookDetailsContainer = props => {
 
 
     // },[cartItemsBookIds])
+
+    useEffect(()=>{
+        if(getWishList.data){
+            // console.log(getWishList.data.wishList.bookItems.filter((b)=> b._id == b.id))
+            
+            setWishList(getWishList.data.wishList)
+          }
+    },[getWishList.data])
 
     let addToCartFun =  (bookData) => {
         
@@ -101,6 +111,7 @@ const BookDetailsContainer = props => {
                             null
                             }
                             </h2>
+                            {/* {console.log(props.book._id)} */}
                             {/* <div className={classes.action}>
                                 <button onClick={()=>addToCartFun(props.id)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                                 <button className={classes.favorite}><BsFillHeartFill/></button>
@@ -108,7 +119,7 @@ const BookDetailsContainer = props => {
 {/* ======= */}
                             {/* <p>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}<span className={classes.promo}><sub><del>${props.bookPriceBeforePromo}</del></sub></span></h2> */}
-                            <AddToCardButton book={props.id}/>
+                            <AddToCardButton fav={!wishList  ? false : wishList.bookItems.filter((c)=> c._id === props.book._id).length > 0 ?  true : false} book={props.id}/>
 {/* >>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657 */}
                         </div>
                     </div>
