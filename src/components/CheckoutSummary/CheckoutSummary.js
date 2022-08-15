@@ -1,11 +1,33 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom';
+import { booksApi } from '../../store/services';
 import classes from './CheckoutSummary.module.css'
 
 const CheckoutSummary = props => {
 
     const theme = useSelector((state) => state.theme.currentTheme);
 
+    const {data,isLoading,error} = booksApi.useCheckoutQuery()
+    const [url,setUrl] = useState()
+    const [isUrl,setIsUrl] = useState(false)
+
+    let navigate  = useNavigate()
+    const sendCart = ()=>{
+
+        console.log(data)
+        console.log(error)
+        // navigate(data.url)
+        navigate(data.url, { replace: true })
+    }
+    useEffect(() => {
+        if(data){
+            setUrl(data.url)
+        }
+        if(isUrl){
+            navigate(data.url, { replace: true })
+        }
+    }, [data]);
     return (
         <div className={`col-12 ${theme === "night" ? classes.checkoutCardNight : classes.checkoutCard}`}>
             <div className={`row`}>
@@ -34,6 +56,10 @@ const CheckoutSummary = props => {
                             </tr>
 
                             </tbody>
+                            {/* <Link to={url ? url : "null"}> */}
+
+                                <button onClick={()=>window.open(url ? url : null)}  className='btn btn-secondary' > Check Out</button>
+                            {/* </Link> */}
                     </table>
                 </div>
             </div>

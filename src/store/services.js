@@ -398,11 +398,10 @@ export const booksApi = createApi({
             query:(cartItems)=>{
                     const {bookIds,collectionIds} = cartItems
                 
-                    console.log(bookIds)
                     return{
                         url:'/cart-removal',
                         method:'PUT',
-                        body:{bookIds:[bookIds],collectionIds:[collectionIds]},
+                        body:{bookIds:bookIds,collectionIds:collectionIds},
                         headers:{"Authorization":`Bearer ${userToken}`}
                     }
                 },
@@ -448,6 +447,31 @@ export const booksApi = createApi({
                 }
             },
             invalidatesTags:['wishlist']
+        }),
+        
+        // Check Out 
+        checkout:builder.query({
+            query:()=>{
+                return{
+                    url:"/check-out",
+                    headers:{"authorization":`Bearer ${userToken}`},
+                    
+                }
+            },
+        }),
+
+        // orders
+
+        addOrder:builder.mutation({
+            query:(cartItems)=>{
+                
+                return{
+                    url:'/order',
+                    method:'POST',
+                    body:cartItems,
+                    headers:{"Authorization":`Bearer ${userToken}`}
+                }
+            },
         })
 
 

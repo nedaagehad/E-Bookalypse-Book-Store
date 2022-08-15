@@ -90,6 +90,7 @@ function App() {
           <Route path='/aboutus' element={<About />} />
           <Route path='/contactus' element={<Contact />} />
           <Route path='/publishwithus' element={<Publisher />} />
+          
           <Route path={'*'} element={<NotFound />} />
         </Route>
 
