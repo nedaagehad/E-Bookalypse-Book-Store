@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import storage from '../../Firebase/firebaseImage';
 import { booksApi } from '../../store/services';
+import Avatar from '../../assets/avatar7.png';
 
 // CSS Module
 import styles from './UserCard.module.css';
@@ -11,9 +12,9 @@ function UserCard(props) {
     const {user} = props
     const theme = useSelector((state) => state.theme.currentTheme);
     const getCartItems = booksApi.useGetCartQuery()
-    const [cartCount,setCartCount] = useState()
+    const [cartCount,setCartCount] = useState(0)
     const getWishListItems = booksApi.useGetWishListQuery()
-    const [wishListCount,setWishListCount] = useState()
+    const [wishListCount,setWishListCount] = useState(0)
     const [profileImg,setProfileImg] = useState()
     useEffect(()=>{
         if(getCartItems.data){
@@ -37,7 +38,7 @@ function UserCard(props) {
                 <div className={`${styles.cardBody} rounded-top ${styles.mov}`}>
 
                     <div className={styles.userBox}>
-                        <img src={profileImg} alt="user avatar" />
+                        <img src={profileImg ? profileImg : Avatar} alt="user avatar" />
                     </div>
                     <h5 className={`mb-1 text-lg-center text-white ${styles.wrong} ${styles.h5} `}>{user.fName}</h5>
                     <h5 className={`text-light  text-lg-center ${styles.h5} ${styles.username}`}>@{user.userName}</h5>
