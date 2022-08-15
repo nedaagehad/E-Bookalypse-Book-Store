@@ -12,6 +12,7 @@ import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
 import Checkout from './pages/user/Checkout/Checkout';
+import SuccessPayment from './pages/user/SuccessPayment/SuccessPayment';
 import Offers from './pages/user/Offers/Offers';
 import BookShelf from './pages/user/BookShelf/BookShelf';
 import Login from './pages/user/Login/Login';
@@ -73,6 +74,7 @@ function App() {
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
           <Route path='/cart' element={<Checkout />} />
+          <Route path='/successPayment' element={<SuccessPayment />} />
           <Route path='/offers' element={<Offers />} />
           <Route path='/profile/bookshelf' element={<BookShelf />} />
           <Route path='/login' element={<Login />} />
