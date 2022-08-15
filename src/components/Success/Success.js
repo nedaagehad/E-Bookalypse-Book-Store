@@ -12,13 +12,14 @@ const Success = props => {
     useEffect(() => {
        if(data){
         // addOrder(data)
-        console.log(data)
+        // console.log(data)
         setCart(data)
         
         
         }
     }, [data]);
-    
+    let navigate = useNavigate()
+
     useEffect(() =>{
 
         if(cart){
@@ -55,10 +56,6 @@ const Success = props => {
     },[cart] )
 
 
-    let navigate = useNavigate()
-    const onOrderSubmit = () =>{
-      
-    }
 
 
 
@@ -74,7 +71,7 @@ const Success = props => {
                     <h2>Great!</h2>
                     <h6>Checkout Completed Successfully</h6>
                     <div className={classes.action}>
-                        <button onClick={()=>onOrderSubmit()}>Go to Shelf</button>
+                        <button >Go to Shelf</button>
                     </div> 
                 </div>
             </div>
