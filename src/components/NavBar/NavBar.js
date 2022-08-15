@@ -22,6 +22,7 @@ import { booksApi, selectCartItems } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
 import { getCount } from "../../store/reducers/cartReducer/CartReducer";
+import Avatar from '../../assets/avatar7.png';
 
 
 
@@ -32,17 +33,15 @@ function NavBar() {
 
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
-  const lang = useSelector((state) => state.lang.currentLang);
-  // const count = useSelector((state) => state.cart.count);
 
   const dispatch = useDispatch();
-  const [count,setCount] = useState(0)
+  const [count, setCount] = useState(0)
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [userImage, setUserImage] = useState("")
   const [cartCount, setCartCount] = useState("")
-  const {data,isLoading,error} = booksApi.useGetCartQuery()
-  const [user,setUser] = useState()
+  const { data, isLoading, error } = booksApi.useGetCartQuery()
+  const [user, setUser] = useState()
 
   useEffect(() => {
     if (authState !== '') {
@@ -50,51 +49,24 @@ function NavBar() {
     } else {
       setLoggedIn(false)
     }
-    if(data){
-      // console.log(data.cart.bookItems.length)
-      // console.log(data.cart.collectionItems.length)
-      
+    if (data) {
       setCount(data.cart.bookItems.length + data.cart.collectionItems.length)
     }
 
     getUserByID().then((res) => {
       setUser(res.data)
       console.log(res.data)
-      const starsRef = ref(storage, 'uploads/users/'+res.data.image);
+      const starsRef = ref(storage, 'uploads/users/' + res.data.image);
 
-          getDownloadURL(starsRef)
-          .then((url) => {
-              setProfilePic(url)
-              // console.log("image" + url)
-          })
-        // }
-  }
-  ).catch((err) => console.log(err))
+      getDownloadURL(starsRef)
+        .then((url) => {
+          setProfilePic(url)
+        })
+    }
+    ).catch((err) => console.log(err))
 
 
-  }, [authState,count,data]);
-
-  // console.log(theme);
- 
-  // useEffect(() => {
-  //   getUserByID().then((res) => {
-  //     // console.log("hi")
-  //     // console.log(res.data.image)
-  //     setUserImage(res.data.image)
-  //     // console.log("userImage" + userImage);
-  //   })
-
-  //   // if(user.image){
-  //     const starsRef = ref(storage, 'uploads/users/'+userImage);
-
-  //     getDownloadURL(starsRef)
-  //     .then((url) => {
-  //         setProfilePic(url)
-  //         // console.log("image" + url)
-  //     })
-  //   // }
-  // }, [userImage])
-
+  }, [authState, count, data]);
 
   return (
     <>
@@ -164,7 +136,7 @@ function NavBar() {
                   {loggedIn ?
                     <div className={styles.profileIcon}>
                       {/* <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
-                      <img src={profilePic} className={styles.userIcon } onClick={() => { setProfileClicked(!profileClicked) }} />
+                      <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                       {profileClicked ? <ProfileDropDown /> : null}
 
                     </div> :

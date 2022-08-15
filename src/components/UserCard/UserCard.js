@@ -11,9 +11,9 @@ function UserCard(props) {
     const {user} = props
     const theme = useSelector((state) => state.theme.currentTheme);
     const getCartItems = booksApi.useGetCartQuery()
-    const [cartCount,setCartCount] = useState()
+    const [cartCount,setCartCount] = useState(0)
     const getWishListItems = booksApi.useGetWishListQuery()
-    const [wishListCount,setWishListCount] = useState()
+    const [wishListCount,setWishListCount] = useState(0)
     const [profileImg,setProfileImg] = useState()
     useEffect(()=>{
         if(getCartItems.data){
