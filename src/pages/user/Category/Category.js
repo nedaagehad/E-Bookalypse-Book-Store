@@ -34,7 +34,7 @@ function Category() {
 
         }        
 
-    }else
+    }
     if(data){
         setBooks(data.data)
         // console.log(data.data)

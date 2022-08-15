@@ -4,6 +4,8 @@ import BooksView from '../../../components/BooksView/BooksView'
 import BookCard from '../../../components/BookCard/BookCard'
 import { booksApi } from '../../../store/services'
 import CollectionOnCard from '../../../components/BookOnCard/CollectionOnCard'
+import Combination from '../../../components/Combination/Combination'
+import CollectionCard from '../../../components/CollectionCard/CollectionCard'
 
 function Wishlist() {
   const {data,isLoading,error} = booksApi.useGetWishListQuery()
@@ -43,8 +45,8 @@ function Wishlist() {
                           wishlisted.collectionItems.map((col)=>{
                             return (
                             <div keu={col._id} className="col-lg-3 col-md-6 col-sm-12" style={{marginBottom:"20px"}}>
-                                <CollectionOnCard  data={col} />
-                                
+                                {/* <CollectionOnCard  data={col} /> */}
+                                <CollectionCard fav={fav} data={col} />
                             </div>
                             )
                           }) : null

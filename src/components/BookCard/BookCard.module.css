@@ -43,6 +43,7 @@
     margin: auto;
     display: inline-block;
 }
+
 .card h5, .card h3, .card button, .cardNight h5, .cardNight h3, .cardNight button{
     margin-top: 10px;
 }

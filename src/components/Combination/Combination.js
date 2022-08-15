@@ -112,7 +112,7 @@ const Combination = props => {
                             <button onClick={()=>addPromoToCart(collectionID)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                             <button className={classes.favorite}><BsFillHeartFill/></button>
                         </div> */}
-                        <AddToCardButton collection={collectionID}/>
+                        <AddToCardButton  fav={props.fav ? props.fav : false} collection={collectionID}/>
                     </div>
                 </div>
             </div>

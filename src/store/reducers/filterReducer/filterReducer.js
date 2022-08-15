@@ -10,7 +10,8 @@ const initialState= {
     priceMax:'',
     priceSort:'',
     rate:'',
-    bookTitle:''
+    bookTitle:'',
+    page:0
 }
 
 export const filterSlice = createSlice({
@@ -40,6 +41,15 @@ export const filterSlice = createSlice({
         },
         bookTitle(state,action){
             state.bookTitle = action.payload
+        },
+        page(state,action){
+            state.page  += 1 
+        },
+        decPage(state,action){
+            if(state.page > 1 ){
+
+                state.page -= 1
+            }
         }
     }
 })
@@ -50,7 +60,9 @@ export const { category,
     priceMax,
     priceSort,
     rate ,
-    bookTitle
+    bookTitle,
+    page,
+    decPage
 } = filterSlice.actions
 
 export default filterSlice.reducer

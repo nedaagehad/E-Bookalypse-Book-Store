@@ -8,13 +8,20 @@ function Offers() {
   const {data,isLoading,error} = booksApi.useGetAllCollectionsQuery()
   const [collections,setCollections] = useState();
   const theme = useSelector((state) => state.theme.currentTheme);
+  const getWishList = booksApi.useGetWishListQuery()
+  const [wishList,setWishList] = useState()
 
   useEffect(() => {
    if(data){
     setCollections(data);
     console.log(data)
    }
-  }, [data]);
+   if(getWishList.data){
+    // console.log(getWishList.data.wishList.bookItems.filter((b)=> b._id == b.id))
+    
+    setWishList(getWishList.data.wishList)
+  }
+  }, [data,getWishList.data]);
 
 
   return (
@@ -33,6 +40,7 @@ function Offers() {
                             collectionName={item.title}
                             collectionPrice={item.collectionPrice}
                             collectionData={item.collectionBooks}
+                            fav={!wishList  ? false : wishList.collectionItems.filter((c)=> c._id === item._id).length > 0 ?  true : false}
                           />)
                         }):null}
                     </div>

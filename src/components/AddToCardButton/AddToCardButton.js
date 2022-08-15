@@ -79,7 +79,7 @@ const AddToCardButton = props => {
         console.log(bookData.book)
       
 
-        removeFromWishList({bookIds:bookData.book}).then((re)=>
+        removeFromWishList({bookIds:bookData.book,collectionIds:bookData.collection}).then((re)=>
         
             {
                 if(re.data){
