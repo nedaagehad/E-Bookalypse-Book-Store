@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import classes from './LoginForm.module.css' 
+import classes from './NewPassForm.module.css' 
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
 import { useNavigate, Link } from "react-router-dom";
 import { api } from "../../store/services";
 
 
-const axios = require('axios');
+const Forget = require('axios');
 
-const LoginForm = props => {
+const NewPassForm = props => {
   let navigate = useNavigate();
 
 
@@ -65,7 +65,7 @@ const LoginForm = props => {
       <div className="row">
           <div className="col-md-12">
               <div className={theme === "night" ? classes.formNight : classes.form}>
-                        <h2>Login</h2>
+                        <h2>New Password</h2>
                         <Formik
                             initialValues={{
                                   userName:"",
@@ -98,31 +98,27 @@ const LoginForm = props => {
                           >
                             {({errors,touched})=>(
                             <Form>
-                                <div className="form-group mb-3">
-                                  <label htmlFor="userName" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
-                                    Username
-                                  </label>
-                                  <Field name="userName" className={`form-control ${errors.userName ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type="text" placeholder="User name,E-mail or mobile number"/>
-                                  {errors.userName && touched.userName ? (
-                                      <div className="form-text text-danger">{errors.userName}</div>
-                                  ) : null}
-                              </div>
+                                <div className="form-group mb-3 col-md-12 col-sm-12" >
+                                <label htmlFor="thePassword" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
+                                Password
+                                </label>
+                                <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
+                                <Field name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`}style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType}/>
+                                {errors.thePassword && touched.thePassword ? (
+                                    <div className="form-text text-danger">{errors.thePassword}</div>
+                                ) : null}
+                            </div>
+
+                            <div className="form-group mb-3 col-12">
+                                <label htmlFor="cnfrmPass" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
+                                    Confirm Password
+                                </label>
+                                <Field name="cnfrmPass" className={`form-control ${errors.cnfrmPass ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}}type={passShowState.inputType}/>
+                                {errors.cnfrmPass && touched.cnfrmPass ? (
+                                    <div className="form-text text-danger">{errors.cnfrmPass}</div>
+                                ) : null}
+                            </div>
                         
-                                <div className="form-group mb-3" >
-                                  <label htmlFor="thePassword" className={`form-label ${theme === "night" ? classes.lightTxt : ""}`}>
-                                  Password
-                                  </label>
-                                  <span className={classes.passwordVisiblity}><i className={passShowState.iconClass} onClick={toggleShowPass}></i></span>
-                                  <Field name="thePassword" className={`form-control ${errors.thePassword ? "border-danger" : ""}`} style={{color:"#8D27AE", fontWeight:"700"}} type={passShowState.inputType} placeholder="password"/>
-                                  {errors.thePassword && touched.thePassword ? (
-                                      <div className="form-text text-danger">{errors.thePassword}</div>
-                                  ) : null}
-                              </div>
-                  
-                                 <div className="form-group mb-3" >
-                                    <Link to="/ForgetPassword" classes={classes.forget}>Forget Password</Link>
-                                 </div> 
-                                    
                                 <button type="submit" className={classes.btn}>
                                 Submit
                                 </button>
@@ -135,4 +131,4 @@ const LoginForm = props => {
   )
 }
 
-export default LoginForm
+export default NewPassForm
