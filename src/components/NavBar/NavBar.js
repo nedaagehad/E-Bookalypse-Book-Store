@@ -32,16 +32,15 @@ function NavBar() {
 
   const [loggedIn, setLoggedIn] = useState(true);
   const theme = useSelector((state) => state.theme.currentTheme);
-  const lang = useSelector((state) => state.lang.currentLang);
-  // const count = useSelector((state) => state.cart.count);
 
   const dispatch = useDispatch();
-  const [count,setCount] = useState(0)
+  const [count, setCount] = useState(0)
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [userImage, setUserImage] = useState("")
   const [cartCount, setCartCount] = useState("")
-  const {data,isLoading,error} = booksApi.useGetCartQuery()
+  const { data, isLoading, error } = booksApi.useGetCartQuery()
+  const [user, setUser] = useState()
 
   useEffect(() => {
     if (authState !== '') {
@@ -49,43 +48,31 @@ function NavBar() {
     } else {
       setLoggedIn(false)
     }
-    if(data){
-      console.log(data.cart.bookItems.length)
-      console.log(data.cart.collectionItems.length)
-      
+    if (data) {
       setCount(data.cart.bookItems.length + data.cart.collectionItems.length)
     }
-  }, [authState,count,data]);
 
-  // console.log(theme);
- 
-  // useEffect(() => {
-  //   getUserByID().then((res) => {
-  //     // console.log("hi")
-  //     // console.log(res.data.image)
-  //     setUserImage(res.data.image)
-  //     // console.log("userImage" + userImage);
-  //   })
+    getUserByID().then((res) => {
+      setUser(res.data)
+      console.log(res.data)
+      const starsRef = ref(storage, 'uploads/users/' + res.data.image);
 
-  //   // if(user.image){
-  //     const starsRef = ref(storage, 'uploads/users/'+userImage);
+      getDownloadURL(starsRef)
+        .then((url) => {
+          setProfilePic(url)
+        })
+    }
+    ).catch((err) => console.log(err))
 
-  //     getDownloadURL(starsRef)
-  //     .then((url) => {
-  //         setProfilePic(url)
-  //         // console.log("image" + url)
-  //     })
-  //   // }
-  // }, [userImage])
 
+  }, [authState, count, data]);
 
   return (
     <>
-
       {['lg'].map((expand) => (
-        <Navbar sticky="top" className='shadow-lg' key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
+        <Navbar className={`shadow-lg fixed-top px-3 px-lg-0`} key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
           <Container fluid>
-            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} />E-Bookalypse</Navbar.Brand>
+            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
             <div className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
               <SearchBar />
             </div>
@@ -97,8 +84,8 @@ function NavBar() {
             <div className="align-items-center d-lg-none me-3">
               {loggedIn ?
                 <div className={`${styles.profileIcon}`}>
-                  <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
-                  {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                  {/* <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                  <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                   {profileClicked ? <ProfileDropDown /> : null}
 
                 </div> :
@@ -146,8 +133,8 @@ function NavBar() {
                   </Link>
                   {loggedIn ?
                     <div className={styles.profileIcon}>
-                      <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
-                      {/* <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                      {/* <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
+                      <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                       {profileClicked ? <ProfileDropDown /> : null}
 
                     </div> :

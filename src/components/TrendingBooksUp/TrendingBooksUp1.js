@@ -41,7 +41,7 @@ const TrendingBooksUp1 = () => {
     <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
     <div className={`container p-5`}>
       <div className={styles.head + " mb-5 "}>
-        <h5 className={styles.h5}>Trending This Week🚀</h5>
+        <h5 className={`text-center ${styles.h5}`}>Trending This Week🚀</h5>
       </div>
       <div className={styles.sliderContainer +" container d-flex justify-content-center align-items-center mb-5 "} >
       

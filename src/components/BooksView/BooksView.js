@@ -22,6 +22,7 @@ const BookView = props =>{
     let params = useParams();
     let getSearchResults = booksApi.useGetSearchResultsQuery(filterState)
     const theme = useSelector((state) => state.theme.currentTheme);
+    const [Page, setPage] = useState();
 
     useEffect(() => {
         if(params.id){
@@ -35,11 +36,12 @@ const BookView = props =>{
         }
         if(data){
             setBooks(data.data)
-            // console.log(data)
+            setPage(data.page)
+            
         }
     }, [data,getSearchResults.data]);
 
-
+console.log(Page)
     const nextPage = ()=>{
        console.log(data.data.length)
        if(data.data.length != 0 ){
@@ -52,12 +54,11 @@ const BookView = props =>{
     }
     const prevPage = ()=>{
         dispatch(decPage())
-        
     }
 
     return(
         <div className={`col-md-12 col-sm-12 ${styles.BookView}`}>
-            <h2 className={styles.title}>{props.title}</h2>
+            <h2 className={`mb-5 ${styles.title}`}>{props.title}</h2>
             <div className={`row`}>
                     {props.children} 
                 <div className={`col-12`}>
@@ -67,12 +68,13 @@ const BookView = props =>{
                             <ul className="pagination">
                                 <li class="page-item">
                                 <a class="page-link"  onClick={()=>{prevPage()}} aria-label="Previous">
-                                    <span aria-hidden="true">&laquo; Pre</span>
+                                    <span aria-hidden="true" className={`text-dark`}>&laquo; Pre</span>
                                 </a>
                                 </li>
+                                <li className="page-item">{Page ? Page : null}</li>
                                 <li className="page-item"> 
                                 <a className="page-link" onClick={()=>{nextPage()}} aria-label="Next">
-                                    <span aria-hidden="true"> Next &raquo;</span>
+                                    <span aria-hidden="true" className={`text-dark`}> Next &raquo;</span>
                                 </a>
                                 </li>
                             </ul>

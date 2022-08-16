@@ -1,59 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation} from 'swiper';
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import FlashSaleCard from '../BookCard/FlashSaleCard';
-import styles from './FlashSaleSlider.module.css'
 import { useSelector } from 'react-redux';
 import { booksApi } from '../../store/services';
+
+//Slider CSS Files
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
+
+//CSS Module
+import styles from './FlashSaleSlider.module.css'
+
+//Components
+import FlashSaleCard from '../BookCard/FlashSaleCard';
+import CountDown from '../CountDown/CountDown';
+
 SwiperCore.use(Navigation);
 
 function FlashSaleSlider() {
-    const endDate = new Date("12/11/2022");
-
-    const theme = useSelector((state) => state.theme.currentTheme);
-
-    const getremaining = (end) => {
-        let currentDate = new Date();
-        if(currentDate <= end){
-            let diff = end - currentDate;
-            let seconds = Math.round(diff/1000);
-            return seconds;
-        }
-    }
     
-    const [remainSec,SetRemainSec] = useState(getremaining(endDate));
+    const theme = useSelector((state) => state.theme.currentTheme);
+    
     const [prevDis,setPrevDis] = useState(false);
     const [nextDis,setNextDis] = useState(true);
     const {data,isLoading,error} = booksApi.useGetAllBooksQuery()
     const [flashSales,setFlashSales ] = useState()
+
     useEffect(() => {
        if(data){
         setFlashSales(data.data)
        }
     }, [data]);
-
-    const displayCountDown = () => {
-        let disDay = (remainSec/(60*60*24)) - (remainSec/(60*60*24))%1;
-
-        let divisorForHours = (remainSec/(60*60*24))%1;
-        let disHours = (divisorForHours*24) - (divisorForHours*24)%1
-
-        let divisorForMin = (divisorForHours*24)%1;
-        let disMin = (divisorForMin*60) - (divisorForMin*60)%1
-
-        let divisorForSec = (divisorForMin*60)%1;
-        let disSec = Math.round(divisorForSec*60);
-       
-        return `${disDay<=9? "0"+disDay: disDay } : ${disHours<=9? "0"+disHours: disHours } : ${disMin<=9? "0"+disMin: disMin } : ${disSec<=9? "0"+disSec: disSec }`;
-    }
-
-    // useEffect(() => {
-    //     setInterval(()=>{
-    //         SetRemainSec(getremaining(endDate));
-    //     },1000);
-    // },[remainSec,prevDis,nextDis])
     
     const handleNavigatePrev =() => {
         setNextDis(true);
@@ -69,8 +46,8 @@ function FlashSaleSlider() {
             <div className = "row py-5">
                 <div className='col-12 col-lg-3 text-white'>
                     <h3>Flash Sale</h3>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</small>
-                    <h3 className={styles.flashCount + " p-3 mt-3 text-center rounded-2 "} >{displayCountDown()}</h3>
+                    <small>Catch our interesting Sales before timer runs off!</small>
+                    <CountDown />
                 </div>
                 <div className='col-12 col-lg-9 position-relative align-items-center'>
                     <Swiper
@@ -84,23 +61,20 @@ function FlashSaleSlider() {
                             setNextDis(true);
                             setPrevDis(true);
                         }}
-                        onReachEnd={() => {
-                            setNextDis(false);
-                        }}
-                        onReachBeginning = {()=>{
-                            setPrevDis(false);
-                        }}
+                        // onReachEnd={() => {
+                        //     setNextDis(false);
+                        // }}
+                        // onReachBeginning = {()=>{
+                        //     setPrevDis(false);
+                        // }}
 
                         >
                         {flashSales ? flashSales.map((b)=>{
                             if(b.promotion.length > 0){
                                 return(
-    
                                     <SwiperSlide key={b._id}><FlashSaleCard book={b}/></SwiperSlide>
                                 )
-
                             }
-
                         }):null}
 
                     </Swiper>

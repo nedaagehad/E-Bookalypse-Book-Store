@@ -1,0 +1,29 @@
+.logostyle{
+    width: 1px;
+    height: 2px;
+
+}
+
+.mov{
+    color: rgb(158, 9, 185)!important;
+}
+
+#gmov{
+    background-image: linear-gradient(to left, #ac10d3, #911a6c)!important;
+}
+
+#hovericon:hover{
+    color:#ac10d3;
+}
+
+#navigatehover:hover{
+    color: white !important;
+    /* font-weight: bold; */
+}
+#map{
+    width: 650px !important;
+    height: 319px !important;
+    /* padding-left: 190px !important; */
+    padding-bottom: 20px !important;
+}
+
