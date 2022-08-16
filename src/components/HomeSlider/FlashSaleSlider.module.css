@@ -2,16 +2,8 @@
     background: var(--main-purple) !important;
 }
 
-.flashSale .flashCount {
-    background: #933bb1 !important;
-}
-
 .flashSaleNight{
     background: #380B46;
-}
-
-.flashSale .flashCount {
-    background: #933bb1 !important;
 }
 
 .bg_burble {
@@ -39,4 +31,16 @@
 
 .next{
     right: 30px;
+}
+
+.flashCard {
+    max-width: 400px !important;
+    /* max-height: 600px !important; */
+    min-height: 260px !important;
+}
+
+@media (max-width: 767px) {
+    .flashCard {
+        min-height: 570px !important;
+    }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+//Components
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
 import HomeCategories from '../../../components/HomeSlider/HomeCategories/HomeCategories';
-import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
+import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider";
 import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksUp1';
 import OurPartners from '../../../components/OurPartners/OurPartners';
 import Benefits from '../../../components/Benefits/Benefits';
-import { useSelector } from 'react-redux';
 
 
 function Home() {

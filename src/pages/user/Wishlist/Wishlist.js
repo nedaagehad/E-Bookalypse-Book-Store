@@ -6,8 +6,13 @@ import { booksApi } from '../../../store/services'
 import CollectionOnCard from '../../../components/BookOnCard/CollectionOnCard'
 import Combination from '../../../components/Combination/Combination'
 import CollectionCard from '../../../components/CollectionCard/CollectionCard'
+import { useSelector } from 'react-redux'
 
 function Wishlist() {
+
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   const {data,isLoading,error} = booksApi.useGetWishListQuery()
   const [wishlisted,setWishListed] = useState()
   useEffect(()=>{
@@ -17,7 +22,7 @@ function Wishlist() {
   },[data])
   const [fav,setFav] = useState(true)
   return (
-    <div className='content'>
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
            <ViewCategoryPage>
             <div className="col-md-12 col-sm-12">
                 <div className="row">

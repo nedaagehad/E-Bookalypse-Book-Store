@@ -68,7 +68,7 @@ function Checkout() {
 
 
   return (
-      <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`content ${theme === "night" ? "bg-dark" : ""} pt-5`}>
           <div className="container">
               <div className="row">
                 {cart  ? 

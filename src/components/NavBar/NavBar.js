@@ -22,7 +22,6 @@ import { booksApi, selectCartItems } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
 import { getCount } from "../../store/reducers/cartReducer/CartReducer";
-import Avatar from '../../assets/avatar7.png';
 
 
 
@@ -70,11 +69,10 @@ function NavBar() {
 
   return (
     <>
-
       {['lg'].map((expand) => (
-        <Navbar sticky="top" className='shadow-lg' key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
+        <Navbar className={`shadow-lg fixed-top px-3 px-lg-0`} key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
           <Container fluid>
-            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} />E-Bookalypse</Navbar.Brand>
+            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
             <div className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
               <SearchBar />
             </div>

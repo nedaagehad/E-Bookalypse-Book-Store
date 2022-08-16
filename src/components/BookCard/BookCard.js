@@ -29,30 +29,16 @@ const BookCard = props => {
 
   return (
     <div className={theme === "night" ? classes.cardNight : classes.card}>
-      {/* ******************************HUSSEIN'S DYNAMIC CODE******************************** */}
-      {/* <Link to={'/books/BookDetails/'+props.book._id} className={`${classes.BookCard}`}>
-            <div className={classes.poster}>
-                <div className={classes.poster_overlay}></div>
-                <img className={classes.Book_Poster} src={images} alt={props.alt}/>
-            </div>
-            </Link>
-            <h5 className={theme === "night" ? classes.titleNight : ""}>{props.alt}</h5>
-            <h3>{props.book.price}</h3> */}
-              {/* *************************************************************************** */}
-
-            {/* **********************REHAM'S STATIC CODE***************************** */}
       <div className={classes.BookCard}>
         <div className={theme === "night" ? classes.cardNight : classes.card}>
           <div className={classes.poster}>
             <Link to={'/books/BookDetails/'+props.book._id} >
               <div className={classes.poster_overlay}></div>
-            
             </Link>
             <img className={classes.Book_Poster} src={images} alt={props.book.title} />
           </div>
-          <h5>{props.book.title}</h5>
+          <h5 className={theme === "night" ? classes.titleNight : ""}>{props.book.title}</h5>
           <h3>${props.book.price}</h3>
-          {/* ***************************************************************************** */}
           <AddToCardButton book={props.book._id} fav={props.fav ? props.fav : false}/>
         </div>
       </div>
