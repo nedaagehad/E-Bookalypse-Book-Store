@@ -1,5 +1,11 @@
 .shelfContainer{
     padding: 30px;
+    padding-top: 100px;
+    margin-top: 50px;
+    background-image: url(../../assets/Shelves3.png);
+    background-size: contain;
+    background-repeat: repeat-y;
+    margin-bottom: -150px;
 }
 .book{
     /* border:solid; */
@@ -8,11 +14,65 @@
     display: block;
     margin: auto;
     height: 250px;
-    margin-bottom: 30px;
+    margin-bottom: 150px;
     transform: skewY(-15deg);
     border: 5px solid grey;
     border-radius: 10px;
+    border-left-width: 15px;
+    border-left-color: #380B46;
+    border-top-color: rgb(226, 226, 226);
+    border-top-left-radius:5px;
+    border-bottom-left-radius:15px;
+    border-top-right-radius:11px;
+    border-top-width: 12px;
+    border-top-style: double;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    cursor: pointer;
+    outline-style: solid;
+    outline-color: rgb(41, 8, 51);
+    outline-width: 1px;
 }
 .book img:hover{
     transform: skewY(0deg);
+}
+
+/****** Responsive **********/
+@media(max-width:1399px)
+{
+    .book img{
+        margin: auto;
+        height: 200px;
+        margin-bottom: 150px;
+    }
+}
+@media(max-width:1199px)
+{
+    .book img{
+        margin: auto;
+        height: 150px;
+        margin-bottom: 150px;
+    }
+}
+@media(max-width:991px)
+{
+    .shelfContainer{
+        background-image: url(../../assets/Shelves2.png);
+    }
+}
+@media(max-width:767px)
+{
+    .book img{
+        margin-bottom: 120px;
+        height: 105px;
+    }
+    .shelfContainer{
+        background-image: url(../../assets/Shelves-PNG-HD-Image.png);
+    }
+}
+@media(max-width:544px)
+{
+    .shelfContainer{
+        background-image: url("");
+    }
 }
