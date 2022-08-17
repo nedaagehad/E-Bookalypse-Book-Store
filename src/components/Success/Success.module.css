@@ -1,0 +1,80 @@
+.successCard{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    box-shadow: 7px 7px 7px #e0e0e0,-7px -7px 7px #e0e0e0;
+}
+
+.cardHeader{
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 0;
+    background-image: linear-gradient(rgb(143, 16, 182),#52066A);
+}
+.cardDesc{
+    padding: 50px;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cardDesc h2{
+    text-align: center !important;
+    line-height: 2;
+    font-size: 60px;
+    margin-top: -50px;
+}
+.cardDesc h6{
+    text-align: center !important;
+    line-height: 2;
+    font-size: 22px;
+    word-spacing: 5px;
+    color: #52066A;
+}
+.Icon{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    color:white;
+    padding: 20px;
+    border: 8px solid white;
+    border-radius: 50%;
+    margin: auto;
+}
+.Icon p{
+    font-size: 45px;
+    position: relative;
+    bottom:15px;
+}
+.action button{
+    background-color: #8D27AE;
+    border-radius: 2px;
+    color:white;
+    padding: 10px 25px;
+    font-size: 20px;
+    margin: 25px auto !important;
+    margin-bottom: 0px;
+}
+.action button:hover{
+    background-color: rgb(94, 25, 117);
+}
+@media(max-width:500px)
+{
+    .cardDesc h2, .cardDesc h6{
+        text-align: center !important;
+    }
+    .cardDesc h2{
+        font-size: 35px;
+    }
+    .cardDesc h6{
+        font-size: 15px;
+    }
+    .action button{
+        margin: auto !important;
+    
+    }
+}

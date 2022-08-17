@@ -12,9 +12,12 @@ import Categories from './pages/user/Categories/Categories';
 import Category from './pages/user/Category/Category';
 import BookDetails from './pages/user/BookDetails/BookDetails';
 import Checkout from './pages/user/Checkout/Checkout';
+import SuccessPayment from './pages/user/SuccessPayment/SuccessPayment';
 import Offers from './pages/user/Offers/Offers';
 import BookShelf from './pages/user/BookShelf/BookShelf';
 import Login from './pages/user/Login/Login';
+import ForgetPassword from './pages/user/ForgetPassword/ForgetPassword';
+import NewPassword from './pages/user/NewPassword/NewPassword';
 import Wishlist from './pages/user/Wishlist/Wishlist';
 import SignUp from './pages/user/SignUp/SignUp';
 import TermsOfUse from './pages/user/TermsOfUse/TermsOfUse';
@@ -73,9 +76,12 @@ function App() {
           <Route path='/categories/category/:id' element={<Category />} />
           <Route path='/books/BookDetails/:id' element={<BookDetails />} />
           <Route path='/cart' element={<Checkout />} />
+          <Route path='/successPayment' element={<SuccessPayment />} />
           <Route path='/offers' element={<Offers />} />
           <Route path='/profile/bookshelf' element={<BookShelf />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/ForgetPassword' element={<ForgetPassword />} />
+          <Route path='/NewPassword' element={<NewPassword />} />
           <Route path='/Wishlist' element={<Wishlist /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
