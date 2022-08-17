@@ -25,16 +25,14 @@ const CategoriesAdmin = () => {
 
   return (
     <>
-      <div className='container'>
-        <div className='addCategory'>
-          <Link to="/admin/category/addCategory" className='btn btn-success' >Add Category</Link>
-        </div>
+    <div className="page-body-wrapper pt-5">
+        <div className="content-wrapper pt-5">
+    
         <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">title</th>
-              <th scope="col">Image</th>
 
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
@@ -42,12 +40,12 @@ const CategoriesAdmin = () => {
 
             </tr>
           </thead>
-          <tbody>
+          <tbody className='text-white'>
             {categories !== undefined ? categories.map((category,i)=>{
               return (
               <tr key={category._id}>
                 <td >{i+1}</td>
-                <td ><img width="20%" src={"../uploads/categories/"+category.icon} /></td>
+                {/* <td ><img width="20%" src={"../uploads/categories/"+category.icon} /></td> */}
 
                 <td >{category.title}</td>
                 
@@ -64,9 +62,11 @@ const CategoriesAdmin = () => {
 
           </tbody>
         </table>
-
+        <div className='addCategory'>
+          <Link to="/admin/category/addCategory" className='btn btn-success text-white' >Add Category</Link>
+        </div>
       </div>
-    
+    </div>
     </>
   )
 }

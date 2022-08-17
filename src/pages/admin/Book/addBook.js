@@ -6,16 +6,20 @@ import { useDispatch,useSelector } from 'react-redux';
 import { addNewBooks } from '../../../store/reducers/booksReducer.js/BooksReducer';
 import { booksApi } from '../../../store/services';
 import { useNavigate } from 'react-router-dom';
+import { ReactMultiSearchSelect } from 'react-multi-search-select';
 
 const addBook = () => {
     const [addNewBooks , response ] = booksApi.useAddNewBookMutation();
     const categoryData = booksApi.useGetAllCategoriesQuery()
-    const writersData = booksApi.useGetAllWritersQuery()
+    const writersData = booksApi.useGetTotalWritersQuery()
     const promotionsData = booksApi.useGetAllPromotionsQuery();
 
     const [categories,setCategories] =useState()
     const [writers,setWriters] =useState()
     const [promotions,setPromotions] =useState()
+    const [selectedWriters,setSelectedWriters] =useState()
+    const [selectedCategories,setSelectedCategories] =useState()
+    const [selectedPromotions,setSelectedPromotions] =useState()
 
     const [BookImage, setBookImage] = useState();
     const [BookPdf, setBookPdf] = useState();
@@ -24,6 +28,18 @@ const addBook = () => {
 
     let navigate = useNavigate()
 
+    const onSelectChange = (e)=>{
+        setSelectedWriters(e)
+    }
+
+    const onSelectCategoryChange = (e)=>{
+        setSelectedCategories(e)
+    }
+
+    const onPromotionChange = (e)=>{
+        setSelectedPromotions(e)
+    }
+    
     useEffect(() => {
         // axios.get('https://e-bookalypse.herokuapp.com/api/categories')
         // .then((res)=>setCategories(res.data.categories))
@@ -40,8 +56,8 @@ const addBook = () => {
         }
         if(writersData){
             if(writersData.data){
-
-                setWriters(writersData.data.data)
+                console.log(writersData.data)
+                setWriters(writersData.data)
                 // console.log(writersData.data.data)
             }else if(writersData.error){
                 console.log(writersData.error)
@@ -66,8 +82,8 @@ const addBook = () => {
         booktitle: Yup.string().required("Title is Required"),
         bookprice: Yup.number().required("Price is Required"),
         bookdescription: Yup.string().required("Description is Required"),
-        category:Yup.array().required("Required"),
-        writer:Yup.array().required("Required")
+        // category:Yup.array().required("Required"),
+        // writer:Yup.array().required("Required")
       })
 
 
@@ -81,7 +97,8 @@ const addBook = () => {
     }
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="page-body-wrapper pt-5">
+        <div className="content-wrapper pt-5 text-white">
         <Formik 
         initialValues={{
             booktitle:"",
@@ -101,6 +118,20 @@ const addBook = () => {
             if(!BookPdf ){
                 errors.pdfErr = "Please Select PDF"
             }
+            if(selectedWriters.length == 0){
+                errors.writer = "Please Select At least one writer"
+            }
+            if(selectedCategories.length == 0){
+                errors.category = "Please Select At least one category"
+            }
+            if(selectedPromotions.length == 0){
+                errors.promotion = "Please Select only one promotion"
+
+            }else if (selectedPromotions.length > 1){
+                errors.promotion = "Please Select only one promotion"
+            }
+
+
             return errors
 
           }}
@@ -115,17 +146,21 @@ const addBook = () => {
             data.append("publisher",values.bookpublisher)
             data.append("lang",values.booklang)
             data.append("pages",values.bookpages)
-            data.append("category",JSON.stringify(values.category))
-            data.append("writer",JSON.stringify(values.writer))
-            data.append("promotion",values.promotion)
-
+            data.append("category",JSON.stringify(selectedCategories))
+            data.append("writer",JSON.stringify(selectedWriters))
+            data.append("promotion",selectedPromotions[0])
+            console.log(selectedPromotions[0])
             // console.log(typeof values.category)
             // axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             // dispatch(addNewBooks(data))
 
             addNewBooks(data).then((response)=>{
-                navigate('/admin/books')
-                console.log(response)
+                if(response.data){
+                    navigate('/admin/books')
+                }else{
+
+                    console.log(response)
+                }
             }).catch((err)=>console.log(err))
          }}
             
@@ -133,7 +168,7 @@ const addBook = () => {
 
     {({errors,touched})=>(
 
-        <Form className="row" >
+        <Form className="row text-white" >
             <div className="col-md-6 mt-2">
                 <label htmlFor="booktitle" className="form-label">Book Title : </label>
                 {/* <input type="text" className='form-control'    name="booktitle" id="booktitle" placeholder="Book Title"     /> */}
@@ -202,56 +237,84 @@ const addBook = () => {
             </div>
             <div className='col-md-6 mt-2'>
                 <label htmlFor="category" className="form-label">Select Category : </label>
-                    <Field as="select" id="category"  multiple={true}  name="category"  className="form-select" aria-label="Select Category">
+                    {/* <Field as="select" id="category"  multiple={true}  name="category"  className="form-select" aria-label="Select Category"> */}
 
-                        {categories ? categories.map((category)=>{
+                        {/*categories ? categories.map((category)=>{
                         return (
                             <option key={category._id} value={category._id}>{category.title}</option>
                             
                         )
 
-                        }):null}
+                        }):null*/}
             
 
-                    </Field>
-                    {errors.category && touched.category ? (
+                    {/* </Field> */}
+                    {/*errors.category && touched.category ? (
                             <div className="form-text text-danger">{errors.category}</div>
+                    ) : null */}
+                        <ReactMultiSearchSelect 
+                          className="text-dark"
+                          id="category"
+                          name="category"
+                          options={categories ? categories : []}
+                          optionsObject={{key:"_id",value:"title"}}
+                          onChange={(e)=>onSelectCategoryChange(e)}
+                          // selectionLimit={3}
+                          />
+                            {errors ? ( <div className="form-text text-danger">{errors.category}</div>
                         ) : null }
             </div>
             <div className='col-md-6 mt-2'>
                     <label htmlFor="writer" className="form-label">Select Writer : </label>
                     {/* <select   id="writer" name="writer" className="form-select" aria-label="Select Writer"> */}
-                    <Field as="select" id="writer" name="writer" multiple={true}  className="form-select" aria-label="Select Writer">
+                    {/* <Field as="select" id="writer" name="writer" multiple={true}  className="form-select" aria-label="Select Writer"> */}
 
-                        {writers ? writers.map((writer)=>{
+                        {/*writers ? writers.map((writer)=>{
                         return (
                             <option key={writer._id} value={writer._id}>{writer.name}</option>
                             
                         )
 
-                        }):null}
-
-                    </Field>    
-                    {errors.writer && touched.writer ? (
-                            <div className="form-text text-danger">{errors.writer}</div>
-                        ) : null }  
+                        }):null*/}
+               
+                    {/* </Field>   */}
+                    
+                    <ReactMultiSearchSelect 
+                          className="text-dark"
+                          id="writer"
+                          name="writer"
+                          options={writers ? writers : []}
+                          optionsObject={{key:"_id",value:"name"}}
+                          onChange={(e)=>onSelectChange(e)}
+                          // selectionLimit={3}
+                          />
+                            {errors ? ( <div className="form-text text-danger">{errors.writer}</div>
+                        ) : null }
             </div>
             <div className='col-md-6 mt-2'>
                 <label htmlFor="promotion" className="form-label">Select Promotion : </label>
-                    <Field as="select" id="promotion"  multiple={true}  name="promotion"  className="form-select" aria-label="Select Promotion">
+                    {/* <Field as="select" id="promotion"  multiple={true}  name="promotion"  className="form-select" aria-label="Select Promotion"> */}
 
-                        {promotions ? promotions.map((promotion)=>{
+                        {/*promotions ? promotions.map((promotion)=>{
                         return (
                             <option key={promotion._id} value={promotion._id}>{promotion.title}</option>
                             
                         )
 
-                        }):null}
+                        }):null*/}
             
 
-                    </Field>
-                    {errors.promotion && touched.promotion ? (
-                            <div className="form-text text-danger">{errors.promotion}</div>
+                    {/* </Field> */}
+                    <ReactMultiSearchSelect 
+                          className="text-dark"
+                          id="promotion"
+                          name="promotion"
+                          options={promotions ? promotions : []}
+                          optionsObject={{key:"_id",value:"title"}}
+                          onChange={(e)=>onPromotionChange(e)}
+                          selectionLimit={1}
+                          />
+                            {errors ? ( <div className="form-text text-danger">{errors.promotion}</div>
                         ) : null }
             </div>
             <div className='col-md-12 mt-4'>
@@ -260,7 +323,8 @@ const addBook = () => {
         </Form>
     )}
         </Formik>
-  </div>  
+    </div>  
+  </div>
   )
 }
 

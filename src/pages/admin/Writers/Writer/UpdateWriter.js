@@ -64,7 +64,7 @@ const UpdateWriter = () => {
             // console.log(values)
             // axios.put("https://e-bookalypse.herokuapp.com/api/admin/writer/"+params.id,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             // axios.put(`http://localhost:8080/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
-            updateWriter({writerNewData:data,writerId:params.id})
+            updateWriter({writerNewData:data,writerId:params.id}).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
           }}
           
           >

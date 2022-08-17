@@ -31,7 +31,7 @@ export const booksApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
-    tagTypes:['cart','wishlist'],
+    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks'],
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
@@ -66,8 +66,18 @@ export const booksApi = createApi({
                 }
                 
               },
+              providesTags:['updatedBooks']
+
         }),
-         
+        getAllBooksCount:builder.query({
+            query:()=>{
+                return{
+                    url:"/books-count",
+                    headers:{"Authorization":`Bearer ${userToken}`}
+
+                }
+            }
+        }),
         getBookById:builder.query({
             query:(bookID)=>{
                 console.log(bookID)
@@ -76,7 +86,11 @@ export const booksApi = createApi({
                     // params: { page},
 
                 }
-            }
+            
+            },
+            
+            providesTags:['updatedBooks']
+            
         }),
         addNewBook : builder.mutation({
             query:(bookData)=>({
@@ -87,7 +101,9 @@ export const booksApi = createApi({
 
                 
                 
-            })
+            }
+            ),
+            invalidatesTags:['updatedBooks']
         }),
         updateNewBook:builder.mutation({
             query:({bookNewData,bookid})=>{
@@ -99,7 +115,9 @@ export const booksApi = createApi({
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            }
+            },
+            invalidatesTags:['updatedBooks']
+
         }),
         deleteBook : builder.mutation({
             query:({bookId,bookOldFiles})=>{
@@ -113,16 +131,37 @@ export const booksApi = createApi({
 
                     
                 }
-            }
+            },
+            invalidatesTags:['updatedBooks']
+
         }),
         // Writers 
+        getTotalWriters:builder.query({
+            query:()=>{
+                return{
+                    url:"/writers-total",
+                    headers:{"authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
         getAllWriters:builder.query({
             query:(args='')=>{
                 const { page ,limit} = args;
-                console.log(page)
+                // console.log(page)
                 return{
                     url:"writers",
-                    params: { page},
+                    params: {page},
+
+                }
+            },
+            providesTags:['updateWriter']
+
+        }),
+        getWritersCount:builder.query({
+            query:()=>{
+                return{ 
+                    url:"/writers-count",
+                    headers:{"authorization":`Bearer ${userToken}`}
 
                 }
             }
@@ -131,21 +170,27 @@ export const booksApi = createApi({
             query:(writerId)=>{
                 // console.log(writerId)
                 return{
-                    url:`writer/${writerId}`,
+                    url:`/writer/${writerId}`,
                     // params: { page},
 
                 }
-            }
+            },
+            providesTags:['updateWriter']
+
         }),
         addNewWriter:builder.mutation({
             query:(writerData)=>({
-                    url:"/admin/writer",
+                    url:"/writer",
                     method:"POST",
                     body:writerData,
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 
-            })
+            }
+            ),
+            invalidatesTags:['updateWriter']
+
+            
         }),
         updateWriter : builder.mutation({
             query:({writerNewData,writerId})=>{
@@ -157,7 +202,9 @@ export const booksApi = createApi({
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            }
+            },
+            invalidatesTags:['updateWriter']
+
         }),
         deleteNewWriter:builder.mutation({
             query:({writerId,icon})=>{
@@ -169,7 +216,9 @@ export const booksApi = createApi({
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            }
+            },
+            invalidatesTags:['updateWriter']
+
         }),
         // Categories
         getAllCategories:builder.query({
@@ -247,27 +296,84 @@ export const booksApi = createApi({
                 return{
                     url:"collections"
                 }
-            }
+            },
+            providesTags:['updateCollection']
+
+        }
+        
+        
+        ),
+        getCollectionById:builder.query({
+            query:(id)=>{
+                return{
+                    url:`/collection/${id}`,
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            },
+            providesTags:['updateCollection']
+
         }),
+        addCollection:builder.mutation({
+            query:(data)=>{
+                return{
+                    url:"/collection",
+                    method:"POST",
+                    body:data,
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            },
+            invalidatesTags:['updateCollection']
+        }),
+        updateCollection:builder.mutation({
+            query:({data,id})=>{
+                return{
+                    url:`/collection/${id}`,
+                    method:"PUT",
+                    body:data,
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            },
+            invalidatesTags:['updateCollection']
+
+        }),
+        deleteCollection:builder.mutation({
+            query:(id)=>{
+                return{
+                    url:`/collection/${id}`,
+                    method:"DELETE",
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            },
+            invalidatesTags:['updateCollection']
+
+        }),
+
         // Promotions
         getAllPromotions:builder.query({
             query:()=>{
                 return{
-                    url:"promotions"
+                    url:"/promotions"
                 }
-            }
+            },
+            providesTags:['updatePromotion']
         }),
         addNewPromotion:builder.mutation({
             query:(promtionData)=>(
                 console.log(promtionData),
                 {
-                url:"/admin/promotion",
+                url:"/promotion",
                 method:"POST",
                 body:promtionData,
                 headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            )
+            ),
+            invalidatesTags:['updatePromotion']
+
             
         }),
         updateCurrentPromotion:builder.mutation({
@@ -275,13 +381,15 @@ export const booksApi = createApi({
         
                 return{
                     
-                    url:`admin/promotion/${promotionId}`,
+                    url:`promotion/${promotionId}`,
                     method:"PUT",
                     body:promtionData,
                     headers:{"authorization":`Bearer ${userToken}`}
                 }
 
-            }
+            },
+            invalidatesTags:['updatePromotion']
+
            
         }),
         getOnePromotion:builder.query({
@@ -290,24 +398,45 @@ export const booksApi = createApi({
                     // /api/promotion/:title
                     url:`promotion/${promotionId}`
                 }
-            }
+            },
+            providesTags:['updatePromotion']
+
         }),
         deletePromotion:builder.mutation({
             query:(promotionId)=>({
-                url:`/admin/promotion/${promotionId}`,
+                url:`/promotion/${promotionId}`,
                 method:"DELETE",
                 headers:{"authorization":`Bearer ${userToken}`}
 
-            })
+            }),
+            invalidatesTags:['updatePromotion']
+
         }),
 
         // USERS 
-        getUserByID:builder.mutation({
+        getAllUsers:builder.query({
             query:()=>{
+                return{
+                    url:'/users',
+                    headers:{"authorization":`Bearer ${userToken}`}
+
+                }
+            }
+        }),
+        getUserByID:builder.mutation({
+            query:(userID)=>{
+                console.log(userID)
+               if(userID){
+                return{
+                    url:`/user/${userID}`,
+                    headers:{"authorization":`Bearer ${userToken}`}
+                }
+               }else{
                 return{
                     url:"/user",
                     headers:{"authorization":`Bearer ${userToken}`}
                 }
+               }
             }
         }),
         updateUser :builder.mutation({
@@ -317,6 +446,18 @@ export const booksApi = createApi({
                     method:"PUT",
                     body:userData,
                     headers:{"authorization":`Bearer ${userToken}`}
+                }
+            }
+        }),
+        updateUserRole:builder.mutation({
+            query:(userData)=>{
+                console.log(userData)
+                return{
+                    url:"/user-change-role",
+                    method:"PUT",
+                    body:userData,
+                    headers:{"authorization":`Bearer ${userToken}`}
+
                 }
             }
         }),
@@ -437,12 +578,12 @@ export const booksApi = createApi({
         removeFromWishList:builder.mutation({
             query:(cartItems)=>{
                 const {bookIds,collectionIds} = cartItems
-            
+                
                 console.log(bookIds)
                 return{
                     url:'/wish-removal',
                     method:'PUT',
-                    body:{bookIds:[bookIds],collectionIds:[collectionIds]},
+                    body:cartItems,
                     headers:{"Authorization":`Bearer ${userToken}`}
                 }
             },
@@ -461,7 +602,24 @@ export const booksApi = createApi({
         }),
 
         // orders
+        getAllOrders:builder.query({
+            query:()=>{
+                return {
+                    url:'/orders',
+                    headers:{"Authorization":`Bearer ${userToken}`}
 
+                }
+            }
+        }),
+        getOrdersCount:builder.query({
+            query:()=>{
+                return {
+                    url:'/orders-count',
+                    headers:{"Authorization":`Bearer ${userToken}`}
+
+                }
+            }
+        }),
         addOrder:builder.mutation({
             query:(cartItems)=>{
                 

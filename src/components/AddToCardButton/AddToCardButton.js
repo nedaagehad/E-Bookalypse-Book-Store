@@ -77,10 +77,19 @@ const AddToCardButton = props => {
     const removeFromWishListFun = (bookData) =>{
         console.log("removed")
         console.log(bookData.book)
-      
+        let books = []
+        let collections = []
 
-        removeFromWishList({bookIds:bookData.book,collectionIds:bookData.collection}).then((re)=>
-        
+        if(bookData.book !== undefined) {
+
+            books.push(bookData.book)
+        }
+        if(bookData.collection !== undefined) {
+            collections.push(bookData.collection)
+        }
+
+        removeFromWishList({bookIds:books,collectionIds:collections}).then((re)=>
+            
             {
                 if(re.data){
                     // dispatch(addToCartReducer(bookData))

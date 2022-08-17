@@ -20,8 +20,10 @@ const PromotionsAdmin = () => {
     }
 
   return (
-    <div className="container">
-    <Link to={'/admin/promotion/addPromotion'} className="btn btn-primary" >Add New Promotion</Link>
+    <div className="page-body-wrapper pt-5">
+    <div className="content-wrapper pt-5">
+
+
     <table className="table">
       <thead>
         <tr>
@@ -37,7 +39,7 @@ const PromotionsAdmin = () => {
 
         </tr>
       </thead>
-      <tbody>
+      <tbody className='text-white'>
       
       {promotions !== undefined  ? promotions.map((pormotion,i)=>{
           return (
@@ -61,6 +63,9 @@ const PromotionsAdmin = () => {
 
       </tbody>
     </table>
+    <Link to={'/admin/promotion/addPromotion'} className="btn btn-primary text-white" >Add New Promotion</Link>
+
+    </div>
 </div>
   )
 }

@@ -48,6 +48,11 @@ import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion'
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
 import DashboardContent from './components/DashboardContent/DashboardContent';
+import UpdateUserRole from './pages/admin/Users/UpdateUserRole';
+import Orders from './pages/admin/Orders/Orders';
+import CollectionsAdmin from './pages/admin/Collections/CollectionsAdmin';
+import AddCollection from './pages/admin/Collections/collection/AddCollection';
+import UpdateCollection from './pages/admin/Collections/collection/UpdateCollection';
 
 function App() {
 
@@ -123,6 +128,15 @@ function App() {
 
           {/* Users View Admin Panel*/}
           <Route path='/admin/users' element={<UsersView />} />
+          <Route path='/admin/user/UpdateUserRole/:id' element={<UpdateUserRole />} />
+          {/* orders */}
+          <Route path='/admin/orders' element={<Orders />} />
+          {/* Collections */}
+          <Route path='/admin/collections' element={<CollectionsAdmin />} />
+          <Route path='/admin/collection/addCollection' element={<AddCollection />} />
+          <Route path='/admin/collection/updateCollection/:id' element={<UpdateCollection />} />
+ 
+ 
         </Route>
         
         :null}

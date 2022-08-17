@@ -2,11 +2,12 @@ import React,{useState,useEffect} from 'react'
 import { Formik, Field ,Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import storage from '../../../Firebase/firebaseImage';
 
 import { booksApi } from '../../../store/services';
+import { ReactMultiSearchSelect } from 'react-multi-search-select';
 
 
 
@@ -15,14 +16,19 @@ const updateBook = () => {
     const [book,setBook] = useState();
     const [categories,setCategories] =useState()
     const [writers,setWriters] =useState()
+    const [selectedCategories,setSelectedCategories] =useState()
+    const [selectedWriters,setSelectedWriters] =useState()
+    const [selectedPromotions, setSelectPromotions] =useState()
+
     const [promotions,setPromotions] = useState()
     const [BookImage, setBookImage] = useState();
     const [BookPdf, setBookPdf] = useState();
     const [currentImage, setcurrentImage] = useState();
     let params = useParams()
+    let navigate= useNavigate()
     const {data,isLoading,error}= booksApi.useGetBookByIdQuery(params.id)
     const categoryData = booksApi.useGetAllCategoriesQuery()
-    const writersData = booksApi.useGetAllWritersQuery()
+    const writersData = booksApi.useGetTotalWritersQuery()
     const promotionsData = booksApi.useGetAllPromotionsQuery();
 
 
@@ -31,8 +37,8 @@ const updateBook = () => {
       booktitle: Yup.string().required("Title is Required"),
       bookprice: Yup.number().required("Price is Required"),
       bookdescription: Yup.string().required("Description is Required"),
-      category:Yup.array().required("Required"),
-      writer:Yup.array().required("Required")
+    //   category:Yup.array().required("Required"),
+    //   writer:Yup.array().required("Required")
     })
 
 
@@ -44,9 +50,19 @@ const updateBook = () => {
   let onPdfChange = (e)=>{
     setBookPdf(e.target.files[0])
   }
+  const onSelectCategoryChange = (e)=>{
+    setSelectedCategories(e)
+  }
+  const onSelectWritersChange = (e)=>{
+    setSelectedWriters(e)
+  }
+  const onSelectPromotions = (e)=>{
+    setSelectPromotions(e)
+  }
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="page-body-wrapper pt-5">
+        <div className="content-wrapper pt-5 text-white">
         <Formik 
         
         initialValues= {{
@@ -66,14 +82,18 @@ const updateBook = () => {
 
         }}
         validationSchema={BookSchemaValidation}
-        validate={(values)=>{
-            const errors = {};
-            if(!BookPdf && !data[0].source  ){
-                errors.pdfErr = "Please Select PDF"
-            }
-            return errors
+        // validate={(values)=>{
+        //     const errors = {};
+        //     if(data){
 
-        }}
+        //         if(!BookPdf && !data[0].source ){
+        //             errors.pdfErr = "Please Select PDF"
+        //         }
+        //     }
+        //     return errors
+
+        // }}
+        
         onSubmit={values =>{
             const data = new FormData()
             data.append('bookimage',BookImage)
@@ -85,10 +105,13 @@ const updateBook = () => {
             data.append("publisher",values.bookpublisher)
             data.append("lang",values.booklang)
             data.append("pages",values.bookpages)
-            data.append("category",JSON.stringify(values.category))
-            data.append("writer",JSON.stringify(values.writer))
-            data.append("promotion",values.promotion)
-            // console.log(values.promotion)
+            data.append("category",JSON.stringify(selectedCategories))
+            data.append("writer",JSON.stringify(selectedWriters))
+            data.append("promotion",'62e5298388bd028a85259f70')
+            // console.log(selectedCategories)
+            // console.log(selectedWriters)
+            // console.log(selectedPromotions)
+
             if(book){
 
                 data.append("oldImg",book.poster)
@@ -98,7 +121,14 @@ const updateBook = () => {
             // console.log( values)
             // axios.put(`https://e-bookalypse.herokuapp.com/api/admin/books/${params.id}`,data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             updateNewBook({bookNewData : data,bookid : params.id}).then((res)=>
-            console.log(res)
+            {if(res.data){
+                navigate('/admin/books')
+                // console.log(res)
+            }else{
+                console.log(res.err)
+            }}
+          
+
             ).catch((err)=>{console.log(err)})
             }}
             
@@ -111,7 +141,22 @@ const updateBook = () => {
 
             if(data){
                 setBook(data)
-                // console.log(data)
+                let categories = []
+                let writers = []
+                data[0].category.forEach((c)=>{
+                    categories.push(c._id)
+                    setSelectedCategories(categories)
+                })
+                if(data[0].promotion[0]){
+                    
+                    setSelectPromotions(data[0].promotion[0]._id)
+                    // console.log(data[0]._id)
+                }
+                data[0].writer.forEach((c)=>{
+                    writers.push(c._id)
+                    setSelectedWriters(writers)
+                })
+                // setSelectedWriters(data[0].writer)
                 if(data[0].source || data[0].poster){
                     const starsRef = ref(storage, 'uploads/books/poster/'+data[0].poster);
           
@@ -136,28 +181,13 @@ const updateBook = () => {
                             if(key == 'n_pages'){
                                 setFieldValue('bookpages',data[key])
                             }
-                            if(key =='category'){
-                                // values.category = res.data.category
-                                // console.log(values.category)
-                                setFieldValue('category',data[0].category.map((w)=>w._id))
-                                // console.log(res.data[0].category.map((w)=>w._id))
-                            }
-                            if(key =='writer'){
-                                // values.category = res.data.category
-                                // console.log(values.category)
-                                setFieldValue('writer',data[0].writer.map((w)=>w._id))
-                                // console.log('writer',res.data[0].writer.map((w)=>w._id))
-    
-                            }
-                            if(key=="promotion"){
-                                setFieldValue('promotion',data[0].promotion)
-                                // console.log(data[0].promotion)
-                            }
-                    
+
+                            
+                
                     })
             }
 
-
+            
             if(categoryData){
                 const { data ,isLoading , error} = categoryData
                 if(data){
@@ -169,7 +199,7 @@ const updateBook = () => {
             if(writersData){
                 const {data,isLoading,error} = writersData
                 if(data){
-                    setWriters(data.data)
+                    setWriters(data)
                 }
             }
 
@@ -185,10 +215,12 @@ const updateBook = () => {
       
           }, [data,categoryData,writersData,promotionsData]);
         //   {console.log(book)}
+        // console.log(selectedCategories)
+
+        console.log(selectedCategories)
         return(
-        
             <Form className="row" >
-            {book? 
+            {book ? 
                 
             <>
             
@@ -271,65 +303,72 @@ const updateBook = () => {
             </div>
             <div className='col-md-6 mt-2'>
                 <label htmlFor="category" className="form-label">Select Category : </label>
-                    {/* book.category.filter((c)=> !categories.some(cat => cat==c)).map((c)=>{ */}
-                    <Field as="select" id="category"  multiple={true}   name="category"  className="form-select" aria-label="Select Category">
+          
+                    {
+                        selectedCategories ? 
+                        <ReactMultiSearchSelect 
+                        className="text-dark"
+                        id="category"
+                        name="category"
+                        defaultValues={selectedCategories}
+                        options={categories ? categories : []}
+                        optionsObject={{key:"_id",value:"title"}}
+                        onChange={(e)=>onSelectCategoryChange(e)}
+                        // selectionLimit={3}
+                        />
+                        
+                        : null
 
-                     
-                        {categories ? categories.map((category)=>{
-                        //   console.log(book.category.filter((c)=> !categories.some(cat => cat==c)).map((x)=>x._id))
-                        return (
-                            <option  key={category._id} value={category._id}>{category.title}</option>
-                            
-                        )
+                    }
 
-                        }):null}
-                   
+                 
+               
+                        {errors ? ( <div className="form-text text-danger">{errors.category}</div>
+                    ) : null }
 
-            
-
-                    </Field>
-                    {errors.category && touched.category ? (
-                            <div className="form-text text-danger">{errors.category}</div>
-                        ) : null }
             </div>
             <div className='col-md-6 mt-2'>
                     <label htmlFor="writer" className="form-label">Select Writer : </label>
-                    {/* <select   id="writer" name="writer" className="form-select" aria-label="Select Writer"> */}
-                    <Field as="select" id="writer" name="writer"  multiple={true}  className="form-select" aria-label="Select Writer">
+      
+                    <ReactMultiSearchSelect 
+                          className="text-dark"
+                          id="writer"
+                          name="writer"
+                          defaultValues={selectedWriters}
 
-                        {writers ? writers.map((writer)=>{
-                        return (
-                            <option key={writer._id} value={writer._id}>{writer.name}</option>
-                            
-                        )
-
-                        }):null}
-
-                    </Field>    
-                    {errors.writer && touched.writer ? (
-                            <div className="form-text text-danger">{errors.writer}</div>
-                        ) : null }  
+                          options={writers ? writers : []}
+                          optionsObject={{key:"_id",value:"name"}}
+                          onChange={(e)=>onSelectWritersChange(e)}
+                          // selectionLimit={3}
+                          />
+                            {errors ? ( <div className="form-text text-danger">{errors.writer}</div>
+                        ) : null }
+              
             </div>
             <div className='col-md-6 mt-2'>
                     <label htmlFor="promotion" className="form-label">Select promotion : </label>
-                    {/* <select   id="writer" name="writer" className="form-select" aria-label="Select Writer"> */}
-                    <Field as="select" id="promotion" name="promotion"    className="form-select" aria-label="Select promotion">
-                        <option value="None">None</option>
 
-                        {promotions ? promotions.map((promotion)=>{
-                        return (
-                            <>
-                                <option key={promotion._id} value={promotion._id}>{promotion.title}</option>
-                            </>
-                            
-                        )
-
-                        }):null}
-
-                    </Field>    
-                    {errors.promotion && touched.promotion ? (
-                            <div className="form-text text-danger">{errors.promotion}</div>
-                        ) : null }  
+                    
+                    {
+                        selectedPromotions ?    
+                            <ReactMultiSearchSelect 
+                            className="text-dark"
+                            id="promotion"
+                            name="promotion"
+                            defaultValues={[selectedPromotions]}
+                            options={promotions ? promotions : []}
+                            optionsObject={{key:"_id",value:"title"}}
+                            onChange={(e)=>onSelectPromotions(e)}
+                            selectionLimit={1}
+                            /> 
+                        :null
+                      }
+                    
+                
+                    
+            
+                    {errors ? ( <div className="form-text text-danger">{errors.writer}</div>
+                        ) : null }
             </div>
             <div className='col-md-12 mt-4'>
                 <input type="submit" className='btn btn-success form-control'   value="Updadte Book" />
@@ -342,6 +381,7 @@ const updateBook = () => {
     
     }}
         </Formik>
+        </div>
     </div>
   )
 

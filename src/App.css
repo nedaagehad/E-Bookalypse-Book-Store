@@ -102,3 +102,12 @@ a{
   text-decoration: none !important;
   color:inherit !important
 }
+.react-multi-search-select-container	{
+  color:black;
+}
+.react-multi-search-select-selected-option	{
+  background-color: #8D27AE !important;
+}
+.react-multi-search-select-options-container li:not(.no-hover):hover	{
+  background-color: #8D27AE !important;
+}
