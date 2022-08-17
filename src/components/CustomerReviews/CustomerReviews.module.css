@@ -57,6 +57,7 @@
 }
 .CustomerReview .ReviewBrief .RateDetails .RateDetInfo, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo{
     width: inherit;
+    margin: 10px 0px !important;
 }
 .CustomerReview .ReviewBrief .RateDetails .RateDetInfo span, .CustomerReview .ReviewBriefNight .RateDetails .RateDetInfo span{
     position: relative;

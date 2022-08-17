@@ -1,22 +1,23 @@
 
-import React from 'react'
-import classes from './AddToCardButton.module.css'
-import { BsFillHeartFill } from 'react-icons/bs'
-import { booksApi } from '../../store/services'
-import { useDispatch } from 'react-redux'
-import { increaseCount } from '../../store/reducers/cartReducer/CartReducer'
+import React from 'react';
+import { booksApi } from '../../store/services';
+
+//CSS Module
+import classes from './AddToCardButton.module.css';
+
+//Icons
+import { BsFillHeartFill } from 'react-icons/bs';
+
 
 const AddToCardButton = props => {
+
     const {book,collection} = props
-    const [addToCart,response] =booksApi.useAddToCartMutation()
+    const [addToCart] =booksApi.useAddToCartMutation()
     const [addToWishList] =booksApi.useAddToWishListMutation()
     const [removeFromWishList] =booksApi.useRemoveFromWishListMutation()
 
-    // console.log(props.fav)
-    // let dispatch = useDispatch()
-    // console.log(book)
+    
     let addToCartFun =  (bookData) => {
-        // console.log(bookData)
         let books = []
         let collections = []
 
@@ -29,7 +30,6 @@ const AddToCardButton = props => {
         }
 
         addToCart({bookIds:books,collectionIds:collections}).then((re)=>
-        
             {
                 if(re.data){
                     // dispatch(addToCartReducer(bookData))
@@ -75,9 +75,6 @@ const AddToCardButton = props => {
     }
 
     const removeFromWishListFun = (bookData) =>{
-        console.log("removed")
-        console.log(bookData.book)
-      
 
         removeFromWishList({bookIds:bookData.book,collectionIds:bookData.collection}).then((re)=>
         
@@ -96,7 +93,7 @@ const AddToCardButton = props => {
     }
 
     return (
-        <div className={classes.action}>
+        <div className={`mt-3 ${classes.action}`}>
             <button onClick={()=>addToCartFun({book,collection})}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
             {   props.fav 
                 ?

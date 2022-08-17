@@ -91,7 +91,12 @@ input[type='checkbox']:focus{
   display: flex;
   min-height: 65.5vh;
 }
+
 a{
   text-decoration: none !important;
   color:rgb(123, 33, 153) !important
+}
+
+.content {
+  margin-top: 50px !important;
 }

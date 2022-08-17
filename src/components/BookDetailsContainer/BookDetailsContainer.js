@@ -66,7 +66,7 @@ const BookDetailsContainer = props => {
     return (
         <div className={`col-12`} >
             <div className={classes.BookDetails}>
-                <h2 className={classes.title}>Book Details</h2>
+                <h2 className={`${classes.title}`}>Book Details</h2>
                 <div className={`row`}>
                     <div className={`col-md-3 col-sm-12`}>
                         <div className={classes.Book_Poster}>
@@ -75,32 +75,10 @@ const BookDetailsContainer = props => {
                     </div>
                     <div className={`col-md-9 col-sm-12`}>
                         <div className={classes.Details}>
-                            {/* <div className={classes.Reviews}>
-                                <button className={classes.stars}>
-                                    {((x) => {
-                                            let starsArr = [];
-                                            for (var i = 1; i <= 5; i++)
-                                            {
-                                                if (i <= x)
-                                                {
-                                                    starsArr.push(<span style={{ color: "#FBAC04" }}><AiFillStar /></span>);
-                                                }
-                                                else
-                                                {
-                                                    starsArr.push(<span style={{ color: "#D0CBCB" }}><AiFillStar /></span>);
-                                                }
-                                            }
-                                            return (starsArr);
-                                        })(Math.floor(props.rate))}
-                                    &nbsp;&nbsp;{props.rate}
-                                </button>
-                                <button className={classes.Review}>{props.reviewCount} Reviews</button>
-                            </div> */}
   
                         
                             <h1 className={theme === "night" ? "text-light" : ""}>{props.bookName}</h1>
                             <h3>{props.bookAuther}</h3>
-{/* <<<<<<< HEAD */}
                             <p className={theme === "night" ? classes.description : ""}>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}
                             {props.bookPriceAfterPromo !== props.bookPriceBeforePromo ? 
@@ -116,11 +94,9 @@ const BookDetailsContainer = props => {
                                 <button onClick={()=>addToCartFun(props.id)}>Add To Cart <i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
                                 <button className={classes.favorite}><BsFillHeartFill/></button>
                             </div> */}
-{/* ======= */}
                             {/* <p>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}<span className={classes.promo}><sub><del>${props.bookPriceBeforePromo}</del></sub></span></h2> */}
                             <AddToCardButton fav={!wishList  ? false : wishList.bookItems.filter((c)=> c._id === props.book._id).length > 0 ?  true : false} book={props.id}/>
-{/* >>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657 */}
                         </div>
                     </div>
                 </div>

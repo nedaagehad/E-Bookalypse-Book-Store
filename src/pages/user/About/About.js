@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+//CSS Module
 import styles from './About.module.css';
+
+//Components
 import OurPartners from '../../../components/OurPartners/OurPartners';
+
+//Icons
 import { FaHandshake, FaUsers, FaHouseUser, FaBookReader } from 'react-icons/fa';
 import { GiCardExchange } from 'react-icons/gi';
 import { MdSupportAgent } from 'react-icons/md';
-import { useSelector } from 'react-redux';
 
 function About() {
 
@@ -12,7 +18,7 @@ function About() {
 
   return (
     <>
-      <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className='container pt-5'>
           <h3 className={`mb-4 fw-bold ${styles.mainTitle}`}>About Us</h3>
           <div className='row mb-5'>
@@ -105,4 +111,4 @@ function About() {
   )
 }
 
-export default About
+export default About;
