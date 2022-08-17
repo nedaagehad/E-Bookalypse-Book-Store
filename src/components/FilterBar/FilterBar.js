@@ -68,7 +68,7 @@ const FilterBar = props => {
 
 
     return (
-        <div className={`col-md-3 col-sm-12 ${theme === "night" ? classes.FilterBarNight : classes.FilterBar}`}>
+        <div className={`col-md-3 col-sm-12 pt-5 ${theme === "night" ? classes.FilterBarNight : classes.FilterBar}`}>
             <h2 className={classes.title}>Filter</h2>
             <div className={classes.Filters}>
                 <h3 className={theme === "night" ? "text-light" : ""}>Categories</h3>
@@ -84,19 +84,19 @@ const FilterBar = props => {
                     {categories !== undefined ? 
                         categories.map((cat)=>{
                             return(
-                            <div className="form-check" key={cat._id}>
+                            <div className="form-check d-flex align-items-end" key={cat._id}>
                                 
                                 {checked.includes(cat.title)? 
                                 
                                 
-                                <input checked className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e)=>getCategoriesIn(e,cat.title)} id="flexCheckDefault"/>
+                                <input checked className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e)=>getCategoriesIn(e,cat.title)} id={cat.title} />
                                 
                                 :
                                 
-                                <input  className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e)=>getCategoriesIn(e,cat.title)} id="flexCheckDefault"/>
+                                <input  className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e)=>getCategoriesIn(e,cat.title)} id={cat.title} />
                                 
                                 }
-                                <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="flexCheckDefault">
+                                <label className={`form-check-label align-self-center ${theme === "night" ? classes.filterItem : ""}`}  htmlFor={cat.title}>
                                     {cat.title}
                                 </label>
                             </div>
@@ -108,30 +108,29 @@ const FilterBar = props => {
                 <h3 className={theme === "night" ? "text-light" : ""}>Rates</h3>
                 <div className={classes.cat_Rate}>
                     <div className="form-check">
-                        {/*  onChange={(e,data)=>{setFilter({...filter,rate:e.target.value})}} */}
-                        <input className="form-check-input" name="rate" type="radio" value="4" onChange={(e)=>{dispatch(rate(e.target.value))}} id="flexCheckDefault"/>
-                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="flexCheckDefault">
+                        <input className="form-check-input" name="rate" type="radio" value="4" onChange={(e)=>{dispatch(rate(e.target.value))}} id="rate4"/>
+                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="rate4">
 
                             4 stars or above
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" name="rate" type="radio" value="3" onChange={(e)=>{dispatch(rate(e.target.value))}} id="flexCheckDefault"/>
-                        <label  className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="flexCheckDefault">
+                        <input className="form-check-input" name="rate" type="radio" value="3" onChange={(e)=>{dispatch(rate(e.target.value))}} id="rate3"/>
+                        <label  className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="rate3">
 
                             3 stars or above
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input"name="rate"  type="radio" value="2" onChange={(e)=>{dispatch(rate(e.target.value))}} id="flexCheckDefault"/>
-                        <label   className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="flexCheckDefault">
+                        <input className="form-check-input"name="rate"  type="radio" value="2" onChange={(e)=>{dispatch(rate(e.target.value))}} id="rate2"/>
+                        <label   className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="rate2">
 
                             2 stars or above
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" name="rate" type="radio" value="1"  onChange={(e)=>{dispatch(rate(e.target.value))}} id="flexCheckDefault"/>
-                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="flexCheckDefault">
+                        <input className="form-check-input" name="rate" type="radio" value="1"  onChange={(e)=>{dispatch(rate(e.target.value))}} id="rate1"/>
+                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}  htmlFor="rate1">
                             1 stars or above
                         </label>
                     </div>
@@ -139,15 +138,15 @@ const FilterBar = props => {
                 <h3 className={theme === "night" ? "text-light" : ""}>Sort Price</h3>
                 <div className={classes.cat_Sort_Price}>
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" name="priceSort" onChange={(e)=>{dispatch(priceSort(e.target.value))}} value="lth" id="flexCheckDefault"/>
-                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}   htmlFor="flexCheckDefault">
+                        <input className="form-check-input" type="radio" name="priceSort" onChange={(e)=>{dispatch(priceSort(e.target.value))}} value="lth" id="lth"/>
+                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`}   htmlFor="lth">
 
                             Low to High
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" name="priceSort" onChange={(e)=>{dispatch(priceSort(e.target.value))}} value="htl" id="flexCheckDefault"/>
-                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="flexCheckDefault">
+                        <input className="form-check-input" type="radio" name="priceSort" onChange={(e)=>{dispatch(priceSort(e.target.value))}} value="htl" id="htl"/>
+                        <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="htl">
 
                             High to Low
                         </label>

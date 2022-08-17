@@ -76,8 +76,8 @@ function BookDetails() {
                           twoPerc="20"
                           onePerc="10"
                           comments={[
-                            {rate:"4.2",commenterImg:"",commenterName:"Reham Raafat",commentDate:"22 Jun, 2022",commentDesc:"My Favourite series forever !!"},
-                            {rate:"4.1",commenterImg:"",commenterName:"Nedaa Gehad",commentDate:"15 Apr, 2021",commentDesc:"Amazing Book, I liked it"},
+                            {rate:"4",commenterImg:"",commenterName:"Reham Raafat",commentDate:"22 Jun, 2022",commentDesc:"My Favourite series forever !!"},
+                            {rate:"4",commenterImg:"",commenterName:"Nedaa Gehad",commentDate:"15 Apr, 2021",commentDesc:"Amazing Book, I liked it"},
                             { rate: "3", commenterImg: "", commenterName: "Ranan Hosny", commentDate: "1 Feb, 2020", commentDesc: "I think it's good but not the best one, the other parts are wonderfull" },
                             { rate: "2", commenterImg: "", commenterName: "Hussin Alaa", commentDate: "2 Aug, 2020", commentDesc: "I don't like fictional books" },
                             {rate:"1",commenterImg:"",commenterName:"Eslam Mostafa",commentDate:"1 Jan, 2019",commentDesc:"I don't like reading"}

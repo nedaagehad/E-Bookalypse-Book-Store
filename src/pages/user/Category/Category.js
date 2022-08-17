@@ -51,7 +51,7 @@ function Category() {
     <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
          <ViewCategoryPage>
              <FilterBar />
-            <div className="col-md-9 col-sm-12">
+            <div className="col-md-9 col-sm-12 mt-4">
                 <div className="row">
                   <BooksView title="Books">
                     <div className="col-lg-12 col-md-12 col-sm-12">
