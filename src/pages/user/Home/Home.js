@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState,useEffect }from 'react';
 import { useSelector } from 'react-redux';
 
 //Components
@@ -9,21 +9,37 @@ import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksU
 import OurPartners from '../../../components/OurPartners/OurPartners';
 import Benefits from '../../../components/Benefits/Benefits';
 
+//loader
+import Preloader from '../../../components/Preloader/Preloader';
+
 
 function Home() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  
   return (
     <>
-      <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
-        <HomeSlider />
-        <TrendingBooksUp1 />
-        <Benefits />
-        <HomeCategories/>
-        <FlashSaleSlider />
-        <OurPartners />
-      </div>
+    {
+        loading ? 
+          <Preloader/>
+          :
+          <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+          <HomeSlider />
+          <TrendingBooksUp1 />
+          <Benefits />
+          <HomeCategories/>
+          <FlashSaleSlider />
+          <OurPartners />
+        </div>
+    }
     </>
   )
 }

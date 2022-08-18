@@ -5,7 +5,8 @@ import CheckoutHeader from '../../../components/CheckoutHeader/CheckoutHeader'
 import CheckoutSummary from '../../../components/CheckoutSummary/CheckoutSummary'
 import { addToCartReducer, FillCartFromDb } from '../../../store/reducers/cartReducer/CartReducer'
 import { booksApi, selectCartItems } from '../../../store/services'
-
+//loader 
+import Preloader from '../../../components/Preloader/Preloader';
 function Checkout() {
 
     const [bookItems,setBookItems] = useState()
@@ -18,6 +19,8 @@ function Checkout() {
     let  cartSelector = useSelector(state=>state.cart.bookIds)
     let cartCollectionItems = useSelector(state=>state.cart.collectionIds)
     let cartTotalPrice = useSelector(state=>state.cart.price)
+
+    const [loading, setLoading] = useState(false);
 
     let dispatch  = useDispatch()
     // const [getCartItems , response] = booksApi.useGetCartMutation()
@@ -40,15 +43,21 @@ function Checkout() {
         //     setBookItems(r.data.cart.bookItems)
 
         // })
-        if(data){
-            // console.log(data)
-            setCart(data.cart)
-            setTotalPrice(data.finalPrice)
-            setBookItems(data.cart.bookItems)
-            setCollectionItems(data.cart.collectionItems)
-
-            // console.log(data.)
-        }
+        if (isLoading) {
+            setLoading(true);
+          }
+          else{
+            if(data){
+                // console.log(data)
+                setCart(data.cart)
+                setTotalPrice(data.finalPrice)
+                setBookItems(data.cart.bookItems)
+                setCollectionItems(data.cart.collectionItems)
+                setLoading(false);
+                // console.log(data.)
+            }
+          }
+       
     },[data])
 
     // console.log(selectCartItems())
@@ -69,18 +78,23 @@ function Checkout() {
 
   return (
       <div className={`content ${theme === "night" ? "bg-dark" : ""} pt-5`}>
+      {
+        loading ?
+          <Preloader />
+          :
           <div className="container">
               <div className="row">
                 {cart  ? 
 
                     <>
                         <CheckoutHeader cart={cart} bookItems={bookItems} collectionItems={collectionItems}/>
-                        <CheckoutSummary subTotal="30.98" tax="2.25" Total={totalPrice}/>
+                        <CheckoutSummary Total={totalPrice}/>
 
                     </>                
                 :null}
               </div>
           </div>
+        }
     </div>
   )
 }

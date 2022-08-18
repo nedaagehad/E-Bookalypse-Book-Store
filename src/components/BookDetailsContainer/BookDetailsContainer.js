@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai'
 import { booksApi } from '../../store/services'
 import { addToCartReducer, removeAll } from '../../store/reducers/cartReducer/CartReducer'
 import { useDispatch, useSelector } from 'react-redux'
-
+import loadPoster from './bookPoster.gif' 
 const BookDetailsContainer = props => {
     const [addToCart,response] =booksApi.useAddToCartMutation()
     const cartItems = useSelector(state=>state.cart)
@@ -14,25 +14,10 @@ const BookDetailsContainer = props => {
     const getWishList = booksApi.useGetWishListQuery()
     const [wishList,setWishList] = useState()
     let dispatch= useDispatch()
+
     
-
-    // useEffect(()=>{
-    //     // console.log(cartItemsBookIds.length )
-    //     if(cartItemsBookIds.length > 0){
-    //         addToCart(cartItems).then((re)=>
-    //         {
-    //             console.log(re)
-    //             dispatch(removeAll())
-    //         }
-            
-    //         )
-            
-    //     }
-
-
-    // },[cartItemsBookIds])
-
-    useEffect(()=>{
+    useEffect(() => {
+        
         if(getWishList.data){
             // console.log(getWishList.data.wishList.bookItems.filter((b)=> b._id == b.id))
             
@@ -70,7 +55,12 @@ const BookDetailsContainer = props => {
                 <div className={`row`}>
                     <div className={`col-md-3 col-sm-12`}>
                         <div className={classes.Book_Poster}>
-                            <img className="img-thumbnail" src={props.img} alt={props.alt}/>
+                            {
+                                !props.img ?
+                                    <img className="img-thumbnail" src={loadPoster} />
+                                    :
+                                    <img className="img-thumbnail" src={props.img } alt={props.alt} />
+                            }
                         </div>
                     </div>
                     <div className={`col-md-9 col-sm-12`}>

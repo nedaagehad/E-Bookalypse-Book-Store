@@ -12,7 +12,6 @@ import { booksApi } from '../../store/services';
 import SingleBook from './SingleBook/SingleBook';
 
 
-
 const TrendingBooksUp1 = () => {
 
 

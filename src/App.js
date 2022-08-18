@@ -50,11 +50,13 @@ import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion'
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
 
+
 function App() {
 
   const authState = useSelector(state => state.auth.userRole);
   const dispatch  = useDispatch();
-  const [isUser,setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(true);
+  
 
   useEffect(() => {
     if(authState === 'regUser'){
@@ -67,7 +69,7 @@ function App() {
 
   return (
     <Router>
-      <Routes>
+        <Routes>
         {/* USER ROUTES */}
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />}/>
@@ -129,7 +131,7 @@ function App() {
         
         :null}
 
-      </Routes>
+      </Routes> 
     </Router>
 
 

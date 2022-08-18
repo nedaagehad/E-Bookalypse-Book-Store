@@ -12,6 +12,7 @@ const CustomerReviews = props => {
     return (
         <div className={`col-12`}>
             <div className={classes.CustomerReview}>
+                {/*here will lie the comment input component*/}
                 <h2 className={classes.title}>Customer Reviews</h2>
                 <div className={`row`}>
                     <div className={`col-12 ${theme === "night" ? classes.ReviewBriefNight : classes.ReviewBrief}`}>
