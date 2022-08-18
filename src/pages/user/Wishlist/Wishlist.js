@@ -13,10 +13,14 @@ function Wishlist() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
 
-  const {data,isLoading,error} = booksApi.useGetWishListQuery();
-  const [wishlisted,setWishListed] = useState();
-  const [fav,setFav] = useState(true);
+// <<<<<<< HEAD
+//   const {data,isLoading,error} = booksApi.useGetWishListQuery();
+//   const [wishlisted,setWishListed] = useState();
+//   const [fav,setFav] = useState(true);
   const [loading, setLoading] = useState(false);
+  const { data, isLoading, error } = booksApi.useGetWishListQuery();
+  const [wishlisted, setWishListed] = useState();
+  const [fav, setFav] = useState(true);
 
   useEffect(() => {
     if (isLoading) {
@@ -27,10 +31,10 @@ function Wishlist() {
         setWishListed(data.wishList)
         setLoading(false);
       }
-    }
-  },[data]);
-  
+  }}, [data]);
+
   return (
+// <<<<<<< HEAD
     <div className={`content container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
       {
         loading ?
@@ -73,6 +77,41 @@ function Wishlist() {
             </div>
           </ViewCategoryPage>
       }
+{/* =======
+    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+      <ViewCategoryPage>
+        <div className="col-md-12 col-sm-12 pt-5">
+          <div className="row">
+            <BooksView title="Wishlist">
+              <div className="col-md-12 col-sm-12">
+                <div className="row" style={{ padding: "50px" }}>
+                  {wishlisted ?
+                    wishlisted.bookItems.map((book) => {
+
+                      return (
+                        <div key={book._id} className="col-lg-3 col-md-6 col-sm-12" style={{ marginBottom: "20px" }}>
+                          <BookCard fav={fav} book={book} />
+                        </div>
+                      )
+                    }) : null
+                  }
+
+                  {wishlisted ?
+                    wishlisted.collectionItems.map((col) => {
+                      return (
+                        <div key={col._id} className="col-lg-3 col-md-6 col-sm-12" style={{ marginBottom: "20px" }}>
+                          <CollectionCard fav={fav} data={col} />
+                        </div>
+                      )
+                    }) : null
+                  }
+                </div>
+              </div>
+            </BooksView>
+          </div>
+        </div>
+      </ViewCategoryPage>
+>>>>>>> nedaa */}
     </div>
   )
 }
