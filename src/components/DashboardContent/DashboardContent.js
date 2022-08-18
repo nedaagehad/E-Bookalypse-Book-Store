@@ -17,6 +17,9 @@ import map from "../../assetsAdmin/images/map.png";
 import { booksApi } from '../../store/services';
 import { useOutletContext } from 'react-router-dom';
 import AdminComponent from './adminComponent';
+import Lottie from 'react-lottie';
+import RocketLottie from "./rocketCloud.json";
+
 
 function DashboardContent() {
   const props = useOutletContext()
@@ -51,6 +54,14 @@ function DashboardContent() {
   
 
       if(user){
+        let rocketObj = { 
+          loop: true,
+          autoplay: true,
+          animationData : RocketLottie, 
+          rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+          }
+      }
         return (
             // <div >
               <div className="page-body-wrapper">
@@ -167,7 +178,14 @@ function DashboardContent() {
                     <div className="bg-dark card">
                       <div className="bg-dark card-body">
                         <h4 className="card-title">Trending Books</h4>
-                        <canvas id="transaction-history" className="transaction-chart"></canvas>
+                        <div> 
+                          <Lottie options={rocketObj}
+                          height={200}
+                          width={200}
+                          isStopped={false}
+                          isPaused={false}
+                          />
+                        </div>
                         {
                           trendingBooks ? trendingBooks.map((t)=>{
                             return(

@@ -240,7 +240,7 @@ const addBook = () => {
                 <Field as="select" id="booklang" name="booklang"  className='form-control'  placeholder="Book Language" aria-label="Select Writer" >
                     <option value="none" >None</option>
                     <option value="english" >english</option>
-                    <option value="عربي" >عربي</option>
+                    <option value="arabic" >عربي</option>
                 </Field>
             </div>
             <div className='col-md-6 mt-2'>

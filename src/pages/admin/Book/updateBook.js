@@ -108,13 +108,20 @@ const updateBook = () => {
             if(values.booklang){
                 data.append("lang",values.booklang)
             }
+            if(values.bookpages){
+
                 data.append("pages",values.bookpages)
+            }
             
             data.append("category",JSON.stringify(selectedCategories))
             data.append("writer",JSON.stringify(selectedWriters))
-            if(selectedPromotions){
-
+            if(selectedPromotions.length > 0){
+                console.log('selectedPromotions')
                 data.append("promotion",selectedPromotions)
+            }else{
+                data.append("promotion",'remove')
+
+                console.log('not selectedPromotions')
             }
             // console.log(selectedCategories)
             // console.log(selectedWriters)
@@ -301,8 +308,11 @@ const updateBook = () => {
             <div className='col-md-6 mt-2'>
                 <label htmlFor="booklang" className="form-label">Book Language : </label>
                 {/* <input type="text" className='form-control'  id="booklang" name="booklang"   placeholder="Book Language"    /> */}
-                <Field   className='form-control'  id="booklang" name="booklang"   placeholder="Book Language"/>
-
+                <Field as="select" id="booklang" name="booklang"  className='form-control'  placeholder="Book Language" aria-label="Select Writer" >
+                    <option value="none" >None</option>
+                    <option value="english" >english</option>
+                    <option value="arabic" >عربي</option>
+                </Field>
             </div>
             <div className='col-md-6 mt-2'>
                 <label htmlFor="bookpages" className="form-label">Book Pages Number : </label>
