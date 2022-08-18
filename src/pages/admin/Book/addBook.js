@@ -56,7 +56,7 @@ const addBook = () => {
         }
         if(writersData){
             if(writersData.data){
-                console.log(writersData.data)
+                // console.log(writersData.data)
                 setWriters(writersData.data)
                 // console.log(writersData.data.data)
             }else if(writersData.error){
@@ -67,7 +67,7 @@ const addBook = () => {
         if(promotionsData){
             if(promotionsData.data){
                 setPromotions(promotionsData.data)
-                console.log(promotionsData.data)
+                // console.log(promotionsData.data)
             }else if(promotionsData.error){
                 console.log(promotionsData.error)
             }
@@ -124,10 +124,7 @@ const addBook = () => {
             if(selectedCategories.length == 0){
                 errors.category = "Please Select At least one category"
             }
-            if(selectedPromotions.length == 0){
-                errors.promotion = "Please Select only one promotion"
-
-            }else if (selectedPromotions.length > 1){
+            if (selectedPromotions.length > 1){
                 errors.promotion = "Please Select only one promotion"
             }
 
@@ -142,14 +139,27 @@ const addBook = () => {
             data.append("title",values.booktitle)
             data.append("price",values.bookprice)
             data.append("description",values.bookdescription)
-            data.append("date",values.bookdate)
+            if(values.bookdate){
+
+                data.append("date",values.bookdate)
+            }
+            if(values.booklang){
+
+                data.append("lang",values.booklang)
+            }
+            
             data.append("publisher",values.bookpublisher)
-            data.append("lang",values.booklang)
-            data.append("pages",values.bookpages)
+            if(values.bookpages){
+
+                data.append("pages",values.bookpages)
+            }
             data.append("category",JSON.stringify(selectedCategories))
             data.append("writer",JSON.stringify(selectedWriters))
-            data.append("promotion",selectedPromotions[0])
-            console.log(selectedPromotions[0])
+            if(selectedPromotions[0]){
+
+                data.append("promotion",selectedPromotions[0])
+            }
+            // console.log(selectedPromotions[0])
             // console.log(typeof values.category)
             // axios.post("http://localhost:8080/api/admin/book",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
             // dispatch(addNewBooks(data))
@@ -226,8 +236,12 @@ const addBook = () => {
             <div className='col-md-6 mt-2'>
                 <label htmlFor="booklang" className="form-label">Book Language : </label>
                 {/* <input type="text" className='form-control'  id="booklang" name="booklang"   placeholder="Book Language"    /> */}
-                <Field   className='form-control'  id="booklang" name="booklang"   placeholder="Book Language"/>
-
+                {/* <Field   className='form-control'  id="booklang" name="booklang"   placeholder="Book Language"/> */}
+                <Field as="select" id="booklang" name="booklang"  className='form-control'  placeholder="Book Language" aria-label="Select Writer" >
+                    <option value="none" >None</option>
+                    <option value="english" >english</option>
+                    <option value="عربي" >عربي</option>
+                </Field>
             </div>
             <div className='col-md-6 mt-2'>
                 <label htmlFor="bookpages" className="form-label">Book Pages Number : </label>
