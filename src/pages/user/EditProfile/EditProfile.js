@@ -1,6 +1,7 @@
-import React from 'react';
-import EditUserProfile from '../../../components/EditUserProfile/EditUserProfile';
+import React, { lazy , Suspense } from 'react';
 import { useSelector } from 'react-redux';
+import Preloader from '../../../components/Preloader/Preloader';
+const EditUserProfile = lazy(() => import('../../../components/EditUserProfile/EditUserProfile'));
 
 function EditProfile() {
 
@@ -8,7 +9,9 @@ function EditProfile() {
 
   return (
     <div className={`container-fluid py-5 ${theme === "night" ? "bg-dark" : ""}`}>
-      <EditUserProfile />
+       <Suspense fallback={<Preloader />}>
+           <EditUserProfile />
+      </Suspense>
     </div>
   )
 }

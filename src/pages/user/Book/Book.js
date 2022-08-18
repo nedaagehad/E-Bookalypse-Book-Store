@@ -1,11 +1,14 @@
-import React from 'react';
-import BookCard from '../../../components/BookCard/BookCard'
-
+import React, { lazy , Suspense }  from 'react';
+import Preloader from '../../../components/Preloader/Preloader';
+const BookCard = lazy(() => import('../../../components/BookCard/BookCard') );
 function Book() {
   return (
     <div>
-      <BookCard />
+       <Suspense fallback={<Preloader />}>
+        <BookCard />
+        </Suspense>
     </div>
+      
   )
 }
 

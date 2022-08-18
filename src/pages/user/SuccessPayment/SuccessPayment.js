@@ -1,10 +1,13 @@
-import React from 'react'
-import Success from '../../../components/Success/Success'
+import React, { lazy , Suspense } from 'react'
+import Preloader from '../../../components/Preloader/Preloader';
+const Success = lazy(() => import('../../../components/Success/Success') );
 
 const SuccessPayment = props => {
   return (
     <div className='content'>
-         <Success/>
+       <Suspense fallback={<Preloader />}>
+             <Success/>
+        </Suspense>
     </div>
   )
 }

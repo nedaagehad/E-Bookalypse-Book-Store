@@ -1,16 +1,16 @@
-import React from 'react';
+import React,{ lazy , Suspense } from 'react';
 import { useSelector } from 'react-redux';
-
+import Preloader from '../../../components/Preloader/Preloader';
 //CSS Module
 import styles from './About.module.css';
-
-//Components
-import OurPartners from '../../../components/OurPartners/OurPartners';
 
 //Icons
 import { FaHandshake, FaUsers, FaHouseUser, FaBookReader } from 'react-icons/fa';
 import { GiCardExchange } from 'react-icons/gi';
 import { MdSupportAgent } from 'react-icons/md';
+//Components
+const OurPartners = lazy(() => import('../../../components/OurPartners/OurPartners'));
+
 
 function About() {
 
@@ -18,6 +18,7 @@ function About() {
 
   return (
     <>
+      <Suspense fallback={<Preloader />}>
       <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className='container pt-5'>
           <h3 className={`mb-4 fw-bold ${styles.mainTitle}`}>About Us</h3>
@@ -106,7 +107,8 @@ function About() {
           </div>
         </div>
       </div>
-      <OurPartners />
+        <OurPartners />
+        </Suspense>
     </>
   )
 }
