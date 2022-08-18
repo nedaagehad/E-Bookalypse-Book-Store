@@ -101,13 +101,21 @@ const updateBook = () => {
             data.append("title",values.booktitle)
             data.append("price",values.bookprice)
             data.append("description",values.bookdescription)
-            data.append("date",values.bookdate)
+            if(values.bookdate){
+                data.append("date",values.bookdate)
+            }
             data.append("publisher",values.bookpublisher)
-            data.append("lang",values.booklang)
-            data.append("pages",values.bookpages)
+            if(values.booklang){
+                data.append("lang",values.booklang)
+            }
+                data.append("pages",values.bookpages)
+            
             data.append("category",JSON.stringify(selectedCategories))
             data.append("writer",JSON.stringify(selectedWriters))
-            data.append("promotion",'62e5298388bd028a85259f70')
+            if(selectedPromotions){
+
+                data.append("promotion",selectedPromotions)
+            }
             // console.log(selectedCategories)
             // console.log(selectedWriters)
             // console.log(selectedPromotions)
@@ -178,8 +186,9 @@ const updateBook = () => {
                                 setFieldValue("bookdate",getDate)
                                 }
                             }
-                            if(key == 'n_pages'){
-                                setFieldValue('bookpages',data[key])
+                            if(key === 'n_pages'){
+                                setFieldValue('bookpages',data[0][key])
+                                // console.log(data)
                             }
 
                             
@@ -350,18 +359,18 @@ const updateBook = () => {
 
                     
                     {
-                        selectedPromotions ?    
+                           
                             <ReactMultiSearchSelect 
                             className="text-dark"
                             id="promotion"
                             name="promotion"
-                            defaultValues={[selectedPromotions]}
+                            defaultValues={selectedPromotions ? [selectedPromotions] : []}
                             options={promotions ? promotions : []}
                             optionsObject={{key:"_id",value:"title"}}
                             onChange={(e)=>onSelectPromotions(e)}
                             selectionLimit={1}
                             /> 
-                        :null
+                       
                       }
                     
                 
