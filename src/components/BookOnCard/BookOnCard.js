@@ -36,11 +36,9 @@ const BookOnCard = props => {
     const removeItem = (bookData) =>{
         console.log(bookData)
         
-        removeFromCart({bookIds:bookData,collectionIds:bookData}  ).then((r)=>{
+        removeFromCart({bookIds:[bookData],collectionIds:[bookData]}  ).then((r)=>{
 
-            // refetch()
-                //    dispatch(removeFromCartReducer({bookIds:bookData}))
-             
+            console.log(r)
         })
     
     }

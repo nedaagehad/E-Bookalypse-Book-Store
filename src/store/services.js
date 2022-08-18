@@ -559,7 +559,7 @@ export const booksApi = createApi({
                     return{
                         url:'/cart-removal',
                         method:'PUT',
-                        body:{bookIds:bookIds,collectionIds:collectionIds},
+                        body:cartItems,
                         headers:{"Authorization":`Bearer ${userToken}`}
                     }
                 },

@@ -30,14 +30,14 @@ function Category() {
 
                 setBooks(getSearchResults.data.data)
                 console.log(getSearchResults.data.data)
-            }
+                
+              }
 
-        }        
+        }       else if(data){
+          setBooks(data.data)
+          // console.log(data.data)
+      } 
 
-    }
-    if(data){
-        setBooks(data.data)
-        // console.log(data.data)
     }
 
     if(getWishList.data){

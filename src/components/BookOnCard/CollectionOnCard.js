@@ -31,11 +31,21 @@ const CollectionOnCard = props => {
 
     const removeItem = (bookData) =>{
         console.log(bookData)
-        
-        removeFromCart({bookIds:bookData,collectionIds:bookData}).then((r)=>{
-                // refetch()
+        // let books = []
+        // let collections = []
 
-        })
+        // if(bookData.book !== undefined) {
+
+        //     books.push(bookData.book)
+        // }
+        // if(bookData.collection !== undefined) {
+        //     collections.push(bookData.collection)
+        // }
+        removeFromCart({bookIds:[bookData],collectionIds:[bookData]}).then((r)=>{
+                // refetch()
+                console.log(r)
+
+        }).catch((error) => {console.log(error)})
     
     }
 
