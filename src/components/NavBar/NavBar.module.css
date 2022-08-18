@@ -62,13 +62,17 @@
 }
 
 .navItemNight,
-.navIconNight {
+.navIconNight,
+.userNameNight {
   color: #aba8a8 !important;
+  cursor: pointer;
 }
 
 .navItem,
-.navIcon {
+.navIcon,
+.userName {
   color: #848383 !important;
+  cursor: pointer;
 }
 
 .navItemNight:hover,
@@ -107,4 +111,9 @@ button {
 
 .titleBGNight {
   background: #373637;
+}
+
+.logIcon {
+  width: 35px !important;
+  height: 35px !important;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SwiperCore, { Autoplay, Navigation, Pagination, EffectCoverflow } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { booksApi } from '../../../store/services';
 import { useSelector } from 'react-redux';
@@ -28,9 +28,10 @@ const HomeCategories = (props) => {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
-    if (data) {
+    if (data) {      
+      setPrev(false);
+      setNext(true);
       setCategories(data.categories)
-      setPrev(false)
     }
   }, [data]);
 
@@ -102,6 +103,18 @@ const HomeCategories = (props) => {
               setNext(true)
             }}
 
+            onActiveIndexChange={({realIndex}) => {
+              if (realIndex >= 1)
+              {
+                setPrev(true);
+              }
+
+              if (realIndex < 3)
+              {
+                setNext(true);
+              }
+            }}
+
             className="mySwiper">
             {categories ? categories.map((category, index) => {
               return (
@@ -115,13 +128,13 @@ const HomeCategories = (props) => {
             }) : null}
           </Swiper>
           <div className={styles.navControllers}>
-              <div className={`prevCategory ${theme === "night" ? styles.prevContainerNight : styles.prevContainer}`}>
+              <div className={`prevCategory ${theme === "night" ? styles.prevContainerNight : styles.prevContainer} ${!prev ? "opacity-0" : ""}`}>
                 <div className={styles.prevCategory}>
                   <AiOutlineArrowLeft />
                 </div>
               </div>
 
-              <div className={`nextCategory ${theme === "night" ? styles.nextContainerNight : styles.nextContainer}`}>
+              <div className={`nextCategory ${theme === "night" ? styles.nextContainerNight : styles.nextContainer} ${!next ? "opacity-0" : ""}`}>
                 <div className={styles.nextCategory} >
                   <AiOutlineArrowRight />
                 </div>
