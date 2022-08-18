@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
-import { booksApi } from '../../store/services';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { addToCartReducer } from '../../store/reducers/cartReducer/CartReducer';
 
 //CSS Module
 import classes from './Combination.module.css';
@@ -18,7 +16,6 @@ const Combination = props => {
     const [imageOne, setImageOne] = useState();
     const [imageTwo, setImageTwo] = useState();
     const [imageThree, setImageThree] = useState();
-    const [addToCart] = booksApi.useAddToCartMutation();
 
     const theme = useSelector((state) => state.theme.currentTheme);
 
@@ -47,14 +44,6 @@ const Combination = props => {
 
         let dispatch = useDispatch();
 
-        const addPromoToCart = (collectionID) => {
-            addToCart({ collectionIds: collectionID }).then((re) => {
-                if (re.data) {
-                    dispatch(addToCartReducer(collectionID))
-                }
-            })
-        }
-
         return (
             <div className={`col-md-6 col-sm-12 ${classes.collection}`}>
                 <div className={`row justify-content-center`}>
@@ -62,13 +51,13 @@ const Combination = props => {
                         <div className={classes.booksPosters + " position-relative"}>
                             {collectionData.map((book, index) => {
                                 return (
-                                    <div key={book._id} className={index == 0 ? classes.first : index == 1 ? classes.second : index == 2 ? classes.third : null}>
-                                        {index == 1 ?
+                                    <div key={book._id} className={index === 0 ? classes.first : index === 1 ? classes.second : index === 2 ? classes.third : null}>
+                                        {index === 1 ?
                                             <div className={classes.ribbon}>
                                                 <p>${collectionPrice}</p>
                                             </div>
                                             : null}
-                                        <img src={index == 0 ? imageOne : index == 1 ? imageTwo : index == 2 ? imageThree : null} alt={props.collectionimageThree} />
+                                        <img src={index === 0 ? imageOne : index === 1 ? imageTwo : index === 2 ? imageThree : null} alt={props.collectionimageThree} />
                                     </div>
                                 )
                             })
@@ -76,7 +65,7 @@ const Combination = props => {
                         </div>
                     </div>
                     <div className={`col-md-12`}>
-                        <h4 className='text-center'>{collectionName}</h4>
+                        <h4 className='text-center'>{collectionName[0].toUpperCase() + collectionName.substring(1)}</h4>
                         {collectionData.map((book) => {
                             return (
                                 <h6 className={`text-center ${theme === "night" ? classes.detailsDark : ""}`} key={book._id}>{book.title}</h6>

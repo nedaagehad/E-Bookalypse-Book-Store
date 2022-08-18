@@ -54,7 +54,6 @@ function NavBar() {
 
     getUserByID().then((res) => {
       setUser(res.data)
-      console.log(res.data)
       const starsRef = ref(storage, 'uploads/users/' + res.data.image);
 
       getDownloadURL(starsRef)

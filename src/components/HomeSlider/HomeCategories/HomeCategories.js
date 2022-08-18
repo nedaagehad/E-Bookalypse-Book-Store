@@ -115,12 +115,13 @@ const HomeCategories = (props) => {
             }) : null}
           </Swiper>
           <div className={styles.navControllers}>
-              <div className={`prevCategory ${theme === "night" ? styles.prevContainerNight : styles.prevContainer}`}  >
+              <div className={`prevCategory ${theme === "night" ? styles.prevContainerNight : styles.prevContainer}`}>
                 <div className={styles.prevCategory}>
                   <AiOutlineArrowLeft />
                 </div>
               </div>
-              <div className={`nextCategory ${theme === "night" ? styles.nextContainerNight : styles.nextContainer}`} >
+
+              <div className={`nextCategory ${theme === "night" ? styles.nextContainerNight : styles.nextContainer}`}>
                 <div className={styles.nextCategory} >
                   <AiOutlineArrowRight />
                 </div>

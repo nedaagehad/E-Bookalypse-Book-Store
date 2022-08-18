@@ -22,7 +22,6 @@ const AddToCardButton = props => {
         let collections = []
 
         if(bookData.book !== undefined) {
-
             books.push(bookData.book)
         }
         if(bookData.collection !== undefined) {
@@ -47,12 +46,10 @@ const AddToCardButton = props => {
     }
 
     let addToWishListFun = (bookData)=>{
-        console.log(bookData)
         let books = []
         let collections = []
 
         if(bookData.book !== undefined) {
-
             books.push(bookData.book)
         }
         if(bookData.collection !== undefined) {

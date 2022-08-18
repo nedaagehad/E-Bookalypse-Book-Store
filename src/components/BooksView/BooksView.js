@@ -41,9 +41,7 @@ const BookView = props =>{
         }
     }, [data,getSearchResults.data]);
 
-console.log(Page)
     const nextPage = ()=>{
-       console.log(data.data.length)
        if(data.data.length != 0 ){
            dispatch(page())
        }
@@ -57,8 +55,8 @@ console.log(Page)
     }
 
     return(
-        <div className={`col-md-12 col-sm-12 ${styles.BookView}`}>
-            <h2 className={`mb-5 ${styles.title}`}>{props.title}</h2>
+        <div className={`col-md-12 col-sm-12 px-5 ${styles.BookView}`}>
+            <h2 className={`${styles.title}`}>{props.title}</h2>
             <div className={`row`}>
                     {props.children} 
                 <div className={`col-12`}>

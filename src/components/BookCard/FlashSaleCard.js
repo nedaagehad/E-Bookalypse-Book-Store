@@ -7,18 +7,16 @@ import styles from '../HomeSlider/FlashSaleSlider.module.css'
  
 function FlashSaleCard(props) {
 
-    const {book} = props
-    const [image,setImage] = useState()
-    console.log(book.writer[0])
+    const {book} = props;
+    const [image,setImage] = useState();
+
     useEffect(() => {
         const starsRef = ref(storage, `/uploads/books/poster/${props.book.poster}`);
         getDownloadURL(starsRef).then( (url)=>{
-    
         setImage(url)
-        
-         
        }).catch((error) => {console.log(error)});
     }, []);
+    
     return (
         <div className={`card rounded-3 ${styles.flashCard}`}>
             <div className="row align-items-center g-0">

@@ -8,7 +8,7 @@ const CategoryList = props => {
   return (
     <div className={`container`}>
       <div className={`row ${classes.category_list}`}>
-        <h1>Categories</h1>
+        <h1 className='text-center'>Categories</h1>
         {props.children}
       </div>
     </div>

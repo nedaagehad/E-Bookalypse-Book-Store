@@ -7,15 +7,12 @@ import { Link } from 'react-router-dom';
 
 const SingleCategory = (props) => {
     
-    console.log(props)
-    const [image,setImage] = useState()
+    const [image,setImage] = useState();
+
     useEffect(() => {
         const starsRef = ref(storage, `/uploads/categories/${props.category.icon}`);
         getDownloadURL(starsRef).then( (url)=>{
-         const newUrl = url
-        //  setImages(newUrl)
         setImage(url)
-        
        }).catch((error) => {console.log(error)});
     }, []);
     
@@ -26,7 +23,6 @@ const SingleCategory = (props) => {
             <div  className={styles.categoryData}>
             <div className={styles.categorytextandtitle}>
             <h4 className={styles.h4}>{props.category.title[0].toUpperCase() + props.category.title.substring(1)}</h4>
-            {/* <span className={styles.span}>{props.data[0].Num_of_books ? props.data[0].Num_of_books : "Comming Soon"}</span> */}
             </div>
             </div>
         </Link>

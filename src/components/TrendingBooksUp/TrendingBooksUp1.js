@@ -92,8 +92,7 @@ const TrendingBooksUp1 = () => {
             >
           {books ? books.map((b,index)=>{
             return(
-             
-              <SwiperSlide className='SwiperClasstest'>    
+              <SwiperSlide className='SwiperClasstest' key={index}>    
                     <SingleBook
                             key={b._id}
                             book={b}/>

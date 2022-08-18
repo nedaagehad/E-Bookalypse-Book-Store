@@ -60,7 +60,6 @@ function Category() {
                                     if(wishList){
 
                                       let bookWished  = wishList.bookItems.filter((book)=> book._id === b._id)
-                                      console.log(bookWished)
                                     }
                                       return (
                                           

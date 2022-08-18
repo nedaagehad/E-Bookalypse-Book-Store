@@ -9,8 +9,9 @@ import classes from './CategoryCard.module.css';
 
 const CategoryCard = props => {
 
-    const { category } = props
-    const [image, setImage] = useState()
+    const { category } = props;
+    const [image, setImage] = useState();
+
     const starsRef = ref(storage, `/uploads/categories/${category.icon}`);
 
     getDownloadURL(starsRef).then((url) => {
@@ -32,4 +33,4 @@ const CategoryCard = props => {
     )
 }
 
-export default CategoryCard
+export default CategoryCard;
