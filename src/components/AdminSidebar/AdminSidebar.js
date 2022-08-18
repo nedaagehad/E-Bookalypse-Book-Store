@@ -105,7 +105,7 @@ function AdminSidebar(props) {
                                 <span className="menu-title fs-5 text-muted" id="navigatehover">Promotions</span>
                             </Link>
                         </li>
-
+{/* 
                         <li className="nav-item menu-items">
                             <Link className="nav-link" to="/admin/orders">
                                 <span className="menu-icon">
@@ -113,7 +113,7 @@ function AdminSidebar(props) {
                                 </span>
                                 <span className="menu-title fs-5 text-muted" id="navigatehover">Orders</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li className="nav-item menu-items">
                             <Link className="nav-link" to="/admin/writers">

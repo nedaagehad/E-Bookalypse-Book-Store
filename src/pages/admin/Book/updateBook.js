@@ -125,7 +125,7 @@ const updateBook = () => {
                 navigate('/admin/books')
                 // console.log(res)
             }else{
-                console.log(res.err)
+                console.log(res)
             }}
           
 

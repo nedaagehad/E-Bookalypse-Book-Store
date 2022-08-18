@@ -16,6 +16,7 @@ import face21 from "../../assetsAdmin/images/faces/face21.jpg";
 import map from "../../assetsAdmin/images/map.png";
 import { booksApi } from '../../store/services';
 import { useOutletContext } from 'react-router-dom';
+import AdminComponent from './adminComponent';
 
 function DashboardContent() {
   const props = useOutletContext()
@@ -25,14 +26,28 @@ function DashboardContent() {
   const [ordersCount,setOrdersCount]  = useState()
   const [writersCount,setWritersCount]  = useState()
   const [booksCount,setBooksCount]  = useState()
+  const {data,isLoading,error} = booksApi.useGetAllBooksQuery({salesSort:'htl',limit:3})
+  const [trendingBooks,setTrendingBooks] = useState()
+  const getAllusers  = booksApi.useGetAllUsersQuery()
+  const  [ admins ,setAdmins ] = useState()
+  useEffect(()=>{ 
+    if(props){
 
-  useEffect(()=>{
-    setUser(props.user)
-    setUsersCount(props.usersCount)
-    setOrdersCount(props.ordersCount)
-    setWritersCount(props.writersCount)
-    setBooksCount(props.booksCount)
-  },[props])
+      setUser(props.user)
+      setUsersCount(props.usersCount)
+      setOrdersCount(props.ordersCount)
+      setWritersCount(props.writersCount)
+      setBooksCount(props.booksCount)
+    }
+    if(data){
+      // console.log(data)
+      setTrendingBooks(data.data)
+    }
+    if(getAllusers.data){
+      console.log(getAllusers.data)
+      setAdmins(getAllusers.data)
+    }
+  },[props,data,getAllusers.data])
   
 
       if(user){
@@ -76,11 +91,11 @@ function DashboardContent() {
                               <p className="text-success ml-2 mb-0 font-weight-bold fs-2">+{usersCount}</p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          {/* <div className="col-3">
                             <div className="icon icon-box-success ">
                               <span className="mdi mdi-arrow-top-right icon-item"></span>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <h6 className="text-muted font-weight-normal">Using E-Bookalypse</h6>
                       </div>
@@ -96,11 +111,11 @@ function DashboardContent() {
                               <p className="text-success ml-2 mb-0 font-weight-bold fs-2">+{ordersCount}</p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          {/* <div className="col-3">
                             <div className="icon icon-box-success">
                               <span className="mdi mdi-arrow-top-right icon-item"></span>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <h6 className="text-muted font-weight-normal">Orders Number</h6>
                       </div>
@@ -116,11 +131,11 @@ function DashboardContent() {
                               <p className="text-success ml-2 mb-0 font-weight-bold fs-2">+{writersCount}</p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          {/* <div className="col-3">
                             <div className="icon icon-box-success">
                               <span className="mdi mdi-arrow-top-right icon-item"></span>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <h6 className="text-muted font-weight-normal">Contract Writers</h6>
                       </div>
@@ -136,11 +151,11 @@ function DashboardContent() {
                               <p className="text-success ml-2 mb-0 font-weight-bold fs-2">+{booksCount}</p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          {/* <div className="col-3">
                             <div className="icon icon-box-success ">
                               <span className="mdi mdi-arrow-top-right icon-item"></span>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <h6 className="text-muted font-weight-normal">Categorised Books</h6>
                       </div>
@@ -153,16 +168,29 @@ function DashboardContent() {
                       <div className="bg-dark card-body">
                         <h4 className="card-title">Trending Books</h4>
                         <canvas id="transaction-history" className="transaction-chart"></canvas>
-                        <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                          <div className="text-md-center text-xl-left">
-                            <h6 className="mb-1 text-white font-weight-medium">Harry Poter 1</h6>
-                            <p className="text-muted mb-0">The First Best Seller</p>
-                          </div>
-                          <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                            <h6 className="font-weight-bold mb-0 text-success">$536</h6>
-                          </div>
-                        </div>
-                        <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                        {
+                          trendingBooks ? trendingBooks.map((t)=>{
+                            return(
+
+                            <>
+                              <div key={t._id} className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                                <div className="text-md-center text-xl-left">
+                                  <h6 className="mb-1 text-white font-weight-medium">{t.title}</h6>
+                                  <p className="text-muted mb-0">Sales {t.sales}</p>
+                                </div>
+                                <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                                  <h6 className="font-weight-bold mb-0 text-success">${t.price}</h6>
+                                </div>
+                              </div>
+                            
+                            </>
+                            )
+                            
+                          })
+                          
+                          :null
+                        }
+                        {/* <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                           <div className="text-md-center text-xl-left">
                             <h6 className="mb-1 text-white font-weight-medium">Harry Poter 2</h6>
                             <p className="text-muted mb-0">The Second Best Seller</p>
@@ -170,7 +198,7 @@ function DashboardContent() {
                           <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
                             <h6 className="font-weight-bold mb-0 text-success">$493</h6>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -184,12 +212,24 @@ function DashboardContent() {
                         <div className="row">
                           <div className="col-12">
                             <div className="preview-list">
-                              <div className="preview-item border-bottom">
+                              {
+                                admins  ? 
+                                
+                                admins.map((admin)=>{
+                                  if(admin.role == 'rootAdmin' || admin.role == 'admin'){
+                                    
+                                    return (
+                                      <AdminComponent admin={admin} key={admin._id}/>
+                                    )
+                                  }
+                                })
+                                
+                                : null
+                              }
+                              {/* <div className="preview-item border-bottom">
                                 <div className="preview-thumbnail">
-                                  {/* <div className="preview-icon bg-primary">
-                                    <i className="mdi mdi-file-document"></i> */}
+                             
                                     <img src={face21} alt="" />
-                                  {/* </div> */}
                                 </div>
                                 <div className="preview-item-content d-sm-flex flex-grow">
                                   <div className="flex-grow">
@@ -201,12 +241,10 @@ function DashboardContent() {
                                     <p className="text-muted mb-0">30 tasks, 5 issues </p>
                                   </div>
                                 </div>
-                              </div>
-                              <div className="preview-item border-bottom">
+                              </div> 
+                               <div className="preview-item border-bottom">
                                 <div className="preview-thumbnail">
-                                  {/* <div className="preview-icon bg-success">
-                                    <i className="mdi mdi-cloud-download"></i>
-                                  </div> */}
+                                 
                                   <img src={face15} alt="image" />
                                 </div>
                                 <div className="preview-item-content d-sm-flex flex-grow">
@@ -219,12 +257,9 @@ function DashboardContent() {
                                     <p className="text-muted mb-0">23 tasks, 5 issues </p>
                                   </div>
                                 </div>
-                              </div>
-                              <div className="preview-item border-bottom">
+                              </div> 
+                               <div className="preview-item border-bottom">
                                 <div className="preview-thumbnail">
-                                  {/* <div className="preview-icon bg-info">
-                                    <i className="mdi mdi-clock"></i>
-                                  </div> */}
                                   <img src={face3} alt="" />
                                 </div>
                                 <div className="preview-item-content d-sm-flex flex-grow">
@@ -237,12 +272,10 @@ function DashboardContent() {
                                     <p className="text-muted mb-0">15 tasks, 2 issues</p>
                                   </div>
                                 </div>
-                              </div>
-                              <div className="preview-item border-bottom">
+                              </div> *
+                               <div className="preview-item border-bottom">
                                 <div className="preview-thumbnail">
-                                  {/* <div className="preview-icon bg-danger">
-                                    <i className="mdi mdi-email-open"></i>
-                                  </div> */}
+                                  
                                   <img src={face10} alt="" />
                                 </div>
                                 <div className="preview-item-content d-sm-flex flex-grow">
@@ -258,9 +291,7 @@ function DashboardContent() {
                               </div>
                               <div className="preview-item">
                                 <div className="preview-thumbnail">
-                                  {/* <div className="preview-icon bg-warning">
-                                    <i className="mdi mdi-chart-pie"></i>
-                                  </div> */}
+                                  
                                   <img src={face1} alt="" />
                                 </div>
                                 <div className="preview-item-content d-sm-flex flex-grow">
@@ -273,7 +304,7 @@ function DashboardContent() {
                                     <p className="text-muted mb-0">27 tasks, 4 issues </p>
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>
@@ -347,7 +378,7 @@ function DashboardContent() {
     
     
     
-                <div className="row ">
+                {/* <div className="row ">
                   <div className="col-12 grid-margin">
                     <div className="card bg-dark">
                       <div className="card-body bg-dark">
@@ -357,11 +388,7 @@ function DashboardContent() {
                             <thead>
                               <tr>
                                 <th>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label">
-                                      <input type="checkbox" className="form-check-input"/>
-                                    </label>
-                                  </div> */}
+                                
                                 </th>
                                 <th className="font-weight-medium fs-5"> Client Name </th>
                                 <th className="font-weight-medium fs-5"> Order No </th>
@@ -369,17 +396,12 @@ function DashboardContent() {
                                 <th className="font-weight-medium fs-5"> Book Name</th>
                                 <th className="font-weight-medium fs-5"> Payment Mode </th>
                                 <th className="font-weight-medium fs-5"> Order Date </th>
-                                {/* <th className="font-weight-medium fs-5"> Payment Status </th> */}
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
                                 <td>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label">
-                                      <input type="checkbox" className="form-check-input"/>
-                                    </label>
-                                  </div> */}
+                               
                                 </td>
                                 <td>
                                   <img src={face1} alt="" />
@@ -390,17 +412,11 @@ function DashboardContent() {
                                 <td className="text-white-50 fs-5"> Art Book </td>
                                 <td className="text-white-50 fs-5"> Credit card </td>
                                 <td className="text-white-50 fs-5"> 04 Aug 2022 </td>
-                                {/* <td>
-                                  <div className="badge badge-outline-success fs-5 m-2 font-weight-medium text-success">Approved</div>
-                                </td> */}
+                            
                               </tr>
                               <tr>
                                 <td>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label">
-                                      <input type="checkbox" className="form-check-input"/>
-                                    </label>
-                                  </div> */}
+                             
                                 </td>
                                 <td>
                                   <img src={face2} alt="" />
@@ -411,17 +427,11 @@ function DashboardContent() {
                                 <td className="text-white-50 fs-5"> Art Book </td>
                                 <td className="text-white-50 fs-5"> Paypal </td>
                                 <td className="text-white-50 fs-5"> 04 Jun 2022 </td>
-                                {/* <td>
-                                  <div className="badge badge-outline-warning fs-5 m-2 font-weight-medium text-warning">Pending</div>
-                                </td> */}
+                        
                               </tr>
                               <tr>
                                 <td>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label text-white">
-                                      <input type="checkbox" className="form-check-input text-white"/>
-                                    </label>
-                                  </div> */}
+                       
                                 </td>
                                 <td>
                                   <img src={face5} alt="" />
@@ -432,17 +442,11 @@ function DashboardContent() {
                                 <td className="text-white-50 fs-5"> Art Book </td>
                                 <td className="text-white-50 fs-5"> Credit card </td>
                                 <td className="text-white-50 fs-5"> 04 Mar 2022 </td>
-                                {/* <td>
-                                  <div className="badge badge-outline-danger fs-5 m-2 font-weight-medium text-danger">Rejected</div>
-                                </td> */}
+                         
                               </tr>
                               <tr>
                                 <td>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label">
-                                      <input type="checkbox" className="form-check-input"/>
-                                    </label>
-                                  </div> */}
+                          
                                 </td>
                                 <td>
                                   <img src={face3} alt="" />
@@ -453,17 +457,11 @@ function DashboardContent() {
                                 <td className="text-white-50 fs-5"> Art Book </td>
                                 <td className="text-white-50 fs-5"> Online Payment </td>
                                 <td className="text-white-50 fs-5"> 04 Apr 2022 </td>
-                                {/* <td>
-                                  <div className="badge badge-outline-success fs-5 m-2 font-weight-medium text-success">Approved</div>
-                                </td> */}
+                              
                               </tr>
                               <tr>
                                 <td>
-                                  {/* <div className="form-check form-check-muted m-0">
-                                    <label className="form-check-label">
-                                      <input type="checkbox" className="form-check-input"/>
-                                    </label>
-                                  </div> */}
+                                 
                                 </td>
                                 <td>
                                   <img src={face4} alt="" />
@@ -474,9 +472,7 @@ function DashboardContent() {
                                 <td className="text-white-50 fs-5"> Art Book </td>
                                 <td className="text-white-50 fs-5"> Credit card </td>
                                 <td className="text-white-50 fs-5"> 04 May 2022 </td>
-                                {/* <td>
-                                  <div className="badge badge-outline-success fs-5 m-2 font-weight-medium text-success">Approved</div>
-                                </td> */}
+                              
                               </tr>
                             </tbody>
                           </table>
@@ -502,7 +498,6 @@ function DashboardContent() {
                                     </td>
                                     <td className="text-white-50 fs-5">Egypt</td>
                                     <td className="text-right text-white-50 fs-5"> 1500 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50"> 56.35% </td> */}
                                   </tr>
                                   <tr>
                                     <td>
@@ -510,7 +505,6 @@ function DashboardContent() {
                                     </td> 
                                     <td className="text-white-50 fs-5">Germany</td>
                                     <td className="text-right text-white-50 fs-5"> 800 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50"> 33.25% </td> */}
                                   </tr>
                                   <tr>
                                     <td>
@@ -518,7 +512,6 @@ function DashboardContent() {
                                     </td>
                                     <td className="text-white-50 fs-5">Australia</td>
                                     <td className="text-right text-white-50 fs-5"> 760 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50 "> 15.45% </td> */}
                                   </tr>
                                   <tr>
                                     <td>
@@ -526,7 +519,6 @@ function DashboardContent() {
                                     </td>
                                     <td className="text-white-50 fs-5">United Kingdom</td>
                                     <td className="text-right text-white-50 fs-5"> 450 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50"> 25.00% </td> */}
                                   </tr>
                                   <tr>
                                     <td>
@@ -534,7 +526,6 @@ function DashboardContent() {
                                     </td>
                                     <td className="text-white-50 fs-5">Romania</td>
                                     <td className="text-right text-white-50 fs-5"> 620 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50"> 10.25% </td> */}
                                   </tr>
                                   <tr>
                                     <td>
@@ -542,7 +533,6 @@ function DashboardContent() {
                                     </td>
                                     <td className="text-white-50 fs-5">Brasil</td>
                                     <td className="text-right text-white-50 fs-5"> 230 </td>
-                                    {/* <td className="text-right font-weight-medium fs-5 text-white-50"> 75.00% </td> */}
                                   </tr>
                                 </tbody>
                               </table>
@@ -550,7 +540,6 @@ function DashboardContent() {
                           </div>
                           <div className="col-md-7">
                             <div id="audience-map" className="vector-map">
-                              {/* <img src={map} alt="" className="pl-2" id="map"/> */}
                               </div>
                             
                           </div>
@@ -558,7 +547,8 @@ function DashboardContent() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
+                
                 <footer className="footer">
                 <div className="d-sm-flex justify-content-center justify-content-sm-between">
                   <span className="text-muted d-block text-center text-sm-left d-sm-inline-block"></span>

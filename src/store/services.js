@@ -31,12 +31,12 @@ export const booksApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
-    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks'],
+    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate'],
     endpoints:(builder)=>({
         
         getAllBooks : builder.query({
             query: (arg = ' ') => {
-                const { page ,limit,category,priceMin,priceMax,priceSort ,writer } = arg;
+                const { page ,limit,category,priceMin,priceMax,priceSort ,writer ,salesSort} = arg;
                 // for(let i = 0; i < category.length; i++){
                 //     category.
                 // }
@@ -55,19 +55,28 @@ export const booksApi = createApi({
                 if(newCategory == " "){
                     return {
                         url: `books`,
-                        params: { page,limit,priceMin,priceMax,priceSort,writer },
+                        params: { page,limit,priceMin,priceMax,priceSort,writer,salesSort },
                       };
                 }else{
                     
                     return {
                       url: `books/?${newCategory}`,
-                      params: { page,limit,priceMin,priceMax,priceSort,writer },
+                      params: { page,limit,priceMin,priceMax,priceSort,writer,salesSort },
                     };
                 }
                 
               },
               providesTags:['updatedBooks']
 
+        }),
+        getTotalBooks:builder.query({
+            query:()=>{
+                return{
+                    url:"/books-total",
+                    headers:{"Authorization":`Bearer ${userToken}`}
+
+                }
+            }
         }),
         getAllBooksCount:builder.query({
             query:()=>{
@@ -230,7 +239,8 @@ export const booksApi = createApi({
                     url:"categories",
                     // params: { page},
                 }
-            }
+            },
+            providesTags:['catUpdate']
         }),
         getCategoryById:builder.query({
             query:(categoryId)=>{
@@ -240,7 +250,9 @@ export const booksApi = createApi({
                     // params: { page},
 
                 }
-            }
+            },
+            providesTags:['catUpdate']
+
         }),
         addNewCategory:builder.mutation({ 
             
@@ -251,7 +263,8 @@ export const booksApi = createApi({
                 body:categoryData,
                 headers:{"authorization":`Bearer ${userToken}`}
 
-            })
+            }),
+            invalidatesTags:['catUpdate']
         }),
         updateCategory:builder.mutation({
             query:({categoryNewData,categoryId})=>{
@@ -264,7 +277,9 @@ export const booksApi = createApi({
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            }
+            },
+            invalidatesTags:['catUpdate']
+
         }),
         deleteCategory:builder.mutation({
             query:({categoryId,icon})=>{
@@ -276,7 +291,9 @@ export const booksApi = createApi({
                     headers:{"authorization":`Bearer ${userToken}`}
 
                 }
-            }
+            },
+            invalidatesTags:['catUpdate']
+
         }),
         
         // LOGS

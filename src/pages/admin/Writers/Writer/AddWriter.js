@@ -3,14 +3,14 @@ import { Formik, Field ,Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { booksApi } from '../../../../store/services';
+import { useNavigate } from 'react-router-dom';
 
 const AddWriter = () => {
 
 
     const [ addNewWriter , response] = booksApi.useAddNewWriterMutation()
-  
-      const [writerImage, setWriterImage] = useState();
-
+    const [writerImage, setWriterImage] = useState();
+    let navigate = useNavigate()
  
       let onFileChange = (e)=>{
           // console.log(e.target.files[0])
@@ -21,18 +21,11 @@ const AddWriter = () => {
   const writerSchemaValidation = Yup.object().shape({
     writername:Yup.string("Must Be a string").required("name is required"),
     writergender:Yup.string("Must Be a string").required("gender is required"),
-    writerbio:Yup.string("Must Be a string"),
-    writerdb:Yup.date("must be date"),
-    writerpb:Yup.string("Must Be a string"),
+    // writerbio:Yup.string("Must Be a string"),
+    // writerdb:Yup.date("must be date"),
+    // writerpb:Yup.string("Must Be a string"),
   })
 
-const onInputChange = ()=>{
-
-}
-  
-const addWriter = ()=>{
-
-}
 
   return (
     <div className="container mt-5 mb-5">
@@ -40,22 +33,32 @@ const addWriter = ()=>{
         initialValues={{
           writername:"",
           writergender:"",
-          writerbio:"",
-          writerdb:"",
-          writerpb:"",
+          // writerbio:"",
+          // writerdb:"",
+          // writerpb:"",
         }}
         validationSchema={writerSchemaValidation}
         onSubmit={values => {
               
-          const data = new FormData();
-          data.append('writerimage',writerImage)
+          const data = {
+            name:values.writername,
+            gender:values.writergender,
+            
+          }
+          // data.append('writerimage',writerImage)
           // data.append('bookData',BookData)
-          data.append("name",values.writername)
-          data.append("date_birth",values.writerdb)
-          data.append("place_birth",values.writerpb)
-          data.append("bio",values.writerbio)
-          data.append("gender",values.writergender)
-          addNewWriter(data).then(()=>{}).catch((err)=>{console.log(err)})
+          // data.append("name",values.writername)
+          // data.append("date_birth",values.writerdb)
+          // data.append("place_birth",values.writerpb)
+          // data.append("bio",values.writerbio)
+          // data.append("gender",values.writergender)
+          addNewWriter(data).then((res)=>{
+            if(res.data){
+              navigate('/admin/writers')
+            }else{
+              console.log(res)
+            }
+          }).catch((err)=>{console.log(err)})
           // axios.post("https://e-bookalypse.herokuapp.com/api/admin/writer",data).then((r)=>{console.log(r) }).catch((err)=>{console.log(err)})
 
         }}
@@ -74,34 +77,31 @@ const addWriter = ()=>{
               <label htmlFor="writergender" className="form-label">Writer Gender : </label>
                 <div className='genders d-flex justify-content-evenly'>
                 <div class="form-check">
-                {/* <input class="form-check-input" type="radio" value="male"  name="writergender" id="writergender" onChange={(e)=>onInputChange(e)} /> */}
 
-                <Field type="radio"  class="form-check-input" name="writergender" id="writergender" value="Male" />
+                <Field type="radio"  class="form-check-input" name="writergender" id="writergender" value="male" />
                 <label class="form-check-label" htmlFor="writergender">
                   Male
                 </label>
               </div>
               <div class="form-check">
-                {/* <input class="form-check-input" type="radio" value="female" name="writergender" id="writergender" onChange={(e)=>onInputChange(e)} /> */}
 
-                <Field type="radio"  class="form-check-input"  value="Female" name="writergender" id="writergender" />
+                <Field type="radio"  class="form-check-input"  value="female" name="writergender" id="writergender" />
                 <label class="form-check-label" htmlFor="writergender">
                   Female
                 </label>
               </div>
               </div>
 
-            </div>
-            <div className='col-md-12 mt-2'>
+            </div> 
+            {/* <div className='col-md-12 mt-2'>
               <label htmlFor="writerbio" className="form-label ">Writer Bio : </label>
               <Field name="writerbio"  id="writerbio" as="textarea" className="form-control"  />
-                {errors.writerbio && touched.writerbio ? (
+                errors.writerbio && touched.writerbio ? (
                     <div className="form-text text-danger">{errors.writerbio}</div>
-                ) : null }
+                ) : null 
             </div>
             <div className='col-md-6 d-flex flex-column justify-content-center  mt-2'>
               <label htmlFor="writerimg" className="form-label ">Writer Image : </label>
-              {/* <input type="file" className='form-control' id="writerimage" name="writerimage" onChange={(e) => onFileChange(e)} /> */}
               <Field className='form-control' id="writerimage" name="writerimage" type="file" onChange={(e)=>onFileChange(e)} />
 
             </div>
@@ -111,19 +111,18 @@ const addWriter = ()=>{
             <div className='col-md-6 mt-2'>
               <label htmlFor="writerdate" className="form-label">Date of Birth : </label>
               <Field  className='form-control'  id="writerdb" name="writerdate"  placeholder="Release Date"   type="date" />
-              {errors.writerdb && touched.writerdb ? (
+              errors.writerdb && touched.writerdb ? (
                     <div className="form-text text-danger">{errors.writerdb}</div>
-                ) : null }
+                ) : null 
             </div>
             <div className='col-md-6 mt-2'>
               <label htmlFor="writerplace" className="form-label">Place of Birth : </label>
-              {/* <input type="text" className='form-control'  id="writerpb" name="writerplace"onChange={(e)=>onInputChange(e)}  placeholder="Book Publisher" /> */}
               <Field  id="writerpb" name="writerplace" placeholder="Book Publisher" className='form-control' />
-              {errors.writerpb && touched.writerpb ? (
+              errors.writerpb && touched.writerpb ? (
                     <div className="form-text text-danger">{errors.writerpb}</div>
-                ) : null }
+                ) : null 
 
-            </div>
+            </div> */}
 
             <div className='col-md-12 mt-4'>
               <input type="submit" className='btn btn-success form-control'  value="Add Writer" />

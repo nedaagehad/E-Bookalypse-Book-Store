@@ -18,7 +18,7 @@ const TrendingBooksUp1 = () => {
 
   const theme = useSelector((state) => state.theme.currentTheme)
   SwiperCore.use([Autoplay])
-  const { data, error, isLoading } = booksApi.useGetAllBooksQuery()
+  const { data, error, isLoading } = booksApi.useGetAllBooksQuery({salesSort:'htl'})
   const [books,setBooks] = useState()
   const [ images,setImages] = useState([])
 
