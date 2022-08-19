@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import classes from './NewPassForm.module.css' 
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import {  booksApi } from "../../store/services";
 
 
@@ -25,15 +25,18 @@ const NewPassForm = props => {
 
   const authState = useSelector(state => state.auth.userRole)
   const dispatch  = useDispatch();
-  const [login, loginresponse] = booksApi.useLoginMutation();
+  let params = useParams()
+
+  const [newPass, loginresponse] = booksApi.useSetNewPasswordMutation();
   // dispatch(logOut())
   useEffect(() => {
-    if(authState == 'regUser'){
-      navigate('/')
-    }else if (authState == 'rootAdmin'){
-      navigate('/admin')
+    if(params.token){
+
+      localStorage.setItem("userToken",params.token)
     }
-  }, [authState]);
+
+    // dispatch(newPass(params.token))
+  }, []);
 
   const toggleShowPass = () => {
       if (passShowState.isShown){
@@ -53,13 +56,14 @@ const NewPassForm = props => {
 
   const loginSchema = Yup.object().shape({
     
-    userName: Yup.string().required("Field is required"),
+    // userName: Yup.string().required("Field is required"),
 
     thePassword: Yup.string()
     .required("Password is required"),
+
+    
     
   });
-  
   return (
     <div className="container">
       <div className="row">
@@ -68,26 +72,22 @@ const NewPassForm = props => {
                         <h2>New Password</h2>
                         <Formik
                             initialValues={{
-                                  userName:"",
                                   thePassword:""
                             }}
                             validationSchema={loginSchema}
                             onSubmit={values => {
                               const data= {
-
-                                userName:values.userName,
-                                email:values.userName,
-                                phone:values.userName,
+                                token:params.token,
                                 pass:values.thePassword,
                               }
                               // axios.post('https://e-bookalypse.herokuapp.com/login', data)
-                              login(data)
+                              newPass(data)
                               .then(function  (response) {
                                 //  console.log(response.data);
                                 // dispatch(setCredntials(response.data.token));
                                 // dispatch( decodeToken())
 
-                               dispatch(setCredntials(response.data));
+                              //  dispatch(setCredntials(response.data));
                                console.log(response)
                               })
                               .catch(function (error) {

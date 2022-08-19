@@ -12,13 +12,15 @@ export const booksApi = createApi({
     // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
     baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/",
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers, { getState , endpoint ,forced}) => {
         const userToken = localStorage.getItem('userToken');
         // If we have a token set in state, let's assume that we should be passing it.
-        if (userToken) {
-          headers.set('authorization', `Bearer ${userToken}`);
-        }
-        return headers;
+        console.log(endpoint)
+        if (userToken !== null) {
+            headers.set('authorization', `Bearer ${userToken}`);
+          }
+
+          return headers;
       },
 
 }),
@@ -485,10 +487,13 @@ export const booksApi = createApi({
         }),
         setNewPassword:builder.mutation({
             query:(pass)=>{
+                console.log(pass)
                 return{
-                    url:'forget-pass-change',
+                    url:'/forget-pass-change',
                     method:"PATCH",
-                    body:pass
+                    body:{pass:pass.pass},
+                    // headers:{"authorization":`Bearer ${pass.token}`},
+
                 }
             }
         }),

@@ -85,7 +85,7 @@ function App() {
           <Route path='/profile/bookshelf' element={<BookShelf />} />
           <Route path='/login' element={<Login />} />
           <Route path='/ForgetPassword' element={<ForgetPassword />} />
-          <Route path='/NewPassword' element={<NewPassword />} />
+          <Route path='/resetPass/:token' element={<NewPassword />} />
           <Route path='/Wishlist' element={<Wishlist /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />

@@ -52,7 +52,9 @@ export const authSlice = createSlice({
     //         state.userExp =user.exp;
     //     }
     //   },
-
+      newPass:(state,action)=>{
+        state.token = action.payload.token
+      },
       logOut:(state,action)=>{
         // localStorage.removeItem("userToken")
         // localStorage.removeItem("userRole")
@@ -67,7 +69,7 @@ export const authSlice = createSlice({
 
 
 export const { category,
-    setCredntials,decodeToken,logOut,checkUser
+    setCredntials,decodeToken,logOut,checkUser,newPass
 } = authSlice.actions
 
 export default authSlice.reducer
