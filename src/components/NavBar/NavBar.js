@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
@@ -17,10 +17,9 @@ import { BsCart4 } from 'react-icons/bs';
 // import Ar from '../../assets/Ar.png';
 // import { changeLang } from '../../store/actions/language';
 import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
-import { booksApi, selectCartItems } from '../../store/services';
+import { booksApi } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
-import { getCount } from "../../store/reducers/cartReducer/CartReducer";
 import { FaRegUserCircle } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { TbBooks } from 'react-icons/tb';
@@ -28,24 +27,23 @@ import { MdFavoriteBorder } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from "../../store/reducers/authReducer/authReducer";
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { IoMdLogIn } from 'react-icons/io';
+import { RiUserReceivedLine, RiUserAddLine } from 'react-icons/ri'
 
 function NavBar() {
+
   const [count, setCount] = useState(0)
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [userImage, setUserImage] = useState("")
-  const [cartCount, setCartCount] = useState("")
   const { data, isLoading, error } = booksApi.useGetCartQuery()
   const [user, setUser] = useState()
   const [getUserByID, response] = booksApi.useGetUserByIDMutation();
   const [loggedIn, setLoggedIn] = useState(true);
   const [userName, setUserName] = useState("");
 
-  // const title = <span className={styles.logIcon}>
-  //   <IoMdLogIn />
-  // </span>
+  const offCanvasRef = useRef();
+
+  const closeOffCanvas = () => offCanvasRef.current.backdrop.click();
 
   const authState = useSelector(state => state.auth.userRole)
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -69,7 +67,6 @@ function NavBar() {
 
     getUserByID().then((res) => {
       setUser(res.data)
-      console.log(res.data.fName[0].toUpperCase() + res.data.fName.substring(1) + " " + res.data.lName[0].toUpperCase() + res.data.lName.substring(1));
       setUserName(res.data.fName[0].toUpperCase() + res.data.fName.substring(1) + " " + res.data.lName[0].toUpperCase() + res.data.lName.substring(1));
 
       const starsRef = ref(storage, 'uploads/users/' + res.data.image);
@@ -82,8 +79,6 @@ function NavBar() {
     ).catch((err) => console.log(err))
   }, [authState, count, data]);
 
-  console.log(userName);
-
   return (
     <>
       {['lg'].map((expand) => (
@@ -95,18 +90,10 @@ function NavBar() {
                 <SearchBar />
               </div>
             </Nav>
-            {/* <div className="align-items-center d-lg-none">
-              {loggedIn ?
-                null :
-                <NavDropdown title={title} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                </NavDropdown>}
-            </div> */}
 
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
+              ref={offCanvasRef}
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="start">
@@ -133,27 +120,56 @@ function NavBar() {
                 {loggedIn ?
                   <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
                 ${theme === "night" ? "border-secondary" : ""}`}>
-                    <NavLink to='/profile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <NavLink onClick={closeOffCanvas} to='/profile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <FaRegUserCircle className='me-1' /> Profile</NavLink>
 
-                    <NavLink to='/editprofile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <NavLink onClick={closeOffCanvas} to='/editprofile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <FiEdit className='me-1' /> Edit Profile</NavLink>
 
-                    <NavLink to='/profile/bookshelf' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <NavLink onClick={closeOffCanvas} to='/profile/bookshelf' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <TbBooks className='me-1' /> Bookshelf
                     </NavLink>
 
-                    <NavLink to='/wishlist' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <NavLink onClick={closeOffCanvas} to='/wishlist' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <MdFavoriteBorder className='me-1' /> Wishlist
                     </NavLink>
 
-                    <div onClick={() => Logout()} className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <NavLink onClick={closeOffCanvas} to='/cart' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                      <BsCart4 className='me-1' /> Cart - <span className={`ms-1 fw-bold ${styles.mov}`}> {count} </span>
+                    </NavLink>
+
+                    <div onClick={() => { Logout(); closeOffCanvas(); }} className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <BiLogOut className='me-1' /> Logout
                     </div>
                   </Nav>
-                  : null}
+                  : 
+                  <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
+                ${theme === "night" ? "border-secondary" : ""}`}>
+                    <NavLink onClick={closeOffCanvas} to='/signup' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                      <RiUserAddLine className='me-1' /> Create Account </NavLink>
 
-                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center">
+                    <NavLink onClick={closeOffCanvas} to='/login' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                      <RiUserReceivedLine className='me-1' /> Sign In</NavLink>
+                  </Nav>
+                  }
+
+                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
+                  <NavLink onClick={closeOffCanvas} to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <GoHome className='me-1' />
+                    Home</NavLink>
+
+                  <NavLink onClick={closeOffCanvas} to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <GiBookshelf className='me-1' />
+                    Categories</NavLink>
+
+                  <NavLink onClick={closeOffCanvas} to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <TbShoppingCartDiscount className='me-1' />
+                    Offers
+                  </NavLink>
+                </Nav>
+
+                  {/* Large NavBar */}
+                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
                   <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <GoHome className='me-1' />
                     Home</NavLink>
@@ -166,18 +182,21 @@ function NavBar() {
                     <TbShoppingCartDiscount className='me-1' />
                     Offers
                   </NavLink>
-                  <div className='d-none d-lg-inline'>
+                  <div className='d-none d-lg-inline ms-lg-5 ms-0'>
                     <SearchBar />
                   </div>
                 </Nav>
 
                 <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
-                  <Link to='/cart'>
-                    <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
+                  <Link to='/cart' className="position-relative">
+                    {count === 0 ? null :
+                      <p className={`position-absolute fw-bold w-75 mb-0 text-center me-3 ${styles.mov} ${styles.cartCount}`} style={{ "left": "-2px", "top": "-9px" }}> {count} </p>
+                    }
+                    <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon}
+                    ${count === 0 ? styles.emptyCart : ""} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
                   </Link>
                   {loggedIn ?
                     <div className={styles.profileIcon}>
-                      {/* <FaUserCircle className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} /> */}
                       <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                       {profileClicked ? <ProfileDropDown /> : null}
 
