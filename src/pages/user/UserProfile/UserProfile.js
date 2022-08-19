@@ -7,7 +7,7 @@ function UserProfile() {
   const theme = useSelector((state) => state.theme.currentTheme);
 
   return (
-    <div className={theme === "night" ? "bg-dark" : ""}>
+    <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
        <Suspense fallback={<Preloader />}>
              <ViewUserProfile />
         </Suspense>

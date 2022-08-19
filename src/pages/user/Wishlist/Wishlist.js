@@ -8,6 +8,7 @@ import ViewCategoryPage from '../../../components/ViewCategoryPage/ViewCategoryP
 import BooksView from '../../../components/BooksView/BooksView';
 import BookCard from '../../../components/BookCard/BookCard';
 import CollectionCard from '../../../components/CollectionCard/CollectionCard';
+import BookEmpty from '../../../components/BookEmpty/BookEmpty';
 
 function Wishlist() {
 
@@ -32,7 +33,7 @@ function Wishlist() {
         setLoading(false);
       }
   }}, [data]);
-
+  console.log(wishlisted)
   return (
 // <<<<<<< HEAD
     <div className={`content container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
@@ -47,7 +48,16 @@ function Wishlist() {
                 <BooksView title="Wishlist">
                   <div className="col-md-12 col-sm-12">
                     <div className="row" style={{ padding: "50px" }}>
-                      {wishlisted ?
+                      {wishlisted && wishlisted.bookItems.length == 0 && wishlisted.collectionItems.length == 0 ? 
+                      
+                          <div className="col-lg-12 col-md-12 col-sm-12">
+                          <BookEmpty title="Wishlist is Empty" />
+                        </div>
+                        
+                      
+                      
+                      :null}
+                      {wishlisted && wishlisted.bookItems.length >0 ?
                         wishlisted.bookItems.map((book) => {
 
                           return (
@@ -55,7 +65,12 @@ function Wishlist() {
                               <BookCard fav={fav} book={book} />
                             </div>
                           )
-                        }) : null
+                        }) 
+                        
+                        
+                        
+                        : 
+                       null
                       }
                       {
                         wishlisted ?
@@ -65,7 +80,9 @@ function Wishlist() {
                                 <CollectionCard fav={fav} data={col} />
                               </div>
                             )
-                          }) : null
+                          }) :   <div className="col-lg-12 col-md-12 col-sm-12">
+                          <BookEmpty title="Wishlist is Empty" />
+                        </div>
                       }
                             
                                 

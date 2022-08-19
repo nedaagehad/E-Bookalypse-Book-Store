@@ -3,9 +3,12 @@ import Preloader from '../../../components/Preloader/Preloader'
 import Shelf from  "../../../components/Shelf/Shelf"
 import { booksApi } from '../../../store/services'
 import BookEmpty from '../../../components/BookEmpty/BookEmpty'
+import { useSelector } from 'react-redux';
+
 const BookShelf = props => {
   const {data,isLoading,error} = booksApi.useGetUserBooksQuery()
-
+  
+  const theme = useSelector((state) => state.theme.currentTheme);
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {
@@ -27,13 +30,13 @@ const BookShelf = props => {
   }, [data]);
 
     return (
-      <div className='content'>
+      <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
         { isLoading ? <Preloader /> :
 
           <div className='container'>
             <div className='row'>
               {
-                data.length < 1 ? <BookEmpty/> :
+                data.length < 1 ? <BookEmpty title="Your Bookshelf is Empty"/> :
                 <Shelf data={data} />
               }
             </div>

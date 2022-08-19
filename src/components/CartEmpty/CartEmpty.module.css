@@ -1,8 +1,14 @@
 .emptycart{
-    margin-top: 2rem;
     min-width: 31rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-
+.emptycart h2{
+    text-align: center;
+    align-self: center;
+}
 
 .saveBtn {
     background-color: #8a04a5 !important;

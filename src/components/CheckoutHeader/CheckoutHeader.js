@@ -7,6 +7,7 @@ import classes from './CheckoutHeader.module.css';
 //Components
 import BookOnCard from '../BookOnCard/BookOnCard';
 import CollectionOnCard from '../BookOnCard/CollectionOnCard';
+import CartEmpty from '../CartEmpty/CartEmpty';
 
 const CheckoutHeader = props => {
 
@@ -40,6 +41,15 @@ const CheckoutHeader = props => {
         </div>
         <div className={`col-12`}>
             <div className={`row`}>
+                {
+                    bookItems.length == 0 && collectionItems.length == 0 ? 
+                    
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                         <CartEmpty />
+                    </div>
+                    :null
+                }
                 {
                     bookItems !== undefined ?
                     bookItems.map(item => {

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import Lottie from 'react-lottie'; //import react-lottie
 
 import RocketLottie from "./rocketCloud.json" //import lottie animation Json file
-import './Publish.css';
+import './ContactUs.css';
 
-function Publisher() {
+function ContactUs() {
     let rocketObj = {
         loop: true,
         autoplay: true,
@@ -22,9 +22,9 @@ function Publisher() {
         <div className="row">
             <div className="col-lg-6">
                 <div className="section-title pt-3">
-                    <h2>Publish Your Book Now!🚀</h2>
-                    <p>Now you can publish your book on E-Bookalypse! Register your details and a brief 
-                        summry of your book and we will contact you as soon as possible! </p>
+                    <h2>Contact Us Now!🚀</h2>
+                    <p>Now you can contact us if you have any message, feedback complaint and suggestion,  
+                       We are always interested in hearing them! </p>
                 </div>
             </div>
         </div>
@@ -61,12 +61,12 @@ function Publisher() {
 
                             <div className="col-12">
                                 <div className="form-group">
-                                    <input id="subject" type="text" placeholder="Book's Name" className="form-control"/> 
+                                    <input id="subject" type="text" placeholder="Title" className="form-control"/> 
                                 </div>
                             </div>
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <textarea id="message" placeholder="Book's Discreption" className="form-control fs-5" rows="3"></textarea> 
+                                    <textarea id="message" placeholder="Message" className="form-control fs-5" rows="3"></textarea> 
                                 </div>
                             </div>
                             <div className="col-md-12">
@@ -94,4 +94,4 @@ function Publisher() {
   )
 }
 
-export default Publisher
+export default ContactUs

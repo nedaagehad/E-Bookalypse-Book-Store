@@ -79,7 +79,7 @@ function Category() {
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className="row">
                       { 
-                        books.length >0  ?  books.map((b) => {
+                      books.length > 0 ? books.map((b) => {
                         if (wishList) {
 
                           let bookWished = wishList.bookItems.filter((book) => book._id === b._id)
@@ -91,7 +91,11 @@ function Category() {
                           </div>
                         )
 
-                          }) : <BookEmpty/>
+                        }) :
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                           <BookEmpty title="Category is Empty" />
+                        </div>
+                          
                     }
                 </div>
               </div>
