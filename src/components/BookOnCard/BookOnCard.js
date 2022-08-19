@@ -7,6 +7,8 @@ import { booksApi } from '../../store/services'
 import { useDispatch } from 'react-redux'
 import { removeFromCartReducer } from '../../store/reducers/cartReducer/CartReducer'
 import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookOnCard = props => {
     // console.log(props.data)
@@ -37,8 +39,18 @@ const BookOnCard = props => {
         console.log(bookData)
         
         removeFromCart({bookIds:[bookData],collectionIds:[bookData]}  ).then((r)=>{
+            if(r.data){
+                const removedFromCart = () =>  toast("Book Removed from Cart");
 
+                {removedFromCart()}
+            }else{
+                const err = () =>  toast(r.error.data.message);
+
+                {err()}
+            }
             console.log(r)
+        }).catch((err)=>{
+            console.log(err)
         })
     
     }
@@ -46,6 +58,20 @@ const BookOnCard = props => {
 
     return (
         <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
+                  <ToastContainer 
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    
+                    >
+                        
+                    </ToastContainer>
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>

@@ -5,6 +5,8 @@ import storage from '../../Firebase/firebaseImage'
 import { getDownloadURL, ref } from 'firebase/storage'
 import { booksApi } from '../../store/services'
 import { useDispatch, useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CollectionOnCard = props => {
 
@@ -45,6 +47,15 @@ const CollectionOnCard = props => {
         removeFromCart({bookIds:[bookData],collectionIds:[bookData]}).then((r)=>{
                 // refetch()
                 console.log(r)
+                if(r.data){
+                    const removedFromCart = () =>  toast("Collection Removed from Cart");
+
+                    {removedFromCart()}
+                }else{
+                    const err = () =>  toast(r.error.data.message);
+
+                    {err()}
+                }
 
         }).catch((error) => {console.log(error)})
     
@@ -53,6 +64,20 @@ const CollectionOnCard = props => {
 
     return (
         <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
+               <ToastContainer 
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    
+                    >
+                        
+                    </ToastContainer>
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>
@@ -72,6 +97,7 @@ const CollectionOnCard = props => {
                     <button onClick={() => removeItem(props.data._id)}><RiDeleteBin5Fill /></button>
                 </div>
             </div>
+         
         </div>
     )
 }
