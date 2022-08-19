@@ -79,7 +79,7 @@ function UserCard(props) {
 
                     <div className="row text-center mt-4 rounded-0">
                         <div className="col p-2">
-                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>40</h4>
+                            <h4 className={`mb-1 line-height-5 ${theme === "night" ? styles.lightTxt : ""}`}>{user.book_shelf.length}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Books</small>
                         </div>
 

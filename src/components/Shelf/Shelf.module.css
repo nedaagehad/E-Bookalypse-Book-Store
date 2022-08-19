@@ -11,6 +11,7 @@
     /* border:solid; */
 }
 .book img{
+    width:100%;
     display: block;
     margin: auto;
     height: 250px;

@@ -5,7 +5,7 @@ import classes from './NewPassForm.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
 import { useNavigate, Link } from "react-router-dom";
-import { api } from "../../store/services";
+import {  booksApi } from "../../store/services";
 
 
 const Forget = require('axios');
@@ -25,7 +25,7 @@ const NewPassForm = props => {
 
   const authState = useSelector(state => state.auth.userRole)
   const dispatch  = useDispatch();
-  const [login, loginresponse] = api.useLoginMutation();
+  const [login, loginresponse] = booksApi.useLoginMutation();
   // dispatch(logOut())
   useEffect(() => {
     if(authState == 'regUser'){

@@ -3,9 +3,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './ForgetForm.module.css' 
 import { useDispatch, useSelector } from "react-redux";
-import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
+import {setCredntials } from "../../store/reducers/authReducer/authReducer";
 import { useNavigate, Link } from "react-router-dom";
-import { api } from "../../store/services";
+import { booksApi } from "../../store/services";
 
 
 const Forget = require('axios');
@@ -25,7 +25,7 @@ const ForgetForm = props => {
 
   const authState = useSelector(state => state.auth.userRole)
   const dispatch  = useDispatch();
-  const [login, loginresponse] = api.useLoginMutation();
+  const [forgetPassword, loginresponse] = booksApi.useForegetPasswordMutation();
   // dispatch(logOut())
   useEffect(() => {
     if(authState == 'regUser'){
@@ -55,8 +55,7 @@ const ForgetForm = props => {
     
     userName: Yup.string().required("Field is required"),
 
-    thePassword: Yup.string()
-    .required("Password is required"),
+
     
   });
   
@@ -75,19 +74,16 @@ const ForgetForm = props => {
                             onSubmit={values => {
                               const data= {
 
-                                userName:values.userName,
+                                // userName:values.userName,
                                 email:values.userName,
-                                phone:values.userName,
-                                pass:values.thePassword,
+                                // phone:values.userName,
+                                // pass:values.thePassword,
                               }
                               // axios.post('https://e-bookalypse.herokuapp.com/login', data)
-                              login(data)
+                              forgetPassword(data)
                               .then(function  (response) {
-                                //  console.log(response.data);
-                                // dispatch(setCredntials(response.data.token));
-                                // dispatch( decodeToken())
+                             
 
-                               dispatch(setCredntials(response.data));
                                console.log(response)
                               })
                               .catch(function (error) {

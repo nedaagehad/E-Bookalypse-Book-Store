@@ -90,6 +90,14 @@ export const booksApi = createApi({
                 }
             }
         }),
+        getUserBooks:builder.query({
+            query:()=>{
+                return{
+                    url:"/book-shelf"
+    
+                }
+            }
+        }),
         getBookById:builder.query({
             query:(bookID)=>{
                 console.log(bookID)
@@ -109,9 +117,7 @@ export const booksApi = createApi({
                 url:"/book",
                 method: 'POST',
                 body: bookData,
- 
-                
-                
+
             }
             ),
             invalidatesTags:['updatedBooks']
@@ -465,6 +471,25 @@ export const booksApi = createApi({
                     method:"PUT",
                     body:userData,
                  }
+            }
+        }),
+        foregetPassword:builder.mutation({
+            query:(email)=>{
+                console.log(email)
+                return{
+                    url:'/forget-pass-mail',
+                    method:"POST",
+                    body:email
+                }
+            }
+        }),
+        setNewPassword:builder.mutation({
+            query:(pass)=>{
+                return{
+                    url:'forget-pass-change',
+                    method:"PATCH",
+                    body:pass
+                }
             }
         }),
         getSearchResults : builder.query({

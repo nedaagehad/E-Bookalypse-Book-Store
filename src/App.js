@@ -1,3 +1,5 @@
+
+
 // Style File
 import './App.css';
 
@@ -16,6 +18,8 @@ import SuccessPayment from './pages/user/SuccessPayment/SuccessPayment';
 import Offers from './pages/user/Offers/Offers';
 import BookShelf from './pages/user/BookShelf/BookShelf';
 import Login from './pages/user/Login/Login';
+import ForgetPassword from './pages/user/ForgetPassword/ForgetPassword';
+import NewPassword from './pages/user/NewPassword/NewPassword';
 import Wishlist from './pages/user/Wishlist/Wishlist';
 import SignUp from './pages/user/SignUp/SignUp';
 import TermsOfUse from './pages/user/TermsOfUse/TermsOfUse';
@@ -47,18 +51,14 @@ import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
-import DashboardContent from './components/DashboardContent/DashboardContent';
-import UpdateUserRole from './pages/admin/Users/UpdateUserRole';
-import Orders from './pages/admin/Orders/Orders';
-import CollectionsAdmin from './pages/admin/Collections/CollectionsAdmin';
-import AddCollection from './pages/admin/Collections/collection/AddCollection';
-import UpdateCollection from './pages/admin/Collections/collection/UpdateCollection';
+
 
 function App() {
 
   const authState = useSelector(state => state.auth.userRole);
   const dispatch  = useDispatch();
-  const [isUser,setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(true);
+  
 
   useEffect(() => {
     if(authState === 'regUser'){
@@ -71,7 +71,7 @@ function App() {
 
   return (
     <Router>
-      <Routes>
+        <Routes>
         {/* USER ROUTES */}
         <Route path='/' element={<UserLayout />} >
           <Route index element={<Home />}/>
@@ -84,6 +84,8 @@ function App() {
           <Route path='/offers' element={<Offers />} />
           <Route path='/profile/bookshelf' element={<BookShelf />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/ForgetPassword' element={<ForgetPassword />} />
+          <Route path='/NewPassword' element={<NewPassword />} />
           <Route path='/Wishlist' element={<Wishlist /> } />
           <Route path='/SignUp' element={<SignUp />} /> 
           <Route path='/editprofile' element={<EditProfile />} />
@@ -95,7 +97,6 @@ function App() {
           <Route path='/aboutus' element={<About />} />
           <Route path='/contactus' element={<Contact />} />
           <Route path='/publishwithus' element={<Publisher />} />
-          
           <Route path={'*'} element={<NotFound />} />
         </Route>
 
@@ -103,8 +104,8 @@ function App() {
         {!isUser ? 
        
         
-        <Route path='/admin' element={<HomeDashboard />} >
-          <Route index element={<DashboardContent  />}/>
+        <Route path='/admin' element={<AdminLayout />} >
+          <Route index element={<HomeDashboard />}/>
 
           {/* Books Routes */}
           <Route path='/admin/books' element={<Books />} />
@@ -128,20 +129,11 @@ function App() {
 
           {/* Users View Admin Panel*/}
           <Route path='/admin/users' element={<UsersView />} />
-          <Route path='/admin/user/UpdateUserRole/:id' element={<UpdateUserRole />} />
-          {/* orders */}
-          <Route path='/admin/orders' element={<Orders />} />
-          {/* Collections */}
-          <Route path='/admin/collections' element={<CollectionsAdmin />} />
-          <Route path='/admin/collection/addCollection' element={<AddCollection />} />
-          <Route path='/admin/collection/updateCollection/:id' element={<UpdateCollection />} />
- 
- 
         </Route>
         
         :null}
 
-      </Routes>
+      </Routes> 
     </Router>
 
 
