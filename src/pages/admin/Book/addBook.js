@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { ReactMultiSearchSelect } from 'react-multi-search-select';
 
 const addBook = () => {
+
+    // eslint-disable-next-line
     const [addNewBooks , response ] = booksApi.useAddNewBookMutation();
     const categoryData = booksApi.useGetAllCategoriesQuery()
     const writersData = booksApi.useGetTotalWritersQuery()
