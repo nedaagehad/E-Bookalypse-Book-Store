@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { booksApi } from '../../../store/services';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
+import BookEmpty from '../../../components/BookEmpty/BookEmpty'
 
 //Components
 import ViewCategoryPage from '../../../components/ViewCategoryPage/ViewCategoryPage'
@@ -77,19 +78,21 @@ function Category() {
             <BooksView title="Books">
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className="row">
-                  {books ? books.map((b) => {
-                    if (wishList) {
+                      { 
+                        books ? books.map((b) => {
+                        if (wishList) {
 
-                      let bookWished = wishList.bookItems.filter((book) => book._id === b._id)
+                          let bookWished = wishList.bookItems.filter((book) => book._id === b._id)
+                        }
+                        return (
+
+                          <div key={b._id} className="col-lg-4 col-md-6 col-sm-12">
+                            <BookCard book={b} fav={!wishList ? false : wishList.bookItems.filter((book) => book._id === b._id).length > 0 ? true : false} img="../../Images/Books/1.jpg" alt={b.title} price="$15.50" />
+                          </div>
+                        )
+
+                          }) : null
                     }
-                    return (
-
-                      <div key={b._id} className="col-lg-4 col-md-6 col-sm-12">
-                        <BookCard book={b} fav={!wishList ? false : wishList.bookItems.filter((book) => book._id === b._id).length > 0 ? true : false} img="../../Images/Books/1.jpg" alt={b.title} price="$15.50" />
-                      </div>
-                    )
-
-                  }) : null}
                 </div>
               </div>
             </BooksView>

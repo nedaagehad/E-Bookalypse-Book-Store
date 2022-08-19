@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 
 //Components
 import Preloader from '../../../components/Preloader/Preloader';
-const CategoryList = lazy(() => import('../../../components/CategoryList/CategoryList') );
-const CategoryCard = lazy(() =>  import('../../../components/CategoryCard/CategoryCard') );
-const TrendingBooksUp1 = lazy(() => import('../../../components/TrendingBooksUp/TrendingBooksUp1') );
+import CategoryList from '../../../components/CategoryList/CategoryList';
+import CategoryCard from '../../../components/CategoryCard/CategoryCard'
+import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksUp1'
 
 function Categories() {
 
@@ -44,7 +44,6 @@ function Categories() {
           <Preloader />
           :
           <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
-            <Suspense fallback={<Preloader />}>
               <CategoryList>
                 {categories ? categories.map(category => {
                   return (
@@ -52,8 +51,7 @@ function Categories() {
                   )
                 }) : null}
               </CategoryList>
-              <TrendingBooksUp1 />
-            </Suspense>
+            <TrendingBooksUp1 />
           </div>
       }
       </>

@@ -23,9 +23,7 @@ function Home() {
             <Suspense fallback={<Preloader />}>
                  <HomeSlider />
             </Suspense>
-            <Suspense fallback={<Preloader />}>
-                <TrendingBooksUp1 />
-            </Suspense>
+            <TrendingBooksUp1 />
             <Suspense fallback={<Preloader />}>
                 <Benefits />
             </Suspense>

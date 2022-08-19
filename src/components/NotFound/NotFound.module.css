@@ -1,0 +1,19 @@
+.space{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 50px;
+}
+.space h1{
+    background: -webkit-linear-gradient(rgb(78, 39, 168), rgb(196, 151, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    top: -100px;
+    font-weight: bold;
+    word-spacing: 5px;
+
+}
