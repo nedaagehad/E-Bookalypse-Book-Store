@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BookDetailsContainer from "../../../components/BookDetailsContainer/BookDetailsContainer"
 import CustomerReviews from "../../../components/CustomerReviews/CustomerReviews"
 import RelatedToAuther from "../../../components/RelatedToAuther/RelatedToAuther"
+import UserReview from "../../../components/UserReview/UserReview"
 import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
 import { useParams } from 'react-router-dom'
 import { booksApi } from '../../../store/services'
@@ -10,7 +11,6 @@ import storage from '../../../Firebase/firebaseImage'
 import { useSelector } from 'react-redux'
 //loader 
 import Preloader from '../../../components/Preloader/Preloader';
-
 function BookDetails() {
   let params = useParams();
   const [book,setBook] = useState()
@@ -94,9 +94,10 @@ function BookDetails() {
                       { rate: "1", commenterImg: "", commenterName: "Eslam Mostafa", commentDate: "1 Jan, 2019", commentDesc: "I don't like reading" }
                     ]}
                   />
-                      
                   : null}
-                  
+                <UserReview comments={[
+                  { commenterImg: "../userIcon.gif", commenterName: "Reham Raafat"}
+                ]}/> 
                 <RelatedToAuther bookWriter={book.writer[0].title} />
               </>
               : null}

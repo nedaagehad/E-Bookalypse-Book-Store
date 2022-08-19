@@ -64,15 +64,21 @@ const BookView = props =>{
                         {/* <Pagination count={5} color="secondary" /> */}
                         <nav aria-label="Page navigation example">
                             <ul className="pagination">
-                                <li class="page-item">
-                                <a class="page-link"  onClick={()=>{prevPage()}} aria-label="Previous">
-                                    <span aria-hidden="true" className={`text-dark`}>&laquo; Pre</span>
+                                <li class="page-item" style={{color:"white"}}>
+                                <a class="page-link"  onClick={()=>{prevPage()}} aria-label="Previous" style={{backgroundColor:"#8D27AE",color:"white",borderColor:"#8D27AE"}}>
+                                    <button aria-hidden="true" style={{color:"white",fontSize:"30px",padding:"0px"}}>&laquo;</button>
                                 </a>
                                 </li>
-                                <li className="page-item">{Page ? Page : null}</li>
-                                <li className="page-item"> 
-                                <a className="page-link" onClick={()=>{nextPage()}} aria-label="Next">
-                                    <span aria-hidden="true" className={`text-dark`}> Next &raquo;</span>
+                                {
+                                    theme === 'night' ?
+                                        <li className="page-item" style={{ color: "white", fontSize: "30px" }}>&nbsp;&nbsp;<span>{Page ? Page : null}</span>&nbsp;&nbsp;</li>
+                                        :
+                                        <li className="page-item" style={{color:"#8D27AE",fontSize:"30px"}}>&nbsp;&nbsp;<span>{Page ? Page : null}</span>&nbsp;&nbsp;</li>
+                                }
+                               
+                                <li className="page-item" style={{color:"white"}}> 
+                                <a className="page-link" onClick={()=>{nextPage()}} aria-label="Next" style={{backgroundColor:"#8D27AE",color:"white",borderColor:"#8D27AE"}}>
+                                    <button aria-hidden="true" style={{color:"white",fontSize:"30px",padding:"0px"}} >&raquo;</button>
                                 </a>
                                 </li>
                             </ul>
