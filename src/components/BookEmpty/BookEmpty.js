@@ -23,14 +23,12 @@ function BookEmpty(props) {
     return (
             <div className={`${myStyle.emptywishlist}`}>
 
-                
-                <Lottie options={BookEmptyObj} //add the lottie object to lottie options 
-                    height={400}
-                    width={400}
-                    isStopped={false}
-                    isPaused={false}
-                />
-
+                <div className={`${myStyle.booksEmp}`}>
+                    <Lottie options={BookEmptyObj} //add the lottie object to lottie options 
+                        isStopped={false}
+                        isPaused={false}
+                    />
+                </div>
             <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>{props.title}</h2>
                  
                 

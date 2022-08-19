@@ -1,15 +1,20 @@
 .emptycart{
-    min-width: 31rem;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: auto;
 }
 .emptycart h2{
     text-align: center;
     align-self: center;
+    margin-bottom: 50px;
 }
-
+.besketEmp{
+    width: 50%;
+    margin: auto;
+}
 .saveBtn {
     background-color: #8a04a5 !important;
     color: #fff !important;
@@ -17,4 +22,10 @@
     padding-left: 30px !important;
     padding-right: 30px !important;
     
+}
+@media(min-width:900px){
+    .besketEmp{
+        width: 20%;
+        margin: auto;
+    }
 }
