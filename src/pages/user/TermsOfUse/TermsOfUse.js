@@ -17,9 +17,9 @@ function TermsOfUse() {
     }, []);
 
     return (
-        <div className={`container-fluid p-3 ${theme === "night" ? "bg-dark" : ""}`}>
-            <div className={`container p-5 rounded-5 shadow ${theme === "night" ? "bg-transparent" : styles.footerRoute}`}>
-                <h3 className={`mb-3 text-decoration-underline fw-bold ${theme === "night" ? "text-light" : ""}`}>Terms Of Use</h3>
+        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : ""}`}>
+            <div className={`container p-5`}>
+                <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Terms Of Use</h3>
                 <div className={theme === "night" ? "text-light" : ""}>
                     <p>
                         <b>PLEASE READ THESE TERMS OF USE CAREFULLY BEFORE USING THIS WEBSITE. BY USING THIS WEBSITE,

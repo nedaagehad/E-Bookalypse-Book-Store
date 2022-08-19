@@ -1,42 +1,50 @@
 import React, { useState, useEffect, useRef } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import { GoHome } from 'react-icons/go';
-import { GiBookshelf } from 'react-icons/gi';
-import ThemeToggler from '../ThemeToggler/ThemeToggler';
-import { TbShoppingCartDiscount } from 'react-icons/tb';
-import SearchBar from "../SearchBar/SearchBar";
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './NavBar.module.css';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import logo from '../../assets/ebookalypse-logo.png';
-import { BsCart4 } from 'react-icons/bs';
-// import En from '../../assets/En.png';
-// import Ar from '../../assets/Ar.png';
 // import { changeLang } from '../../store/actions/language';
-import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
 import { booksApi } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
+import { useNavigate } from 'react-router-dom';
+import { logOut } from "../../store/reducers/authReducer/authReducer";
+
+//Components
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
+import SearchBar from "../SearchBar/SearchBar";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import logo from '../../assets/ebookalypse-logo.png';
+// import En from '../../assets/En.png';
+// import Ar from '../../assets/Ar.png';
+import ProfileDropDown from "../ProfileDropDown/ProfileDropDown";
+
+//icons
+import { GoHome } from 'react-icons/go';
+import { GiBookshelf } from 'react-icons/gi';
+import { TbShoppingCartDiscount } from 'react-icons/tb';
+import { BsCart4 } from 'react-icons/bs';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { TbBooks } from 'react-icons/tb';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-import { logOut } from "../../store/reducers/authReducer/authReducer";
 import { RiUserReceivedLine, RiUserAddLine } from 'react-icons/ri'
+
+//CSS Module
+import styles from './NavBar.module.css';
 
 function NavBar() {
 
   const [count, setCount] = useState(0)
   const [profileClicked, setProfileClicked] = useState(false);
   const [profilePic, setProfilePic] = useState("");
-  const [userImage, setUserImage] = useState("")
+  // eslint-disable-next-line
   const { data, isLoading, error } = booksApi.useGetCartQuery()
+  // eslint-disable-next-line
   const [user, setUser] = useState()
+  // eslint-disable-next-line
   const [getUserByID, response] = booksApi.useGetUserByIDMutation();
   const [loggedIn, setLoggedIn] = useState(true);
   const [userName, setUserName] = useState("");
@@ -84,7 +92,7 @@ function NavBar() {
       {['lg'].map((expand) => (
         <Navbar className={`shadow-lg fixed-top px-3 px-lg-0`} key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
           <Container fluid>
-            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
+            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} alt="logo" src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
             <Nav>
               <div className="mx-auto flex-grow-1 ps-3 align-items-center d-lg-none">
                 <SearchBar />
@@ -99,7 +107,7 @@ function NavBar() {
               placement="start">
               <Offcanvas.Header className={theme === "night" ? "bg-dark" : ""}>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={`${styles.logo} fs-4`}>
-                  <img className={styles.logoIMG} src={logo} />E-Bookalypse
+                  <img className={styles.logoIMG} alt="logo" src={logo} />E-Bookalypse
                 </Offcanvas.Title>
                 <div className="align-items-center d-lg-none">
                   <ThemeToggler />
@@ -110,7 +118,7 @@ function NavBar() {
                   {loggedIn ?
                     <div className="row align-items-center mb-3" style={{ "height": "36px" }}>
                       <div className={`${styles.profileIcon} bg-transparent offset-2 col-2`}>
-                        <img src={profilePic} className={styles.userIcon} />
+                        <img src={profilePic} alt="profile picture" className={styles.userIcon} />
                       </div>
                       <p className={`col-6 fw-bold mb-0 fs-3 ${theme === "night" ? styles.userNameNight : styles.userName}`}>{userName}</p>
                     </div>
@@ -142,7 +150,7 @@ function NavBar() {
                       <BiLogOut className='me-1' /> Logout
                     </div>
                   </Nav>
-                  : 
+                  :
                   <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
                 ${theme === "night" ? "border-secondary" : ""}`}>
                     <NavLink onClick={closeOffCanvas} to='/signup' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
@@ -151,7 +159,7 @@ function NavBar() {
                     <NavLink onClick={closeOffCanvas} to='/login' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <RiUserReceivedLine className='me-1' /> Sign In</NavLink>
                   </Nav>
-                  }
+                }
 
                 <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
                   <NavLink onClick={closeOffCanvas} to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
@@ -168,7 +176,7 @@ function NavBar() {
                   </NavLink>
                 </Nav>
 
-                  {/* Large NavBar */}
+                {/* Large NavBar */}
                 <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
                   <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                     <GoHome className='me-1' />
@@ -197,7 +205,7 @@ function NavBar() {
                   </Link>
                   {loggedIn ?
                     <div className={styles.profileIcon}>
-                      <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                      <img src={profilePic} alt="profile picture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                       {profileClicked ? <ProfileDropDown /> : null}
 
                     </div> :

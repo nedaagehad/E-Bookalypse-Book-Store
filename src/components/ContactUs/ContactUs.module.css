@@ -1,0 +1,71 @@
+.formControl {
+  width: 100%;
+  border: none;
+  padding: 10px !important;
+  border-bottom: 1px solid #8a04a5;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.formControlNight {
+  width: 100%;
+  border: none;
+  padding: 10px !important;
+  border-bottom: 1px solid #8a04a5;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none !important;
+  color: whitesmoke;
+}
+
+.formControlNight::placeholder {
+  font-size: 14px;
+  color: #aba8a8;
+}
+
+.formControl::placeholder {
+  font-size: 14px;
+}
+
+.formControl:focus {
+  border-bottom: 1.5px solid #c114d1;
+  outline: none !important;
+}
+
+.formControlNight:focus {
+  border-bottom: 1.5px solid #c114d1;
+  outline: none !important;
+}
+
+.formControl:invalid {
+  border-bottom: 1.5px solid #dd1313;
+}
+
+.formControlNight:invalid {
+  border-bottom: 1.5px solid #dd1313;
+}
+
+.sectionTitle h2 {
+  font-weight: 700;
+  color: #8a04a5;
+  font-size: 45px;
+  margin: 0 0 15px;
+  border-left: 5px solid #c114d1;
+  padding-left: 15px;
+}
+
+.sectionTitle {
+  padding-bottom: 45px;
+}
+
+.lightTxt {
+  color: #aba8a8 !important;
+}
+
+.submitBtn {
+  background-color: #8a04a5 !important;
+  color: #fff !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}

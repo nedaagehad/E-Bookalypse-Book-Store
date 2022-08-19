@@ -87,12 +87,6 @@ input[type='checkbox']:focus{
   --lg-screen: 992px;
 }
 
-/* class to fix footer position */
-.sticky-footer{
-  display: flex;
-  min-height: 65.5vh;
-}
-
 a{
   text-decoration: none !important;
   color:rgb(123, 33, 153) !important
@@ -100,4 +94,8 @@ a{
 
 .content {
   margin-top: 50px !important;
+}
+
+.footer-position {
+  min-height: 73.88vh;
 }
