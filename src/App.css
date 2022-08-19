@@ -21,13 +21,6 @@
   background: #8d27ae;
   border-radius: 3px;
 }
-/* ///////////////////////////////// */
-
-/* Main Content  */
-
-/* .content   {
-  min-height: 63vh !important;
-} */
 
 /* ---------------------------------------- */
 
@@ -98,16 +91,14 @@ input[type='checkbox']:focus{
   display: flex;
   min-height: 65.5vh;
 }
+
 a{
   text-decoration: none !important;
-  color:inherit !important
+
+
+  color:rgb(123, 33, 153) !important
 }
-.react-multi-search-select-container	{
-  color:black;
-}
-.react-multi-search-select-selected-option	{
-  background-color: #8D27AE !important;
-}
-.react-multi-search-select-options-container li:not(.no-hover):hover	{
-  background-color: #8D27AE !important;
+
+.content {
+  margin-top: 50px !important;
 }

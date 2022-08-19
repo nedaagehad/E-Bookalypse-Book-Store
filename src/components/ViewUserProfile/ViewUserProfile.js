@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { booksApi } from '../../store/services';
+//loader 
+import Preloader from '../../components/Preloader/Preloader';
 
 // CSS Module
 import styles from './ViewUserProfile.module.css';
@@ -12,22 +14,32 @@ import UserCard from '../UserCard/UserCard';
 function ViewUserProfile() {
 
     const theme = useSelector((state) => state.theme.currentTheme);
-
+    const [loading, setLoading] = useState(false);
     const [getUserByID] = booksApi.useGetUserByIDMutation();
     const [user, setUser] = useState()
 
     useEffect(() => {
-        getUserByID().then((res) => {
-            setUser(res.data)
-            console.log(res.data)
+        if (loading) {
+            setLoading(true);
+          }
+        else
+        {
+            getUserByID().then((res) => {
+                setUser(res.data)
+                console.log(res.data)
+                setLoading(false);
+            }
+            ).catch((err) => console.log(err))
         }
-        ).catch((err) => console.log(err))
-
     }, []);
 
     if (user) {
         return (
+            
             <div className={`container py-5`}>
+             {loading ?
+                 <Preloader />
+                :
                 <div className="row pt-3">
                     <div className={`col-lg-4`}>
                         <UserCard user={user} />
@@ -89,7 +101,7 @@ function ViewUserProfile() {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>}
             </div>
 
         )

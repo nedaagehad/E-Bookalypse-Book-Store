@@ -68,7 +68,6 @@
     display: inline-block;
     margin-left: 10px;
 }
-<<<<<<< HEAD
 .action button{
     background-color: #8D27AE;
     border-radius: 12px;
@@ -95,8 +94,7 @@
     color:rgb(94, 25, 117);
     background-color: transparent;
 }
-=======
->>>>>>> 064fd04123a5f582be55b3c12a9a48eb0b37d657
+
 @media(max-width:800px)
 {
     .Book_Poster{
@@ -112,6 +110,7 @@
 
 .title {
     color: rgb(111, 25, 139) !important;
+    margin-left: 19px !important;
 }
 
 .description {

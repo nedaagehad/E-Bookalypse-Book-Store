@@ -10,6 +10,13 @@
     align-items: center;
     padding:20px 100px
 }
+
+@media (max-width: 660px) {
+    .titleandPagination {
+        padding: 20px;
+    }
+}
+
 .titleandPagination .h4{
     font-size: 32px;
 }
@@ -43,7 +50,7 @@
 
 .navControllers{
     position: absolute;
-    top: 0;
+    top: -10%;
     right: 0;
     height: 100%;
     display: flex;

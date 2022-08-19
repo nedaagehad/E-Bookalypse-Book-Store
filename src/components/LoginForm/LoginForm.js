@@ -4,8 +4,8 @@ import * as Yup from 'yup';
 import classes from './LoginForm.module.css' 
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser, decodeToken, logOut, setCredntials } from "../../store/reducers/authReducer/authReducer";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../store/services";
+import { useNavigate, Link } from "react-router-dom";
+import { api, booksApi } from "../../store/services";
 
 
 const axios = require('axios');
@@ -25,14 +25,17 @@ const LoginForm = props => {
 
   const authState = useSelector(state => state.auth.userRole)
   const dispatch  = useDispatch();
-  const [login, loginresponse] = api.useLoginMutation();
+  const [login, loginresponse] = booksApi.useLoginMutation();
   // dispatch(logOut())
   useEffect(() => {
     if(authState == 'regUser'){
       navigate('/')
+   
     }else if (authState == 'rootAdmin'){
       navigate('/admin')
     }
+
+    console.log('authState: ' + authState)
   }, [authState]);
 
   const toggleShowPass = () => {
@@ -118,7 +121,11 @@ const LoginForm = props => {
                                       <div className="form-text text-danger">{errors.thePassword}</div>
                                   ) : null}
                               </div>
-                        
+                  
+                                 <div className="form-group mb-3" >
+                                    <Link to="/ForgetPassword" classes={classes.forget}>Forget Password</Link>
+                                 </div> 
+                                    
                                 <button type="submit" className={classes.btn}>
                                 Submit
                                 </button>

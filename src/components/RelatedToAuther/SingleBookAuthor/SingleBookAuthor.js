@@ -4,24 +4,34 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
 import { Link } from 'react-router-dom';
 import styles from '../RelatedToAuther.module.css'
+import loadPoster from './bookPoster.gif' 
 
 const SingleBookAuthor = (props) => {
     const {wbook} = props;
     SwiperCore.use([Autoplay])
 
-    const [image,setImage] = useState()
+    const [image, setImage] = useState()
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-        const starsRef = ref(storage, `/uploads/books/poster/${props.wbook.poster}`);
-        getDownloadURL(starsRef).then( (url)=>{
-    
-        setImage(url)
-         
-       }).catch((error) => {console.log(error)});
-    }, []);
+        
+            if (image) {
+                setLoading(false);
+            }
+    });
+    const starsRef = ref(storage, `/uploads/books/poster/${props.wbook.poster}`);
+    getDownloadURL(starsRef).then( (url)=>{
 
+    setImage(url)
+     
+   }).catch((error) => {console.log(error)});
   return (
-    <Link to={'/books/BookDetails/'+wbook._id} className={styles.slideImg}>
-     <img className={styles.trendBook}  src={image} alt={wbook.title} />
+      <Link to={'/books/BookDetails/' + wbook._id} className={styles.slideImg}>
+          {
+              loading ?
+                  <img src={loadPoster} className={styles.trendBook} />
+                  :
+                  <img className={styles.trendBook} src={image} alt={wbook.title} />
+          }
          <div className={styles.details}>
               <div className={styles.prices}>
                   <h3>${wbook.price}</h3>

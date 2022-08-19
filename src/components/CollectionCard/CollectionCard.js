@@ -29,9 +29,6 @@ const CollectionCard = (props) => {
     },[data])
   return (
     <div className={theme === "night" ? classes.cardNight : classes.card}>
-
-    <div className={classes.BookCard}>
-      <div className={theme === "night" ? classes.cardNight : classes.card}>
         <div className={classes.poster}>
           <Link to={'/offers'} >
             <div className={classes.poster_overlay}></div>
@@ -41,12 +38,9 @@ const CollectionCard = (props) => {
 
 
         </div>
-        <h5>{props.data.title}</h5>
+        <h5 className={theme === "night" ? classes.titleNight : ""}>{props.data.title[0].toUpperCase() + props.data.title.substring(1)}</h5>
         <h3>${props.data.collectionPrice}</h3>
-        {/* ***************************************************************************** */}
         <AddToCardButton collection={props.data._id} fav={props.fav ? props.fav : false}/>
-      </div>
-    </div>
   </div>
   )
 }

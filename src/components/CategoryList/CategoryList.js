@@ -1,15 +1,18 @@
-import React from 'react'
-import classes from './CategoryList.module.css'
+import React from 'react';
 
-const CategoryList = props=> {
+//CSS Module
+import classes from './CategoryList.module.css';
+
+const CategoryList = props => {
+
   return (
-      <div className={`container`}>
-          <div className={`row ${classes.category_list}`}>
-                <h1>Categories</h1>
-                {props.children}
-          </div>
-        </div>
+    <div className={`container`}>
+      <div className={`row ${classes.category_list}`}>
+        <h1 className='text-center'>Categories</h1>
+        {props.children}
+      </div>
+    </div>
   )
 }
 
-export default CategoryList
+export default CategoryList;

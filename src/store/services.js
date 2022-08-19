@@ -2,38 +2,43 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 
-const userToken = localStorage.getItem('userToken');
+let userToken = localStorage.getItem('userToken');
 console.log(userToken);
 
-export const api=createApi({
-    reducerPath:'api',
-    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
-    // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
-    endpoints:(builder)=>({
-        login:builder.mutation({
-            query:(userData)=>({
-                url:"/login",
-                method: 'POST',
-                body: userData,
-            })
-
-        })
-
-
-    })
-})
 
 export const booksApi = createApi({
     reducerPath:'booksApi',
     // baseQuery:fetchBaseQuery({baseUrl:"http://localhost:8080/"}),
 
-    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/"}),
+    baseQuery:fetchBaseQuery({baseUrl:"https://e-bookalypse.herokuapp.com/",
+    prepareHeaders: (headers, { getState }) => {
+        const userToken = localStorage.getItem('userToken');
+        // If we have a token set in state, let's assume that we should be passing it.
+        if (userToken) {
+          headers.set('authorization', `Bearer ${userToken}`);
+        }
+        return headers;
+      },
+
+}),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
     tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate'],
     endpoints:(builder)=>({
-        
+        login:builder.mutation({
+            query:(userData)=>{
+                return{
+                    url:"/login",
+                    method: 'POST',
+                    body: userData,
+                }
+
+            }
+                
+           
+            
+        }),
         getAllBooks : builder.query({
             query: (arg = ' ') => {
                 const { page ,limit,category,priceMin,priceMax,priceSort ,writer ,salesSort} = arg;
@@ -73,8 +78,7 @@ export const booksApi = createApi({
             query:()=>{
                 return{
                     url:"/books-total",
-                    headers:{"Authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -82,8 +86,7 @@ export const booksApi = createApi({
             query:()=>{
                 return{
                     url:"/books-count",
-                    headers:{"Authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -106,8 +109,7 @@ export const booksApi = createApi({
                 url:"/book",
                 method: 'POST',
                 body: bookData,
-                headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 
                 
             }
@@ -121,8 +123,7 @@ export const booksApi = createApi({
                     url:`/book/${bookid}`,
                     method:"PUT",
                     body: bookNewData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updatedBooks']
@@ -136,8 +137,7 @@ export const booksApi = createApi({
                     url:`/book/${bookId}`,
                     method:"DELETE",
                     params:{icon,src},
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                     
                 }
             },
@@ -149,8 +149,7 @@ export const booksApi = createApi({
             query:()=>{
                 return{
                     url:"/writers-total",
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
             }
         }),
         getAllWriters:builder.query({
@@ -170,8 +169,7 @@ export const booksApi = createApi({
             query:()=>{
                 return{ 
                     url:"/writers-count",
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -192,8 +190,7 @@ export const booksApi = createApi({
                     url:"/writer",
                     method:"POST",
                     body:writerData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 
             }
             ),
@@ -208,8 +205,7 @@ export const booksApi = createApi({
                     url:`/writer/${writerId}`,
                     method:"PUT",
                     body: writerNewData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updateWriter']
@@ -222,8 +218,7 @@ export const booksApi = createApi({
                     url:`/writer/${writerId}`,
                     method:"DELETE",
                     params:{icon},
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updateWriter']
@@ -261,8 +256,7 @@ export const booksApi = createApi({
                 url:"/categorie",
                 method:"POST",
                 body:categoryData,
-                headers:{"authorization":`Bearer ${userToken}`}
-
+ 
             }),
             invalidatesTags:['catUpdate']
         }),
@@ -274,8 +268,7 @@ export const booksApi = createApi({
                     url:`categorie/${categoryId}`,
                     method:"PUT",
                     body: categoryNewData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['catUpdate']
@@ -288,8 +281,7 @@ export const booksApi = createApi({
                     url:`/categorie/${categoryId}`,
                     method:"DELETE",
                     params:{icon},
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['catUpdate']
@@ -302,8 +294,7 @@ export const booksApi = createApi({
                 const {date } = args
                 return{
                     url:`/admin/logs/${date}`,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -324,8 +315,7 @@ export const booksApi = createApi({
             query:(id)=>{
                 return{
                     url:`/collection/${id}`,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             providesTags:['updateCollection']
@@ -337,8 +327,7 @@ export const booksApi = createApi({
                     url:"/collection",
                     method:"POST",
                     body:data,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updateCollection']
@@ -349,8 +338,7 @@ export const booksApi = createApi({
                     url:`/collection/${id}`,
                     method:"PUT",
                     body:data,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updateCollection']
@@ -361,8 +349,7 @@ export const booksApi = createApi({
                 return{
                     url:`/collection/${id}`,
                     method:"DELETE",
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             },
             invalidatesTags:['updateCollection']
@@ -385,8 +372,7 @@ export const booksApi = createApi({
                 url:"/promotion",
                 method:"POST",
                 body:promtionData,
-                headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             ),
             invalidatesTags:['updatePromotion']
@@ -401,8 +387,7 @@ export const booksApi = createApi({
                     url:`promotion/${promotionId}`,
                     method:"PUT",
                     body:promtionData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
 
             },
             invalidatesTags:['updatePromotion']
@@ -423,8 +408,7 @@ export const booksApi = createApi({
             query:(promotionId)=>({
                 url:`/promotion/${promotionId}`,
                 method:"DELETE",
-                headers:{"authorization":`Bearer ${userToken}`}
-
+ 
             }),
             invalidatesTags:['updatePromotion']
 
@@ -435,8 +419,7 @@ export const booksApi = createApi({
             query:()=>{
                 return{
                     url:'/users',
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -446,13 +429,11 @@ export const booksApi = createApi({
                if(userID){
                 return{
                     url:`/user/${userID}`,
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
                }else{
                 return{
                     url:"/user",
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
                }
             }
         }),
@@ -462,8 +443,7 @@ export const booksApi = createApi({
                     url:"/user",
                     method:"PUT",
                     body:userData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
             }
         }),
         updateUserRole:builder.mutation({
@@ -473,8 +453,7 @@ export const booksApi = createApi({
                     url:"/user-change-role",
                     method:"PUT",
                     body:userData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -485,8 +464,7 @@ export const booksApi = createApi({
                     url:"/user/pass",
                     method:"PUT",
                     body:userData,
-                    headers:{"authorization":`Bearer ${userToken}`}
-                }
+                 }
             }
         }),
         getSearchResults : builder.query({
@@ -560,8 +538,7 @@ export const booksApi = createApi({
                         url:'/cart-removal',
                         method:'PUT',
                         body:cartItems,
-                        headers:{"Authorization":`Bearer ${userToken}`}
-                    }
+                         }
                 },
                 invalidatesTags:['cart']
 
@@ -601,8 +578,7 @@ export const booksApi = createApi({
                     url:'/wish-removal',
                     method:'PUT',
                     body:cartItems,
-                    headers:{"Authorization":`Bearer ${userToken}`}
-                }
+                 }
             },
             invalidatesTags:['wishlist']
         }),
@@ -623,8 +599,7 @@ export const booksApi = createApi({
             query:()=>{
                 return {
                     url:'/orders',
-                    headers:{"Authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -632,8 +607,7 @@ export const booksApi = createApi({
             query:()=>{
                 return {
                     url:'/orders-count',
-                    headers:{"Authorization":`Bearer ${userToken}`}
-
+ 
                 }
             }
         }),
@@ -644,8 +618,7 @@ export const booksApi = createApi({
                     url:'/order',
                     method:'POST',
                     body:cartItems,
-                    headers:{"Authorization":`Bearer ${userToken}`}
-                }
+                 }
             },
         })
 

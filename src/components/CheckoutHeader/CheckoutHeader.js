@@ -1,29 +1,29 @@
-import React, { useState,useEffect } from 'react'
-import classes from './CheckoutHeader.module.css'
-import BookOnCard from '../BookOnCard/BookOnCard';
-import CollectionOnCard from '../BookOnCard/CollectionOnCard';
+import React, { useState,useEffect } from 'react';
 import { booksApi } from '../../store/services';
 
+//CSS Module
+import classes from './CheckoutHeader.module.css';
+
+//Components
+import BookOnCard from '../BookOnCard/BookOnCard';
+import CollectionOnCard from '../BookOnCard/CollectionOnCard';
+
 const CheckoutHeader = props => {
-    const {bookItems,collectionItems,cart} = props
-    const [books,setBooks]=useState()
-    const [collections,setCollections]=useState()
-    // console.log(bookItems)
+
+    const {bookItems,collectionItems,cart} = props;
+    const [books,setBooks]=useState();
+    const [collections,setCollections]=useState();
+    const {refetch} = booksApi.useGetCartQuery();
+    const [removeFromCart] = booksApi.useRemoveFromCartMutation();
+
     useEffect(() => {
-        console.log(cart)
         setBooks(bookItems)
         setCollections(collectionItems)
     }, []);
-    const {refetch} = booksApi.useGetCartQuery()
-    const [removeFromCart ,response] = booksApi.useRemoveFromCartMutation()
 
     const remove= (id)=>{
-        console.log(id)
         removeFromCart({bookIds:id}  ).then((r)=>{
-
-            refetch()
-                //    dispatch(removeFromCartReducer({bookIds:bookData}))
-             
+            refetch()             
         })
     }
     return (
