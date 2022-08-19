@@ -616,14 +616,15 @@ export const booksApi = createApi({
         }),
         
         // Check Out 
-        checkout:builder.query({
+        checkout:builder.mutation({
             query:()=>{
                 return{
                     url:"/check-out",
                     headers:{"authorization":`Bearer ${userToken}`},
-                    
+                    method:"GET"
                 }
             },
+
         }),
 
         // orders

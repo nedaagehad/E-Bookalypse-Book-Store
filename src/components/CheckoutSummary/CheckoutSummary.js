@@ -1,33 +1,43 @@
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 import React,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { booksApi } from '../../store/services';
 import classes from './CheckoutSummary.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CheckoutSummary = props => {
 
     const theme = useSelector((state) => state.theme.currentTheme);
 
-    const {data,isLoading,error} = booksApi.useCheckoutQuery()
     const [url,setUrl] = useState()
     const [isUrl,setIsUrl] = useState(false)
+    const [mySkipState, setSkipState] = useState(skipToken)
+    // const getCheckOutLink = booksApi.useCheckoutQuery(mySkipState)
+        const [getCheckOutLink] = booksApi.useCheckoutMutation()
 
     let navigate  = useNavigate()
-    const sendCart = ()=>{
 
-        console.log(data)
-        console.log(error)
-        // navigate(data.url)
-        navigate(data.url, { replace: true })
+    // useEffect(()=>{
+    //     if(getCheckOutLink.data){
+    //         setUrl(getCheckOutLink.data.url)
+    //     }
+    // },[getCheckOutLink.data])
+
+    const redirectToPayment = () =>  toast("Redirecting to Payment Page...");
+
+    const getCheckOut = () =>{
+        // setSkipState(1)
+        // if(getCheckOutLink.data){ 
+        //     window.open(getCheckOutLink.data.url)
+        // }
+        redirectToPayment()
+        getCheckOutLink().then((r)=>{
+            window.open(r.data.url)
+        })
     }
-    useEffect(() => {
-        if(data){
-            setUrl(data.url)
-        }
-        if(isUrl){
-            navigate(data.url, { replace: true })
-        }
-    }, [data]);
+    
     return (
         <div className={`col-12 ${theme === "night" ? classes.checkoutCardNight : classes.checkoutCard}`}>
             <div className={`row`}>
@@ -58,9 +68,24 @@ const CheckoutSummary = props => {
                             </tbody>
                             {/* <Link to={url ? url : "null"}> */}
 
-                                <button onClick={()=>window.open(url ? url : null)}  className='btn btn-secondary' > Check Out</button>
+                                {/* <button onClick={()=>window.open(url ? url : null)}  className='btn btn-secondary' > Check Out</button> */}
                             {/* </Link> */}
                     </table>
+                            <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button>
+                            <ToastContainer 
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    
+                    >
+                        
+                    </ToastContainer>
                 </div>
             </div>
         </div>
