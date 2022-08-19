@@ -4,7 +4,7 @@ const Success = lazy(() => import('../../../components/Success/Success') );
 
 const SuccessPayment = props => {
   return (
-    <div className='content'>
+    <div className='content pt-5'>
        <Suspense fallback={<Preloader />}>
              <Success/>
         </Suspense>

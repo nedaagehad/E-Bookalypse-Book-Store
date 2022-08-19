@@ -1,13 +1,12 @@
 import React, { useState, useEffect,useRef } from 'react'
 import Lottie from 'react-lottie'; //import react-lottie
 import NotFoundMsg from "./NotFound.json"
-import { useSelector } from 'react-redux';
 import classes from './NotFound.module.css'
 
 function NotFoundComp() {
     
     const [text, setText] = useState('');
-    const string = 'Paage Is Not Found :(', index = useRef(0);
+    const string = 'Page Is Not Found :(', index = useRef(0);
     
     useEffect(() => {
         function tick() {
@@ -20,7 +19,7 @@ function NotFoundComp() {
         }
     }, [text]);
     
-    //make a lottie animation oject 
+    //make a lottie animation object 
     let NotFoundObj = { 
         loop: true,
         autoplay: true,
@@ -29,7 +28,6 @@ function NotFoundComp() {
         preserveAspectRatio: 'xMidYMid slice'
         }
     }
-    const theme = useSelector((state) => state.theme.currentTheme);
 
     return (
                 <div className={classes.space}>

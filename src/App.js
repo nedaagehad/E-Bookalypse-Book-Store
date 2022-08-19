@@ -1,5 +1,3 @@
-
-
 // Style File
 import './App.css';
 
@@ -34,7 +32,6 @@ import UserLayout from './pages/user/UserLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
 import UserProfile from './pages/user/UserProfile/UserProfile';
 import UsersView from './pages/admin/Users/UsersView';
-import ContactUs from './components/ContactUs/ContactUs';
 
 // Admin Elements
 import Books from './pages/admin/Books/Books';
@@ -96,7 +93,7 @@ function App() {
           <Route path='/paymentpolicy' element={<PaymentPolicy />} />
           <Route path='/privacypolicy' element={<PrivacyPolicy />} />
           <Route path='/aboutus' element={<About />} />
-          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/contactus' element={<Contact />} />
           <Route path='/publishwithus' element={<Publisher />} />
           <Route path={'*'} element={<NotFound />} />
         </Route>

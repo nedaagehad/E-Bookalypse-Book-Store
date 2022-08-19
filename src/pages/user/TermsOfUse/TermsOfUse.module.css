@@ -1,8 +1,5 @@
 /* Color classes for footer routes */
-.footerRoute{
-  background-color: #fcefff !important;
-}
 
-.footerRouteNight{
-  background-color: #F9dbff !important;
+.mov {
+  color: #8a04a5 !important;
 }
