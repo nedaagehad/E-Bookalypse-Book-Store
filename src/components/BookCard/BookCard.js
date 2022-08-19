@@ -16,7 +16,7 @@ const BookCard = props => {
 
   const [images, setImages] = useState();
   const [loading, setLoading] = useState(true);
-  
+  console.log(props.bookShelf)
   useEffect(() => {
 
           if (images) {
@@ -52,7 +52,7 @@ const BookCard = props => {
           props.book.title
       }</h5>
           <h3>${props.book.price}</h3>
-          <AddToCardButton book={props.book._id} fav={props.fav ? props.fav : false}/>
+          <AddToCardButton bookShelf={props.bookShelf ? true : false} book={props.book._id} fav={props.fav ? props.fav : false}/>
     </div>
   )
 }

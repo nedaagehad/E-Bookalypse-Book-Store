@@ -28,7 +28,8 @@ function Category() {
   const theme = useSelector((state) => state.theme.currentTheme);
   const getWishList = booksApi.useGetWishListQuery();
   const [wishList, setWishList] = useState();
-
+  const getBookShelf = booksApi.useGetUserBooksQuery()
+  const [bookShelf,setBookShelf] = useState()  
 
   useEffect(() => {
     // if(isLoading){
@@ -61,7 +62,13 @@ function Category() {
     if (getWishList.data) {
       setWishList(getWishList.data.wishList)
     }
-  }, [data, getSearchResults.data,params.id, getWishList.data]);
+    if(getBookShelf.data){
+      setBookShelf(getBookShelf.data)
+      console.log(getBookShelf.data)
+    }
+  }, [data, getBookShelf.data, getSearchResults.data,params.id, getWishList.data]);
+
+
 
   return (
 
@@ -84,10 +91,11 @@ function Category() {
 
                           let bookWished = wishList.bookItems.filter((book) => book._id === b._id)
                         }
+                        // {console.log(bookShelf ? bookShelf.filter((book)=>book._id === b._id ) :null  )  }
                         return (
 
                           <div key={b._id} className="col-lg-4 col-md-6 col-sm-12">
-                            <BookCard book={b} fav={!wishList ? false : wishList.bookItems.filter((book) => book._id === b._id).length > 0 ? true : false} img="../../Images/Books/1.jpg" alt={b.title} price="$15.50" />
+                            <BookCard book={b}  bookShelf={!bookShelf ? false : bookShelf.filter((bs)=>bs._id === b._id ).length > 0 ? true : false }   fav={!wishList ? false : wishList.bookItems.filter((book) => book._id === b._id).length > 0 ? true : false} img="../../Images/Books/1.jpg" alt={b.title} price="$15.50" />
                           </div>
                         )
 

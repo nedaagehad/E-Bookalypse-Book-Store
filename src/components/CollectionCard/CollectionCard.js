@@ -40,7 +40,7 @@ const CollectionCard = (props) => {
         </div>
         <h5 className={theme === "night" ? classes.titleNight : ""}>{props.data.title[0].toUpperCase() + props.data.title.substring(1)}</h5>
         <h3>${props.data.collectionPrice}</h3>
-        <AddToCardButton collection={props.data._id} fav={props.fav ? props.fav : false}/>
+        <AddToCardButton bookShelf={props.bookShelf ? true : false} collection={props.data._id} fav={props.fav ? props.fav : false}/>
   </div>
   )
 }

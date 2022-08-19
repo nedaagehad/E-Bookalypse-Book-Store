@@ -22,7 +22,8 @@ function Wishlist() {
   const { data, isLoading, error } = booksApi.useGetWishListQuery();
   const [wishlisted, setWishListed] = useState();
   const [fav, setFav] = useState(true);
-
+  const getBookShelf = booksApi.useGetUserBooksQuery()
+  const [bookShelf,setBookShelf] = useState()
   useEffect(() => {
     if (isLoading) {
       setLoading(true);
@@ -32,8 +33,13 @@ function Wishlist() {
         setWishListed(data.wishList)
         setLoading(false);
       }
-  }}, [data]);
-  console.log(wishlisted)
+
+      if(getBookShelf.data){
+        setBookShelf(getBookShelf.data)
+      }
+
+  }}, [data,getBookShelf.data]);
+  // console.log(wishlisted)
   return (
 // <<<<<<< HEAD
     <div className={`content container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
@@ -62,7 +68,7 @@ function Wishlist() {
 
                           return (
                             <div key={book._id} className="col-lg-3 col-md-6 col-sm-12" style={{ marginBottom: "20px" }}>
-                              <BookCard fav={fav} book={book} />
+                              <BookCard   bookShelf={!bookShelf ? false : bookShelf.filter((bs)=>bs._id === book._id ).length > 0 ? true : false }  fav={fav} book={book} />
                             </div>
                           )
                         }) 
@@ -77,7 +83,9 @@ function Wishlist() {
                           wishlisted.collectionItems.map((col) => {
                             return (
                               <div key={col._id} className="col-lg-3 col-md-6 col-sm-12" style={{ marginBottom: "20px" }}>
-                                <CollectionCard fav={fav} data={col} />
+                                <CollectionCard                     
+                                bookShelf={!bookShelf ? false :  bookShelf.some((bs)=>!col.collectionBooks.some((c)=> c._id == bs._id)) ? true : false } 
+                                 fav={fav} data={col} />
                               </div>
                             )
                           }) :   <div className="col-lg-12 col-md-12 col-sm-12">

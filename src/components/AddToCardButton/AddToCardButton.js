@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { booksApi } from '../../store/services';
 
 //CSS Module
@@ -14,25 +14,33 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddToCardButton = props => {
     const addedToCart = () =>  toast("Added To Cart Successfully");
+    const boughtItAlready = () =>  toast("You Already Bought this book before");
 
     const {book,collection} = props
     const [addToCart] =booksApi.useAddToCartMutation()
     const [addToWishList] =booksApi.useAddToWishListMutation()
     const [removeFromWishList] =booksApi.useRemoveFromWishListMutation()
 
-    
     let addToCartFun =  (bookData) => {
         let books = []
         let collections = []
-
+        let collectionObject
         if(bookData.book !== undefined) {
             books.push(bookData.book)
         }
         if(bookData.collection !== undefined) {
-            collections.push(bookData.collection)
+            bookData.collection.collectionBooks.forEach((book)=>{
+                collections.push(book._id)
+            })
+             collectionObject = {
+                "id": bookData.collection.collectionID,
+                "collectionBooks":collections
+            
+           }
         }
-        
-        addToCart({bookIds:books,collectionIds:collections}).then((re)=>
+        console.log(bookData.collection)
+       
+        addToCart({bookId:bookData.book,collectionObject:collectionObject}).then((re)=>
             {
                 if(re.data){
                     // dispatch(addToCartReducer(bookData))
@@ -125,6 +133,10 @@ const AddToCardButton = props => {
         
     }
 
+    const hasBook = ()=>{
+        boughtItAlready()
+    }
+
     return (
         <div className={`mt-3 ${classes.action}`}>
              <ToastContainer 
@@ -141,7 +153,7 @@ const AddToCardButton = props => {
                     >
                         
                     </ToastContainer>
-            <button onClick={()=>addToCartFun({book,collection})}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
+            <button  onClick={!props.bookShelf ? ()=>addToCartFun({book,collection}) : ()=>boughtItAlready()}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 " }></i></button>
             {   props.fav 
                 ?
                     <button onClick={()=>removeFromWishListFun({book,collection})} style={{color:"var(--main-purple)"}} className={classes.favorite}><BsFillHeartFill/></button>  

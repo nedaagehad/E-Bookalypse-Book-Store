@@ -71,7 +71,7 @@ const Combination = props => {
                                 <h6 className={`text-center ${theme === "night" ? classes.detailsDark : ""}`} key={book._id}>{book.title}</h6>
                             )
                         })}
-                        <AddToCardButton fav={props.fav ? props.fav : false} collection={collectionID} />
+                        <AddToCardButton bookShelf={props.bookShelf ? true : false}   fav={props.fav ? props.fav : false} collection={{collectionID:collectionID,collectionBooks:collectionData}} />
                     </div>
                 </div>
             </div>

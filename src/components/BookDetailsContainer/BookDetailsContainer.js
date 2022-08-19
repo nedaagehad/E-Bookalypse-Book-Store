@@ -13,6 +13,9 @@ const BookDetailsContainer = props => {
     const theme = useSelector((state) => state.theme.currentTheme);
     const getWishList = booksApi.useGetWishListQuery()
     const [wishList,setWishList] = useState()
+    const getBookShelf = booksApi.useGetUserBooksQuery()
+    const [bookShelf,setBookShelf] = useState()
+  
     let dispatch= useDispatch()
 
     
@@ -23,7 +26,10 @@ const BookDetailsContainer = props => {
             
             setWishList(getWishList.data.wishList)
           }
-    },[getWishList.data])
+          if(getBookShelf.data){
+            setBookShelf(getBookShelf.data)
+          }
+    },[getWishList.data,getBookShelf.data])
 
     let addToCartFun =  (bookData) => {
         
@@ -86,7 +92,7 @@ const BookDetailsContainer = props => {
                             </div> */}
                             {/* <p>{props.bookDesc}</p>
                             <h2>${props.bookPriceAfterPromo}<span className={classes.promo}><sub><del>${props.bookPriceBeforePromo}</del></sub></span></h2> */}
-                            <AddToCardButton fav={!wishList  ? false : wishList.bookItems.filter((c)=> c._id === props.book._id).length > 0 ?  true : false} book={props.id}/>
+                            <AddToCardButton bookShelf={!bookShelf ? false : bookShelf.filter((bs)=>bs._id === props.book._id ).length > 0 ? true : false } fav={!wishList  ? false : wishList.bookItems.filter((c)=> c._id === props.book._id).length > 0 ?  true : false} book={props.id}/>
                         </div>
                     </div>
                 </div>

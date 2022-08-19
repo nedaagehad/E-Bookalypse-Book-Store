@@ -17,6 +17,8 @@ function Offers() {
   const [loading, setLoading] = useState(false);
   const theme = useSelector((state) => state.theme.currentTheme);
   const getWishList = booksApi.useGetWishListQuery();
+  const getBookShelf = booksApi.useGetUserBooksQuery()
+  const [bookShelf,setBookShelf] = useState()  
 
   useEffect(() => {
     if (isLoading) {
@@ -32,8 +34,11 @@ function Offers() {
   
         setWishList(getWishList.data.wishList)
       }
+      if(getBookShelf.data) {
+        setBookShelf(getBookShelf.data)
+      }
     }
-  }, [data, getWishList.data]);
+  }, [data, getWishList.data,getBookShelf.data]);
 
 
   return (
@@ -49,6 +54,13 @@ function Offers() {
             <div className="col-12">
               <div className="row">
                 {collections ? collections.map((item) => {
+                  console.log(bookShelf ? bookShelf[0] : null)
+                  console.log(item.collectionBooks[0])
+                  console.log(bookShelf ?  bookShelf.some((bs)=>!item.collectionBooks.some((c)=> c._id == bs._id)) : null)
+                  // const res = origArr.filter(x => !newArr.some(y => y.value === x.value));
+                  // result1.some(itemA =>
+                  //   result2.some(itemB => itemB.name === itemA.name)
+                  // )
                   return (<Combination
                     key={item._id}
                     collectionID={item._id}
@@ -56,6 +68,7 @@ function Offers() {
                     collectionPrice={item.collectionPrice}
                     collectionData={item.collectionBooks}
                     fav={!wishList ? false : wishList.collectionItems.filter((c) => c._id === item._id).length > 0 ? true : false}
+                    bookShelf={!bookShelf ? false :  bookShelf.some((bs)=>!item.collectionBooks.some((c)=> c._id == bs._id)) ? true : false } 
                   />)
                 }) : null}
               </div>
