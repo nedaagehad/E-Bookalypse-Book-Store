@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Lottie from 'react-lottie'; //import react-lottie
 import BookEmptty from "./BookEmptty.json"
-
+import { useSelector } from 'react-redux';
 
 import myStyle from './BookEmpty.module.css';
 import { Link } from "react-router-dom" 
 
-function BookEmpty() {
+function BookEmpty(props) {
+
+    const theme = useSelector((state) => state.theme.currentTheme);
 
     let BookEmptyObj = { 
         loop: true,
@@ -29,12 +31,8 @@ function BookEmpty() {
                     isPaused={false}
                 />
 
-                <h2 className="fs-1 font-weight-medium text-center pt-0">Your BookShelf is Empty!</h2>
-                 <div className="justify-content-center align-items-center d-flex ">
-               <Link to="/categories">
-                    <button className={`${myStyle.saveBtn} btn justify-content-center align-items-center p-3 m-4`}>Go to Categories</button>
-               </Link>
-                 </div>
+            <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>{props.title}</h2>
+                 
                 
             </div>
     )

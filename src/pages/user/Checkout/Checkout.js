@@ -5,6 +5,7 @@ import CheckoutHeader from '../../../components/CheckoutHeader/CheckoutHeader'
 import CheckoutSummary from '../../../components/CheckoutSummary/CheckoutSummary'
 import { addToCartReducer, FillCartFromDb } from '../../../store/reducers/cartReducer/CartReducer'
 import { booksApi, selectCartItems } from '../../../store/services'
+import CartEmpty from '../../../components/CartEmpty/CartEmpty'
 //loader 
 import Preloader from '../../../components/Preloader/Preloader';
 function Checkout() {
@@ -84,14 +85,19 @@ function Checkout() {
           :
           <div className="container">
               <div className="row">
-                {cart  ? 
+                { cart ? 
 
-                    <>
+                              <>
+                        {console.log(cart)}
                         <CheckoutHeader cart={cart} bookItems={bookItems} collectionItems={collectionItems}/>
-                        <CheckoutSummary Total={totalPrice}/>
+                        <CheckoutSummary Total={totalPrice} />
 
                     </>                
-                :null}
+                    :
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                         <CartEmpty />
+                    </div>
+                    }
               </div>
           </div>
         }
