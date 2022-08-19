@@ -1,0 +1,14 @@
+.emptywishlist{
+    margin-top: 2rem;
+    min-width: 31rem;
+}
+
+
+.saveBtn {
+    background-color: #8a04a5 !important;
+    color: #fff !important;
+    /* margin-left: 15px; */
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    
+}
