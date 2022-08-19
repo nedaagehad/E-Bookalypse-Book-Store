@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { bookTitle } from '../../store/reducers/filterReducer/filterReducer';
 import navbar from '../NavBar/NavBar.module.css';
 import styles from './SearchBar.module.css';
  
@@ -13,6 +14,7 @@ function SearchBar() {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    let dispatch  = useDispatch()
     let navigate = useNavigate()
     
     const ExpandSearch = () => {
@@ -32,6 +34,7 @@ function SearchBar() {
         if(searchTerm){
 
             console.log(searchTerm)
+            dispatch(bookTitle(searchTerm))
             navigate('/categories/category/'+searchTerm)
         }
     }

@@ -15712,11 +15712,7 @@ address p {
   font-size: 1rem; }
 
 /* Miscellanoeous */
-body,
-html {
-  overflow-x: hidden;
-  padding-right: 0 !important;
-  background-color: #191c24; }
+
 
 *:-moz-full-screen,
 *:-webkit-full-screen,

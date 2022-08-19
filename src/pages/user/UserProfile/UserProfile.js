@@ -1,14 +1,16 @@
-import React from 'react';
-import ViewUserProfile from '../../../components/ViewUserProfile/ViewUserProfile';
+import React, { lazy , Suspense } from 'react'
+import Preloader from '../../../components/Preloader/Preloader';
 import { useSelector } from 'react-redux';
-
+const ViewUserProfile = lazy(() => import('../../../components/ViewUserProfile/ViewUserProfile') );
 function UserProfile() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
 
   return (
     <div className={theme === "night" ? "bg-dark" : ""}>
-      <ViewUserProfile />
+       <Suspense fallback={<Preloader />}>
+             <ViewUserProfile />
+        </Suspense>
     </div>
   )
 }

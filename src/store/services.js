@@ -24,7 +24,7 @@ export const booksApi = createApi({
 }),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
-    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate'],
+    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate','search'],
     endpoints:(builder)=>({
         login:builder.mutation({
             query:(userData)=>{
@@ -496,6 +496,8 @@ export const booksApi = createApi({
                     
                 
               },
+              providesTags:['search']
+
 
         }),
 

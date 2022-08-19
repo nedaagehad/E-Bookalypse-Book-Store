@@ -35,12 +35,22 @@
 
 .flashCard {
     max-width: 400px !important;
-    /* max-height: 600px !important; */
     min-height: 260px !important;
+}
+
+.flashImg {
+    height: 250px !important;
+    width: 150px !important;
+    margin: 15px !important;
 }
 
 @media (max-width: 767px) {
     .flashCard {
         min-height: 570px !important;
+    }
+
+    .flashImg {
+        width: 80% !important;
+        margin-left: 10% !important;
     }
 }
