@@ -23,7 +23,7 @@ const SingleBookAuthor = (props) => {
 
     setImage(url)
      
-   }).catch((error) => {console.log(error)});
+   });
   return (
       <Link to={'/books/BookDetails/' + wbook._id} className={styles.slideImg}>
           {

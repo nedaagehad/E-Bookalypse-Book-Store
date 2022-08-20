@@ -20,14 +20,31 @@ function BookDetails() {
   const [image,setImage]= useState()
   const theme = useSelector((state) => state.theme.currentTheme);
   const [loading, setLoading] = useState(false);
-
+  const [getuserById] = booksApi.useGetUserByIDMutation()
+  const [ user,setUser] = useState()
+  const [ profileImg,setProfileImg] = useState()
+  const getBookReviews = booksApi.useGetBookReviewsQuery(params.id)
+  const [reviews,setReviews] = useState()
   useEffect(() => {
-    if (isLoading) {
+ 
+    if (isLoading || getBookReviews.isLoading) {
       setLoading(true);
     }
     else {
       if(data){
-        // console.log(data[0])
+        getuserById().then((u)=>{
+          //   console.log(u)
+            setUser(u.data)
+            // const starsRef = ref(storage, `/uploads/users/${u.data.image}`);
+            //   getDownloadURL(starsRef).then( (url)=>{
+      
+                  
+            //   setProfileImg(url)
+              
+            //   }).catch((error) => {console.log(error)});
+    
+        })
+        console.log(data[0])
         setBook(data[0])
         let promotions = data[0].promotion
         let finalPrice = data[0].price
@@ -48,8 +65,14 @@ function BookDetails() {
         }).catch((error) => { console.log(error) });
         setLoading(false);
       }
+      if(
+        getBookReviews.data
+      ){
+        setLoading(false)
+        setReviews(getBookReviews.data)
+      }
     }
-  }, [data]);
+  }, [data,getBookReviews.data]);
   return (
     <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
       {loading ?
@@ -74,26 +97,28 @@ function BookDetails() {
                   bookPriceBeforePromo={book.price}
                   book={book}
                 />
-                  {console.log(book)}
-                  {book.reviews.length > 0 ?
+                  <UserReview comments={[
+                    { commenterImg: "../userIcon.gif", commenterName: "Reham Raafat"}
+                  ]}/> 
+                  {console.log(reviews)}
+                  {reviews ?
                       <>
                         <CustomerReviews
-                          reviews={book.reviews}
+                          reviews={reviews}
                                 
-                          rate={book.rate}
+                          rate={book.rate.toFixed(1)}
                           rateDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                           fivePerc="80"
                           fourPerc="60"
                           threePerc="40"
                           twoPerc="20"
                           onePerc="10"
-                          
+                          user={user ? user._id : null}
+                          // userImage={profileImg}
                         />
                       </>
                   : null}
-                  <UserReview comments={[
-                    { commenterImg: "../userIcon.gif", commenterName: "Reham Raafat"}
-                  ]}/> 
+                 
                   <RelatedToAuther bookCategory={book.category[0].title} bookWriter={book.writer[0].name} />
 
                 {/* {console.log(book.writer)} */}
