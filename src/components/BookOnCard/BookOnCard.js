@@ -4,17 +4,16 @@ import { RiDeleteBin5Fill } from 'react-icons/ri'
 import storage from '../../Firebase/firebaseImage'
 import { getDownloadURL, ref } from 'firebase/storage'
 import { booksApi } from '../../store/services'
-import { useDispatch } from 'react-redux'
-import { removeFromCartReducer } from '../../store/reducers/cartReducer/CartReducer'
 import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BookOnCard = props => {
-    // console.log(props.data)
+
     const theme = useSelector((state) => state.theme.currentTheme);
 
     const [bookImages,setBookImages] = useState()
+
     useEffect(() => {
         const starsRef = ref(storage, `/uploads/books/poster/${props.data.poster}`);
         getDownloadURL(starsRef).then( (url)=>{
@@ -29,30 +28,27 @@ const BookOnCard = props => {
 
     }, []);
 
+    // eslint-disable-next-line
     const [removeFromCart ,response] = booksApi.useRemoveFromCartMutation()
-    // // const {refetch} = booksApi.useGetCartMutation()
-    // const {refetch} = booksApi.useGetCartQuery()
-    // let dispatch = useDispatch()
 
 
     const removeItem = (bookData) =>{
-        console.log(bookData)
         
         removeFromCart({bookIds:[bookData],collectionIds:[bookData]}  ).then((r)=>{
             if(r.data){
                 const removedFromCart = () =>  toast("Book Removed from Cart");
 
+                // eslint-disable-next-line
                 {removedFromCart()}
             }else{
                 const err = () =>  toast(r.error.data.message);
 
+                // eslint-disable-next-line
                 {err()}
             }
-            console.log(r)
         }).catch((err)=>{
             console.log(err)
         })
-    
     }
 
 
@@ -63,7 +59,7 @@ const BookOnCard = props => {
                 <div className={`col-8`}>
                     <div className={`row`}>
                         <div className={`col-3`}>
-                            <img src={bookImages}/>
+                            <img src={bookImages} alt="bookImages" />
                         </div>
                         <div className={`col-9 ${classes.details}`}>
 

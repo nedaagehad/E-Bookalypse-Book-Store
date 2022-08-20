@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import loadPoster from './bookPoster.gif' 
 //CSS Module
 import classes from './CategoryCard.module.css';
-//Components
-// import Preloader from '../Preloader/Preloader';
 
 const CategoryCard = props => {
 
@@ -37,7 +35,7 @@ const CategoryCard = props => {
                     </div>
                     {
                         loading ?
-                            <img src={loadPoster} />
+                            <img src={loadPoster} alt={category.title} />
                             :
                             <img src={image} alt={category.title} />
                     }

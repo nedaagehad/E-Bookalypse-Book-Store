@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import MultiRangeSlider from "multi-range-slider-react";
 import './PriceRange.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { priceMax,priceMin } from "../../../store/reducers/filterReducer/filterReducer";
 const PriceRange = props =>{
 const [minValue, set_minValue] = useState(0);
 const [maxValue, set_maxValue] = useState(200);
-// const filterState = useSelector(state => state.filter)
 const dispatch  = useDispatch();
 
 const handleInput = (e) => {

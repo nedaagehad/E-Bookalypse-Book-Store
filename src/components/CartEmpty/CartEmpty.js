@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom" 
+import React from 'react'
+import { Link } from "react-router-dom"
 import Lottie from 'react-lottie'; //import react-lottie
 import CartLottie from "./newCart.json" //import lottie animation Json file
 import { useSelector } from 'react-redux';
@@ -8,12 +8,12 @@ import myStyle from './CartEmpty.module.css';
 function CartEmpty() {
     const theme = useSelector((state) => state.theme.currentTheme);
     //make a lottie animation oject 
-    let cartObj = { 
+    let cartObj = {
         loop: true,
         autoplay: true,
-        animationData : CartLottie, 
+        animationData: CartLottie,
         rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
+            preserveAspectRatio: 'xMidYMid slice'
         }
     }
 
@@ -30,12 +30,12 @@ function CartEmpty() {
                     />
                 </div>
 
-                 <h2  className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>Your Cart is Empty!</h2>
-                 <div className="justify-content-center align-items-center d-flex ">
-               <Link to="/books">
-                    <button className={`${myStyle.saveBtn} btn justify-content-center align-items-center p-3 m-4`}>Go to Books</button>
-               </Link>
-                 </div>
+                <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>Your Cart is Empty!</h2>
+                <div className="justify-content-center align-items-center d-flex ">
+                    <Link to="/books">
+                        <button className={`${myStyle.saveBtn} btn justify-content-center align-items-center p-3 m-4`}>Go to Books</button>
+                    </Link>
+                </div>
 
             </div>
         </div>

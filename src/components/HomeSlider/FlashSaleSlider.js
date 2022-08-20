@@ -24,6 +24,7 @@ function FlashSaleSlider() {
 
     const [prevDis, setPrevDis] = useState(false);
     const [nextDis, setNextDis] = useState(true);
+    // eslint-disable-next-line
     const { data, isLoading, error } = booksApi.useGetAllBooksQuery()
     const [flashSales, setFlashSales] = useState()
     const [wishList, setWishList] = useState();
@@ -78,6 +79,7 @@ function FlashSaleSlider() {
                             }}
 
                         >
+                            {/* eslint-disable-next-line */}
                             {flashSales ? flashSales.map((b) => {
                                 if (b.promotion.length > 0) {
                                     return (

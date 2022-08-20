@@ -6,16 +6,20 @@ import UserReview from "../../../components/UserReview/UserReview"
 import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
 import { useParams } from 'react-router-dom'
 import { booksApi } from '../../../store/services'
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL } from "firebase/storage";
 import storage from '../../../Firebase/firebaseImage'
 import { useSelector } from 'react-redux'
 //loader 
 import Preloader from '../../../components/Preloader/Preloader';
+
 function BookDetails() {
+  
   let params = useParams();
   const [book,setBook] = useState()
   const [price,setPrice] = useState()
+  // eslint-disable-next-line
   const [discount,setDiscount] = useState()
+  // eslint-disable-next-line
   const {data,isLoading,error} = booksApi.useGetBookByIdQuery(params.id)
   const [image,setImage]= useState()
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -32,30 +36,24 @@ function BookDetails() {
     }
     else {
       if(data){
+
         getuserById().then((u)=>{
-          //   console.log(u)
+          
             setUser(u.data)
-            // const starsRef = ref(storage, `/uploads/users/${u.data.image}`);
-            //   getDownloadURL(starsRef).then( (url)=>{
-      
-                  
-            //   setProfileImg(url)
-              
-            //   }).catch((error) => {console.log(error)});
     
         })
-        console.log(data[0])
+
         setBook(data[0])
         let promotions = data[0].promotion
         let finalPrice = data[0].price
        
         if(promotions.length > 0){
-          // console.log(promotions[0].discount_rate)
           setDiscount(promotions[0].discount_rate)
            finalPrice = data[0].price -  data[0].price * promotions[0].discount_rate
           }
           setPrice(finalPrice)
         const starsRef = ref(storage, `/uploads/books/poster/${data[0].poster}`);
+        // eslint-disable-next-line
         let imageurl = ' ';
          getDownloadURL(starsRef).then( (url)=>{
           const newUrl = url

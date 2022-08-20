@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react'
+import React,{ useEffect, useState } from 'react';
 import Preloader from '../../../components/Preloader/Preloader'
 import Shelf from  "../../../components/Shelf/Shelf"
 import { booksApi } from '../../../store/services'
@@ -6,9 +6,13 @@ import BookEmpty from '../../../components/BookEmpty/BookEmpty'
 import { useSelector } from 'react-redux';
 
 const BookShelf = props => {
+
+  // eslint-disable-next-line
   const {data,isLoading,error} = booksApi.useGetUserBooksQuery()
   
   const theme = useSelector((state) => state.theme.currentTheme);
+
+  // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {

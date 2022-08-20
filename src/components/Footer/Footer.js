@@ -34,15 +34,19 @@ function Footer() {
           <h5 className={`mb-3 text-center ${styles.footerTitle}`}>Connect with us</h5>
           <div className='row justify-content-center'>
             <div className={`col-3 ${styles.mediaIconContainer}`}>
+            {/* eslint-disable-next-line */}
               <a href='http://www.facebook.com' target="_blank" ><FaFacebookF className={styles.mediaIconNight} /></a>
             </div>
             <div className={`col-3 ${styles.mediaIconContainer}`}>
+            {/* eslint-disable-next-line */}
               <a href='http://www.twitter.com' target="_blank" ><BsTwitter className={styles.mediaIconNight} /></a>
             </div>
             <div className={`col-3 ${styles.mediaIconContainer}`}>
+            {/* eslint-disable-next-line */}
               <a href='http://www.instagram.com' target="_blank"><RiInstagramFill className={styles.mediaIconNight} /></a>
             </div>
             <div className={`col-3 ${styles.mediaIconContainer}`}>
+            {/* eslint-disable-next-line */}
               <a href='http://www.linkedin.com' target="_blank"><FaLinkedinIn className={styles.mediaIconNight} /></a>
             </div>
           </div>

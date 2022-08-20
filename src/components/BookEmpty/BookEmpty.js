@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Lottie from 'react-lottie'; //import react-lottie
 import BookEmptty from "./BookEmptty.json"
 import { useSelector } from 'react-redux';
 
 import myStyle from './BookEmpty.module.css';
-import { Link } from "react-router-dom" 
 
 function BookEmpty(props) {
 
@@ -18,7 +17,6 @@ function BookEmpty(props) {
         preserveAspectRatio: 'xMidYMid slice'
         }
     }
-
 
     return (
             <div className={`${myStyle.emptywishlist}`}>
