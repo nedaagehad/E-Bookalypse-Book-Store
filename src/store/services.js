@@ -590,7 +590,7 @@ export const booksApi = createApi({
             query:(cartItems)=>{
                 const {bookIds,collectionIds} = cartItems
           
-                // console.log(cartItems)
+                console.log(cartItems)
                 return{
                     url:'/wish-addition',
                     method:'PUT',
