@@ -72,20 +72,7 @@ const CheckoutSummary = props => {
                             {/* </Link> */}
                     </table>
                             <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button>
-                            <ToastContainer 
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    
-                    >
-                        
-                    </ToastContainer>
+                            
                 </div>
             </div>
         </div>

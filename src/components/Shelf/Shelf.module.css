@@ -5,7 +5,6 @@
     background-image: url(../../assets/Shelves3.png);
     background-size: contain;
     background-repeat: repeat-y;
-    margin-bottom: -150px;
 }
 .book{
     /* border:solid; */
@@ -46,6 +45,9 @@
         height: 200px;
         margin-bottom: 150px;
     }
+    .shelfContainer{
+        background-repeat: no-repeat;
+    }
 }
 @media(max-width:1199px)
 {
@@ -53,6 +55,9 @@
         margin: auto;
         height: 150px;
         margin-bottom: 150px;
+    }
+    .shelfContainer{
+        background-repeat: no-repeat;
     }
 }
 @media(max-width:991px)
@@ -66,9 +71,11 @@
     .book img{
         margin-bottom: 120px;
         height: 105px;
+        width: 30%;
     }
     .shelfContainer{
         background-image: url(../../assets/Shelves-PNG-HD-Image.png);
+        background-repeat: repeat-y;
     }
 }
 @media(max-width:544px)

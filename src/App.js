@@ -1,5 +1,3 @@
-
-
 // Style File
 import './App.css';
 
@@ -34,7 +32,6 @@ import UserLayout from './pages/user/UserLayout';
 import EditProfile from './pages/user/EditProfile/EditProfile';
 import UserProfile from './pages/user/UserProfile/UserProfile';
 import UsersView from './pages/admin/Users/UsersView';
-import ContactUs from './components/ContactUs/ContactUs';
 
 // Admin Elements
 import Books from './pages/admin/Books/Books';
@@ -52,6 +49,7 @@ import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -71,10 +69,12 @@ function App() {
   }, [authState]);
 
   return (
+    <>
     <Router>
         <Routes>
         {/* USER ROUTES */}
         <Route path='/' element={<UserLayout />} >
+       
           <Route index element={<Home />}/>
           <Route path='/categories' element={<Categories />} />
           <Route path='/categories/category' element={<Category />} />
@@ -96,11 +96,11 @@ function App() {
           <Route path='/paymentpolicy' element={<PaymentPolicy />} />
           <Route path='/privacypolicy' element={<PrivacyPolicy />} />
           <Route path='/aboutus' element={<About />} />
-          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/contactus' element={<Contact />} />
           <Route path='/publishwithus' element={<Publisher />} />
           <Route path={'*'} element={<NotFound />} />
         </Route>
-
+      
         {/* ADMIN ROUTES */}
         {!isUser ? 
        
@@ -136,6 +136,21 @@ function App() {
 
       </Routes> 
     </Router>
+    <ToastContainer 
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    
+                    >
+                        
+                    </ToastContainer>
+    </>
 
 
   );

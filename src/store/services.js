@@ -47,6 +47,7 @@ export const booksApi = createApi({
                 // for(let i = 0; i < category.length; i++){
                 //     category.
                 // }
+                console.log(writer)
                 let newCategory = ''
                 if(category){
 

@@ -1,15 +1,18 @@
-import React, { lazy , Suspense }  from 'react'
-import Preloader from '../../../components/Preloader/Preloader';
-const Contact = lazy(()=>{
+import React from 'react';
+import ContactUs from '../../../components/ContactUs/ContactUs';
+import { useSelector } from 'react-redux';
+
+const Contact = ()=>{
+
+  const theme = useSelector((state) => state.theme.currentTheme);
+
   return (
-    <div className='container-fluid h-100 d-flex'>
-      <Suspense fallback={<Preloader />}>
+    <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
       <div className='flex-grow-1'>
-        Contact
+        <ContactUs />
       </div>
-      </Suspense>
     </div>
   )
-})
+}
 
 export default Contact

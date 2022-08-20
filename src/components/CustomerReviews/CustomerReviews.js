@@ -96,7 +96,9 @@ const CustomerReviews = props => {
                     </div>
                     <div className={`col-12`}>
                         <div className={`row`}>
-                            {
+                            {console.log(props.reviews)}
+                            <Comment commentDesc={reviews.comment} commentRate={reviews.vote} />
+                            {/*{
                                 props.comments.map((item) => {
                                     return(<Comment
                                         commentRate={item.rate}
@@ -106,7 +108,7 @@ const CustomerReviews = props => {
                                         commentDesc={item.commentDesc}
                                     />)
                                 })
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>

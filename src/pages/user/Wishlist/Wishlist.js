@@ -8,7 +8,7 @@ import ViewCategoryPage from '../../../components/ViewCategoryPage/ViewCategoryP
 import BooksView from '../../../components/BooksView/BooksView';
 import BookCard from '../../../components/BookCard/BookCard';
 import CollectionCard from '../../../components/CollectionCard/CollectionCard';
-import BookEmpty from '../../../components/BookEmpty/BookEmpty';
+import WishlistEmpty from '../../../components/WishlistEmpty/WishlistEmpty';
 
 function Wishlist() {
 
@@ -53,11 +53,11 @@ function Wishlist() {
               <Suspense fallback={<Preloader />}>
                 <BooksView title="Wishlist">
                   <div className="col-md-12 col-sm-12">
-                    <div className="row" style={{ padding: "50px" }}>
+                    <div className="row">
                       {wishlisted && wishlisted.bookItems.length == 0 && wishlisted.collectionItems.length == 0 ? 
                       
                           <div className="col-lg-12 col-md-12 col-sm-12">
-                          <BookEmpty title="Wishlist is Empty" />
+                          <WishlistEmpty/>
                         </div>
                         
                       
@@ -89,7 +89,7 @@ function Wishlist() {
                               </div>
                             )
                           }) :   <div className="col-lg-12 col-md-12 col-sm-12">
-                          <BookEmpty title="Wishlist is Empty" />
+                          <WishlistEmpty/>
                         </div>
                       }
                             

@@ -17,9 +17,9 @@ function RefundPolicy() {
     }, []);
 
     return (
-        <div className={`container-fluid sticky-footer p-3 ${styles.content} ${theme === "night" ? "bg-dark" : ""}`}>
-            <div className={`container p-5 rounded-5 shadow ${theme === "night" ? "bg-transparent" : styles.footerRoute}`}>
-                <h3 className={`mb-3 text-decoration-underline fw-bold ${theme === "night" ? "text-light" : ""}`}>Refund Policy</h3>
+        <div className={`container-fluid content p-3 footer-position ${styles.content} ${theme === "night" ? "bg-dark" : ""}`}>
+            <div className={`container p-5`}>
+                <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Refund Policy</h3>
                 <div className={theme === "night" ? "text-light" : ""}>
                     <p>
                         It is way too simple to click "Proceed to checkout" in your shopping basket, only to realize that the wrong e-book has made it into your library. To remedy these accidental purchases,

@@ -15,9 +15,9 @@ export default function PrivacyPolicy() {
     }, []);
 
     return (
-        <div className={`container-fluid sticky-footer p-3 ${theme === "night" ? "bg-dark" : ""}`}>
-            <div className={`container p-5 rounded-5 shadow ${theme === "night" ? "bg-transparent" : styles.footerRoute}`}>
-                <h3 className={`mb-3 text-decoration-underline fw-bold ${theme === "night" ? "text-light" : ""}`}>Privacy Policy</h3>
+        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : ""}`}>
+            <div className={`container p-5`}>
+                <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Privacy Policy</h3>
                 <div className={theme === "night" ? "text-light" : ""}>
                     <p>
                         E-Bookalypse knows that you care how information about you is used and shared, and we appreciate your trust that we will do so carefully and wisely.

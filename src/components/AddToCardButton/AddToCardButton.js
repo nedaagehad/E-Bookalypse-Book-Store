@@ -15,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddToCardButton = props => {
     const addedToCart = () =>  toast("Added To Cart Successfully");
     const boughtItAlready = () =>  toast("You Already Bought this book before");
+    const removedFromWishList = () =>  toast("Item Removed From Wish List Successfully");
+    const addedToWishList = () =>  toast("Added To WishList Successfully");
 
     const {book,collection} = props
     const [addToCart] =booksApi.useAddToCartMutation()
@@ -49,7 +51,7 @@ const AddToCardButton = props => {
                    
                     // dispatch(increaseCount())
                 }else{
-                    const alreadyinCart = () =>  toast(re.error.data.message);
+                    const alreadyinCart = () =>   toast.error(re.error.data.message);
 
                     {alreadyinCart()}
                     console.log("error")
@@ -79,14 +81,13 @@ const AddToCardButton = props => {
                 if(re.data){
                     // dispatch(addToCartReducer(bookData))
                     console.log("right")
-                    const addedToWishList = () =>  toast("Added To WishList Successfully");
 
                     {addedToWishList()}
                     console.log("error")
                     // dispatch(increaseCount())
                 }else{
                     console.log("error")
-                    const alreadyInwishList = () =>  toast(re.error.data.message);
+                    const alreadyInwishList = () =>  toast.error(re.error.data.message);
 
                     {alreadyInwishList()}
                     console.log("error")
@@ -117,13 +118,12 @@ const AddToCardButton = props => {
                 if(re.data){
                     // dispatch(addToCartReducer(bookData))
                     console.log("right")
-                    const removedFromWishList = () =>  toast("Item Removed From Wish List Successfully");
 
                     {removedFromWishList()}
                     // dispatch(increaseCount())
                 }else{
                     console.log("error")
-                    const alreadyDeletedFromWishList = () =>  toast(re.error.data.message);
+                    const alreadyDeletedFromWishList = () =>   toast.error(re.error.data.message);
 
                     {alreadyDeletedFromWishList()}
                 }
@@ -139,20 +139,7 @@ const AddToCardButton = props => {
 
     return (
         <div className={`mt-3 ${classes.action}`}>
-             <ToastContainer 
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    
-                    >
-                        
-                    </ToastContainer>
+          
             <button  onClick={!props.bookShelf ? ()=>addToCartFun({book,collection}) : ()=>boughtItAlready()}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 " }></i></button>
             {   props.fav 
                 ?

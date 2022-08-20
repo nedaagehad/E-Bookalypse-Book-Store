@@ -1,8 +1,20 @@
 .emptywishlist{
-    margin-top: 2rem;
-    min-width: 31rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
 }
-
+.heart{
+    width: 50%;
+    margin: auto;
+}
+.emptywishlist h2{
+    text-align: center;
+    align-self: center;
+    margin-bottom: 50px;
+}
 
 .saveBtn {
     background-color: #8a04a5 !important;

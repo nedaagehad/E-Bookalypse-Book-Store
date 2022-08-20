@@ -14,29 +14,27 @@ import { booksApi } from '../../store/services';
 import SingleBookAuthor from './SingleBookAuthor/SingleBookAuthor';
 
 const RelatedToAuther = (props) => {
-  // const book2 =  "../../Images/Books/1.jpg";
-  // const book =  "../../Images/Books/2.jpg";
-  // const book3 =  "../../Images/Books/3.jpg";
-  // const book4 =  "../../Images/Books/4.jpg";
+
   SwiperCore.use([Autoplay])
-  // const images = [book2,book,book3,book4]
-
-  // const [images,setImages]= useState();
+  console.log(props)
+  const [filter,setFilter] = useState({writer:props.bookWriter})
   
-  const {data,isLoading,error } = booksApi.useGetAllBooksQuery(props.bookWriter)
-
+  const {data,isLoading,error } = booksApi.useGetAllBooksQuery(filter)
   const [writer,setWriter]= useState()
 
   useEffect(() => {
     if(data){
-      setWriter(data.data)
-      // console.log(data.data)
+      console.log(data)
+      if(data.data.length < 3){
+        setFilter({category:[props.bookCategory]})
+      }
     }
+ 
   }, [data]);
 
 
 
-
+ 
   return (
     <div className=' container mb-5'>
       <div className={styles.head + " mb-5 "}>
@@ -68,7 +66,7 @@ const RelatedToAuther = (props) => {
             autoplay={{delay:1500}}
             className={styles.mySwiper}
             >
-          {writer ? writer.map((wbooks)=>{  
+          {data ? data.data.map((wbooks)=>{  
             // console.log(wbooks)
             return(
        
@@ -78,7 +76,9 @@ const RelatedToAuther = (props) => {
                 <SingleBookAuthor wbook={wbooks}/>              
               </SwiperSlide>
             )
-          }): null}
+          }): 
+          null          
+          }
 
           </Swiper>
           <div className={styles.navControllers}>

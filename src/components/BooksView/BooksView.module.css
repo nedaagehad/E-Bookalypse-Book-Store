@@ -8,7 +8,7 @@
     line-height: 44px;
     color: #231627;
     position: relative;
-    left: 30px;
+    /* left: 30px; */
     width: fit-content;
 }
 .pagy{

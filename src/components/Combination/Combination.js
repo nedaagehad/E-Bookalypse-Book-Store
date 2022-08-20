@@ -3,6 +3,7 @@ import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 //CSS Module
 import classes from './Combination.module.css';
@@ -57,7 +58,7 @@ const Combination = props => {
                                                 <p>${collectionPrice}</p>
                                             </div>
                                             : null}
-                                        <img src={index === 0 ? imageOne : index === 1 ? imageTwo : index === 2 ? imageThree : null} alt={props.collectionimageThree} />
+                                            <img src={index === 0 ? imageOne : index === 1 ? imageTwo : index === 2 ? imageThree : null} alt={props.collectionimageThree} />
                                     </div>
                                 )
                             })
@@ -68,7 +69,9 @@ const Combination = props => {
                         <h4 className='text-center'>{collectionName[0].toUpperCase() + collectionName.substring(1)}</h4>
                         {collectionData.map((book) => {
                             return (
-                                <h6 className={`text-center ${theme === "night" ? classes.detailsDark : ""}`} key={book._id}>{book.title}</h6>
+                                <Link to={'/books/BookDetails/' + book._id}>
+                                    <h6 className={`text-center ${theme === "night" ? classes.detailsDark : ""}`} key={book._id}>{book.title}</h6>
+                                </Link>
                             )
                         })}
                         <AddToCardButton bookShelf={props.bookShelf ? true : false}   fav={props.fav ? props.fav : false} collection={{collectionID:collectionID,collectionBooks:collectionData}} />

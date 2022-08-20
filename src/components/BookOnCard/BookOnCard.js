@@ -58,20 +58,7 @@ const BookOnCard = props => {
 
     return (
         <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
-                  <ToastContainer 
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    
-                    >
-                        
-                    </ToastContainer>
+             
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>

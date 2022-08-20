@@ -11,6 +11,7 @@ import Preloader from '../../../components/Preloader/Preloader';
 
 function Offers() {
 
+  // eslint-disable-next-line
   const { data, isLoading, error } = booksApi.useGetAllCollectionsQuery();
   const [collections, setCollections] = useState();
   const [wishList, setWishList] = useState();
@@ -27,7 +28,6 @@ function Offers() {
     else {
       if (data) {
         setCollections(data);
-        console.log(data)
         setLoading(false);
       }
       if (getWishList.data) {
@@ -39,7 +39,6 @@ function Offers() {
       }
     }
   }, [data, getWishList.data,getBookShelf.data]);
-
 
   return (
     <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>

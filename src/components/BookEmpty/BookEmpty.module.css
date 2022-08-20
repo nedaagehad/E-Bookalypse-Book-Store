@@ -1,5 +1,4 @@
 .emptywishlist{
-    min-width: 31rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +8,10 @@
     text-align: center;
     align-self: center;
     margin-bottom: 50px;
+}
+.booksEmp{
+    width: 50%;
+    margin: auto;
 }
 
 .saveBtn {

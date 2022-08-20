@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BookDetailsContainer from "../../../components/BookDetailsContainer/BookDetailsContainer"
 import CustomerReviews from "../../../components/CustomerReviews/CustomerReviews"
 import RelatedToAuther from "../../../components/RelatedToAuther/RelatedToAuther"
+import UserReview from "../../../components/UserReview/UserReview"
 import FlashSaleSlider from "../../../components/HomeSlider/FlashSaleSlider"
 import { useParams } from 'react-router-dom'
 import { booksApi } from '../../../store/services'
@@ -10,7 +11,6 @@ import storage from '../../../Firebase/firebaseImage'
 import { useSelector } from 'react-redux'
 //loader 
 import Preloader from '../../../components/Preloader/Preloader';
-
 function BookDetails() {
   let params = useParams();
   const [book,setBook] = useState()
@@ -74,30 +74,29 @@ function BookDetails() {
                   bookPriceBeforePromo={book.price}
                   book={book}
                 />
-                {book.reviews.length > 0 ?
-                        
-                  <CustomerReviews
-                    reviews={book.reviews}
+                  {console.log(book)}
+                  {book.reviews.length > 0 ?
+                      <>
+                        <CustomerReviews
+                          reviews={book.reviews}
+                                
+                          rate={book.rate}
+                          rateDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          fivePerc="80"
+                          fourPerc="60"
+                          threePerc="40"
+                          twoPerc="20"
+                          onePerc="10"
                           
-                    rate={"4.2"}
-                    rateDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    fivePerc="80"
-                    fourPerc="60"
-                    threePerc="40"
-                    twoPerc="20"
-                    onePerc="10"
-                    comments={[
-                      { rate: "4", commenterImg: "", commenterName: "Reham Raafat", commentDate: "22 Jun, 2022", commentDesc: "My Favourite series forever !!" },
-                      { rate: "4", commenterImg: "", commenterName: "Nedaa Gehad", commentDate: "15 Apr, 2021", commentDesc: "Amazing Book, I liked it" },
-                      { rate: "3", commenterImg: "", commenterName: "Ranan Hosny", commentDate: "1 Feb, 2020", commentDesc: "I think it's good but not the best one, the other parts are wonderfull" },
-                      { rate: "2", commenterImg: "", commenterName: "Hussin Alaa", commentDate: "2 Aug, 2020", commentDesc: "I don't like fictional books" },
-                      { rate: "1", commenterImg: "", commenterName: "Eslam Mostafa", commentDate: "1 Jan, 2019", commentDesc: "I don't like reading" }
-                    ]}
-                  />
-                      
+                        />
+                      </>
                   : null}
-                  
-                <RelatedToAuther bookWriter={book.writer[0].title} />
+                  <UserReview comments={[
+                    { commenterImg: "../userIcon.gif", commenterName: "Reham Raafat"}
+                  ]}/> 
+                  <RelatedToAuther bookCategory={book.category[0].title} bookWriter={book.writer[0].name} />
+
+                {/* {console.log(book.writer)} */}
               </>
               : null}
             <FlashSaleSlider />

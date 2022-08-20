@@ -21,18 +21,16 @@ function CartEmpty() {
     return (
         <div>
 
-            <div className={`${myStyle.emptycart} pb-2`}>
+            <div className={`${myStyle.emptycart}`}>
 
-                
-                <Lottie options={cartObj}
-                    height={400}
-                    width={400}
-                    isStopped={false}
-                    isPaused={false}
-                />
+                <div className={`${myStyle.besketEmp}`}>
+                    <Lottie options={cartObj}
+                        isStopped={false}
+                        isPaused={false}
+                    />
+                </div>
 
-
-                 <h2  className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`} className="fs-1 font-weight-medium text-center">Your Cart is Empty!</h2>
+                 <h2  className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>Your Cart is Empty!</h2>
                  <div className="justify-content-center align-items-center d-flex ">
                <Link to="/books">
                     <button className={`${myStyle.saveBtn} btn justify-content-center align-items-center p-3 m-4`}>Go to Books</button>

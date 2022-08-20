@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const CollectionOnCard = props => {
 
     const theme = useSelector((state) => state.theme.currentTheme);
+    const removedFromCart = () =>  toast("Collection Removed from Cart");
 
     const [bookImages, setBookImages] = useState()
     useEffect(() => {
@@ -48,11 +49,10 @@ const CollectionOnCard = props => {
                 // refetch()
                 console.log(r)
                 if(r.data){
-                    const removedFromCart = () =>  toast("Collection Removed from Cart");
 
                     {removedFromCart()}
                 }else{
-                    const err = () =>  toast(r.error.data.message);
+                    const err = () =>  toast.error(r.error.data.message);
 
                     {err()}
                 }
@@ -64,20 +64,7 @@ const CollectionOnCard = props => {
 
     return (
         <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
-               <ToastContainer 
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    
-                    >
-                        
-                    </ToastContainer>
+               
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>

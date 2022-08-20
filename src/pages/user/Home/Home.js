@@ -1,16 +1,15 @@
-import React , {lazy , Suspense }from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 //loader
 import Preloader from '../../../components/Preloader/Preloader';
-//Components
-const HomeSlider = lazy(() => import('../../../components/HomeSlider/HomeSlider') );
-const HomeCategories = lazy(() => import('../../../components/HomeSlider/HomeCategories/HomeCategories') );
-const FlashSaleSlider = lazy(() => import('../../../components/HomeSlider/FlashSaleSlider') );
-const TrendingBooksUp1 = lazy(() => import('../../../components/TrendingBooksUp/TrendingBooksUp1') );
-const OurPartners = lazy(() => import('../../../components/OurPartners/OurPartners') );
-const Benefits = lazy(() => import('../../../components/Benefits/Benefits') );
 
-
+//Component
+import HomeSlider from '../../../components/HomeSlider/HomeSlider';
+import HomeCategories from '../../../components/HomeSlider/HomeCategories/HomeCategories';
+import FlashSaleSlider from '../../../components/HomeSlider/FlashSaleSlider';
+import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksUp1';
+import OurPartners from '../../../components/OurPartners/OurPartners';
+import Benefits from '../../../components/Benefits/Benefits';
 
 
 function Home() {
@@ -20,22 +19,12 @@ function Home() {
   return (
     <>
           <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
-            <Suspense fallback={<Preloader />}>
-                 <HomeSlider />
-            </Suspense>
-            <TrendingBooksUp1 />
-            <Suspense fallback={<Preloader />}>
+                <HomeSlider />
+                <TrendingBooksUp1 />
                 <Benefits />
-            </Suspense>
-            <Suspense fallback={<Preloader />}>
                 <HomeCategories/>
-            </Suspense>
-            <Suspense fallback={<Preloader />}>
                 <FlashSaleSlider />
-            </Suspense>
-            <Suspense fallback={<Preloader />}>
                 <OurPartners />
-            </Suspense>
         </div>
     </>
   )

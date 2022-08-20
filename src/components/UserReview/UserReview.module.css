@@ -1,0 +1,158 @@
+
+.comment{
+    padding: 20px 50px;
+    border: 1px solid #EEEDED;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.commentData{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.commentData h3{
+    color : #8D27AE;
+    margin-bottom: 25px;
+}
+.commentData h4{
+    color : #ffb300;
+    align-self: center;
+}
+.commentData textarea{
+    margin: 20px 0px;
+    width: 100%;
+    background-color: rgb(244, 235, 245);
+    color: #8D27AE;
+    border-color: #FDF8FE;
+    border-radius: 5px;
+    padding: 20px;
+}
+.commentData button{
+    text-align:center;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+    background-color:#8D27AE;
+    margin-top: 30px;
+    margin-bottom:30px;
+    border-radius:5px;
+    margin: auto;
+    padding: 7px 30px;
+}
+.commentData button:hover{
+    background-color:#380B46;
+}
+.commentNight{
+    padding: 20px 50px;
+    border: 1px solid #373637;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comment_desc{
+    font-weight: 400;
+    color: #8a8484;
+}
+.commenterAvatar{
+    width: 65px;
+    height: 67px;
+    background: #EEEDED;
+    border-radius: 50%;
+    margin-right: 20px;
+    display: flex;
+}
+.commenterAvatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.comment_desc p{
+    margin-top: 10px;
+}
+.commenterInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.commenterName{
+    font-weight: 700;
+    line-height: 31px;
+    color: #000000;
+}
+
+.commenterNameNight{
+    font-weight: 700;
+    line-height: 31px;
+    color: whitesmoke;
+}
+
+.commentDate{
+    font-weight: 500;
+    line-height: 24px;
+    color: #8D27AE;
+}
+@media(max-width:750px)
+{
+    .commentData{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .commentData .reviewUserInfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .commenterInfo{
+        align-items: center;
+    }
+    .comment{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .commentNight{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .commenterAvatar{
+        margin-right: 0px;
+        margin: auto;
+    }
+    .FullRate h3{
+        font-size: 45px;
+    }
+    .stars{
+        font-size: 25px;
+    }
+}
+@media(min-width:768px) and (max-width:800px)
+{
+    .stars{
+        font-size: 20px;
+    }
+    .commenterAvatar{
+        width: 60px;
+        height: 62px;
+    }
+    .commentData{
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .comment_desc p {
+        margin-top: 0px;
+        text-align: left;
+    }
+}
+@media(min-width:751px) and (max-width:767px)
+{
+    .commentData{
+        width: fit-content;
+        margin: auto;
+    }
+}
