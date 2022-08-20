@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-//loader
-import Preloader from '../../../components/Preloader/Preloader';
 
 //Component
 import HomeSlider from '../../../components/HomeSlider/HomeSlider';
@@ -15,17 +13,17 @@ import Benefits from '../../../components/Benefits/Benefits';
 function Home() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
-  
+
   return (
     <>
-          <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
-                <HomeSlider />
-                <TrendingBooksUp1 />
-                <Benefits />
-                <HomeCategories/>
-                <FlashSaleSlider />
-                <OurPartners />
-        </div>
+      <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+        <HomeSlider />
+        <TrendingBooksUp1 />
+        <Benefits />
+        <HomeCategories />
+        <FlashSaleSlider />
+        <OurPartners />
+      </div>
     </>
   )
 }

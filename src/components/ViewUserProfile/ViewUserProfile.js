@@ -26,7 +26,6 @@ function ViewUserProfile() {
         {
             getUserByID().then((res) => {
                 setUser(res.data)
-                console.log(res.data)
                 setLoading(false);
             }
             ).catch((err) => console.log(err))
@@ -48,7 +47,7 @@ function ViewUserProfile() {
                     <div className={`col-md-8 personal-info ps-lg-5`}>
                         <h3 className={styles.headertxt}>Personal Information</h3>
 
-                        <form className='form-horizontal' role="form">
+                        <form className='form-horizontal'>
                             <div className='form-group'>
                                 <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>First Name:</label>
                                 <div className='col-lg-9'>

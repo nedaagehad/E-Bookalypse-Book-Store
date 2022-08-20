@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import storage from '../../../Firebase/firebaseImage';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import SwiperCore, { Autoplay, Navigation, Pagination,EffectCoverflow } from "swiper";
+import { ref, getDownloadURL } from "firebase/storage";
+import SwiperCore, { Autoplay } from "swiper";
 import { Link } from 'react-router-dom';
 import styles from '../RelatedToAuther.module.css'
 import loadPoster from './bookPoster.gif' 
@@ -24,11 +24,12 @@ const SingleBookAuthor = (props) => {
     setImage(url)
      
    }).catch((error) => {console.log(error)});
+
   return (
       <Link to={'/books/BookDetails/' + wbook._id} className={styles.slideImg}>
           {
               loading ?
-                  <img src={loadPoster} className={styles.trendBook} />
+                  <img src={loadPoster} className={styles.trendBook} alt={wbook.title} />
                   :
                   <img className={styles.trendBook} src={image} alt={wbook.title} />
           }

@@ -35,7 +35,7 @@ const Comment = props => {
                         <div className={`col-12 ${classes.Info}`} style={{ padding: "10px" }}>
                             <div className={`${classes.commentData}`}>
                                 <div className={classes.commenterAvatar}>
-                                    {props.commenterImg !== "" ? <img src={props.commenterImg} /> : ""}
+                                    {props.commenterImg !== "" ? <img src={props.commenterImg} alt='commenter' /> : ""}
                                 </div>
                                 <div className={classes.commenterInfo}>
                                     <h5 className={theme === "night" ? classes.commenterNameNight : classes.commenterName}>{props.commenterName}</h5>

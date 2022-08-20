@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { booksApi } from '../../store/services';
 
@@ -35,18 +34,16 @@ const AddToCardButton = props => {
         addToCart({bookIds:books,collectionIds:collections}).then((re)=>
             {
                 if(re.data){
-                    // dispatch(addToCartReducer(bookData))
-                    console.log("right")
+
+                    // eslint-disable-next-line
                     {addedToCart()}
                    
-                    // dispatch(increaseCount())
                 }else{
                     const alreadyinCart = () =>  toast(re.error.data.message);
 
+                    // eslint-disable-next-line
                     {alreadyinCart()}
-                    console.log("error")
                 }
-            console.log(re)
         }
         )
         
@@ -69,28 +66,22 @@ const AddToCardButton = props => {
         
             {
                 if(re.data){
-                    // dispatch(addToCartReducer(bookData))
-                    console.log("right")
                     const addedToWishList = () =>  toast("Added To WishList Successfully");
 
+                    // eslint-disable-next-line
                     {addedToWishList()}
-                    console.log("error")
-                    // dispatch(increaseCount())
                 }else{
-                    console.log("error")
                     const alreadyInwishList = () =>  toast(re.error.data.message);
 
+                    // eslint-disable-next-line
                     {alreadyInwishList()}
-                    console.log("error")
                 }
-            console.log(re)
         }
         )
     }
 
     const removeFromWishListFun = (bookData) =>{
-        console.log("removed")
-        console.log(bookData.book)
+        
         let books = []
         let collections = []
 
@@ -107,19 +98,16 @@ const AddToCardButton = props => {
             
             {
                 if(re.data){
-                    // dispatch(addToCartReducer(bookData))
-                    console.log("right")
                     const removedFromWishList = () =>  toast("Item Removed From Wish List Successfully");
 
+                    // eslint-disable-next-line
                     {removedFromWishList()}
-                    // dispatch(increaseCount())
                 }else{
-                    console.log("error")
                     const alreadyDeletedFromWishList = () =>  toast(re.error.data.message);
 
+                    // eslint-disable-next-line
                     {alreadyDeletedFromWishList()}
                 }
-            console.log(re)
         }
         )
         

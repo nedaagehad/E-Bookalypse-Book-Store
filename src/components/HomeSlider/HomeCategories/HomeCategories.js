@@ -24,6 +24,7 @@ const HomeCategories = (props) => {
 
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
+  // eslint-disable-next-line
   const { data, isLoading, error } = booksApi.useGetAllCategoriesQuery();
   const [categories, setCategories] = useState();
 

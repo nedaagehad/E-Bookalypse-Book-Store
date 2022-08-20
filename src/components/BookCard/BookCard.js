@@ -39,7 +39,7 @@ const BookCard = props => {
         </Link>
         {
           loading ?
-            <img className={classes.Book_Poster} src={loadPoster} />
+            <img className={classes.Book_Poster} src={loadPoster} alt={props.book.title} />
             :
             <img className={classes.Book_Poster} src={images} alt={props.book.title} />
         }

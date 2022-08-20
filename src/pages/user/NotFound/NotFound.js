@@ -1,8 +1,5 @@
 import React from 'react';
-import styles from './NotFound.module.css';
-import notfound from '../../../assets/404.jpg'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import NotFoundComp from '../../../components/NotFound/NotFoundComp';
 
 function NotFound() {

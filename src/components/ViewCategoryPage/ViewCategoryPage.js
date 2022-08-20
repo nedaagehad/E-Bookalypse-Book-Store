@@ -1,5 +1,4 @@
 import React from 'react'
-import classes from './ViewCategoryPage.module.css'
 
 const ViewCategoryPage = props =>{
     return(

@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
-
-
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBOuVim2ABTswgW1yG_BE6OKTN1yY0Q_Ps",
@@ -13,6 +11,8 @@ const firebaseConfig = {
     measurementId: "G-Q56VX7NGC8"
   };
 
+  // eslint-disable-next-line
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
+
 export default storage;

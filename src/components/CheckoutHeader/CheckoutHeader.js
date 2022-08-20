@@ -11,8 +11,11 @@ import CartEmpty from '../CartEmpty/CartEmpty';
 
 const CheckoutHeader = props => {
 
+    // eslint-disable-next-line
     const {bookItems,collectionItems,cart} = props;
+    // eslint-disable-next-line
     const [books,setBooks]=useState();
+    // eslint-disable-next-line
     const [collections,setCollections]=useState();
     const {refetch} = booksApi.useGetCartQuery();
     const [removeFromCart] = booksApi.useRemoveFromCartMutation();
@@ -22,6 +25,7 @@ const CheckoutHeader = props => {
         setCollections(collectionItems)
     }, []);
 
+    // eslint-disable-next-line
     const remove= (id)=>{
         removeFromCart({bookIds:id}  ).then((r)=>{
             refetch()             
@@ -42,7 +46,7 @@ const CheckoutHeader = props => {
         <div className={`col-12`}>
             <div className={`row`}>
                 {
-                    bookItems.length == 0 && collectionItems.length == 0 ? 
+                    bookItems.length === 0 && collectionItems.length === 0 ? 
                     
                     
                     <div className="col-lg-12 col-md-12 col-sm-12">
