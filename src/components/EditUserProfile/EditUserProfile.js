@@ -22,6 +22,7 @@ function EditUserProfile() {
     const [updatePassword] = booksApi.useUpdatePasswordMutation()
     const [user, setUser] = useState()
     const [userImage, setUserImage] = useState()
+    // eslint-disable-next-line
     const [currentImage, setCurrentImage] = useState()
     const [male, setMale] = useState(false)
     const [female, setfemale] = useState(false)
@@ -91,7 +92,7 @@ function EditUserProfile() {
         <div className={`container py-3`}>
             <div className="row">
                 <div className={`col-lg-4`}>
-                    {user ? <UserCard  user={user}/> : null}
+                    {user ? <UserCard user={user} /> : null}
                 </div>
 
                 <div className={`col-md-8 personal-info ps-lg-5`}>
@@ -144,8 +145,6 @@ function EditUserProfile() {
                             if (values.pass !== null && values.confirmPass !== null && values.currentPass !== null) {
                                 data.append("newPass", values.pass)
                                 data.append("currentPass", values.currentPass)
-                                // console.log(values.currentPass)
-                                // console.log(values.pass)
                                 updatePassword({ currentPass: values.currentPass, newPass: values.pass }).then((r) => console.log(r)).catch((err) => console.log(err))
                                 updateUser(data).then((r) => console.log(r)).catch((e) => console.log(e))
 
@@ -153,33 +152,29 @@ function EditUserProfile() {
 
                                 updateUser(data).then((r) => console.log(r)).catch((e) => console.log(e))
                             }
-                            // console.log(values);
                         }}>
                         {({ errors, touched, setFieldValue }) => {
 
                             useEffect(() => {
                                 getUserByID().then((res) => {
                                     setUser(res.data)
-                                    // console.log(res.data)
                                     let user = res.data
                                     Object.keys(user).forEach(key => {
-                                        // console.log(key)
                                         setFieldValue(key, user[key])
-                                        if (key == "date_birth") {
-                                            if (user.date_birth != undefined && user.date_birth != null) {
+                                        if (key === "date_birth") {
+                                            if (user.date_birth !== undefined && user.date_birth != null) {
                                                 const getDate = user.date_birth.split("T")[0]
-                                                // console.log(getDate)
                                                 setFieldValue("date_birth", getDate)
                                             }
                                         }
-                                        if (key == 'gender') {
-                                            if (user.gender == "male") {
+                                        if (key === 'gender') {
+                                            if (user.gender === "male") {
                                                 setMale(true)
                                             } else {
                                                 setfemale(true)
                                             }
                                         }
-                                        if (key == 'pass') {
+                                        if (key === 'pass') {
                                             setFieldValue('pass', '')
                                         }
 
@@ -192,7 +187,6 @@ function EditUserProfile() {
                                         getDownloadURL(starsRef)
                                             .then((url) => {
                                                 setCurrentImage(url)
-                                                // console.log(url)
                                             })
 
                                     }

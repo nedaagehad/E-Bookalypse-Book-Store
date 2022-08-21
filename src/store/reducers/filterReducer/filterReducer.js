@@ -1,8 +1,4 @@
-
-
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-
 
 const initialState= { 
     category:[],
@@ -11,7 +7,7 @@ const initialState= {
     priceSort:'',
     rate:'',
     bookTitle:'',
-    page:0
+    page:1
 }
 
 export const filterSlice = createSlice({
@@ -20,12 +16,6 @@ export const filterSlice = createSlice({
     reducers:{
         category(state,action){
             state.category = action.payload
-            // state.aa = "aaaa"
-            // let count = 1;
-            // for(let i=0; i<state.category.length; i++) {
-            //     state.cat = state.category[i]
-            //     count++
-            // }
         },
         priceMin(state,action){
             state.priceMin = action.payload

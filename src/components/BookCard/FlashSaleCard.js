@@ -29,7 +29,7 @@ function FlashSaleCard(props) {
                 </div>
 
                 <div className="col-md-7">
-                    <div className="card-body">
+                    <div className="cardBody">
                         <div className='mb-1 row'>
                             <small className={styles.text_burble + " col-6 mb-1 card-text "}>{props.book.category[0].title}</small>
                             <div className='col-4 offset-1 mb-4 text-center align-self-start border rounded'>

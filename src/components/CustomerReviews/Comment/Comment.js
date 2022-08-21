@@ -59,7 +59,9 @@ const Comment = props => {
                         <div className={`col-12 ${classes.Info}`} style={{ padding: "10px" }}>
                             <div className={`${classes.commentData}`}>
                                 <div className={classes.commenterAvatar}>
+
                                     <img src={profileImage} /> 
+
                                 </div>
                                 <div className={classes.commenterInfo}>
                                     <h5 className={theme === "night" ? classes.commenterNameNight : classes.commenterName}>{props.userCommenterName}</h5>

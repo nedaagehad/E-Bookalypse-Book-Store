@@ -4,7 +4,7 @@ import { RiDeleteBin5Fill } from 'react-icons/ri'
 import storage from '../../Firebase/firebaseImage'
 import { getDownloadURL, ref } from 'firebase/storage'
 import { booksApi } from '../../store/services'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,6 +14,7 @@ const CollectionOnCard = props => {
     const removedFromCart = () =>  toast("Collection Removed from Cart");
 
     const [bookImages, setBookImages] = useState()
+    const [collectionImage,setCollectionImage] = useState()
     useEffect(() => {
         const starsRef = ref(storage, `/uploads/books/poster/${props.data.poster}`);
         getDownloadURL(starsRef).then((url) => {
@@ -24,27 +25,24 @@ const CollectionOnCard = props => {
         }).catch((error) => { console.log(error) });
 
 
-
+        const collectionImages = ref(storage, `/uploads/books/poster/soffer.png`);
+        getDownloadURL(collectionImages).then((url) => {
+          const newUrl = url
+  
+          setCollectionImage(newUrl)
+  
+        }).catch((error) => { console.log(error) });
 
     }, []);
 
+    // eslint-disable-next-line
     const [removeFromCart, response] = booksApi.useRemoveFromCartMutation()
+    // eslint-disable-next-line
     const { refetch } = booksApi.useGetCartQuery()
-    let dispatch = useDispatch()
 
 
     const removeItem = (bookData) => {
-        console.log(bookData)
-        // let books = []
-        // let collections = []
 
-        // if(bookData.book !== undefined) {
-
-        //     books.push(bookData.book)
-        // }
-        // if(bookData.collection !== undefined) {
-        //     collections.push(bookData.collection)
-        // }
         removeFromCart({bookIds:[bookData],collectionIds:[bookData]}).then((r)=>{
                 // refetch()
                 console.log(r)
@@ -64,12 +62,12 @@ const CollectionOnCard = props => {
 
     return (
         <div className={`col-12 ${theme === "night" ? classes.cardNight : classes.card}`}>
-               
+
             <div className={`row`}>
                 <div className={`col-8`}>
                     <div className={`row`}>
                         <div className={`col-3`}>
-                            <img src={bookImages} />
+                            <img src={collectionImage} alt='bookimage' />
                         </div>
                         <div className={`col-9 ${classes.details}`}>
                             <h3 className={theme === "night" ? "text-light" : ""}>{props.data.title}</h3>
@@ -84,7 +82,7 @@ const CollectionOnCard = props => {
                     <button onClick={() => removeItem(props.data._id)}><RiDeleteBin5Fill /></button>
                 </div>
             </div>
-         
+
         </div>
     )
 }

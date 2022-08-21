@@ -1,57 +1,54 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { booksApi } from '../../../store/services'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { decPage, page } from '../../../store/reducers/filterReducer/filterReducer';
 
+function Books() {
 
+  const [books, setBooks] = useState()
+  const filterState = useSelector(state => state.filter)
+  const dispatch = useDispatch();
 
-function Books()  {
-    const [books,setBooks] = useState()
-    // ,limit:2,category:"horror",rate:2,priceMin:0,priceMax:20,priceSort:"htl"
-    const filterState = useSelector(state => state.filter)
-    const dispatch  = useDispatch();
-  
-    const { data, error, isLoading } = booksApi.useGetAllBooksQuery(filterState)
-    const [deleteBook,response] = booksApi.useDeleteBookMutation();
-    // console.log(data)
-    useEffect(()=>{
-      if(data){
-        setBooks(data.data)
-      }
-      
-      },[data])
-    const deleteItem = (bookId)=>{
-      // icon:deletedItem.poster,src:deletedItem.source
-      const deletedItem = books.find((b)=> b._id === bookId)
+  // eslint-disable-next-line
+  const { data, error, isLoading } = booksApi.useGetAllBooksQuery(filterState)
+  // eslint-disable-next-line
+  const [deleteBook, response] = booksApi.useDeleteBookMutation();
 
-      deleteBook({bookId:bookId,bookOldFiles:{icon:deletedItem.poster,src:deletedItem.source}})
+  useEffect(() => {
+    if (data) {
+      setBooks(data.data)
     }
 
-    const nextPage = ()=>{
-      console.log(data.data.length)
-      if(data.data.length != 0 ){
-          dispatch(page())
-          
-      }
+  }, [data])
+  const deleteItem = (bookId) => {
+    const deletedItem = books.find((b) => b._id === bookId)
 
-      if(data.data.length == 0){
-       dispatch(decPage())
-      }
-      }
-      const prevPage = ()=>{
-          dispatch(decPage())
-          
-      }
- 
+    deleteBook({ bookId: bookId, bookOldFiles: { icon: deletedItem.poster, src: deletedItem.source } })
+  }
+
+  const nextPage = () => {
+    if (data.data.length !== 0) {
+      dispatch(page())
+
+    }
+
+    if (data.data.length === 0) {
+      dispatch(decPage())
+    }
+  }
+  const prevPage = () => {
+    dispatch(decPage())
+
+  }
+
   return (
-    <div className="page-body-wrapper pt-5">
+    <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
       <div className="content-wrapper pt-5">
         <table className="table">
-          <thead>
+          <thead className="text-secondary">
             <tr>
               <th scope="col">#</th>
-              {/* <th scope="col">image</th> */}
               <th scope="col">book</th>
               <th scope="col">description</th>
               <th scope="col">publisher</th>
@@ -59,56 +56,57 @@ function Books()  {
               <th scope="col">price</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
-
-
             </tr>
           </thead>
           <tbody className="text-white">
-          
-          {/* {console.log(books)} */}
-          {books !== undefined  ? books.map((book,i)=>{
-             
+
+            {books !== undefined ? books.map((book, i) => {
+
               return (
-              <tr key={book._id}>
-                <td >{i+1}</td>
-                {/* <td ><img width="150px" src={"../uploads/books/"+ book.poster} /></td> */}
-                <td >{book.title.substring(0,30)+ "..."}</td>
-                <td >{book.description.substring(0,20)+ "..."}</td>
-                <td >{book.publisher}</td>
-                <td >{book.date_release ? book.date_release.split("T")[0] : null}</td>
-                <td >{book.price}</td>
-                <td ><Link to={'/admin/book/updateBook/'+book._id} className="btn btn-primary" >Update</Link></td>
+                <tr key={book._id}>
+                  <td >{i + 1}</td>
+                  <td >{book.title.substring(0, 30) + "..."}</td>
+                  <td >{book.description.substring(0, 20) + "..."}</td>
+                  <td >{book.publisher}</td>
+                  <td >{book.date_release ? book.date_release.split("T")[0] : null}</td>
+                  <td >{book.price}</td>
+                  <td ><Link to={'/admin/book/updateBook/' + book._id} className="btn btn-primary" >Update</Link></td>
 
-                <td ><a className="btn btn-danger" onClick={(e)=>deleteItem(book._id)}>Delete</a></td>
+                  <td >
+                    {/* eslint-disable-next-line */}
+                    <a className="btn btn-danger" onClick={(e) => deleteItem(book._id)}>Delete</a>
+                  </td>
 
-              </tr>
+                </tr>
               )
             })
-            :
-            null
+              :
+              null
             }
 
           </tbody>
         </table>
 
-          <nav className="justify-content-between align-items-center" style={{display:"flex"}}>
-              <ul className="pagination m-0">
-                  <li class="page-item">
-                  <a class="page-link"  onClick={()=>{prevPage()}} aria-label="Previous">
-                      <span aria-hidden="true">&laquo; Pre</span>
-                  </a>
-                  </li>
-                  <li className="page-item"> 
-                  <a className="page-link" onClick={()=>{nextPage()}} aria-label="Next">
-                      <span aria-hidden="true"> Next &raquo;</span>
-                  </a>
-                  </li>
-              </ul>
+        <nav className="justify-content-between align-items-center" style={{ display: "flex" }}>
+          <ul className="pagination m-0">
+            <li class="page-item">
+              {/* eslint-disable-next-line */}
+              <a class="page-link" onClick={() => { prevPage() }} aria-label="Previous">
+                <span aria-hidden="true">&laquo; Pre</span>
+              </a>
+            </li>
+            <li className="page-item">
+              {/* eslint-disable-next-line */}
+              <a className="page-link" onClick={() => { nextPage() }} aria-label="Next">
+                <span aria-hidden="true"> Next &raquo;</span>
+              </a>
+            </li>
+          </ul>
           <div className="add-btn">
             <Link to="/admin/book/addBook" className='btn btn-success text-white' >Add Book</Link>
 
           </div>
-          </nav>
+        </nav>
 
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { getDownloadURL, ref } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
 import storage from '../../Firebase/firebaseImage'
+import dashstyle from '../../assetsAdmin/css/style.module.css'
 
 const AdminComponent = (props) => {
     const {admin}= props
@@ -15,16 +16,16 @@ const AdminComponent = (props) => {
            
     },[])
   return (
-    <div className="preview-item border-bottom">
-    <div className="preview-thumbnail">
+    <div className={`${dashstyle.previewItem} border-bottom`}>
+    <div className={`${dashstyle.previewThumbnail}`}>
       {/* <div className="preview-icon bg-primary">
         <i className="mdi mdi-file-document"></i> */}
         <img src={image} alt="" />
       {/* </div> */}
     </div>
-    <div className="preview-item-content d-sm-flex flex-grow">
+  <div className={`${dashstyle.previewItemContent} d-sm-flex flex-grow`}>
       <div className="flex-grow">
-        <h6 className="preview-subject text-white">{admin.fName + " " + admin.lName}</h6>
+        <h6 className={`${dashstyle.previewSubject} text-white`}>{admin.fName + " " + admin.lName}</h6>
         <p className=" mb-0 text-success font-weight-bold">{admin.role}</p>
       </div>
       {/* <div className="mr-auto text-sm-right pt-2 pt-sm-0">

@@ -118,7 +118,7 @@ function NavBar() {
                   {loggedIn ?
                     <div className="row align-items-center mb-3" style={{ "height": "36px" }}>
                       <div className={`${styles.profileIcon} bg-transparent offset-2 col-2`}>
-                        <img src={profilePic} alt="profile picture" className={styles.userIcon} />
+                        <img src={profilePic} alt="userpicture" className={styles.userIcon} />
                       </div>
                       <p className={`col-6 fw-bold mb-0 fs-3 ${theme === "night" ? styles.userNameNight : styles.userName}`}>{userName}</p>
                     </div>
@@ -133,18 +133,24 @@ function NavBar() {
 
                     <NavLink onClick={closeOffCanvas} to='/editprofile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <FiEdit className='me-1' /> Edit Profile</NavLink>
+                    {authState !== 'regUser' ? null :
+                    <>
+                      <NavLink onClick={closeOffCanvas} to='/profile/bookshelf' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                        <TbBooks className='me-1' /> Bookshelf
+                      </NavLink>
 
-                    <NavLink onClick={closeOffCanvas} to='/profile/bookshelf' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <TbBooks className='me-1' /> Bookshelf
-                    </NavLink>
+                      <NavLink onClick={closeOffCanvas} to='/wishlist' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                        <MdFavoriteBorder className='me-1' /> Wishlist
+                      </NavLink>
+                      
 
-                    <NavLink onClick={closeOffCanvas} to='/wishlist' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <MdFavoriteBorder className='me-1' /> Wishlist
-                    </NavLink>
-
-                    <NavLink onClick={closeOffCanvas} to='/cart' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <BsCart4 className='me-1' /> Cart - <span className={`ms-1 fw-bold ${styles.mov}`}> {count} </span>
-                    </NavLink>
+                      <NavLink onClick={closeOffCanvas} to='/cart' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                        <BsCart4 className='me-1' /> Cart - <span className={`ms-1 fw-bold ${styles.mov}`}> {count} </span>
+                      </NavLink>
+                    
+                    </>
+                    }
+                    
 
                     <div onClick={() => { Logout(); closeOffCanvas(); }} className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                       <BiLogOut className='me-1' /> Logout
@@ -196,6 +202,8 @@ function NavBar() {
                 </Nav>
 
                 <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
+                {authState !== 'regUser' ? null :
+
                   <Link to='/cart' className="position-relative">
                     {count === 0 ? null :
                       <p className={`position-absolute fw-bold w-75 mb-0 text-center me-3 ${styles.mov} ${styles.cartCount}`} style={{ "left": "-2px", "top": "-9px" }}> {count} </p>
@@ -203,10 +211,11 @@ function NavBar() {
                     <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon}
                     ${count === 0 ? styles.emptyCart : ""} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
                   </Link>
+                  }
                   {loggedIn ?
                     <div className={styles.profileIcon}>
-                      <img src={profilePic} alt="profile picture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
-                      {profileClicked ? <ProfileDropDown /> : null}
+                      <img src={profilePic} alt="userpicture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                      {profileClicked ? <ProfileDropDown authState={authState} /> : null}
 
                     </div> :
                     <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>

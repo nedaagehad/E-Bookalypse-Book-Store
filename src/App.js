@@ -4,7 +4,7 @@ import './App.css';
 // Hooks
 import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // User Elements
 import Home from './pages/user/Home/Home';
@@ -43,19 +43,21 @@ import UpdateCategory from './pages/admin/Categories/Category/UpdateCategory';
 import WritersAdmin from './pages/admin/Writers/WritersAdmin';
 import AddWriter from './pages/admin/Writers/Writer/AddWriter';
 import UpdateWriter from './pages/admin/Writers/Writer/UpdateWriter';
-import Dashboard from './pages/admin/Dashboard/Dashboard';
 import AdminLayout from './pages/admin/AdminLayout';
 import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
 import { ToastContainer, toast } from 'react-toastify';
-
+import DashboardContent from './components/DashboardContent/DashboardContent';
+import CollectionsAdmin from './pages/admin/Collections/CollectionsAdmin';
+import AddCollection from './pages/admin/Collections/collection/AddCollection';
+import UpdateCollection from './pages/admin/Collections/collection/UpdateCollection';
+import UpdateUserRole from './pages/admin/Users/UpdateUserRole';
 
 function App() {
 
   const authState = useSelector(state => state.auth.userRole);
-  const dispatch  = useDispatch();
   const [isUser, setIsUser] = useState(true);
   
 
@@ -105,8 +107,8 @@ function App() {
         {!isUser ? 
        
         
-        <Route path='/admin' element={<AdminLayout />} >
-          <Route index element={<HomeDashboard />}/>
+        <Route path='/admin' element={<HomeDashboard />} >
+          <Route index element={<DashboardContent />}/>
 
           {/* Books Routes */}
           <Route path='/admin/books' element={<Books />} />
@@ -130,6 +132,14 @@ function App() {
 
           {/* Users View Admin Panel*/}
           <Route path='/admin/users' element={<UsersView />} />
+          <Route path='/admin/user/UpdateUserRole/:id' element={<UpdateUserRole />} />
+
+          {/* Collections */}
+          <Route path='/admin/collections' element={<CollectionsAdmin />} />
+          <Route path='/admin/collection/addCollection' element={<AddCollection />} />
+          <Route path='/admin/collection/updateCollection/:id' element={<UpdateCollection />} />
+
+
         </Route>
         
         :null}

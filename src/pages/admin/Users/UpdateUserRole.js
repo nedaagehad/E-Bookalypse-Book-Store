@@ -32,8 +32,8 @@ const UpdateUserRole = () => {
 
     if(user){
         return (
-          <div className="page-body-wrapper pt-5">
-              <div className="content-wrapper pt-5">
+            <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
+            <div className="content-wrapper pt-5">
       
                   <div className='row text-white'>
                       <div className="col-md-4">

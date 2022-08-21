@@ -17,6 +17,7 @@ const TrendingBooksUp1 = () => {
 
   const theme = useSelector((state) => state.theme.currentTheme)
   SwiperCore.use([Autoplay])
+  // eslint-disable-next-line
   const { data, error, isLoading } = booksApi.useGetAllBooksQuery({salesSort:'htl'})
   const [books,setBooks] = useState()
   const [ images,setImages] = useState([])
@@ -40,6 +41,7 @@ const TrendingBooksUp1 = () => {
     <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
     <div className={`container p-5`}>
       <div className={styles.head + " mb-5 "}>
+      {/* eslint-disable-next-line */}
         <h5 className={`text-center ${styles.h5}`}>Trending This Week🚀</h5>
       </div>
       <div className={styles.sliderContainer +" container d-flex justify-content-center align-items-center mb-5 "} >

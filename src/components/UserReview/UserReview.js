@@ -1,6 +1,5 @@
 import React, { useEffect ,useState} from 'react'
 import classes from './UserReview.module.css'
-import { AiFillStar } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { Rate } from 'rsuite';
 import { booksApi } from '../../store/services';
@@ -9,24 +8,29 @@ import { getDownloadURL, ref } from 'firebase/storage';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const textStyle = {
     verticalAlign: 'top',
     lineHeight: '42px',
     display: 'inline-block'
+
   };
  
 
-  const texts = {
+
+const texts = {
+
     1: 'Useless',
     2: 'Poor',
     3: 'Ok',
     4: 'Good',
     5: 'Excellent'
-  };
+};
 const UserReview = props => {
+
     const [hoverValue, setHoverValue] = useState(0);
     const {reviews} = props
-    // console.log(reviews)
+
     const theme = useSelector((state) => state.theme.currentTheme);
     const [getuserById] = booksApi.useGetUserByIDMutation()
     const [ user,setUser] = useState()
@@ -34,6 +38,7 @@ const UserReview = props => {
     const [comment,setComment] = useState()
     const [addNewReview] = booksApi.useAddNewReviewMutation()
     let params = useParams()
+
 
     useEffect(()=>{
       getuserById().then((u)=>{
@@ -98,7 +103,7 @@ const UserReview = props => {
                                            <button type="submit" onClick={(e)=>addNewComment(e,hoverValue,comment)}>Send</button>
                                         </div>
                                     </form>
-                                 
+                                
                                 </div>
                             </div>
                         </div>

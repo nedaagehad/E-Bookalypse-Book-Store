@@ -30,9 +30,9 @@ const AddCollection = () => {
       
     }
   return (
-    <div className="page-body-wrapper pt-5">
-        <div className="content-wrapper pt-5 text-white">
-            <Formik 
+    <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
+        s<div className="content-wrapper pt-5">
+          <Formik 
             initialValues={{
                 title:'',
                 description:'',
@@ -70,7 +70,7 @@ const AddCollection = () => {
             >
 
         {({errors,touched})=>(
-            <Form className="row">
+            <Form className="row text-white">
                  <div className="col-md-6 mt-2">
                     <label htmlFor="title" className="form-label">Collection Title : </label>
                     <Field name="title" id="title"  placeholder="Collection Title"  className={"form-control " } />
