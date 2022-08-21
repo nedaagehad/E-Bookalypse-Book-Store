@@ -1,67 +1,39 @@
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { GrClose } from 'react-icons/gr';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bookTitle } from '../../store/reducers/filterReducer/filterReducer';
-import navbar from '../NavBar/NavBar.module.css';
 import styles from './SearchBar.module.css';
- 
+
 function SearchBar() {
 
-    const theme = useSelector((state) => state.theme.currentTheme);
-
-    const [isExpanded, setIsExpanded] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    let dispatch  = useDispatch()
+    let dispatch = useDispatch()
     let navigate = useNavigate()
-    
-    const ExpandSearch = () => {
-        setIsExpanded((s) => !s);
-      
-    }
 
     const HandleSearch = (e) => {
         setSearchTerm(e.target.value);
-        // console.log(searchTerm);
     }
 
+    // eslint-disable-next-line
     const ClearSearch = () => {
         setSearchTerm("");
     }
-    const Search = ()=>{
-        if(searchTerm){
-
-            console.log(searchTerm)
+    const Search = () => {
+        if (searchTerm) {
             dispatch(bookTitle(searchTerm))
-            navigate('/categories/category/'+searchTerm)
+            navigate('/categories/category/' + searchTerm)
         }
     }
 
-  return (
-
-    // <div className={`${isExpanded ? `${styles.active} ${styles.searchBar}` : styles.searchBar} me-2`}> // Another Syntax
-    // <div className={`${styles.searchBar} ${isExpanded ? styles.active : ""} me-2`}>
-    //     <input className={theme === "night" ? "bg-light" : "bg-white"} type='text' placeholder='Type to search...' onChange={HandleSearch} value={searchTerm} />
-    //     <div className={styles.searchBtn} onClick={ExpandSearch}>
-    //         <BsSearch className={theme === "night" && !isExpanded ? navbar.navIconNight : navbar.navIcon} />
-    //     </div>
-    //     <div className={styles.searchCancel} onClick={ClearSearch}>
-    //         <GrClose className={navbar.navIcon} />
-    //     </div>
-    // </div>
-
-    <div className={styles.searchBar} >
-        <input type='text' onChange={HandleSearch} value={searchTerm} placeholder='Type to search...' />
-        <div className={styles.searchBtn} onClick={Search}>
-            <BsSearch className={`w-100 h-100 ${styles.searchIcon}`} />
+    return (
+        <div className={styles.searchBar} >
+            <input type='text' onChange={HandleSearch} value={searchTerm} placeholder='Type to search...' />
+            <div className={styles.searchBtn} onClick={Search}>
+                <BsSearch className={`w-100 h-100 ${styles.searchIcon}`} />
+            </div>
         </div>
-        {/* <div className={styles.Cancel}>
-            <GrClose />
-        </div> */}
-    </div>
-  )
+    )
 }
 
 export default SearchBar

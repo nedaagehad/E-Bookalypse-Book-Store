@@ -4,7 +4,7 @@ import './App.css';
 // Hooks
 import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // User Elements
 import Home from './pages/user/Home/Home';
@@ -43,7 +43,6 @@ import UpdateCategory from './pages/admin/Categories/Category/UpdateCategory';
 import WritersAdmin from './pages/admin/Writers/WritersAdmin';
 import AddWriter from './pages/admin/Writers/Writer/AddWriter';
 import UpdateWriter from './pages/admin/Writers/Writer/UpdateWriter';
-import Dashboard from './pages/admin/Dashboard/Dashboard';
 import AdminLayout from './pages/admin/AdminLayout';
 import PromotionsAdmin from './pages/admin/promotions/promotions';
 import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion';
@@ -55,7 +54,6 @@ import { ToastContainer, toast } from 'react-toastify';
 function App() {
 
   const authState = useSelector(state => state.auth.userRole);
-  const dispatch  = useDispatch();
   const [isUser, setIsUser] = useState(true);
   
 

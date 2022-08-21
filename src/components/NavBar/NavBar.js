@@ -118,7 +118,7 @@ function NavBar() {
                   {loggedIn ?
                     <div className="row align-items-center mb-3" style={{ "height": "36px" }}>
                       <div className={`${styles.profileIcon} bg-transparent offset-2 col-2`}>
-                        <img src={profilePic} alt="profile picture" className={styles.userIcon} />
+                        <img src={profilePic} alt="userpicture" className={styles.userIcon} />
                       </div>
                       <p className={`col-6 fw-bold mb-0 fs-3 ${theme === "night" ? styles.userNameNight : styles.userName}`}>{userName}</p>
                     </div>
@@ -205,7 +205,7 @@ function NavBar() {
                   </Link>
                   {loggedIn ?
                     <div className={styles.profileIcon}>
-                      <img src={profilePic} alt="profile picture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                      <img src={profilePic} alt="userpicture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
                       {profileClicked ? <ProfileDropDown /> : null}
 
                     </div> :

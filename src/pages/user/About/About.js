@@ -1,4 +1,4 @@
-import React,{ lazy , Suspense } from 'react';
+import React,{ useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Preloader from '../../../components/Preloader/Preloader';
 //CSS Module
@@ -9,16 +9,22 @@ import { FaHandshake, FaUsers, FaHouseUser, FaBookReader } from 'react-icons/fa'
 import { GiCardExchange } from 'react-icons/gi';
 import { MdSupportAgent } from 'react-icons/md';
 //Components
-const OurPartners = lazy(() => import('../../../components/OurPartners/OurPartners'));
+import OurPartners from '../../../components/OurPartners/OurPartners';
 
 
 function About() {
 
   const theme = useSelector((state) => state.theme.currentTheme);
 
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+}, []);
+
   return (
     <>
-      <Suspense fallback={<Preloader />}>
       <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
         <div className='container pt-5'>
           <h3 className={`mb-4 fw-bold ${styles.mainTitle}`}>About Us</h3>
@@ -108,7 +114,6 @@ function About() {
         </div>
       </div>
         <OurPartners />
-        </Suspense>
     </>
   )
 }

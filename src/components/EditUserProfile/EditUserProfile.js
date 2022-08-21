@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { booksApi } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 // CSS Module
 import styles from './EditUserProfile.module.css';
@@ -17,11 +18,16 @@ function EditUserProfile() {
 
     const theme = useSelector((state) => state.theme.currentTheme);
 
+    const navigate = useNavigate();
+
+    const dataSaved = () => toast("Your data is saved");
+
     const [getUserByID] = booksApi.useGetUserByIDMutation();
     const [updateUser] = booksApi.useUpdateUserMutation();
     const [updatePassword] = booksApi.useUpdatePasswordMutation()
     const [user, setUser] = useState()
     const [userImage, setUserImage] = useState()
+    // eslint-disable-next-line
     const [currentImage, setCurrentImage] = useState()
     const [male, setMale] = useState(false)
     const [female, setfemale] = useState(false)
@@ -61,7 +67,8 @@ function EditUserProfile() {
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
         ,
         confirmPass: Yup.string()
-            .required("field is required"),
+            .oneOf([Yup.ref('pass'), null], 'required!')
+        ,
 
         gender: Yup.string("must be string")
             .required("Gender is required"),
@@ -91,7 +98,7 @@ function EditUserProfile() {
         <div className={`container py-3`}>
             <div className="row">
                 <div className={`col-lg-4`}>
-                    {user ? <UserCard  user={user}/> : null}
+                    {user ? <UserCard user={user} /> : null}
                 </div>
 
                 <div className={`col-md-8 personal-info ps-lg-5`}>
@@ -120,7 +127,7 @@ function EditUserProfile() {
                         validate={(values) => {
                             const errors = {};
                             if (values.confirmPass !== values.pass) {
-                                errors.confirmPass = 'do not match';
+                                errors.confirmPass = 'Do not match!';
                             }
                             return errors;
                         }}
@@ -144,8 +151,6 @@ function EditUserProfile() {
                             if (values.pass !== null && values.confirmPass !== null && values.currentPass !== null) {
                                 data.append("newPass", values.pass)
                                 data.append("currentPass", values.currentPass)
-                                // console.log(values.currentPass)
-                                // console.log(values.pass)
                                 updatePassword({ currentPass: values.currentPass, newPass: values.pass }).then((r) => console.log(r)).catch((err) => console.log(err))
                                 updateUser(data).then((r) => console.log(r)).catch((e) => console.log(e))
 
@@ -153,33 +158,32 @@ function EditUserProfile() {
 
                                 updateUser(data).then((r) => console.log(r)).catch((e) => console.log(e))
                             }
-                            // console.log(values);
+
+                            { dataSaved() }
+                            navigate('/profile');
                         }}>
                         {({ errors, touched, setFieldValue }) => {
 
                             useEffect(() => {
                                 getUserByID().then((res) => {
                                     setUser(res.data)
-                                    // console.log(res.data)
                                     let user = res.data
                                     Object.keys(user).forEach(key => {
-                                        // console.log(key)
                                         setFieldValue(key, user[key])
-                                        if (key == "date_birth") {
-                                            if (user.date_birth != undefined && user.date_birth != null) {
+                                        if (key === "date_birth") {
+                                            if (user.date_birth !== undefined && user.date_birth != null) {
                                                 const getDate = user.date_birth.split("T")[0]
-                                                // console.log(getDate)
                                                 setFieldValue("date_birth", getDate)
                                             }
                                         }
-                                        if (key == 'gender') {
-                                            if (user.gender == "male") {
+                                        if (key === 'gender') {
+                                            if (user.gender === "male") {
                                                 setMale(true)
                                             } else {
                                                 setfemale(true)
                                             }
                                         }
-                                        if (key == 'pass') {
+                                        if (key === 'pass') {
                                             setFieldValue('pass', '')
                                         }
 
@@ -192,7 +196,6 @@ function EditUserProfile() {
                                         getDownloadURL(starsRef)
                                             .then((url) => {
                                                 setCurrentImage(url)
-                                                // console.log(url)
                                             })
 
                                     }
@@ -246,10 +249,8 @@ function EditUserProfile() {
 
                                     <div className='form-group'>
                                         <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Profile Picture:</label>
-                                        <div className="row align-items-center justify-content-between" >
-                                            <div className='col-lg-9'>
-                                                <Field id="userImage" name="userImage" className="form-control" type="file" onChange={(e) => onFileChange(e)} />
-                                            </div>
+                                        <div className='col-lg-9'>
+                                            <Field id="userImage" name="userImage" className="form-control" type="file" onChange={(e) => onFileChange(e)} />
                                         </div>
                                     </div>
 

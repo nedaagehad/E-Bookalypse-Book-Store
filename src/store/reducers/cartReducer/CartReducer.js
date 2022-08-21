@@ -1,110 +1,86 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import React from 'react'
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-import { booksApi } from '../../services'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    bookIds:[],
-    collectionIds:[],
-    price:0,
-    count : 0
-    
+    bookIds: [],
+    collectionIds: [],
+    price: 0,
+    count: 0
+
 }
-
-
-
 
 export const cartSlice = createSlice({
 
-    name:'cart',
+    name: 'cart',
     initialState,
 
-    reducers:{
-        increaseCount  (state,action){
-            console.log("increased")
+    reducers: {
+        increaseCount(state, action) {
             state.count += 1
         },
-        decreaseCount  (state,action){
+        decreaseCount(state, action) {
             state.count -= 1
         },
-        setCartCount (state,action){
-            state.count  = action.payload
+        setCartCount(state, action) {
+            state.count = action.payload
         },
-        FillCartFromDb (state,action){
-            // console.log(action.payload)
-            const {bookItems, collectionItems} = action.payload.cart
-            // state.bookIds = action.payload.bookItems._id
+        FillCartFromDb(state, action) {
+            const { bookItems, collectionItems } = action.payload.cart
             state.bookIds = bookItems
             state.collectionIds = action.payload.cart.collectionItems
             state.price = action.payload.finalPrice
             state.count = bookItems.length + collectionItems.length
-            // state.entryFialPrice = action.payload.totalPrice
         },
-        addToCartReducer(state,action){
-            console.log(action.payload)   
-            // const {bookId} = action.payload;
-            
-            if(!state.bookIds.includes(action.payload)){
+        addToCartReducer(state, action) {
+
+            if (!state.bookIds.includes(action.payload)) {
                 state.bookIds.push(action.payload)
-                // toast.info('Added to cart',{position:'top-right'})
-                localStorage.setItem('cartItems',JSON.stringify(state.bookIds))
+                localStorage.setItem('cartItems', JSON.stringify(state.bookIds))
             }
-            // state.bookIds = action.payload;
-            
 
         },
-        removeFromCartReducer(state,action){
-            let newArr ;
+        removeFromCartReducer(state, action) {
+            let newArr;
             let collectionArr;
-            if(action.payload.bookIds){
+            if (action.payload.bookIds) {
                 let deletePrice = state.bookIds.find(bookIds => bookIds._id === action.payload.bookIds)
                 state.price -= deletePrice.price
 
-                 newArr =  state.bookIds.filter(bookId => bookId._id !== action.payload.bookIds)
-                 console.log(newArr)
-                 state.bookIds = newArr
+                newArr = state.bookIds.filter(bookId => bookId._id !== action.payload.bookIds)
+                state.bookIds = newArr
             }
-             if(action.payload.collectionIds){
-                console.log(action.payload.collectionIds)
-                console.log( action.payload.collectionIds)
+            if (action.payload.collectionIds) {
                 let deleteCollection = state.collectionIds.find(collectionId => collectionId._id === action.payload.collectionIds)
                 state.price -= deleteCollection.collectionPrice
-                collectionArr =  state.collectionIds.filter(bookId => bookId._id !== action.payload.collectionIds)
-//                      console.log(collectionArr)
-    
-                     state.collectionIds = collectionArr
-           }
+                collectionArr = state.collectionIds.filter(bookId => bookId._id !== action.payload.collectionIds)
+
+                state.collectionIds = collectionArr
+            }
 
 
-           localStorage.setItem('cartItems',JSON.stringify(newArr))
+            localStorage.setItem('cartItems', JSON.stringify(newArr))
 
 
         },
-        addToCollection(state,action){
-            if(!state.collectionIds.includes(action.payload)){
+        addToCollection(state, action) {
+            if (!state.collectionIds.includes(action.payload)) {
                 state.collectionIds.push(action.payload)
-                
+
             }
         },
-        removeAll(state,action){
-            state.bookIds =[]
-            state.collectionIds =[]
+        removeAll(state, action) {
+            state.bookIds = []
+            state.collectionIds = []
             state.entryFialPrice = 0
         }
-
-
     },
-
-
 })
 
 
 
-export const { addToCartReducer,removeAll,removeFromCartReducer,FillCartFromDb,
+export const { addToCartReducer, removeAll, removeFromCartReducer, FillCartFromDb,
     increaseCount,
-decreaseCount,
-getCount,
+    decreaseCount,
+    getCount,
 } = cartSlice.actions
 
 export default cartSlice.reducer

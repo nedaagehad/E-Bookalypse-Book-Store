@@ -1,21 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {AiOutlineArrowRight,AiOutlineArrowLeft} from 'react-icons/ai'
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
 import styles from './RelatedToAuther.module.css'
-
-
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { booksApi } from '../../store/services';
-// import storage from '../../Firebase/firebaseImage';
-// import { getDownloadURL, ref } from 'firebase/storage';
-// import SingleBook from '../TrendingBooksUp/SingleBook/SingleBook';
 import SingleBookAuthor from './SingleBookAuthor/SingleBookAuthor';
 
 const RelatedToAuther = (props) => {
 
   SwiperCore.use([Autoplay])
+
   console.log(props)
   const [filter,setFilter] = useState({writer:props.bookWriter})
   const [RelatedTitle, setRelatedTitle] = useState("")
@@ -34,23 +30,22 @@ const RelatedToAuther = (props) => {
       {
         setRelatedTitle('Related to Auther');
       }
+
     }
  
   }, [data,RelatedTitle]);
 
 
-
- 
   return (
     <div className=' container mb-5'>
       <div className={styles.head + " mb-5 "}>
         <h5 className={styles.h5}>{RelatedTitle}</h5>
         {console.log(RelatedTitle)}
       </div>
-      <div className={styles.sliderContainer +" container d-flex justify-content-center align-items-center mb-5 "} >
-      
-        <div  className={" row d-flex justify-content-center align-items-center"} style={{width:"100%"}}>
-        
+      <div className={styles.sliderContainer + " container d-flex justify-content-center align-items-center mb-5 "} >
+
+        <div className={" row d-flex justify-content-center align-items-center"} style={{ width: "100%" }}>
+
           <Swiper
             modules={[Autoplay, Navigation, Pagination]}
             effect={"cards"}
@@ -67,11 +62,12 @@ const RelatedToAuther = (props) => {
             }}
             loop={true}
             navigation={{
-              nextEl:'.nextTrendBook',
+              nextEl: '.nextTrendBook',
               prevEl: '.prevTrendBook',
             }}
-            autoplay={{delay:1500}}
+            autoplay={{ delay: 1500 }}
             className={styles.mySwiper}
+
             >
           {data ? data.data.map((wbooks)=>{  
             // console.log(wbooks)
@@ -87,18 +83,19 @@ const RelatedToAuther = (props) => {
           null          
           }
 
+
           </Swiper>
           <div className={styles.navControllers}>
-                <div className={styles.prevContainer}  >
-                  <div className={styles.prevTrendBook + " prevTrendBook "}>
-                    <AiOutlineArrowLeft />
-                  </div>
-                </div>
-                <div className={styles.nextContainer} >
-                  <div className={styles.nextTrendBook + " nextTrendBook "} >
-                    <AiOutlineArrowRight />
-                  </div>
-                </div>
+            <div className={styles.prevContainer}  >
+              <div className={styles.prevTrendBook + " prevTrendBook "}>
+                <AiOutlineArrowLeft />
+              </div>
+            </div>
+            <div className={styles.nextContainer} >
+              <div className={styles.nextTrendBook + " nextTrendBook "} >
+                <AiOutlineArrowRight />
+              </div>
+            </div>
           </div>
         </div>
       </div>

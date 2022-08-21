@@ -3,7 +3,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 let userToken = localStorage.getItem('userToken');
-console.log(userToken);
 
 
 
@@ -15,7 +14,7 @@ export const booksApi = createApi({
     prepareHeaders: (headers, { getState , endpoint ,forced}) => {
         const userToken = localStorage.getItem('userToken');
         // If we have a token set in state, let's assume that we should be passing it.
-        console.log(endpoint)
+
         if (userToken !== null) {
             headers.set('authorization', `Bearer ${userToken}`);
           }
@@ -26,7 +25,7 @@ export const booksApi = createApi({
 }),
     // keepUnusedDataFor: 1000,
     // refetchOnMountOrArgChange: 3000,
-    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate','search'],
+    tagTypes:['cart','wishlist','updateCollection','updatePromotion','updateWriter','updatedBooks','catUpdate','search','updateReviews'],
     endpoints:(builder)=>({
         login:builder.mutation({
             query:(userData)=>{
@@ -47,7 +46,7 @@ export const booksApi = createApi({
                 // for(let i = 0; i < category.length; i++){
                 //     category.
                 // }
-                console.log(writer)
+                // console.log(writer)
                 let newCategory = ''
                 if(category){
 
@@ -55,12 +54,12 @@ export const booksApi = createApi({
                         for(let i = 0; i < category.length; i++){
                             newCategory += "&category="+category[i]
                         }
-                    }else if(category.length == 1){
+                    }else if(category.length === 1){
                         newCategory= "category="+category[0]
                     }
                 }
                 
-                if(newCategory == " "){
+                if(newCategory === " "){
                     return {
                         url: `books`,
                         params: { page,limit,priceMin,priceMax,priceSort,writer,salesSort },
@@ -103,11 +102,9 @@ export const booksApi = createApi({
         }),
         getBookById:builder.query({
             query:(bookID)=>{
-                console.log(bookID)
+
                 return{
                     url:`/book/${bookID}`,
-                    // params: { page},
-
                 }
             
             },
@@ -127,7 +124,7 @@ export const booksApi = createApi({
         }),
         updateNewBook:builder.mutation({
             query:({bookNewData,bookid})=>{
-                console.log(bookNewData)
+
                 return{
                     url:`/book/${bookid}`,
                     method:"PUT",
@@ -141,7 +138,7 @@ export const booksApi = createApi({
         deleteBook : builder.mutation({
             query:({bookId,bookOldFiles})=>{
                 const {icon,src} = bookOldFiles
-                console.log(bookOldFiles)
+
                 return{
                     url:`/book/${bookId}`,
                     method:"DELETE",
@@ -163,8 +160,7 @@ export const booksApi = createApi({
         }),
         getAllWriters:builder.query({
             query:(args='')=>{
-                const { page ,limit} = args;
-                // console.log(page)
+                const { page } = args;
                 return{
                     url:"writers",
                     params: {page},
@@ -184,11 +180,8 @@ export const booksApi = createApi({
         }),
         getWriterById:builder.query({
             query:(writerId)=>{
-                // console.log(writerId)
                 return{
                     url:`/writer/${writerId}`,
-                    // params: { page},
-
                 }
             },
             providesTags:['updateWriter']
@@ -199,17 +192,12 @@ export const booksApi = createApi({
                     url:"/writer",
                     method:"POST",
                     body:writerData,
- 
-                
             }
             ),
             invalidatesTags:['updateWriter']
-
-            
         }),
         updateWriter : builder.mutation({
             query:({writerNewData,writerId})=>{
-                // console.log(bookid)
                 return{
                     url:`/writer/${writerId}`,
                     method:"PUT",
@@ -236,23 +224,17 @@ export const booksApi = createApi({
         // Categories
         getAllCategories:builder.query({
             query:(args='')=>{
-                // const { page ,limit} = args;
-                // console.log(page)
-                // console.log(userToken)
                 return{
                     url:"categories",
-                    // params: { page},
                 }
             },
             providesTags:['catUpdate']
         }),
         getCategoryById:builder.query({
             query:(categoryId)=>{
-                console.log(categoryId)
+
                 return{
                     url:`categorie/${categoryId}`,
-                    // params: { page},
-
                 }
             },
             providesTags:['catUpdate']
@@ -271,8 +253,7 @@ export const booksApi = createApi({
         }),
         updateCategory:builder.mutation({
             query:({categoryNewData,categoryId})=>{
-                console.log(categoryNewData)
-                console.log(categoryId)
+
                 return{
                     url:`categorie/${categoryId}`,
                     method:"PUT",
@@ -376,7 +357,7 @@ export const booksApi = createApi({
         }),
         addNewPromotion:builder.mutation({
             query:(promtionData)=>(
-                console.log(promtionData),
+
                 {
                 url:"/promotion",
                 method:"POST",
@@ -434,7 +415,7 @@ export const booksApi = createApi({
         }),
         getUserByID:builder.mutation({
             query:(userID)=>{
-                console.log(userID)
+
                if(userID){
                 return{
                     url:`/user/${userID}`,
@@ -457,7 +438,7 @@ export const booksApi = createApi({
         }),
         updateUserRole:builder.mutation({
             query:(userData)=>{
-                console.log(userData)
+
                 return{
                     url:"/user-change-role",
                     method:"PUT",
@@ -470,7 +451,7 @@ export const booksApi = createApi({
 
             query:(userData)=>{
                 return{
-                    url:"/user/pass",
+                    url:"/user-pass",
                     method:"PUT",
                     body:userData,
                  }
@@ -478,7 +459,7 @@ export const booksApi = createApi({
         }),
         foregetPassword:builder.mutation({
             query:(email)=>{
-                console.log(email)
+
                 return{
                     url:'/forget-pass-mail',
                     method:"POST",
@@ -488,7 +469,7 @@ export const booksApi = createApi({
         }),
         setNewPassword:builder.mutation({
             query:(pass)=>{
-                console.log(pass)
+
                 return{
                     url:'/forget-pass-change',
                     method:"PATCH",
@@ -502,7 +483,7 @@ export const booksApi = createApi({
 
             query: (arg = ' ') => {
                 const { bookTitle ,page ,limit,category,priceMin,priceMax,priceSort ,writer } = arg;
-                    console.log(category)
+
                     if(category){
                         if(category.length >1){
                             let newCategory = ''
@@ -549,23 +530,19 @@ export const booksApi = createApi({
         ),
         addToCart:builder.mutation({
             query:(cartItems)=>{
-                const {bookIds,collectionIds} = cartItems
           
-                console.log(cartItems)
+
                 return{
                     url:'/cart-addition',
                     method:'PUT',
                     body:cartItems,
                     headers:{"Authorization":`Bearer ${userToken}`},
-                    
-
                 }
             },
             invalidatesTags:['cart']
         }),
         removeFromCart:builder.mutation({
             query:(cartItems)=>{
-                    const {bookIds,collectionIds} = cartItems
                 
                     return{
                         url:'/cart-removal',
@@ -588,25 +565,19 @@ export const booksApi = createApi({
         }),
         addToWishList : builder.mutation({
             query:(cartItems)=>{
-                const {bookIds,collectionIds} = cartItems
-          
-                console.log(cartItems)
+
                 return{
                     url:'/wish-addition',
                     method:'PUT',
                     body:cartItems,
                     headers:{"Authorization":`Bearer ${userToken}`},
-                    
-
                 }
             },
             invalidatesTags:['wishlist']
         }),
         removeFromWishList:builder.mutation({
             query:(cartItems)=>{
-                const {bookIds,collectionIds} = cartItems
                 
-                console.log(bookIds)
                 return{
                     url:'/wish-removal',
                     method:'PUT',
@@ -633,7 +604,6 @@ export const booksApi = createApi({
             query:()=>{
                 return {
                     url:'/orders',
- 
                 }
             }
         }),
@@ -654,6 +624,37 @@ export const booksApi = createApi({
                     body:cartItems,
                  }
             },
+        }),
+        // REVIEWS
+        addNewReview:builder.mutation({
+            query:(review)=>{
+                console.log(review)
+                return{
+                    url:"/review",
+                    method:"POST",
+                    body:review
+                }
+            },
+            invalidatesTags:['updateReviews']
+        }),
+        getBookReviews:builder.query({
+            query:(bookId)=>{
+                return{
+                    url:"/book-reviews/"+bookId,
+                }
+            },
+            providesTags:['updateReviews']
+        }),
+        deleteReview:builder.mutation({
+            query:(reviewID)=>{
+                return{
+                    url:"/review/"+reviewID,
+                    method:"DELETE",
+                    
+                }
+            },
+            invalidatesTags:['updateReviews']
+
         })
 
 
@@ -662,4 +663,3 @@ export const booksApi = createApi({
 })
 
 export const selectCartItems = (state)=>booksApi.endpoints.getCart.select('getCart').data
-// export const {useGetBooksAPi} = booksApi

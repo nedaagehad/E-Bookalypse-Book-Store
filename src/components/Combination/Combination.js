@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../Firebase/firebaseImage';
 import { getDownloadURL, ref } from 'firebase/storage';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -42,8 +41,6 @@ const Combination = props => {
                 setImageThree(newUrl)
             })
         }, []);
-
-        let dispatch = useDispatch();
 
         return (
             <div className={`col-md-6 col-sm-12 ${classes.collection}`}>

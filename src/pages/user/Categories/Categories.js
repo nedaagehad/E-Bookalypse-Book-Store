@@ -1,4 +1,4 @@
-import React, { useEffect, useState , lazy , Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { booksApi } from '../../../store/services';
 import { useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ import TrendingBooksUp1 from '../../../components/TrendingBooksUp/TrendingBooksU
 
 function Categories() {
 
+  // eslint-disable-next-line
   const { data, isLoading, error } = booksApi.useGetAllCategoriesQuery();
   const [categories, setCategories] = useState();
 

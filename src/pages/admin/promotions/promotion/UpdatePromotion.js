@@ -5,10 +5,13 @@ import * as Yup from 'yup';
 import { booksApi } from '../../../../store/services';
 
 const UpdatePromotion = () => {
+
+    // eslint-disable-next-line
     const [updateCurrentPromotion,response]= booksApi.useUpdateCurrentPromotionMutation();
+    // eslint-disable-next-line
     const [pormotion,setPormotion] = useState();
     let params = useParams()
-    // console.log(params)
+    // eslint-disable-next-line
     const {data,isLoading,error} = booksApi.useGetOnePromotionQuery(params.id)
 
 
@@ -54,7 +57,6 @@ const UpdatePromotion = () => {
                 }).catch((error)=>{
                     console.log(error)
                 })
-                console.log(promotionData)
 
             }}
                 
@@ -64,23 +66,19 @@ const UpdatePromotion = () => {
                 useEffect(() => {
                     if(data){
                         setPormotion(data)
-                        // console.log(data)
                         Object.keys(data).forEach(key=>{
                             setFieldValue(key,data[key])
-                            console.log(key,data[key])
 
 
                             if(key === "start_date"){
                                 if(data.start_date !== undefined && data.start_date != null){
                                    const getDate = data.start_date.split("T")[0]
-                                    // console.log(getDate)
                                 setFieldValue("start_date",getDate)
                                 }
                             }
                             if(key === "end_date"){
                                 if(data.end_date !== undefined && data.end_date != null){
                                    const getDate = data.end_date.split("T")[0]
-                                    // console.log(getDate)
                                 setFieldValue("end_date",getDate)
                                 }
                             }
