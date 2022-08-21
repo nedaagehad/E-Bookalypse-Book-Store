@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import dashstyle from '../../assetsAdmin/css/style.module.css'
+import dashstyle from '../../../assetsAdmin/css/style.module.css'
 import "../../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import AdminNavbar from '../../../components/AdminNavbar/AdminNavbar';
