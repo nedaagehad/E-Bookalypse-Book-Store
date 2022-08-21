@@ -50,6 +50,7 @@ function NavBar() {
   const [userName, setUserName] = useState("");
 
   const offCanvasRef = useRef();
+  const menuRef = useRef();
 
   const closeOffCanvas = () => offCanvasRef.current.backdrop.click();
 
@@ -85,55 +86,68 @@ function NavBar() {
         })
     }
     ).catch((err) => console.log(err))
+
+    // const handler = (e) => {
+    //   if (!menuRef.current.contains(e.target)) {
+    //     setProfileClicked(false)
+    //   }
+    // }
+    //   document.addEventListener("mousedown", handler)
+
+    //   return () => {
+    //     document.removeEventListener("mousedown", handler)
+    //   }
+
+
   }, [authState, count, data]);
 
-  return (
-    <>
-      {['lg'].map((expand) => (
-        <Navbar className={`shadow-lg fixed-top px-3 px-lg-0`} key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
-          <Container fluid>
-            <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} alt="logo" src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
-            <Nav>
-              <div className="mx-auto flex-grow-1 ps-3 align-items-center d-lg-none">
-                <SearchBar />
+return (
+  <>
+    {['lg'].map((expand) => (
+      <Navbar className={`shadow-lg fixed-top px-3 px-lg-0`} key={expand} bg={theme === "night" ? "dark" : "light"} expand={expand} variant={theme === "night" ? "dark" : "light"}>
+        <Container fluid>
+          <Navbar.Brand className={`${styles.logo} fs-4`}><img className={styles.logoIMG} alt="logo" src={logo} /><span className='d-none d-md-inline'>E-Bookalypse</span></Navbar.Brand>
+          <Nav>
+            <div className="mx-auto flex-grow-1 ps-3 align-items-center d-lg-none">
+              <SearchBar />
+            </div>
+          </Nav>
+
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+          <Navbar.Offcanvas
+            ref={offCanvasRef}
+            id={`offcanvasNavbar-expand-${expand}`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+            placement="start">
+            <Offcanvas.Header className={theme === "night" ? "bg-dark" : ""}>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={`${styles.logo} fs-4`}>
+                <img className={styles.logoIMG} alt="logo" src={logo} />E-Bookalypse
+              </Offcanvas.Title>
+              <div className="align-items-center d-lg-none">
+                <ThemeToggler />
               </div>
-            </Nav>
-
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              ref={offCanvasRef}
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="start">
-              <Offcanvas.Header className={theme === "night" ? "bg-dark" : ""}>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={`${styles.logo} fs-4`}>
-                  <img className={styles.logoIMG} alt="logo" src={logo} />E-Bookalypse
-                </Offcanvas.Title>
-                <div className="align-items-center d-lg-none">
-                  <ThemeToggler />
-                </div>
-              </Offcanvas.Header>
-              <Offcanvas.Body className={theme === "night" ? "bg-dark" : ""}>
-                <Nav className="d-lg-none">
-                  {loggedIn ?
-                    <div className="row align-items-center mb-3" style={{ "height": "36px" }}>
-                      <div className={`${styles.profileIcon} bg-transparent offset-2 col-2`}>
-                        <img src={profilePic} alt="userpicture" className={styles.userIcon} />
-                      </div>
-                      <p className={`col-6 fw-bold mb-0 fs-3 ${theme === "night" ? styles.userNameNight : styles.userName}`}>{userName}</p>
-                    </div>
-                    : null}
-                </Nav>
-
+            </Offcanvas.Header>
+            <Offcanvas.Body className={theme === "night" ? "bg-dark" : ""}>
+              <Nav className="d-lg-none">
                 {loggedIn ?
-                  <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
-                ${theme === "night" ? "border-secondary" : ""}`}>
-                    <NavLink onClick={closeOffCanvas} to='/profile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <FaRegUserCircle className='me-1' /> Profile</NavLink>
+                  <div className="row align-items-center mb-3" style={{ "height": "36px" }}>
+                    <div className={`${styles.profileIcon} bg-transparent offset-2 col-2`}>
+                      <img src={profilePic} alt="userpicture" className={styles.userIcon} />
+                    </div>
+                    <p className={`col-6 fw-bold mb-0 fs-3 ${theme === "night" ? styles.userNameNight : styles.userName}`}>{userName}</p>
+                  </div>
+                  : null}
+              </Nav>
 
-                    <NavLink onClick={closeOffCanvas} to='/editprofile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <FiEdit className='me-1' /> Edit Profile</NavLink>
-                    {authState !== 'regUser' ? null :
+              {loggedIn ?
+                <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
+                ${theme === "night" ? "border-secondary" : ""}`}>
+                  <NavLink onClick={closeOffCanvas} to='/profile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <FaRegUserCircle className='me-1' /> Profile</NavLink>
+
+                  <NavLink onClick={closeOffCanvas} to='/editprofile' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <FiEdit className='me-1' /> Edit Profile</NavLink>
+                  {authState !== 'regUser' ? null :
                     <>
                       <NavLink onClick={closeOffCanvas} to='/profile/bookshelf' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                         <TbBooks className='me-1' /> Bookshelf
@@ -142,66 +156,66 @@ function NavBar() {
                       <NavLink onClick={closeOffCanvas} to='/wishlist' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                         <MdFavoriteBorder className='me-1' /> Wishlist
                       </NavLink>
-                      
+
 
                       <NavLink onClick={closeOffCanvas} to='/cart' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
                         <BsCart4 className='me-1' /> Cart - <span className={`ms-1 fw-bold ${styles.mov}`}> {count} </span>
                       </NavLink>
-                    
+
                     </>
-                    }
-                    
+                  }
 
-                    <div onClick={() => { Logout(); closeOffCanvas(); }} className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <BiLogOut className='me-1' /> Logout
-                    </div>
-                  </Nav>
-                  :
-                  <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
-                ${theme === "night" ? "border-secondary" : ""}`}>
-                    <NavLink onClick={closeOffCanvas} to='/signup' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <RiUserAddLine className='me-1' /> Create Account </NavLink>
 
-                    <NavLink onClick={closeOffCanvas} to='/login' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                      <RiUserReceivedLine className='me-1' /> Sign In</NavLink>
-                  </Nav>
-                }
-
-                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
-                  <NavLink onClick={closeOffCanvas} to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <GoHome className='me-1' />
-                    Home</NavLink>
-
-                  <NavLink onClick={closeOffCanvas} to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <GiBookshelf className='me-1' />
-                    Categories</NavLink>
-
-                  <NavLink onClick={closeOffCanvas} to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <TbShoppingCartDiscount className='me-1' />
-                    Offers
-                  </NavLink>
-                </Nav>
-
-                {/* Large NavBar */}
-                <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
-                  <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <GoHome className='me-1' />
-                    Home</NavLink>
-
-                  <NavLink to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <GiBookshelf className='me-1' />
-                    Categories</NavLink>
-
-                  <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
-                    <TbShoppingCartDiscount className='me-1' />
-                    Offers
-                  </NavLink>
-                  <div className='d-none d-lg-inline ms-lg-5 ms-0'>
-                    <SearchBar />
+                  <div onClick={() => { Logout(); closeOffCanvas(); }} className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <BiLogOut className='me-1' /> Logout
                   </div>
                 </Nav>
+                :
+                <Nav className={`justify-content-start flex-grow-1 pe-3 align-items-center border-bottom mb-3 d-lg-none
+                ${theme === "night" ? "border-secondary" : ""}`}>
+                  <NavLink onClick={closeOffCanvas} to='/signup' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <RiUserAddLine className='me-1' /> Create Account </NavLink>
 
-                <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
+                  <NavLink onClick={closeOffCanvas} to='/login' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                    <RiUserReceivedLine className='me-1' /> Sign In</NavLink>
+                </Nav>
+              }
+
+              <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-lg-none">
+                <NavLink onClick={closeOffCanvas} to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <GoHome className='me-1' />
+                  Home</NavLink>
+
+                <NavLink onClick={closeOffCanvas} to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <GiBookshelf className='me-1' />
+                  Categories</NavLink>
+
+                <NavLink onClick={closeOffCanvas} to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <TbShoppingCartDiscount className='me-1' />
+                  Offers
+                </NavLink>
+              </Nav>
+
+              {/* Large NavBar */}
+              <Nav className="justify-content-start flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
+                <NavLink to='/' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <GoHome className='me-1' />
+                  Home</NavLink>
+
+                <NavLink to='/categories' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <GiBookshelf className='me-1' />
+                  Categories</NavLink>
+
+                <NavLink to='/offers' className={`fw-bold text-decoration-none d-flex align-items-center me-3 mb-3 mb-lg-0 ${theme === "night" ? styles.navItemNight : styles.navItem}`}>
+                  <TbShoppingCartDiscount className='me-1' />
+                  Offers
+                </NavLink>
+                <div className='d-none d-lg-inline ms-lg-5 ms-0'>
+                  <SearchBar />
+                </div>
+              </Nav>
+
+              <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center d-none d-lg-flex">
                 {authState !== 'regUser' ? null :
 
                   <Link to='/cart' className="position-relative">
@@ -211,33 +225,39 @@ function NavBar() {
                     <BsCart4 className={`${theme === "night" ? styles.navIconNight : styles.navIcon}
                     ${count === 0 ? styles.emptyCart : ""} me-3 mb-2 mb-lg-0`} style={{ width: '22px', height: '22px' }} />
                   </Link>
-                  }
-                  {loggedIn ?
-                    <div className={styles.profileIcon}>
-                      <img src={profilePic} alt="userpicture" className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
-                      {profileClicked ? <ProfileDropDown authState={authState} /> : null}
+                }
+                {loggedIn ?
+                  <div className={styles.profileIcon}>
+                    {/* eslint-disable-next-line */}
+                    <img src={profilePic} className={styles.userIcon} onClick={() => { setProfileClicked(!profileClicked) }} />
+                    <div ref={menuRef} className={styles.dropMenu}>
 
-                    </div> :
-                    <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
-                      <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
-                      <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
-                    </div>}
-                  <ThemeToggler />
-                  {/* Language Toggler */}
-                  {/* <div className={`${styles.profileIcon}`} onClick={() => {
+                      {profileClicked ?
+                        <ProfileDropDown authState={authState} />
+                        : null}
+                    </div>
+
+                  </div> :
+                  <div className={`${styles.loginSection} row`} style={{ height: '30px' }}>
+                    <button className="col-12"><Link className={`text-decoration-none ${styles.navBtn} text-light rounded px-2 py-1 w-100 h-100`} to='/signUp'>Create Account</Link></button>
+                    <p className={`col-12 fw-bold ${theme === "night" ? "text-light" : "text-dark"} text-center`} style={{ fontSize: '12px' }}>Or <Link className={`text-decoration-none ${theme === "night" ? styles.navItemNight : styles.navItem} `} to='/login'>login</Link></p>
+                  </div>}
+                <ThemeToggler />
+                {/* Language Toggler */}
+                {/* <div className={`${styles.profileIcon}`} onClick={() => {
                     dispatch(changeLang(lang === "Ar" ? "En" : "Ar"));
                   }}>
                     {lang === "En" ? <img className={styles.userIcon} src={En} alt='en' data-bs-toggle="tooltip" data-bs-placement="bottom" title="English" /> :
                       <img className={styles.userIcon} src={Ar} alt='ar' data-bs-toggle="tooltip" data-bs-placement="bottom" title="عربي" />}
                   </div> */}
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
-    </>
-  );
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+    ))}
+  </>
+);
 }
 
 export default NavBar;

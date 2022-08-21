@@ -81,17 +81,17 @@ function UserCard(props) {
 
                     <div className="row text-center mt-4 rounded-0">
                         <div className="col p-2 text-center">
-                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : ""}`}>{user.book_shelf.length}</h4>
+                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : "text-dark"}`}>{user.book_shelf.length}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Books</small>
                         </div>
 
                         <div className="col p-2 text-center">
-                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : ""}`}>{wishListCount}</h4>
+                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : "text-dark"}`}>{wishListCount}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>WishList</small>
                         </div>
                         
                         <div className="col p-2 text-center">
-                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : ""}`}>{cartCount}</h4>
+                            <h4 className={`mb-1 line-height-5 text-center ${theme === "night" ? styles.lightTxt : "text-dark"}`}>{cartCount}</h4>
                             <small className={`mb-0 font-weight-bold ${styles.mov2}`}>Cart</small>
                         </div>
                     </div>

@@ -14,8 +14,8 @@ function Benefits() {
 
   return (
     <div className={`${theme === "night" ? styles.categoriesHomeSectionNight : styles.categoriesHomeSection} container-fluid mb-5 pb-5`}>
-          <div className={`${styles.row} row`}>
-            <div className='col-lg-3'>
+          <div className={`row p-5`}>
+            <div className='col-lg-3 col-md-6 col-12'>
               <div className={styles.titleandtext}>
                 <div className={styles.icon}>
                   <FaClock />
@@ -28,7 +28,7 @@ function Benefits() {
               </div>
               
             </div>
-            <div className='col-lg-3'>
+            <div className='col-lg-3 col-md-6 col-12'>
             <div className={styles.titleandtext}>
                 <div className={styles.icon}>
                   <BsFillCreditCardFill />
@@ -40,7 +40,7 @@ function Benefits() {
               </div>
 
             </div>
-            <div className='col-lg-3'>
+            <div className='col-lg-3 col-md-6 col-12'>
             <div className={styles.titleandtext}>
                 <div className={styles.icon}>
                   <BsFillAwardFill />
@@ -51,7 +51,7 @@ function Benefits() {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3'>
+            <div className='col-lg-3 col-md-6 col-12'>
             <div className={styles.titleandtext}>
                 <div className={styles.icon}>
                     <BsFillShieldFill />
