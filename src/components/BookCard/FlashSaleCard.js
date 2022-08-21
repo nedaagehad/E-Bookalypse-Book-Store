@@ -38,7 +38,13 @@ function FlashSaleCard(props) {
                             </div>
                         </div>
                         <Link to={'/books/BookDetails/' + props.book._id}>
-                            <p className="card-text my-1 fw-bold text-dark text-start">{props.book.title}</p>
+                        <p className="card-text my-1 fw-bold">{
+                                props.book.title.length > 20 ?
+
+                                props.book.title.substring(0, 20) + "..."
+                                :
+                                props.book.title
+                            }</p>
                         </Link>
                         <div className='d-flex gap-4'>
                             <p className={`card-text mb-1 mt-1 fw-bold ${styles.text_burble}`}>${props.book.price - props.book.promotion[0].discount_rate * props.book.price}</p>

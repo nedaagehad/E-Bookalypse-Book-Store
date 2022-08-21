@@ -18,6 +18,7 @@ const RelatedToAuther = (props) => {
   SwiperCore.use([Autoplay])
   console.log(props)
   const [filter,setFilter] = useState({writer:props.bookWriter})
+  const [RelatedTitle, setRelatedTitle] = useState("")
   
   const {data,isLoading,error } = booksApi.useGetAllBooksQuery(filter)
   const [writer,setWriter]= useState()
@@ -25,12 +26,17 @@ const RelatedToAuther = (props) => {
   useEffect(() => {
     if(data){
       console.log(data)
-      if(data.data.length < 3){
-        setFilter({category:[props.bookCategory]})
+      if (data.data.length <= 3) {
+        setRelatedTitle('Related to Category');
+        setFilter({ category: [props.bookCategory] })
+      }
+      else
+      {
+        setRelatedTitle('Related to Auther');
       }
     }
  
-  }, [data]);
+  }, [data,RelatedTitle]);
 
 
 
@@ -38,7 +44,8 @@ const RelatedToAuther = (props) => {
   return (
     <div className=' container mb-5'>
       <div className={styles.head + " mb-5 "}>
-        <h5 className={styles.h5}>Related To Auther</h5>
+        <h5 className={styles.h5}>{RelatedTitle}</h5>
+        {console.log(RelatedTitle)}
       </div>
       <div className={styles.sliderContainer +" container d-flex justify-content-center align-items-center mb-5 "} >
       
