@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { booksApi } from '../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../Firebase/firebaseImage';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 // CSS Module
 import styles from './EditUserProfile.module.css';
@@ -16,6 +17,10 @@ import UserCard from '../UserCard/UserCard';
 function EditUserProfile() {
 
     const theme = useSelector((state) => state.theme.currentTheme);
+
+    const navigate = useNavigate();
+
+    const dataSaved = () => toast("Your data is saved");
 
     const [getUserByID] = booksApi.useGetUserByIDMutation();
     const [updateUser] = booksApi.useUpdateUserMutation();
@@ -62,7 +67,8 @@ function EditUserProfile() {
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
         ,
         confirmPass: Yup.string()
-            .required("field is required"),
+            .oneOf([Yup.ref('pass'), null], 'required!')
+        ,
 
         gender: Yup.string("must be string")
             .required("Gender is required"),
@@ -121,7 +127,7 @@ function EditUserProfile() {
                         validate={(values) => {
                             const errors = {};
                             if (values.confirmPass !== values.pass) {
-                                errors.confirmPass = 'do not match';
+                                errors.confirmPass = 'Do not match!';
                             }
                             return errors;
                         }}
@@ -152,6 +158,9 @@ function EditUserProfile() {
 
                                 updateUser(data).then((r) => console.log(r)).catch((e) => console.log(e))
                             }
+
+                            { dataSaved() }
+                            navigate('/profile');
                         }}>
                         {({ errors, touched, setFieldValue }) => {
 
@@ -240,10 +249,8 @@ function EditUserProfile() {
 
                                     <div className='form-group'>
                                         <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Profile Picture:</label>
-                                        <div className="row align-items-center justify-content-between" >
-                                            <div className='col-lg-9'>
-                                                <Field id="userImage" name="userImage" className="form-control" type="file" onChange={(e) => onFileChange(e)} />
-                                            </div>
+                                        <div className='col-lg-9'>
+                                            <Field id="userImage" name="userImage" className="form-control" type="file" onChange={(e) => onFileChange(e)} />
                                         </div>
                                     </div>
 
