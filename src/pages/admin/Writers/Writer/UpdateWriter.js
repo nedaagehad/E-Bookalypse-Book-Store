@@ -25,8 +25,8 @@ const UpdateWriter = () => {
 
   return (
 
-    <div className="container mt-5 mb-5">
-
+    <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
+    <div className="content-wrapper pt-5">
       <Formik
         initialValues={{
           writername: "",
@@ -63,7 +63,7 @@ const UpdateWriter = () => {
           }, [data]);
 
           return (
-            <Form className="row" >
+            <Form className="row text-white" >
 
               <div className="col-md-6 mt-2">
                 <label htmlFor="writername" className="form-label">Writer Name : </label>
@@ -102,7 +102,9 @@ const UpdateWriter = () => {
         }
         }
       </Formik>
-    </div>
+    </div>  
+    </div>  
+
   )
 }
 

@@ -208,7 +208,7 @@ function EditUserProfile() {
                             return (
                                 <Form className='form-horizontal' role="form">
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>First Name:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>First Name:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' name="fName" id="fName" type="text" />
                                             {errors.fName && touched.fName ? (
@@ -218,7 +218,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Last Name:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Last Name:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="lName" name="lName" type="text" />
                                             {errors.lName && touched.lName ? (
@@ -228,7 +228,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Email:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Email:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="email" name="email" type="email" />
                                             {errors.email && touched.email ? (
@@ -238,7 +238,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Phone:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Phone:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="phone" name="phone" type="text" />
                                             {errors.phone && touched.phone ? (
@@ -248,14 +248,14 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Profile Picture:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Profile Picture:</label>
                                         <div className='col-lg-9'>
                                             <Field id="userImage" name="userImage" className="form-control" type="file" onChange={(e) => onFileChange(e)} />
                                         </div>
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Gender:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Gender:</label>
                                         <div className='col-lg-9'>
                                             <div className='genders d-flex justify-content-evenly'>
                                                 <div class="form-check">
@@ -265,7 +265,7 @@ function EditUserProfile() {
                                                         <Field type="radio" class="form-check-input" name="gender" id="female" value="male" />
                                                     }
 
-                                                    <label class={`form-check-label ${theme === "night" ? styles.lightTxt : ""}`} htmlFor="gender">
+                                                    <label class={`form-check-label ${theme === "night" ? styles.lightTxt : "text-dark"}`} htmlFor="gender">
                                                         Male
                                                     </label>
                                                 </div>
@@ -277,7 +277,7 @@ function EditUserProfile() {
                                                         <Field type="radio" class="form-check-input" value="female" name="gender" id="gender" />
                                                     }
 
-                                                    <label class={`form-check-label ${theme === "night" ? styles.lightTxt : ""}`} htmlFor="gender">
+                                                    <label class={`form-check-label ${theme === "night" ? styles.lightTxt : "text-dark"}`} htmlFor="gender">
                                                         Female
                                                     </label>
                                                 </div>
@@ -289,7 +289,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Birth Date:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Birth Date:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="date_birth" name="date_birth" type="date" />
                                             {errors.date_birth && touched.date_birth ? (
@@ -299,7 +299,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Old Password:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Old Password:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="currentPass" name="currentPass" type="password" />
                                             {errors.currentPass && touched.currentPass ? (
@@ -309,7 +309,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>New Password:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>New Password:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="pass" name="pass" type="password" />
                                             {errors.pass && touched.pass ? (
@@ -319,7 +319,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Confirm Password:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Confirm Password:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="confirmPass" name="confirmPass" type="password" />
                                             {errors.confirmPass && touched.confirmPass ? (
@@ -329,7 +329,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>City:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>City:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="city" name="city" type="text" />
                                             {errors.city && touched.city ? (
@@ -339,7 +339,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Governorate:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Governorate:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="governorate" name="governorate" type="text" />
                                             {errors.governorate && touched.governorate ? (
@@ -349,7 +349,7 @@ function EditUserProfile() {
                                     </div>
 
                                     <div className='form-group'>
-                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Street:</label>
+                                        <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : "text-dark"}`}>Street:</label>
                                         <div className='col-lg-9'>
                                             <Field className='form-control' id="street" name="street" type="text" />
                                             {errors.street && touched.street ? (

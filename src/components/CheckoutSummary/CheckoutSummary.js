@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import React,{useState,useEffect} from 'react'
 
@@ -28,16 +28,20 @@ const CheckoutSummary = props => {
     //     }
     // },[getCheckOutLink.data])
 
-    const redirectToPayment = () =>  toast("Redirecting to Payment Page...");
 
-    const getCheckOut = () =>{
+    let getCheckOut = () =>{
         // setSkipState(1)
         // if(getCheckOutLink.data){ 
         //     window.open(getCheckOutLink.data.url)
         // }
-        redirectToPayment()
         getCheckOutLink().then((r)=>{
-            window.open(r.data.url)
+            if(r.data){
+                const redirectToPayment = () =>  toast("Redirecting to Payment Page...");
+
+                /* eslint-disable-next-line */
+                {redirectToPayment()} /* eslint-disable-line */                
+                window.open(r.data.url)
+            }
         })
     }
     
@@ -58,12 +62,13 @@ const CheckoutSummary = props => {
                             <tr>
                                 <td>Total</td>
                                 <td>${props.Total}</td>
+                                <td> <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button></td>
                             </tr>
 
                         </tbody>
                        
                     </table>
-                            <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button>
+                           
                             
                 </div>
             </div>

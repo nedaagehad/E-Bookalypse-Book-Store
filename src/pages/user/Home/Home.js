@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <>
-      <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`mainContent ${theme === "night" ? "bg-dark" : "bg-white"}`}>
         <HomeSlider />
         <TrendingBooksUp1 />
         <Benefits />

@@ -81,7 +81,7 @@ const addBook = () => {
     }
 
   return (
-    <div className="page-body-wrapper pt-5">
+    <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
         <div className="content-wrapper pt-5 text-white">
         <Formik 
         initialValues={{

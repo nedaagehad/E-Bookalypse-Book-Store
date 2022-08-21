@@ -3,13 +3,14 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './NewPassForm.module.css'
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { booksApi } from "../../store/services";
+import {  toast } from 'react-toastify';
 
 const NewPassForm = props => {
 
   const theme = useSelector((state) => state.theme.currentTheme);
-
+  let navigate = useNavigate()
   const [passShowState, setPassShowState] = useState({
     isShown: false,
     inputType: "password",
@@ -71,9 +72,16 @@ const NewPassForm = props => {
                 newPass(data)
                   .then(function (response) {
                     console.log(response)
+                    if(response.data){
+                      navigate("/login")
+                    }else{
+                      toast.error(response.error)
+                    }
                   })
                   .catch(function (error) {
                     console.log(error);
+                    toast.error(error)
+
                   });
               }}
             >

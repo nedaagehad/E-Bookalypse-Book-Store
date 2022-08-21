@@ -14,6 +14,7 @@ const CollectionOnCard = props => {
     const removedFromCart = () =>  toast("Collection Removed from Cart");
 
     const [bookImages, setBookImages] = useState()
+    const [collectionImage,setCollectionImage] = useState()
     useEffect(() => {
         const starsRef = ref(storage, `/uploads/books/poster/${props.data.poster}`);
         getDownloadURL(starsRef).then((url) => {
@@ -24,7 +25,13 @@ const CollectionOnCard = props => {
         }).catch((error) => { console.log(error) });
 
 
-
+        const collectionImages = ref(storage, `/uploads/books/poster/soffer.png`);
+        getDownloadURL(collectionImages).then((url) => {
+          const newUrl = url
+  
+          setCollectionImage(newUrl)
+  
+        }).catch((error) => { console.log(error) });
 
     }, []);
 
@@ -60,7 +67,7 @@ const CollectionOnCard = props => {
                 <div className={`col-8`}>
                     <div className={`row`}>
                         <div className={`col-3`}>
-                            <img src={bookImages} alt='bookimage' />
+                            <img src={collectionImage} alt='bookimage' />
                         </div>
                         <div className={`col-9 ${classes.details}`}>
                             <h3 className={theme === "night" ? "text-light" : ""}>{props.data.title}</h3>

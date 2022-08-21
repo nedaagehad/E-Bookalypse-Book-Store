@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-// import '../../../assetsAdmin/css/style.css';
+import dashstyle from '../../../assetsAdmin/css/style.module.css'
 import "../../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import AdminNavbar from '../../../components/AdminNavbar/AdminNavbar';
@@ -7,6 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { booksApi } from '../../../store/services';
 import { getDownloadURL, ref } from 'firebase/storage';
 import storage from '../../../Firebase/firebaseImage';
+import DashboardContent from '../../../components/DashboardContent/DashboardContent';
 
 function HomeDashboard() {
 
@@ -47,10 +48,11 @@ function HomeDashboard() {
 
   }, [getAllUsers.data,getAllOrders.data,getAllWriters.data,getAllBooks.data]);
     return (
-        <div className="container-scroller bg-dark">
+        <div className={`${dashstyle.containerScroller} bg-dark`}>
             <AdminNavbar user={user} userImg={userImg} />
             <AdminSidebar user={user} userImg={userImg} />
-            <Outlet context={{user:user,usersCount : usersCount,ordersCount:ordersCount ,writersCount:writersCount ,booksCount : booksCount}}/> 
+            
+            <Outlet  context={{user:user,usersCount : usersCount,ordersCount:ordersCount ,writersCount:writersCount ,booksCount : booksCount}}/> 
         </div>
     )
   }

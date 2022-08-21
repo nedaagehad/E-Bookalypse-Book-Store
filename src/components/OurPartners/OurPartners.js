@@ -14,7 +14,7 @@ function OurPartners() {
   return (
     <div className={`container-fluid p-5 ${theme === "night" ? styles.partnersBGNight : styles.partnersBG}`}>
         <div className={`row mb-3 align-items-center`}>
-            <h2 className={`col-4 col-md-3 fw-bold text-center ${theme === "night" ? "text-light" : ""}`}>Our Partners</h2>
+            <h2 className={`col-4 col-md-3 fw-bold text-center ${theme === "night" ? "text-light" : "text-dark"}`}>Our Partners</h2>
             {/* eslint-disable-next-line */}
             <a href='https://www.iti.gov.eg/iti/home' target='_blank' className='col-4'><img className={styles.partner} src={theme === "night" ? itiDark : iti} alt='iti' /></a>
             {/* eslint-disable-next-line */}

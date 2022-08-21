@@ -32,7 +32,7 @@ function CartEmpty() {
 
                 <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>Your Cart is Empty!</h2>
                 <div className="justify-content-center align-items-center d-flex ">
-                    <Link to="/books">
+                    <Link to="/categories/category">
                         <button className={`${myStyle.saveBtn} btn justify-content-center align-items-center p-3 m-4`}>Go to Books</button>
                     </Link>
                 </div>

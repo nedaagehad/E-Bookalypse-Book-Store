@@ -5,6 +5,7 @@ import classes from './ForgetForm.module.css'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { booksApi } from "../../store/services";
+import {  toast } from 'react-toastify';
 
 
 const ForgetForm = props => {
@@ -73,9 +74,17 @@ const ForgetForm = props => {
                 forgetPassword(data)
                   .then(function (response) {
                     console.log(response)
+                    if(response.data){
+                      toast.success("Check Your Mail")
+                    }else{
+                      toast.error(response.error.data.message)
+
+                    }
                   })
                   .catch(function (error) {
                     console.log(error);
+                    toast.error(error.data.message)
+
                   });
               }}
             >

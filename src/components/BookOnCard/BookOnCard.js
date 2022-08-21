@@ -63,8 +63,8 @@ const BookOnCard = props => {
                         </div>
                         <div className={`col-9 ${classes.details}`}>
 
-                            <h3 className={theme === "night" ? "text-light" : ""}>{props.data.title}</h3>
-                            <p className={theme === "night" ? classes.lightTxt : ""}>{props.data.bookAuther}</p>
+                            <h3 className={theme === "night" ? "text-light" : "text-dark"}>{props.data.title}</h3>
+                            <p className={theme === "night" ? classes.lightTxt : classes.DarkTxt}>{props.data.bookAuther}</p>
                         </div>
                     </div>
                 </div>

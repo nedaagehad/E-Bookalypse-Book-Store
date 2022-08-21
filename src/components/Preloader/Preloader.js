@@ -18,7 +18,7 @@ const Preloader = ()=> {
 
 
     return (
-        <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`mainContent ${theme === "night" ? "bg-dark" : "bg-white"}`}>
             <div className={classes.rocket}>     
                 <Lottie options={PreloaderObj} //add the lottie object to lottie options 
                    

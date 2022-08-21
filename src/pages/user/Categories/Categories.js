@@ -44,7 +44,7 @@ function Categories() {
         loading ?
           <Preloader />
           :
-          <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+          <div className={`content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
               <CategoryList>
                 {categories ? categories.map(category => {
                   return (

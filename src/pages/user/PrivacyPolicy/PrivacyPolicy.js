@@ -15,10 +15,10 @@ export default function PrivacyPolicy() {
     }, []);
 
     return (
-        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : "bg-white"}`}>
             <div className={`container p-5`}>
                 <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Privacy Policy</h3>
-                <div className={theme === "night" ? "text-light" : ""}>
+                <div className={theme === "night" ? "text-light" : "text-dark"}>
                     <p>
                         E-Bookalypse knows that you care how information about you is used and shared, and we appreciate your trust that we will do so carefully and wisely.
                         This Privacy Policy explains how E-Bookalypse, as data controller, collects, uses and shares personal information in association with the services we

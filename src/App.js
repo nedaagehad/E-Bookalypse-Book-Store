@@ -49,7 +49,11 @@ import UpdatePromotion from './pages/admin/promotions/promotion/UpdatePromotion'
 import AddPromotion from './pages/admin/promotions/promotion/AddPromotion';
 import HomeDashboard from './pages/admin/Dashboard/HomeDashboard';
 import { ToastContainer, toast } from 'react-toastify';
-
+import DashboardContent from './components/DashboardContent/DashboardContent';
+import CollectionsAdmin from './pages/admin/Collections/CollectionsAdmin';
+import AddCollection from './pages/admin/Collections/collection/AddCollection';
+import UpdateCollection from './pages/admin/Collections/collection/UpdateCollection';
+import UpdateUserRole from './pages/admin/Users/UpdateUserRole';
 
 function App() {
 
@@ -103,8 +107,8 @@ function App() {
         {!isUser ? 
        
         
-        <Route path='/admin' element={<AdminLayout />} >
-          <Route index element={<HomeDashboard />}/>
+        <Route path='/admin' element={<HomeDashboard />} >
+          <Route index element={<DashboardContent />}/>
 
           {/* Books Routes */}
           <Route path='/admin/books' element={<Books />} />
@@ -128,6 +132,14 @@ function App() {
 
           {/* Users View Admin Panel*/}
           <Route path='/admin/users' element={<UsersView />} />
+          <Route path='/admin/user/UpdateUserRole/:id' element={<UpdateUserRole />} />
+
+          {/* Collections */}
+          <Route path='/admin/collections' element={<CollectionsAdmin />} />
+          <Route path='/admin/collection/addCollection' element={<AddCollection />} />
+          <Route path='/admin/collection/updateCollection/:id' element={<UpdateCollection />} />
+
+
         </Route>
         
         :null}

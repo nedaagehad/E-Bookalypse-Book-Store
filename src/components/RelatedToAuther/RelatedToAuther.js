@@ -18,6 +18,10 @@ const RelatedToAuther = (props) => {
   
   const {data,isLoading,error } = booksApi.useGetAllBooksQuery(filter)
   const [writer,setWriter]= useState()
+  const getWishList = booksApi.useGetWishListQuery();
+  const [wishList, setWishList] = useState();
+  const getBookShelf = booksApi.useGetUserBooksQuery()
+  const [bookShelf,setBookShelf] = useState()  
 
   useEffect(() => {
     if(data){
@@ -32,8 +36,13 @@ const RelatedToAuther = (props) => {
       }
 
     }
- 
-  }, [data,RelatedTitle]);
+    if(getWishList.data){
+      setWishList(getWishList.data.wishList)
+    }
+    if(getBookShelf.data){
+      setBookShelf(getBookShelf.data)
+    }
+  }, [data,getWishList.data,getBookShelf.data]);
 
 
   return (
@@ -76,7 +85,11 @@ const RelatedToAuther = (props) => {
               <SwiperSlide key={wbooks._id}
                 className='SwiperClasstest' style={{filter:"blur(0px)"}}
               >    
-                <SingleBookAuthor wbook={wbooks}/>              
+                <SingleBookAuthor 
+                wbook={wbooks} 
+                fav={!wishList ? false : wishList.bookItems.filter((book) => book._id === wbooks._id).length > 0 ? true : false}
+                bookShelf={!bookShelf ? false : bookShelf.filter((bs)=>bs._id === wbooks._id ).length > 0 ? true : false }
+                />              
               </SwiperSlide>
             )
           }): 

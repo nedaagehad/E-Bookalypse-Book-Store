@@ -7,7 +7,7 @@ function NotFound() {
   const theme = useSelector((state) => state.theme.currentTheme);
 
   return (
-    <div className={`mainContent ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`mainContent ${theme === "night" ? "bg-dark" : "bg-white"}`}>
           <NotFoundComp />
       </div>
   )

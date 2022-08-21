@@ -49,53 +49,53 @@ const CustomerReviews = props => {
                             <div className={`col-md-4 col-sm-12 ${classes.RateDetails}`}>
                                 <div className={classes.RateDetInfo} style={{ width: "100%",display:"flex" }}>
                                     <span style={{ display: "inline-block" }} className="sr-only"><AiFillStar/></span>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>5</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>5</span>
                                     <div className="progress" style={{width:"80%",height:"10px"}}>
                                         <div className="progress-bar" role="progressbar" aria-valuenow={props.fivePerc}
                                         aria-valuemin="0" aria-valuemax="100" style={{width:props.fivePerc+"%",backgroundColor:"#8D27AE"}}>  
                                         </div>
                                     </div>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>{props.fivePerc}%</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>{props.fivePerc}%</span>
                                 </div>
                                 <div className={classes.RateDetInfo} style={{ width: "100%",display:"flex" }}>
                                     <span style={{ display: "inline-block" }} className="sr-only"><AiFillStar/></span>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>4</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>4</span>
                                     <div className="progress" style={{width:"80%",height:"10px"}}>
                                         <div className="progress-bar" role="progressbar" aria-valuenow={props.fourPerc}
                                         aria-valuemin="0" aria-valuemax="100" style={{width:props.fourPerc+"%",backgroundColor:"#8D27AE"}}>  
                                         </div>
                                     </div>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>{props.fourPerc}%</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>{props.fourPerc}%</span>
                                 </div>
                                 <div className={classes.RateDetInfo} style={{ width: "100%",display:"flex" }}>
                                     <span style={{ display: "inline-block" }} className="sr-only"><AiFillStar/></span>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>3</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>3</span>
                                     <div className="progress" style={{width:"80%",height:"10px"}}>
                                         <div className="progress-bar" role="progressbar" aria-valuenow={props.threePerc}
                                         aria-valuemin="0" aria-valuemax="100" style={{width:props.threePerc+"%",backgroundColor:"#8D27AE"}}>  
                                         </div>
                                     </div>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>{props.threePerc}%</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>{props.threePerc}%</span>
                                 </div>
                                 <div className={classes.RateDetInfo} style={{ width: "100%",display:"flex" }}>
                                     <span style={{ display: "inline-block" }} className="sr-only"><AiFillStar/></span>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>2</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>2</span>
                                     <div className="progress" style={{width:"80%",height:"10px"}}>
                                         <div className="progress-bar" role="progressbar" aria-valuenow={props.twoPerc}
                                         aria-valuemin="0" aria-valuemax="100" style={{width:props.twoPerc+"%",backgroundColor:"#8D27AE"}}>  
                                         </div>
                                     </div>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>{props.twoPerc}%</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>{props.twoPerc}%</span>
                                 </div>
                                 <div className={classes.RateDetInfo} style={{ width: "100%",display:"flex" }}>
                                     <span style={{ display: "inline-block" }} className="sr-only"><AiFillStar/></span>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>1</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>1</span>
                                     <div className="progress" style={{width:"80%",height:"10px"}}>
                                         <div className="progress-bar" role="progressbar" aria-valuenow={props.onePerc}
                                         aria-valuemin="0" aria-valuemax="100" style={{width:props.onePerc+"%",backgroundColor:"#8D27AE"}}>  
                                         </div>
                                     </div>
-                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : ""}`}>{props.onePerc}%</span>
+                                    <span style={{display:"inline-block"}} className={`sr-only ${theme === "night" ? "text-light" : "text-dark"}`}>{props.onePerc}%</span>
                                 </div>
                             </div>
 

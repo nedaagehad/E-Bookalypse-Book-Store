@@ -34,7 +34,7 @@ const BookShelf = props => {
   }, [data]);
 
     return (
-      <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
         { isLoading ? <Preloader /> :
 
           <div className='container'>

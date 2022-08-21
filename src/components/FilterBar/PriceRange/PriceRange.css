@@ -1,66 +1,66 @@
 .multi-range-slider {
     display: flex;
     position: relative;
-    border: none;
-    box-shadow: 0px 0px 0px transparent;
-    flex-direction: column;
+    border: none !important;
+    box-shadow: 0px 0px 0px transparent !important;
+    flex-direction: column !important;
 }
 .multi-range-slider .label-min , .multi-range-slider .label-max{
-    font-weight: bold;
-    color:#8D27AE;
+    font-weight: bold !important;
+    color:#8D27AE !important;
 }
 .multi-range-slider .bar-left, .multi-range-slider .bar-right {
     width: 25%;
-    background-color: rgba(181, 48, 226, 0.295);
-    border-radius: 10px 0px 0px 10px;
-    box-shadow:  0px 0px 0px transparent;
+    background-color: rgba(181, 48, 226, 0.295) !important;
+    border-radius: 10px 0px 0px 10px !important;
+    box-shadow:  0px 0px 0px transparent !important;
     padding: 4px 0px;
 }
 .multi-range-slider .bar-right {
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px !important;
 }
 .multi-range-slider .bar-inner-left , .multi-range-slider .bar-inner-right {
-    border: none;
-    background-color: #8D27AE;
-    border-color:#8D27AE;
+    border: none !important;
+    background-color: #8D27AE !important;
+    border-color:#8D27AE !important;
 }
 .multi-range-slider .bar-inner {
-    background-color: #8D27AE;
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
+    background-color: #8D27AE !important;
+    display: flex ;
+    flex-grow: 1 ;
+    flex-shrink: 1 ;
     justify-content: space-between;
     position: relative;
-    border-color:#8D27AE;
+    border-color:#8D27AE !important;
     justify-content: space-between;
-    box-shadow: 0px 0px 5px transparent;
+    box-shadow: 0px 0px 5px transparent !important;
 }
 .multi-range-slider .thumb::before {
     content: '';
-    background-color: #8D27AE;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border: none;
-    box-shadow: 0px 0px 0px transparent, inset 0px 0px 0px transparent;
-    border-radius: 50%;
-    z-index: 1;
-    margin: -8px;
-    cursor: pointer;
-    top:4px;
+    background-color: #8D27AE !important;
+    position: absolute ;
+    width: 15px !important;
+    height: 15px !important;
+    border: none !important;
+    box-shadow: 0px 0px 0px transparent, inset 0px 0px 0px transparent !important;
+    border-radius: 50% !important;
+    z-index: 1 !important;
+    margin: -8px !important;
+    cursor: pointer !important;
+    top:4px !important;
 }
 .multi-range-slider .thumb * {
-    position: absolute;
-    bottom: 25px;
-    width: 30px;
-    height: 30px;
-    left: -15px;
-    font-size: 75%;
-    text-align: center;
-    line-height: 30px;
-    background-color: #8D27AE;
-    border-radius: 50%;
-    color: white;
-    box-shadow: 0px 0px 0px transparent;
-    display: none;
+    position: absolute !important;
+    bottom: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
+    left: -15px !important;
+    font-size: 75% !important;
+    text-align: center !important;
+    line-height: 30px !important;
+    background-color: #8D27AE !important;
+    border-radius: 50% !important;
+    color: white !important;
+    box-shadow: 0px 0px 0px transparent !important;
+    display: none !important;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../../assetsAdmin/css/style.css'
+import dashstyle from '../../assetsAdmin/css/style.module.css'
 import "../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import "../../assetsAdmin/vendors/flag-icon-css/css/flag-icon.min.css"
 import "../../assetsAdmin/AdminDashboard.css";
@@ -50,17 +50,17 @@ function DashboardContent() {
       }
     }
     return (
-      <div className="page-body-wrapper">
+      <div className="page-body-wrapper " style={{flex:"auto"}}>
         <div className="content-wrapper">
           {/* Change page content, related to selected navigation */}
 
           <div className="row pt-3">
-            <div className="col-12 grid-margin stretch-card pt-5">
-              <div className="card corona-gradient-card" id="gmov" >
-                <div className="card-body py-0 px-0 px-sm-3">
+            <div className={`col-12 grid-margin ${dashstyle.stretchCard} pt-5`}>
+              <div className={`${dashstyle.card} ${dashstyle.adminGradientCard}`} id="gmov" >
+                <div className={`${dashstyle.cardBody} py-0 px-0 px-sm-3`}>
                   <div className="row align-items-center">
                     <div className="col-4 col-sm-3 col-xl-2">
-                      <span class="gradient-corona-img img-fluid" />
+                      <span class={`${dashstyle.gradientAdminImg} ${dashstyle.imgFluid}`} />
                     </div>
                     <div className="col-5 col-sm-7 col-xl-8 p-0 mt-5 mb-5">
 
@@ -73,9 +73,9 @@ function DashboardContent() {
             </div>
           </div>
           <div className="row">
-            <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-              <div className="card bg-dark">
-                <div className="card-body bg-dark">
+            <div className={`col-xl-3 col-sm-6 grid-margin ${dashstyle.stretchCard}`}>
+            <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
                   <div className="row">
                     <div className="col-9">
                       <div className="d-flex align-items-center align-self-start">
@@ -88,9 +88,9 @@ function DashboardContent() {
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-              <div className="card bg-dark">
-                <div className="card-body bg-dark">
+            <div className={`col-xl-3 col-sm-6 grid-margin ${dashstyle.stretchCard}`}>
+              <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
                   <div className="row">
                     <div className="col-9">
                       <div className="d-flex align-items-center align-self-start">
@@ -103,9 +103,9 @@ function DashboardContent() {
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-              <div className="card bg-dark">
-                <div className="card-body bg-dark">
+            <div className={`col-xl-3 col-sm-6 grid-margin ${dashstyle.stretchCard}`}>
+              <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
                   <div className="row">
                     <div className="col-9">
                       <div className="d-flex align-items-center align-self-start">
@@ -118,9 +118,9 @@ function DashboardContent() {
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-              <div className="card bg-dark">
-                <div className="card-body bg-dark">
+            <div className={`col-xl-3 col-sm-6 grid-margin ${dashstyle.stretchCard}`}>
+              <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
                   <div className="row">
                     <div className="col-9">
                       <div className="d-flex align-items-center align-self-start">
@@ -135,10 +135,10 @@ function DashboardContent() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 grid-margin stretch-card  ">
-              <div className="bg-dark card">
-                <div className="bg-dark card-body">
-                  <h4 className="card-title">Trending Books</h4>
+            <div className={`col-md-4 grid-margin ${dashstyle.stretchCard}`} >
+              <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
+                  <h4 className={`${dashstyle.cardTitle}`}>Trending Books</h4>
                   <div>
                     <Lottie options={rocketObj}
                       height={200}
@@ -173,16 +173,16 @@ function DashboardContent() {
                 </div>
               </div>
             </div>
-            <div className="col-md-8 grid-margin stretch-card">
-              <div className="card bg-dark">
-                <div className="card-body bg-dark">
+            <div className={`col-md-8 grid-margin ${dashstyle.stretchCard}`}>
+              <div className={`${dashstyle.card} bg-dark`}>
+                <div className={`${dashstyle.cardBody} bg-dark`}>
                   <div className="d-flex flex-row justify-content-between">
-                    <h4 className="card-title mb-1 text-whight">Admins Role</h4>
+                    <h4 className={`${dashstyle.cardTitle} mb-1 text-whight`}>Admins Role</h4>
                     <p className="text-muted mb-1">Your data status</p>
                   </div>
                   <div className="row">
                     <div className="col-12">
-                      <div className="preview-list">
+                      <div className={`${dashstyle.previewList}`}>
                         {
                           admins ?
 
@@ -206,7 +206,7 @@ function DashboardContent() {
             </div>
           </div>
 
-          <footer className="footer">
+          <footer className={`${dashstyle.footer}`}>
             <div className="d-sm-flex justify-content-center justify-content-sm-between">
               <span className="text-muted d-block text-center text-sm-left d-sm-inline-block"></span>
 

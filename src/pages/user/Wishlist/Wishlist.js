@@ -30,6 +30,7 @@ function Wishlist() {
       if (data) {
         setWishListed(data.wishList)
         setLoading(false);
+        console.log(data)
       }
 
       if(getBookShelf.data){
@@ -38,8 +39,9 @@ function Wishlist() {
 
   }}, [data,getBookShelf.data]);
 
+  console.log(wishlisted)
   return (
-    <div className={`content container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`content container-fluid ${theme === "night" ? "bg-dark" : "bg-white"}`}>
       {
         loading ?
           <Preloader />
@@ -79,9 +81,7 @@ function Wishlist() {
                                  fav={fav} data={col} />
                               </div>
                             )
-                          }) :   <div className="col-lg-12 col-md-12 col-sm-12">
-                          <WishlistEmpty/>
-                        </div>
+                          }) :  null
                       }         
                     </div>
                   </div>

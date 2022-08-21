@@ -72,88 +72,95 @@ const FilterBar = props => {
         <div className={`col-md-3 col-sm-12 pt-5 ${theme === "night" ? classes.FilterBarNight : classes.FilterBar}`}>
             <h2 className={classes.title}>Filter</h2>
             <div className={classes.Filters}>
-                <h3 className={theme === "night" ? "text-light" : ""}>Categories</h3>
+                <h3 className={theme === "night" ? "text-light" : `${classes.LightHeader}`}>Categories</h3>
                 <div className={classes.cat_Filter}>
-
-                    <div className="form-check">
+                <div className="row">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" type="checkbox" value={""} id="AllCategories" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} for="AllCategories">
-                            All Categories
+                        &nbsp;&nbsp;All Categories
                         </label>
                     </div>
-
+                   
                     {categories !== undefined ?
                         categories.map((cat) => {
-                            return (
-                                <div className="form-check d-flex align-items-end" key={cat._id}>
+                                return (
+                                <div className={`col-md-12 d-flex m-1 ${classes.filterChecks}`} key={cat._id}>
+                                   
 
-                                    {checked.includes(cat.title) ?
+                                        {checked.includes(cat.title) ?
 
 
-                                        <input checked className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e) => getCategoriesIn(e, cat.title)} id={cat.title} />
+                                            <input checked className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e) => getCategoriesIn(e, cat.title)} id={cat.title} />
 
-                                        :
+                                            :
 
-                                        <input className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e) => getCategoriesIn(e, cat.title)} id={cat.title} />
+                                            <input className="form-check-input" type="checkbox" name={cat.title} value={cat.title} onChange={(e) => getCategoriesIn(e, cat.title)} id={cat.title} />
 
-                                    }
-                                    <label className={`form-check-label align-self-center ${theme === "night" ? classes.filterItem : ""}`} htmlFor={cat.title}>
-                                        {cat.title}
-                                    </label>
-                                </div>
+                                        }
+                                        <label className={`form-check-label align-self-center ${theme === "night" ? classes.filterItem : ""}`} htmlFor={cat.title}>
+                                            &nbsp;&nbsp;{cat.title}
+                                        </label>
+                                    </div>
+                               
                             )
                         })
-                        : null}
+                            : null}
+                        </div>
 
                 </div>
-                <h3 className={theme === "night" ? "text-light" : ""}>Rates</h3>
+                <h3 className={theme === "night" ? "text-light" : `${classes.LightHeader}`}>Rates</h3>
                 <div className={classes.cat_Rate}>
-                    <div className="form-check">
+                    <div className="row">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" name="rate" type="radio" value="4" onChange={(e) => { dispatch(rate(e.target.value)) }} id="rate4" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="rate4">
 
-                            4 stars or above
+                             &nbsp;&nbsp;4 stars or above
                         </label>
                     </div>
-                    <div className="form-check">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" name="rate" type="radio" value="3" onChange={(e) => { dispatch(rate(e.target.value)) }} id="rate3" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="rate3">
 
-                            3 stars or above
+                             &nbsp;&nbsp;3 stars or above
                         </label>
                     </div>
-                    <div className="form-check">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" name="rate" type="radio" value="2" onChange={(e) => { dispatch(rate(e.target.value)) }} id="rate2" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="rate2">
 
-                            2 stars or above
+                             &nbsp;&nbsp;2 stars or above
                         </label>
                     </div>
-                    <div className="form-check">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" name="rate" type="radio" value="1" onChange={(e) => { dispatch(rate(e.target.value)) }} id="rate1" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="rate1">
-                            1 stars or above
+                            &nbsp;&nbsp;1 stars or above
                         </label>
+                        </div>
                     </div>
                 </div>
-                <h3 className={theme === "night" ? "text-light" : ""}>Sort Price</h3>
+                <h3 className={theme === "night" ? "text-light" : `${classes.LightHeader}`}>Sort Price</h3>
                 <div className={classes.cat_Sort_Price}>
-                    <div className="form-check">
+                    <div className="row">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" type="radio" name="priceSort" onChange={(e) => { dispatch(priceSort(e.target.value)) }} value="lth" id="lth" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="lth">
 
-                            Low to High
+                             &nbsp;&nbsp;Low to High
                         </label>
                     </div>
-                    <div className="form-check">
+                    <div className="col-md-12 d-flex m-1">
                         <input className="form-check-input" type="radio" name="priceSort" onChange={(e) => { dispatch(priceSort(e.target.value)) }} value="htl" id="htl" />
                         <label className={`form-check-label ${theme === "night" ? classes.filterItem : ""}`} htmlFor="htl">
 
-                            High to Low
+                             &nbsp;&nbsp;High to Low
                         </label>
-                    </div>
+                        </div>
+                        </div>
                 </div>
-                <h3 className={theme === "night" ? "text-light" : ""}>Price Range</h3>
+                <h3 className={theme === "night" ? "text-light" : `${classes.LightHeader}`}>Price Range</h3>
                 <div className={classes.cat_Price_Range}>
                     <PriceRange filter={filter} />
                 </div>

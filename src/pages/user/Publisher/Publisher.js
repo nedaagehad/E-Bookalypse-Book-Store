@@ -26,7 +26,7 @@ function Publisher() {
     }
 
     return (
-        <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`container-fluid content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
                 <div className="container pt-5">
                     <div className="row">
                         <div className="col-lg-6 col-12">

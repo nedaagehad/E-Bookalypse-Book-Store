@@ -41,16 +41,21 @@ function Category() {
           setLoading(false)
         }
 
-      } else if (data) {
-        setBooks(data.data)
-        setLoading(false)
+      }else if(data){
+          setBooks(data.data)
+          setLoading(false)
+
       }
 
 
+    } else if (data) {
+      setBooks(data.data)
+      setLoading(false)
     }
 
     if (getWishList.data) {
       setWishList(getWishList.data.wishList)
+      
     }
 
     if(getBookShelf.data){
@@ -63,7 +68,7 @@ function Category() {
 
   return (
 
-    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
       {
         loading ?
           <Preloader />
