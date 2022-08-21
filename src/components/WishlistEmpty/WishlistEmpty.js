@@ -28,7 +28,7 @@ function WishlistEmpty() {
                         isPaused={false}
                     />
                 </div>
-                <h2 className={`fs-1 ${theme === "night" ? "text-light" : ""}`}>Your Wishlist is Empty!</h2>
+                <h2 className={`fs-1 ${theme === "night" ? "text-light" : "text-dark"}`}>Your Wishlist is Empty!</h2>
 
                 <Link to="/categories/category">
                     <button className={`${myStyle.saveBtn} btn `}>Go to Books</button>

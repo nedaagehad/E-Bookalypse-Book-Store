@@ -157,20 +157,24 @@ const SignUpForm = props => {
                                 //         console.log(error);
                                 //     });
                                 signup(data).then((r)=>{
-                                    if(r.data.message !== 'err: user already exist'){
-                                        toast.success("User Already Exists")
-                                        console.log(r.data)
-                                    }else if(r.error){
+                            
+                               
+                                    // if(r.error.data.message){
+                                    //     toast.error(r.error.data.message)
 
-                                        toast.error(r.error.data.message)
-                                        // console.log(r)
-                                    }
-                                    else{
+                                    // }else{
+                                    //     toast.success("Signed up Successfully")
+                                    //         navigate('/login')
+                                    // }
+                                    console.log(r)
+                                    if(r.data){
                                         toast.success("Signed up Successfully")
-                                        navigate('/login')
+                                            navigate('/login')
+                                    }else{
+                                        toast.error(r.error.data.message)
                                     }
                                 }).catch((err)=>{
-                                    toast.error(err)
+                                    toast.error(err.message)
                                     console.log(err)
                                 })
 

@@ -27,7 +27,7 @@ function BookEmpty(props) {
                         isPaused={false}
                     />
                 </div>
-            <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : ""}`}>{props.title}</h2>
+            <h2 className={`fs-1 font-weight-medium ${theme === "night" ? "text-light" : "text-dark"}`}>{props.title}</h2>
                  
                 
             </div>

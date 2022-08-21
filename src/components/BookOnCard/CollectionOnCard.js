@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const CollectionOnCard = props => {
 
     const theme = useSelector((state) => state.theme.currentTheme);
-    const removedFromCart = () =>  toast("Collection Removed from Cart");
 
     const [bookImages, setBookImages] = useState()
     const [collectionImage,setCollectionImage] = useState()
@@ -47,6 +46,8 @@ const CollectionOnCard = props => {
                 // refetch()
                 console.log(r)
                 if(r.data){
+                    // eslint-disable-next-line
+                    const removedFromCart = () =>  toast("Collection Removed from Cart");
 
                     {removedFromCart()}
                 }else{
