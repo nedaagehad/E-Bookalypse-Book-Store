@@ -26,7 +26,7 @@ function ContactUs() {
                         <div className={styles.sectionTitle}>
                         {/* eslint-disable-next-line */}
                             <h2>Contact Us Now!🚀</h2>
-                            <p className={theme === "night" ? styles.lightTxt : ""}>Now you can contact us if you have any message, feedback complaint and suggestion,
+                            <p className={theme === "night" ? styles.lightTxt : "text-secondary"}>Now you can contact us if you have any message, feedback complaint and suggestion,
                                 We are always interested in hearing them! </p>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ function ContactUs() {
                                         </div>
                                     </div>
                                     <div className="col-md-12 mb-5 mb-lg-0">
-                                        <button className="btn submitBtn fs-5 mt-1">Submit</button>
+                                        <button className={`btn ${styles.submitBtn} fs-5 mt-1`}>Submit</button>
                                     </div>
                                 </div>
                             </form>

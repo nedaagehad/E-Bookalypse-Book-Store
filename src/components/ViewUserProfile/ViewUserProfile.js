@@ -51,14 +51,14 @@ function ViewUserProfile() {
                             <div className='form-group'>
                                 <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>First Name:</label>
                                 <div className='col-lg-9'>
-                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.fName}</h4>
+                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.fName[0].toUpperCase() + user.fName.substring(1)}</h4>
                                 </div>
                             </div>
 
                             <div className='form-group'>
                                 <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Last Name:</label>
                                 <div className='col-lg-9'>
-                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.lName}</h4>
+                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.lName[0].toUpperCase() + user.lName.substring(1)}</h4>
                                 </div>
                             </div>
 
@@ -85,9 +85,23 @@ function ViewUserProfile() {
                             </div>
 
                             <div className='form-group'>
+                                <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Date of Birth:</label>
+                                <div className='col-lg-9'>
+                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.date_birth.substring(0,10)}</h4>
+                                </div>
+                            </div>
+
+                            <div className='form-group'>
+                                <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>Street:</label>
+                                <div className='col-lg-9'>
+                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.street[0].toUpperCase() + user.street.substring(1)}</h4>
+                                </div>
+                            </div>
+
+                            <div className='form-group'>
                                 <label className={`col-lg-3 ${styles.controlLabel} ${theme === "night" ? styles.lightTxt : ""}`}>City:</label>
                                 <div className='col-lg-9'>
-                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.city}</h4>
+                                    <h4 className={`${styles.graycol} ${theme === "night" ? "text-light" : ""}`}>{user.city[0].toUpperCase() + user.city.substring(1)}</h4>
                                 </div>
                             </div>
                             <div class="form-group">
