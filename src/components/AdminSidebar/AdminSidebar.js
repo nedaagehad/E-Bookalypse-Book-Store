@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../assetsAdmin/css/style.css'
+// import '../../assetsAdmin/css/style.css'
 import "../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import "../../assetsAdmin/vendors/flag-icon-css/css/flag-icon.min.css"
 import "../../assetsAdmin/AdminDashboard.css";

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import '../../../assetsAdmin/css/style.css';
+// import '../../../assetsAdmin/css/style.css';
 import "../../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import AdminNavbar from '../../../components/AdminNavbar/AdminNavbar';
