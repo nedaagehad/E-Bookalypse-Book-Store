@@ -451,7 +451,7 @@ export const booksApi = createApi({
 
             query:(userData)=>{
                 return{
-                    url:"/user/pass",
+                    url:"/user-pass",
                     method:"PUT",
                     body:userData,
                  }
