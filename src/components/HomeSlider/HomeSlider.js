@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //CSS Module
 import classes from './HomeSlider.module.css';
@@ -15,12 +16,12 @@ function HomeSlider() {
             <div className={classes.promo}>
               <p>HOT PROMO</p>
             </div>
-            <p>Discount 60% Special World Book Day</p>
+            <p>Discount 20% Celebrating our launch</p>
           </div>
           <h1>Find over 5K </h1>
           <h1>books in E-Bookalypse</h1>
           <p className={classes.heroDisc}>Enjoy a variety of international E-Books from different categories and different writers at a very competitive price.</p>
-          <button className={classes.colBtn}>Go to Collection  &nbsp;&nbsp;&nbsp;&nbsp;&gt;</button>
+          <button className={classes.colBtn}><Link to='/offers' className='text-light'>Go to Collection  &nbsp;&nbsp;&nbsp;&nbsp;&gt;</Link></button>
         </div>
         <Slider />
       </div>

@@ -41,7 +41,7 @@ function Wishlist() {
 
   console.log(wishlisted)
   return (
-    <div className={`content container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`content container-fluid ${theme === "night" ? "bg-dark" : "bg-white"}`}>
       {
         loading ?
           <Preloader />

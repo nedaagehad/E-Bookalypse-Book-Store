@@ -17,10 +17,10 @@ function TermsOfUse() {
     }, []);
 
     return (
-        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`container-fluid content p-3 ${theme === "night" ? "bg-dark" : "bg-white"}`}>
             <div className={`container p-5`}>
                 <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Terms Of Use</h3>
-                <div className={theme === "night" ? "text-light" : ""}>
+                <div className={theme === "night" ? "text-light" : "text-dark"}>
                     <p>
                         <b>PLEASE READ THESE TERMS OF USE CAREFULLY BEFORE USING THIS WEBSITE. BY USING THIS WEBSITE,
                             YOU AGREE TO THESE TERMS OF USE. IF YOU DO NOT AGREE TO THESE TERMS OF USE,

@@ -68,7 +68,7 @@ function Category() {
 
   return (
 
-    <div className={`content ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
       {
         loading ?
           <Preloader />

@@ -47,7 +47,7 @@ function Checkout() {
   }, [data])
 
   return (
-    <div className={`content ${theme === "night" ? "bg-dark" : ""} pt-5`}>
+    <div className={`content ${theme === "night" ? "bg-dark" : "bg-white"} pt-5`}>
       
       {
         loading ?

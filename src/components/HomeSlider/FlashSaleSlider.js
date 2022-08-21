@@ -41,6 +41,8 @@ function FlashSaleSlider() {
         }
     }, [data, getWishList.data]);
 
+    console.log(data)
+
     return (
         <div className={`${theme === "night" ? styles.flashSaleNight : styles.flashSale} mt-3`}>
             <div className="container">

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+// import { booksApi } from '../../store/services';
 
 //CSS Module
 import styles from './CountDown.module.css';
 
 function CountDown() {
 
-    const endDate = new Date("12/11/2022");
+
+    // const getPromotions = booksApi.useGetAllPromotionsQuery();
+    // const [promo, setPromo] = useState();
 
     const getremaining = (end) => {
         let currentDate = new Date();
@@ -15,6 +18,21 @@ function CountDown() {
             return seconds;
         }
     }
+
+    // useEffect(() => {
+    //     if(getPromotions.data)
+    //     {
+    //         setPromo(getPromotions.data[0].end_date.substring(0,10).split("-"))
+    //     }
+    // })
+
+    const endDate = new Date("08/27/2022");
+
+    // let year = promo[0]
+    // let month = promo[1]
+    // let day = promo[2]
+
+    // console.log(year)
 
     const [remainSec, SetRemainSec] = useState(getremaining(endDate));
 

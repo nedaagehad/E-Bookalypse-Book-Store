@@ -62,12 +62,13 @@ const CheckoutSummary = props => {
                             <tr>
                                 <td>Total</td>
                                 <td>${props.Total}</td>
+                                <td> <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button></td>
                             </tr>
 
                         </tbody>
                        
                     </table>
-                            <button onClick={()=>getCheckOut()}  className='btn btn-secondary' > Check Out</button>
+                           
                             
                 </div>
             </div>

@@ -20,7 +20,7 @@ function AdminSidebar(props) {
 
                 <ul className={`${dashstyle.nav}`}>
                     <li className={`${dashstyle.navItem} ${dashstyle.profile}`}>
-                        <div className={`${dashstyle.profileDesc} pt-5`}>
+                        <div className={`${dashstyle.profileDesc}`}>
                             <div className={`${dashstyle.profilePic}`}>
                                 <div className={`${dashstyle.countIndicator}`}>
                                     <img className={`${dashstyle.imgXs} rounded-circle`}  src={userImg} alt="" />

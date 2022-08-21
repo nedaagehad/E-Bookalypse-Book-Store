@@ -8,7 +8,7 @@
 }
 
 .FilterBarNight{
-    width: 100%;
+    /* width: 100%; */
     height:inherit;
     background-color: #373637;
     padding: 20px;
@@ -39,15 +39,15 @@
     font-size: 15px;
     line-height: 19px;
     color: #000000;
-    position: relative;
-    bottom:5px;
+    margin-left: 10px;
+    margin-top: 1.5px;
 }
 .cat_Filter , .cat_Rate , .cat_Sort_Price , .cat_Price_Range{
     padding: 10px 20px;
 }
 @media(max-width:700px)
 {
-    .FilterBar{
+    .FilterBar,.FilterBarNight{
         height:50vh;
     }
     .FilterBar h2{
@@ -61,7 +61,16 @@
 .title {
     color: rgb(111, 25, 139) !important;
 }
+.LightHeader{
+    color: rgb(111, 25, 139) !important;
+}
 
 .filterItem {
     color: #aba8a8 !important;
+}
+.filterCheck{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }

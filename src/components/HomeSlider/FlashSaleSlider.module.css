@@ -46,7 +46,7 @@
 
 @media (max-width: 767px) {
     .flashCard {
-        min-height: 570px !important;
+        min-height: 520px !important;
     }
 
     .flashImg {

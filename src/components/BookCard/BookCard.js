@@ -43,7 +43,7 @@ const BookCard = props => {
             <img className={classes.Book_Poster} src={images} alt={props.book.title} />
         }
       </div>
-      <h5 className={theme === "night" ? classes.titleNight : ""}>{
+      <h5 className={theme === "night" ? classes.titleNight :  classes.titleLight}>{
         props.book.title.length > 30 ?
 
           props.book.title.substring(0, 30) + "..."

@@ -4,7 +4,7 @@
 .card{
     width: 90%;
     margin: auto;
-    background: #FDF8FE;
+    background: #FCEFFF;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -119,4 +119,7 @@
 
 .titleNight{
     color: #aba8a8 !important;
+}
+.titleLight{
+    color: #8D27AE !important;
 }

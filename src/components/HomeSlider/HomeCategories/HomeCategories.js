@@ -38,9 +38,9 @@ const HomeCategories = (props) => {
 
   return (
     <>
-      <div className={`container-fluid ${theme === "night" ? "bg-dark" : ""}`}>
+      <div className={`container-fluid ${theme === "night" ? "bg-dark" : "bg-white"}`}>
         <div className={styles.titleandPagination}>
-          <h4 className={`${styles.h4} ${theme === "night" ? "text-light" : ""}`}>Categories</h4>
+          <h4 className={`${styles.h4} ${theme === "night" ? "text-light" : "text-dark"}`}>Categories</h4>
           <div className="paginationSwiper ms-3 ms-md-0" >
             <BsDashLg className="dashed" />
           </div>

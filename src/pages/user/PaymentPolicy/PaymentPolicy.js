@@ -7,10 +7,10 @@ function PaymentPolicy() {
     const theme = useSelector((state) => state.theme.currentTheme);
 
     return (
-        <div className={`container-fluid content p-3 footer-position ${theme === "night" ? "bg-dark" : ""}`}>
+        <div className={`container-fluid content p-3 footer-position ${theme === "night" ? "bg-dark" : "bg-white"}`}>
             <div className={`container p-5`}>
                 <h3 className={`mb-3 text-decoration-underline fw-bold ${styles.mov}`}>Payment Policy</h3>
-                <div className={`${theme === "night" ? "text-light" : ""}`}>
+                <div className={`${theme === "night" ? "text-light" : "text-dark"}`}>
                     <p>
                         Credit card purchase security statement confidentiality of your information is protected and secured by using SSL encryption. Pages for web payment are secured by using Secure Socket
                         Layer (SSL) protocol with 128-bit data encryption. SSL encryption is a data coding procedure for prevention of unauthorized access during data transfer.

@@ -14,7 +14,7 @@ const Contact = ()=>{
 }, []);
 
   return (
-    <div className={`container-fluid content ${theme === "night" ? "bg-dark" : ""}`}>
+    <div className={`container-fluid content ${theme === "night" ? "bg-dark" : "bg-white"}`}>
       <div className='flex-grow-1'>
         <ContactUs />
       </div>

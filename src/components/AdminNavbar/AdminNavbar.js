@@ -12,7 +12,7 @@ function AdminNavbar(props) {
   if (user) {
 
     return (
-      <div>
+      <div style={{width:"0px"}}>
         <div className="page-body-wrapper" >
 
           <nav className={`${dashstyle.navbar} p-0 fixed-top d-flex flex-row`}>
@@ -35,7 +35,7 @@ function AdminNavbar(props) {
                   </form>
                 </li>
               </ul> */}
-              <ul className={`${dashstyle.navbarNav} ${dashstyle.navbarNavRight}`}>
+              {/* <ul className={`${dashstyle.navbarNav} ${dashstyle.navbarNavRight}`}> */}
 
                 {/* <li className={`${dashstyle.navItem} ${dashstyle.dropdown} border-left`}> */}
                 {/* eslint-disable-next-line */}
@@ -45,9 +45,9 @@ function AdminNavbar(props) {
                   </a>
 
                 </li> */}
-                <li className={`${dashstyle.navItem} ${dashstyle.dropdown}`}>
+                {/* <li className={`${dashstyle.navItem} ${dashstyle.dropdown}`}> */}
                 {/* eslint-disable-next-line */}
-                  <a className={`${dashstyle.navLink}`} href="">
+                  {/* <a className={`${dashstyle.navLink}`} href="">
                     <div className={`${dashstyle.navbarProfile}`}>
                       <img className={`${dashstyle.imgXs} rounded-circle`} src={userImg} alt="" />
                       <p className={`mb-0 d-none d-sm-block ${dashstyle.navbarProfileName}`} id='hovericon'>{user.fName + ' ' + user.lName}</p>
@@ -56,7 +56,7 @@ function AdminNavbar(props) {
                   </a>
 
                 </li>
-              </ul>
+              </ul> */}
               <button className={`${dashstyle.navbarToggler} ${dashstyle.navbarTogglerRight} d-lg-none align-self-center`} type="button" data-toggle="offcanvas" >
                 <span className="mdi mdi-format-line-spacing" id='hovericon' ></span>
               </button>
