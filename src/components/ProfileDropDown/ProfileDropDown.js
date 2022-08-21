@@ -8,7 +8,7 @@ import styles from './ProfileDropDown.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {  logOut } from "../../store/reducers/authReducer/authReducer";
-import { AiFillDashboard } from 'react-icons/ai';
+import { AiOutlineDashboard } from 'react-icons/ai';
 
 function ProfileDropDown(props) {
 
@@ -27,7 +27,7 @@ function ProfileDropDown(props) {
                 <Link to='/profile' className={`text-decoration-none`}><li className={theme === "night" ? `${styles.listItemNight} border-bottom border-dark` : `${styles.listItem} border-bottom`}><FaRegUserCircle className={styles.listIcon} /> Profile</li></Link>
                 <Link to='/editprofile' className={`text-decoration-none`}><li className={theme === "night" ? `${styles.listItemNight} border-bottom border-dark` : `${styles.listItem} border-bottom`}><FiEdit className={styles.listIcon} /> Edit Profile</li></Link>
                 {props.authState !== 'regUser' ? 
-                    <Link to='/admin' className={`text-decoration-none`}><li className={theme === "night" ? `${styles.listItemNight} border-bottom border-dark` : `${styles.listItem} border-bottom`}><AiFillDashboard className={styles.listIcon} /> Dashboard</li></Link>
+                    <Link to='/admin' className={`text-decoration-none`}><li className={theme === "night" ? `${styles.listItemNight} border-bottom border-dark` : `${styles.listItem} border-bottom`}><AiOutlineDashboard className={styles.listIcon} /> Dashboard</li></Link>
 
                 : 
                 <>

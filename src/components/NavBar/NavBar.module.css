@@ -143,3 +143,8 @@ button {
 .mov {
   color: #8a04a5 !important;
 }
+
+.dropMenu {
+  position: absolute;
+  top: 60px;
+}
