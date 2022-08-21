@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-// import '../../../assetsAdmin/css/style.css';
+import dashstyle from '../../../assetsAdmin/css/style.module.css'
 import "../../../assetsAdmin/vendors/mdi/css/materialdesignicons.min.css"
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import AdminNavbar from '../../../components/AdminNavbar/AdminNavbar';
@@ -47,7 +47,7 @@ function HomeDashboard() {
 
   }, [getAllUsers.data,getAllOrders.data,getAllWriters.data,getAllBooks.data]);
     return (
-        <div className="container-scroller bg-dark">
+        <div className={`${dashstyle.containerScroller} bg-dark`}>
             <AdminNavbar user={user} userImg={userImg} />
             <AdminSidebar user={user} userImg={userImg} />
             <Outlet context={{user:user,usersCount : usersCount,ordersCount:ordersCount ,writersCount:writersCount ,booksCount : booksCount}}/> 

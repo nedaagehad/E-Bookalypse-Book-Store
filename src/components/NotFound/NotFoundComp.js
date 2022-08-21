@@ -6,7 +6,7 @@ import classes from './NotFound.module.css'
 function NotFoundComp() {
     
     const [text, setText] = useState('');
-    const string = 'Page Is Not Found :(', index = useRef(0);
+    const string = 'Paage Is Not Found :(', index = useRef(0);
     
     useEffect(() => {
         function tick() {
