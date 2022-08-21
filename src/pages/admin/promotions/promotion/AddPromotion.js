@@ -20,8 +20,9 @@ const AddPromotion = () => {
     let navigate = useNavigate()
 
     return (
-        <div className="container mt-5 mb-5">
-            <Formik
+        <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
+        <div className="content-wrapper pt-5">
+                <Formik
                 initialValues={{
                     title: "",
                     description: "",
@@ -52,7 +53,7 @@ const AddPromotion = () => {
 
                 {({ errors, touched }) => (
 
-                    <Form className="row" >
+                    <Form className="row text-white" >
                         <div className="col-md-6 mt-2">
                             <label htmlFor="booktitle" className="form-label">Pormotion Title : </label>
                             <Field name="title" id="title" placeholder="Pormotion title" className={"form-control "} />
@@ -97,6 +98,8 @@ const AddPromotion = () => {
 
             </Formik>
         </div>
+        </div>
+
     )
 }
 

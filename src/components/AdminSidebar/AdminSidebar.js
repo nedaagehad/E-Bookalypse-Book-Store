@@ -38,6 +38,14 @@ function AdminSidebar(props) {
                         <span className={`${dashstyle.navLink}`}>Navigation</span>
                     </li>
                     <li className={`${dashstyle.navItem} ${dashstyle.menuItems}`}>
+                        <Link className={`${dashstyle.navLink}`} to="/">
+                            <span className={`${dashstyle.menuIcon}`}>
+                                <i className="mdi mdi-home"></i>
+                            </span>
+                            <span className={`${dashstyle.menuTitle} fs-5 text-muted`} id="navigatehover">E-Bookalypse</span>
+                        </Link>
+                    </li>
+                    <li className={`${dashstyle.navItem} ${dashstyle.menuItems}`}>
                         <Link className={`${dashstyle.navLink}`} to="/admin">
                             <span className={`${dashstyle.menuIcon}`}>
                                 <i className="mdi mdi-speedometer"></i>

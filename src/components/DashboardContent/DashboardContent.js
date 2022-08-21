@@ -50,7 +50,7 @@ function DashboardContent() {
       }
     }
     return (
-      <div className="page-body-wrapper">
+      <div className="page-body-wrapper " style={{flex:"auto"}}>
         <div className="content-wrapper">
           {/* Change page content, related to selected navigation */}
 

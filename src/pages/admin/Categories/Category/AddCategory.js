@@ -20,8 +20,8 @@ const AddCategory = () => {
 
   return (
 
-    <div className="page-body-wrapper pt-5">
-      <div className="content-wrapper pt-5 text-white">
+    <div className="page-body-wrapper p-5" style={{flex:"auto"}}>
+    <div className="content-wrapper pt-5 text-white">
         <Formik
           initialValues={{
             title: "",
@@ -41,7 +41,7 @@ const AddCategory = () => {
           }}
         >
           {({ errors, touched }) => (
-            <Form className='row'>
+            <Form className='row text-white'>
               <div className="col-md-12 mt-2">
                 <label htmlFor="title" className="form-label">Category Title : </label>
                 <Field className="form-control" name="title" id="title" placeholder="Category Title" />

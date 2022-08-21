@@ -13,36 +13,38 @@ function AdminNavbar(props) {
 
     return (
       <div>
-        <div className="page-body-wrapper">
+        <div className="page-body-wrapper" >
 
           <nav className={`${dashstyle.navbar} p-0 fixed-top d-flex flex-row`}>
-            <div className={`${dashstyle.navbarBrandWrapper} d-flex d-lg-none align-items-center justify-content-center`}>
+          <div className={`${dashstyle.navbarBrandWrapper} d-flex d-lg-none align-items-center justify-content-center`}>
               <button className={`${dashstyle.navbarBrand} ${dashstyle.brandLogoMini} movvv `} type="button" ><img src={logo} alt="logo" /> E-Bookalypse</button>
             </div>
 
             <div className={`${dashstyle.navbarMenuWrapper} flex-grow d-flex align-items-stretch`}>
-
-              <button className={`${dashstyle.navbarToggler} align-self-center`} type="button" data-toggle="minimize">
+            {/* <div className={`${dashstyle.navbarBrandWrapper} d-flex  align-items-center  d-sm-none d-md-none d-lg-flex  justify-content-center`}>
+              <button className={`${dashstyle.navbarBrand} ${dashstyle.brandLogoMini} movvv d-sm-none d-md-none d-lg-flex `} type="button"  ><img src={logo} alt="logo"  /> E-Bookalypse</button>
+            </div> */}
+              {/* <button className={`${dashstyle.navbarToggler} align-self-center`} type="button" data-toggle="minimize">
                 <span className="mdi mdi-menu movvvv"></span>
-              </button>
+              </button> */}
 
-              <ul className={`${dashstyle.navbarNav} w-100`}>
+              {/* <ul className={`${dashstyle.navbarNav} w-100`}>
                 <li className={`${dashstyle.navItem} w-100`}>
                   <form className={`${dashstyle.navLink} mt-2 mt-md-0 d-none d-lg-flex ${dashstyle.search}`}>
                     <input type="text" className="form-control text-muted fs-5" placeholder="Search on E-Bookalypse" />
                   </form>
                 </li>
-              </ul>
+              </ul> */}
               <ul className={`${dashstyle.navbarNav} ${dashstyle.navbarNavRight}`}>
 
-                <li className={`${dashstyle.navItem} ${dashstyle.dropdown} border-left`}>
+                {/* <li className={`${dashstyle.navItem} ${dashstyle.dropdown} border-left`}> */}
                 {/* eslint-disable-next-line */}
-                  <a className={`${dashstyle.navLink} ${dashstyle.countIndicator}`} href="" >
+                  {/* <a className={`${dashstyle.navLink} ${dashstyle.countIndicator}`} href="" >
                     <i className="mdi mdi-bell" id='hovericon'></i>
                     <span className={`${dashstyle.count} ${dashstyle.bgDanger}`}></span>
                   </a>
 
-                </li>
+                </li> */}
                 <li className={`${dashstyle.navItem} ${dashstyle.dropdown}`}>
                 {/* eslint-disable-next-line */}
                   <a className={`${dashstyle.navLink}`} href="">

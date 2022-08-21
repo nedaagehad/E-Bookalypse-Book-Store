@@ -20,10 +20,10 @@ const CollectionsAdmin = () => {
     }
 
   return (
-    <div className="page-body-wrapper pt-5">
-        <div className="content-wrapper pt-5">
+    <div className="page-body-wrapper p-5 "  style={{flex:"auto"}}>
+    <div className="content-wrapper pt-5">
         <table className="table">
-          <thead>
+          <thead  className="text-secondary">
             <tr>
               <th scope="col">#</th>
               {/* <th scope="col">image</th> */}

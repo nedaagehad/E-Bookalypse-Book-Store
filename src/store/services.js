@@ -109,7 +109,7 @@ export const booksApi = createApi({
             
             },
             
-            providesTags:['updatedBooks']
+            providesTags:['updatedBooks','updateReviews']
             
         }),
         addNewBook : builder.mutation({
@@ -451,7 +451,7 @@ export const booksApi = createApi({
 
             query:(userData)=>{
                 return{
-                    url:"/user/pass",
+                    url:"/user-pass",
                     method:"PUT",
                     body:userData,
                  }
@@ -557,7 +557,6 @@ export const booksApi = createApi({
             query:()=>{
                 return{
                     url:"/wish-list",
-                    headers:{"authorization":`Bearer ${userToken}`},
                     
                 }
             },

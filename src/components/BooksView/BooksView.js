@@ -19,6 +19,7 @@ const BookView = props => {
     let getSearchResults = booksApi.useGetSearchResultsQuery(filterState)
     const theme = useSelector((state) => state.theme.currentTheme);
     const [Page, setPage] = useState();
+    const [lastPage,setLastPage] = useState(false)
 
     useEffect(() => {
         if (params.id) {
@@ -39,6 +40,7 @@ const BookView = props => {
     const nextPage = () => {
         if (data.data.length !== 0) {
             dispatch(page())
+
         }
 
         if (data.data.length === 0) {
@@ -47,6 +49,7 @@ const BookView = props => {
     }
     const prevPage = () => {
         dispatch(decPage())
+        
     }
 
     return (
@@ -71,9 +74,9 @@ const BookView = props => {
                                         <li className="page-item" style={{ color: "#8D27AE", fontSize: "30px" }}>&nbsp;&nbsp;<span>{Page ? Page : null}</span>&nbsp;&nbsp;</li>
                                 }
 
-                                <li className="page-item" style={{ color: "white" }}>
+                                <li  className="page-item" style={lastPage ?{display:"none"}: null} >
                                 {/* eslint-disable-next-line */}
-                                    <a className="page-link" onClick={() => { nextPage() }} aria-label="Next" style={{ backgroundColor: "#8D27AE", color: "white", borderColor: "#8D27AE" }}>
+                                    <a  className="page-link" onClick={() => { nextPage() }} aria-label="Next" style={{ backgroundColor: "#8D27AE", color: "white", borderColor: "#8D27AE" }}>
                                         <button aria-hidden="true" style={{ color: "white", fontSize: "30px", padding: "0px" }} >&raquo;</button>
                                     </a>
                                 </li>

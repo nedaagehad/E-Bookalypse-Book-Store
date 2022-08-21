@@ -41,16 +41,21 @@ function Category() {
           setLoading(false)
         }
 
-      } else if (data) {
-        setBooks(data.data)
-        setLoading(false)
+      }else if(data){
+          setBooks(data.data)
+          setLoading(false)
+
       }
 
 
+    } else if (data) {
+      setBooks(data.data)
+      setLoading(false)
     }
 
     if (getWishList.data) {
       setWishList(getWishList.data.wishList)
+      
     }
 
     if(getBookShelf.data){

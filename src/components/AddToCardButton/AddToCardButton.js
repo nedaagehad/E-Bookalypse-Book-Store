@@ -9,18 +9,21 @@ import { BsFillHeartFill } from 'react-icons/bs';
 // popup
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useSelector } from 'react-redux/es/exports';
+import { useNavigate } from 'react-router-dom';
 
 const AddToCardButton = props => {
     const addedToCart = () => toast("Added To Cart Successfully");
     const boughtItAlready = () => toast("You Already Bought this book before");
     const removedFromWishList = () => toast("Item Removed From Wish List Successfully");
     const addedToWishList = () => toast("Added To WishList Successfully");
+    const pleaseLogin = () => toast("Please Login First");
 
     const { book, collection } = props
     const [addToCart] = booksApi.useAddToCartMutation()
     const [addToWishList] = booksApi.useAddToWishListMutation()
     const [removeFromWishList] = booksApi.useRemoveFromWishListMutation()
+    const authState = useSelector(state => state.auth.userRole);
 
     let addToCartFun = (bookData) => {
         let books = []
@@ -68,9 +71,13 @@ const AddToCardButton = props => {
             books.push(bookData.book)
         }
         if (bookData.collection !== undefined) {
-            collections.push(bookData.collection)
+            // collections.push(bookData.collection)
+            bookData.collection.collectionBooks.forEach((book)=>{
+                collections.push(book._id)
+            })
+            // console.log(bookData.collection.collectionBooks)
         }
-
+        // console.log(collections)
         addToWishList({ bookIds: books, collectionIds: collections }).then((re) => {
             if (re.data) {
 
@@ -124,18 +131,37 @@ const AddToCardButton = props => {
     const hasBook = () => {
         boughtItAlready()
     }
+    let navigate = useNavigate()
+    let loginFirst = ()=>{
+                // eslint-disable-next-line
+                { pleaseLogin() }
+                navigate("/login")
+    }
+    if(authState == 'regUser' || authState == ''){
+        if(authState == ''){
+            return(
+                <div className={ props.relatedToAuth ? ` mt-3 pe-3 ms-3 mb-3 ${classes.action}` :`mt-3 ${classes.action}`}>
+                    
+                        <button onClick={() => loginFirst()}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>                        
+                        <button onClick={() => loginFirst()} className={classes.favorite}><BsFillHeartFill /></button>
+                   
+                </div>
+            )
+        }else{
 
-    return (
-        <div className={`mt-3 ${classes.action}`}>
-
-            <button onClick={!props.bookShelf ? () => addToCartFun({ book, collection }) : () => boughtItAlready()}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
-            {props.fav
-                ?
-                <button onClick={() => removeFromWishListFun({ book, collection })} style={{ color: "var(--main-purple)" }} className={classes.favorite}><BsFillHeartFill /></button>
-                :
-                <button onClick={() => addToWishListFun({ book, collection })} className={classes.favorite}><BsFillHeartFill /></button>
-            }
-        </div>
-    )
+            return (
+                <div className={ props.relatedToAuth ? ` mt-3 pe-3 ms-3 mb-3 ${classes.action}` :`mt-3 ${classes.action}`}>
+                    
+                    <button onClick={!props.bookShelf ? () => addToCartFun({ book, collection }) : () => boughtItAlready()}><i className={" col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
+                    {props.fav
+                        ?
+                        <button onClick={() => removeFromWishListFun({ book, collection })} style={{ color: "var(--main-purple)" }} className={classes.favorite}><BsFillHeartFill /></button>
+                        :
+                        <button onClick={() => addToWishListFun({ book, collection })} className={classes.favorite}><BsFillHeartFill /></button>
+                    }
+                </div>
+            )
+        }
+    }
 }
 export default AddToCardButton;

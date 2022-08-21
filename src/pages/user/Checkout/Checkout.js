@@ -28,7 +28,8 @@ function Checkout() {
 
   // eslint-disable-next-line
   const { data, isLoading, error } = booksApi.useGetCartQuery()
- 
+  const authState = useSelector(state => state.auth.userRole);
+
   useEffect(() => {
     if (isLoading) {
       setLoading(true);
@@ -47,13 +48,15 @@ function Checkout() {
 
   return (
     <div className={`content ${theme === "night" ? "bg-dark" : ""} pt-5`}>
+      
       {
         loading ?
           <Preloader />
           :
+         
           <div className="container">
             <div className="row">
-              {cart ?
+              {cart && authState == 'regUser' ?
                 <>
                   <CheckoutHeader cart={cart} bookItems={bookItems} collectionItems={collectionItems} />
                   <CheckoutSummary Total={totalPrice} />
@@ -66,6 +69,7 @@ function Checkout() {
             </div>
           </div>
       }
+
     </div>
   )
 }

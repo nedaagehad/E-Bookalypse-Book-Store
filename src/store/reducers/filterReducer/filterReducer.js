@@ -7,7 +7,7 @@ const initialState= {
     priceSort:'',
     rate:'',
     bookTitle:'',
-    page:0
+    page:1
 }
 
 export const filterSlice = createSlice({

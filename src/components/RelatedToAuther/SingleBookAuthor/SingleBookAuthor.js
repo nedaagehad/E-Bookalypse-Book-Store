@@ -5,6 +5,7 @@ import SwiperCore, { Autoplay } from "swiper";
 import { Link } from 'react-router-dom';
 import styles from '../RelatedToAuther.module.css'
 import loadPoster from './bookPoster.gif' 
+import AddToCardButton from '../../AddToCardButton/AddToCardButton';
 
 const SingleBookAuthor = (props) => {
     const {wbook} = props;
@@ -35,12 +36,25 @@ const SingleBookAuthor = (props) => {
           }
          <div className={styles.details}>
               <div className={styles.prices}>
-                  <h3>${wbook.price}</h3>
-                  <h6><del>$19.56</del></h6>
+                {/* data[0].price -  data[0].price * promotions[0].discount_rate */}
+                {wbook.promotion[0] 
+                ?
+                <>
+                    <h3>${wbook.price - wbook.price*wbook.promotion[0].discount_rate }</h3>
+                    <h6><del>${wbook.price}</del></h6>
+                </>
+                 
+                 : 
+                 <h3>${wbook.price}</h3>
+                 }
+           
               </div>
-              <div className={styles.action}>
-                  <button> <i className={styles.basketIcon + " col-2 align-self-start bi bi-basket2-fill  text-white text-center rounded-circle py-1 mt-1 "}></i></button>
-              </div>
+              <AddToCardButton 
+              book={props.wbook._id}  
+              fav={props.fav ? props.fav : false} 
+              relatedToAuth={true} 
+              bookShelf={props.bookShelf ? true : false} 
+              />
       </div>
   </Link>
   )
