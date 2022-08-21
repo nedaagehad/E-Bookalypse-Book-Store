@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCredntials } from "../../store/reducers/authReducer/authReducer";
 import { useNavigate, Link } from "react-router-dom";
 import { booksApi } from "../../store/services";
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginForm = props => {
 
@@ -81,10 +82,19 @@ const LoginForm = props => {
 
                 login(data)
                   .then(function (response) {
-                    dispatch(setCredntials(response.data));
+                    if(response.data){
+
+                      dispatch(setCredntials(response.data));
+                      toast.success("Logged in successfully")
+                    }else{
+                      toast.error(response.error.data.message)
+
+                      console.log(response.error.data.message)
+                    }
                   })
                   .catch(function (error) {
                     console.log(error);
+                    toast.error(error)
                   });
               }}
             >

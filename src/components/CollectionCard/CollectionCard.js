@@ -33,10 +33,12 @@ const CollectionCard = (props) => {
           <div className={classes.poster_overlay}></div>
 
         </Link>
+        <img className={classes.Book_Poster} src={image}  />
+
       </div>
       <h5 className={theme === "night" ? classes.titleNight : ""}>{props.data.title[0].toUpperCase() + props.data.title.substring(1)}</h5>
       <h3>${props.data.collectionPrice}</h3>
-      <AddToCardButton bookShelf={props.bookShelf ? true : false} collection={props.data._id} fav={props.fav ? props.fav : false} />
+      <AddToCardButton bookShelf={props.bookShelf ? true : false} collection={props.collection} fav={props.fav ? props.fav : false} />
     </div>
 
   )

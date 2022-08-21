@@ -76,7 +76,8 @@ function Wishlist() {
                           wishlisted.collectionItems.map((col) => {
                             return (
                               <div key={col._id} className="col-lg-3 col-md-6 col-sm-12" style={{ marginBottom: "20px" }}>
-                                <CollectionCard                     
+                                <CollectionCard  
+                                collection={{collectionID:col._id,collectionBooks:col.collectionBooks}}                   
                                 bookShelf={!bookShelf ? false :  bookShelf.some((bs)=>!col.collectionBooks.some((c)=> c._id == bs._id)) ? true : false } 
                                  fav={fav} data={col} />
                               </div>

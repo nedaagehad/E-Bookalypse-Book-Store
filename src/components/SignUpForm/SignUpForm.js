@@ -5,6 +5,8 @@ import classes from './SignUpForm.module.css'
 import { IoPersonAdd } from "react-icons/io5";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { booksApi } from "../../store/services";
+import { ToastContainer, toast } from 'react-toastify';
 const axios = require('axios');
 
 
@@ -12,7 +14,7 @@ const axios = require('axios');
 const SignUpForm = props => {
 
     const theme = useSelector((state) => state.theme.currentTheme);
-
+    const [signup] = booksApi.useSignUpMutation()
     const [passShowState, setPassShowState] = useState({
         isShown: false,
         inputType: "password",
@@ -146,14 +148,32 @@ const SignUpForm = props => {
                                 data.append("phone", values.thePhone)
                                 data.append("pass", values.thePassword)
 
-                                axios.post('https://e-bookalypse.herokuapp.com/signUp', data)
+                                // axios.post('https://e-bookalypse.herokuapp.com/signUp', data)
 
-                                    .then(function (response) {
+                                //     .then(function (response) {
+                                //         navigate('/login')
+                                //     })
+                                //     .catch(function (error) {
+                                //         console.log(error);
+                                //     });
+                                signup(data).then((r)=>{
+                                    if(r.data.message !== 'err: user already exist'){
+                                        toast.success("User Already Exists")
+                                        console.log(r.data)
+                                    }else if(r.error){
+
+                                        toast.error(r.error.data.message)
+                                        // console.log(r)
+                                    }
+                                    else{
+                                        toast.success("Signed up Successfully")
                                         navigate('/login')
-                                    })
-                                    .catch(function (error) {
-                                        console.log(error);
-                                    });
+                                    }
+                                }).catch((err)=>{
+                                    toast.error(err)
+                                    console.log(err)
+                                })
+
                             }}
                         >
                             {({ errors, touched }) => (
