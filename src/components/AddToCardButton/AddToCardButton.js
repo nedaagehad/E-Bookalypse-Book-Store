@@ -71,13 +71,14 @@ const AddToCardButton = props => {
             books.push(bookData.book)
         }
         if (bookData.collection !== undefined) {
-            // collections.push(bookData.collection)
-            bookData.collection.collectionBooks.forEach((book)=>{
-                collections.push(book._id)
-            })
+            collections.push(bookData.collection.collectionID)
+            // bookData.collection.collectionBooks.forEach((book)=>{
+            //     collections.push(book._id)
+            // })
             // console.log(bookData.collection.collectionBooks)
         }
-        // console.log(collections)
+
+        // console.log(bookData.collection)
         addToWishList({ bookIds: books, collectionIds: collections }).then((re) => {
             if (re.data) {
 
@@ -107,7 +108,7 @@ const AddToCardButton = props => {
             books.push(bookData.book)
         }
         if (bookData.collection !== undefined) {
-            collections.push(bookData.collection)
+            collections.push(bookData.collection.collectionID)
         }
 
         removeFromWishList({ bookIds: books, collectionIds: collections }).then((re) => {

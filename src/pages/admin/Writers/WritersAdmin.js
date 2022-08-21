@@ -30,7 +30,9 @@ const WritersAdmin = () => {
   }
   let deleteWriter = (e, id) => {
     const deletedItem = writers.find((w) => w._id === id)
-    deleteNewWriter({ writerId: id, icon: deletedItem.image })
+    deleteNewWriter({ writerId: id, icon: deletedItem.image }).then((r)=>{
+      console.log(r)
+    })
   }
 
   return (

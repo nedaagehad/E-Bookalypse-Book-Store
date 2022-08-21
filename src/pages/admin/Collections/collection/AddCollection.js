@@ -6,17 +6,28 @@ import * as Yup from 'yup';
 import { booksApi } from '../../../../store/services';
 
 const AddCollection = () => {
-    const {data,isLoading,error} = booksApi.useGetAllBooksQuery()
+    const {data,isLoading,error} = booksApi.useGetAllBooksQuery({limit:136})
     const [books,setBooks] = useState()
     const [selectedBooks,setSelectedBooks] = useState()
     const [addCollection] = booksApi.useAddCollectionMutation()
     let navigate = useNavigate()
     useEffect(()=>{
         if(data){
+            // let booksarr = []
+            // data.forEach((i)=>{
+            //     booksarr.push(i)
+            // })
             setBooks(data.data)
-            // console.log(data)
+            // console.log(booksarr)
+            console.log(data)
         }
     },[data])
+    const updateState =()=>{
+        console.log("updated")
+        // let Arr = [{"bb":"aa"},{"bb":"aa"},{"bb":"aa"},{"bb":"aa"},{"bb":"aa"}]
+        // setBooks(Arr)
+        
+    }
     const collectionValidations = Yup.object().shape({
         title: Yup.string().required("Title is Required"),
         collectionPrice: Yup.number().required("Price is Required"),
@@ -106,6 +117,7 @@ const AddCollection = () => {
                             optionsObject={{key:"_id",value:"title"}}
                             onChange={(e)=>onSelectChange(e)}
                             selectionLimit={3}
+                            ref={updateState}
                             />
                   
                         {errors ? ( <div className="form-text text-danger">{errors.collectionBooks}</div>

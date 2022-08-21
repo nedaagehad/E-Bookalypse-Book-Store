@@ -74,8 +74,7 @@ const updateBook = () => {
                         category: "",
                         writer: "",
                         promotion: "",
-                        oldImg: "",
-                        oldSrc: ""
+                    
 
                     }}
                     validationSchema={BookSchemaValidation}
@@ -108,14 +107,20 @@ const updateBook = () => {
                         }
 
                         if (book) {
-
-                            data.append("oldImg", book.poster)
-                            data.append("oldSrc", book.source)
+                            data.append("oldImg", book[0].poster)
+                            // console.log("THERE IS A BOOK")
+                            // console.log(book)
+                            data.append("oldSrc", book[0].source)
                         }
 
-                        updateNewBook({ bookNewData: data, bookid: params.id }).then((res) => {
+                        // for (var pair of data.entries()) {
+                        //     console.log(pair[0]+ ', ' + pair[1]); 
+                        // }                       
+                         updateNewBook({ bookNewData: data, bookid: params.id }).then((res) => {
                             if (res.data) {
                                 navigate('/admin/books')
+                            }else{
+                                console.log(res)
                             }
                         }
 

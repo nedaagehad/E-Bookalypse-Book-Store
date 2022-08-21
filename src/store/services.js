@@ -40,6 +40,15 @@ export const booksApi = createApi({
            
             
         }),
+        signUp:builder.mutation({
+            query:(data)=>{
+                return{
+                    url:"/signup",
+                    method:"POST",
+                    body:data
+                }
+            }
+        }),
         getAllBooks : builder.query({
             query: (arg = ' ') => {
                 const { page ,limit,category,priceMin,priceMax,priceSort ,writer ,salesSort} = arg;
@@ -655,6 +664,24 @@ export const booksApi = createApi({
             },
             invalidatesTags:['updateReviews']
 
+        }),
+        contactUS:builder.mutation({
+            query:(data)=>{
+                return{
+                    url:"/contact-us",
+                    method:"POST",
+                    body:data
+                }
+            }
+        }),
+        publisherwithUS:builder.mutation({
+            query:(data)=>{
+                return{
+                    url:"/publish-us",
+                    method:"POST",
+                    body:data
+                }
+            }
         })
 
 

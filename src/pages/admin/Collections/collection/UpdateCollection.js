@@ -10,7 +10,7 @@ const UpdateCollection = () => {
     let params = useParams()
     let navigate = useNavigate()
     const {data,isLoading,error} = booksApi.useGetCollectionByIdQuery(params.id)
-    const getAllBooks = booksApi.useGetAllBooksQuery()
+    const getAllBooks = booksApi.useGetAllBooksQuery({limit:135})
     const [books,setBooks] = useState()
     const [selectedBooks,setSelectedBooks] = useState()
     const [collection,setCollection] = useState()

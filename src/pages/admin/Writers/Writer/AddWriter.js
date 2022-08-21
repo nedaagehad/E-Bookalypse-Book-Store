@@ -43,6 +43,8 @@ const AddWriter = () => {
           addNewWriter(data).then((res) => {
             if (res.data) {
               navigate('/admin/writers')
+            }else{
+              console.log(res)
             }
           }).catch((err) => { console.log(err) })
         }}
