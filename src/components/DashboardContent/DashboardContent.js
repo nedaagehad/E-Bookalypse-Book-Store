@@ -158,7 +158,7 @@ function DashboardContent() {
                               <p className="text-muted mb-0">Sales {t.sales}</p>
                             </div>
                             <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                              <h6 className="font-weight-bold mb-0 text-success">${t.price}</h6>
+                              <h6 className="font-weight-bold mb-0 text-success" style={{marginLeft:"35px"}}>${t.price}</h6>
                             </div>
                           </div>
 
