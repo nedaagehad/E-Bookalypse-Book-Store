@@ -182,8 +182,8 @@ const SignUpForm = props => {
                         >
                             {({ errors, touched }) => (
                                 <Form>
-                                    <div className={classes.avatar}>
-                                        <p><IoPersonAdd /></p>
+                                    <div className={classes.avatar} style={{}}>
+                                        <p style={{fontSize:'45px', textAlign:"center !important"}}><IoPersonAdd /></p>
                                         <input type="file" id="userImage" name="userImage" class={classes.customFileInput} style={{ width: "20px", position: "relative", bottom: "70px" }} onChange={(e) => onFileChange(e)} />
                                     </div>
                                     <div className="row">
