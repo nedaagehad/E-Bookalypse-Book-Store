@@ -4,7 +4,7 @@ const ForgetForm = lazy(() => import('../../../components/ForgetForm/ForgetForm'
 
 const ForgetPassword = props => {
   return (
-    <div className='content' style={{backgroundImage:"url(../../images/login.jpeg)",backgroundSize:"cover" , padding:"50px"}}>
+    <div className='content footer-position' style={{backgroundImage:"url(../../images/login.jpeg)",backgroundSize:"cover" , padding:"50px"}}>
         <Suspense fallback={<Preloader />}>
             <ForgetForm />
         </Suspense>
