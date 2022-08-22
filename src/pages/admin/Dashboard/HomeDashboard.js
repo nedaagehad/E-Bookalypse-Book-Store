@@ -48,7 +48,7 @@ function HomeDashboard() {
 
   }, [getAllUsers.data,getAllOrders.data,getAllWriters.data,getAllBooks.data]);
     return (
-        <div className={`${dashstyle.containerScroller} bg-dark`}>
+        <div className={`${dashstyle.containerScroller} bg-dark`} style={{height: "100vh"}}>
             <AdminNavbar user={user} userImg={userImg} />
             <AdminSidebar user={user} userImg={userImg} />
             

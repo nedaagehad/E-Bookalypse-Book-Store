@@ -4,7 +4,7 @@ const SignUpForm = lazy(() => import('../../../components/SignUpForm/SignUpForm'
 
 const SignUp = props => {
   return (
-    <div className='content' style={{backgroundImage:"url(../../images/login.jpeg)",backgroundSize:"cover" , padding:"50px"}}>
+    <div className={`content  ${theme === 'night' ? 'bg-dark' : 'bg-light' }`} style={{backgroundImage:"url(../../images/login.jpeg)",backgroundSize:"cover" , padding:"50px"}}>
       <Suspense fallback={<Preloader />}>
             <SignUpForm />
         </Suspense>
