@@ -6,7 +6,7 @@ const LoginForm = lazy(() => import('../../../components/LoginForm/LoginForm') )
 const Login = props => {
   const theme = useSelector((state)=>state.theme.currentTheme)
   return (
-    <div className={`content  ${theme === 'night' ? 'bg-dark' : 'bg-light' }`} style={{backgroundImage:`url(${LoginImage})`,backgroundSize:"cover" , padding:"50px"}}>
+    <div className={`content  ${theme === 'night' ? 'bg-dark' : 'bg-light' }`} style={{backgroundSize:"cover" , padding:"50px"}}>
       <Suspense fallback={<Preloader />}>
             <LoginForm />
         </Suspense>
